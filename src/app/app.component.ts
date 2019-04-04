@@ -63,13 +63,17 @@ export class AppComponent implements OnDestroy {
     extractPerson(URL.createObjectURL(files.item(0))).subscribe(url => this.photo = url);
   }
 
+  ngOnDestroy(): void {
+    this.revokeUrl();
+  }
+
+  mousewheel($event: MouseEvent): void {
+    console.log($event);
+  }
+
   private revokeUrl() {
     if (this.photo) {
       URL.revokeObjectURL(this.photo);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.revokeUrl();
   }
 }
