@@ -10,13 +10,14 @@ import { ZoomDirective } from './directives/zoom.directive';
   declarations: [
     AppComponent,
     MovableDirective,
-    ZoomDirective
+    ZoomDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
