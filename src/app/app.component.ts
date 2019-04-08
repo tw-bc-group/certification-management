@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
 import { HttpClient } from '@angular/common/http';
+import { blobToDataURL } from 'blob-util';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -11,7 +12,6 @@ function loadImage(url: string): Observable<HTMLImageElement> {
     result.next(image);
   });
   return result.asObservable();
-
 }
 
 @Component({
@@ -39,7 +39,9 @@ export class AppComponent implements OnDestroy {
       },
       responseType: 'blob',
     }).subscribe((blob) => {
-      this.photoUrl = URL.createObjectURL(blob);
+      blobToDataURL(blob).then(url => {
+        this.photoUrl = url;
+      });
     });
   }
 
