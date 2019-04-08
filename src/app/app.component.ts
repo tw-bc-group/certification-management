@@ -29,7 +29,6 @@ export class AppComponent implements OnDestroy {
 
   photoChanged(files: FileList): void {
     this.pngUrl = '';
-    this.revokeUrl();
     const data = new FormData();
     data.set('image_file', files[0], files[0].name);
     data.set('size', 'auto');
@@ -46,7 +45,6 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.revokeUrl();
   }
 
   saveAsPng(svg: SVGSVGElement): void {
@@ -57,11 +55,5 @@ export class AppComponent implements OnDestroy {
       canvas.getContext('2d').drawImage(img, 0, 0);
       this.pngUrl = canvas.toDataURL('image/png');
     });
-  }
-
-  private revokeUrl() {
-    if (this.photoUrl) {
-      URL.revokeObjectURL(this.photoUrl);
-    }
   }
 }
