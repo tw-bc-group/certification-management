@@ -1,6 +1,6 @@
 <input #input (change)="photoChanged(input.files)" type="file"/>
 <div style="background: black">
-  <img [src]="photoUrl"/>
+  <img [src]="photoUrl|safeResourceUrl"/>
 </div>
 <hr/>
 <button type="button" (click)="saveAsPng(svg)">生成 PNG</button>
