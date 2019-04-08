@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as svgToDataUrl from 'svg-to-dataurl';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -54,20 +55,33 @@ export function extractPerson(url: string): Observable<string> {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  photo: string;
+  photoUrl: string;
+  pngUrl: string;
+  username = '汪志成';
 
   photoChanged(files: FileList): void {
+    this.pngUrl = '';
     this.revokeUrl();
-    extractPerson(URL.createObjectURL(files.item(0))).subscribe(url => this.photo = url);
+    extractPerson(URL.createObjectURL(files.item(0))).subscribe(url => this.photoUrl = url);
   }
 
   ngOnDestroy(): void {
     this.revokeUrl();
   }
 
+  saveAsPng(svg: SVGSVGElement): void {
+    loadImage(svgToDataUrl(svg.outerHTML)).subscribe((img) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      this.pngUrl = canvas.toDataURL('image/png');
+    });
+  }
+
   private revokeUrl() {
-    if (this.photo) {
-      URL.revokeObjectURL(this.photo);
+    if (this.photoUrl) {
+      URL.revokeObjectURL(this.photoUrl);
     }
   }
 }

@@ -1,9 +1,12 @@
 <input #input (change)="photoChanged(input.files)" type="file"/>
 <div style="background: black">
-  <img [src]="photo"/>
+  <img [src]="photoUrl"/>
 </div>
 <hr/>
-<svg viewBox="0 0 1621 2287" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+<button type="button" (click)="saveAsPng(svg)">生成 PNG</button>
+<a *ngIf="pngUrl" [href]="pngUrl" target="_blank" download="{{username}}的证书.png">下载 PNG</a>
+<svg #svg viewBox="0 0 1621 2287" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" width="1000"
      [appMovable]="{x:0,y:0}" #movable="appMovable" appZoom #zoom="appZoom">
   <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
   <title>TW</title>
@@ -83,7 +86,7 @@
         <use id="Mask" fill="url(#linearGradient-2)" xlink:href="#path-3"></use>
         <!-- 这里绑定照片 URL -->
         <image id="photo" mask="url(#mask-4)" [attr.x]="movable.offsetX" [attr.y]="movable.offsetY"
-               [attr.width]="1024 * zoom.scale" [attr.xlink:href]="photo"></image>
+               [attr.width]="1024 * zoom.scale" [attr.xlink:href]="photoUrl"></image>
         <mask id="mask-7" fill="white">
           <use xlink:href="#path-6"></use>
         </mask>
