@@ -40,9 +40,7 @@ export function extractPerson(url: string): Observable<string> {
           }
         }
       }
-      setTimeout(() => {
-        alert(`有图区域：${minX},${minY} ~ ${maxX},${maxY}；总尺寸：${canvas.width},${canvas.height}`);
-      }, 100);
+      console.log(`有图区域：${minX},${minY} ~ ${maxX},${maxY}；总尺寸：${canvas.width},${canvas.height}`);
       graph.putImageData(data, 0, 0);
 
       return canvas.toDataURL();
