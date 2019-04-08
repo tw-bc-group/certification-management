@@ -3,8 +3,10 @@
   <img [src]="photoUrl|safeResourceUrl"/>
 </div>
 <hr/>
-<button type="button" (click)="saveAsPng(svg)">生成 PNG</button>
-<a *ngIf="pngUrl" [href]="pngUrl" target="_blank" download="{{username}}的证书.png">下载 PNG</a>
+<p>
+  <button type="button" (click)="saveAsPng(svg)">生成 PNG</button>
+  <a *ngIf="pngUrl" [href]="pngUrl" target="_blank" download="{{username}}的证书.png">下载 PNG</a>
+</p>
 <svg #svg viewBox="0 0 1621 2287" version="1.1" xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink" width="1000"
      [appMovable]="{x:0,y:0}" #movable="appMovable" appZoom #zoom="appZoom">
