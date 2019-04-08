@@ -1,5 +1,6 @@
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1621px" height="2287px" viewBox="0 0 1621 2287" version="1.1"
-     xmlns="http://www.w3.org/2000/svg">
+     xmlns="http://www.w3.org/2000/svg"
+     [appMovable]="{x:0,y:0}" #movable="appMovable" appZoom #zoom="appZoom">
   <defs>
     <linearGradient x1="-20.5580894%" y1="117.883818%" x2="158.714638%" y2="-28.1071663%" id="linearGradient-1">
       <stop stop-color="#3023AE" offset="0%"></stop>
@@ -89,8 +90,9 @@
             <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-2"></use>
             <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
           </g>
-          <image id="photo" mask="url(#mask-3)" x="0" y="-8.25" width="1024" height="1024"
-                 xlink:href=""></image>
+          <image id="photo" mask="url(#mask-3)" [attr.x]="movable.offsetX" [attr.y]="movable.offsetY"
+                 [attr.width]="1024 * zoom.scale" width="1024" height="1024"
+                 [attr.xlink:href]="certificate.photoUrl"></image>
           <mask id="mask-7" fill="white">
             <use xlink:href="#path-6"></use>
           </mask>
@@ -111,8 +113,8 @@
       </text>
       <text id="name" font-family="Futura-Bold, Futura" font-size="160" font-weight="bold" line-spacing="140"
             fill="#FFFFFF">
-        <tspan x="229" y="1140">JOHN</tspan>
-        <tspan x="229" y="1280">WILLIAM</tspan>
+        <tspan x="229" y="1140">{{certificate.firstName}}</tspan>
+        <tspan x="229" y="1280">{{certificate.lastName}}</tspan>
       </text>
       <g id="Group-6" transform="translate(100.000000, 1354.000000)">
         <g id="Rectangle">
@@ -126,7 +128,7 @@
         </text>
         <text id="0x5c47e30dc7f82167de" font-family="Avenir-Book, Avenir" font-size="40" font-weight="normal"
               fill="#000000">
-          <tspan x="140" y="194">0x5c47e30dc7f82167de</tspan>
+          <tspan x="140" y="194">{{certificate.fingerprint}}</tspan>
         </text>
         <polygon id="Rectangle" fill="#447C35" points="0 247.5 67 247.5 67 314.5"></polygon>
       </g>
@@ -158,7 +160,7 @@
           </text>
         </g>
         <image id="logo" x="239" y="0" width="142.4" height="144"
-               xlink:href=""></image>
+               [attr.xlink:href]="certificate.partnerLogoUrl"></image>
       </g>
       <rect id="Rectangle" fill="#FFFFFF" opacity="0.599818638" x="1229" y="1947" width="392" height="231"></rect>
       <g id="Group-10" transform="translate(1309.000000, 1967.000000)">
@@ -169,14 +171,16 @@
           id="twcac.online" fill="#000000"></path>
       </g>
       <text id="publishedAt" font-family="Futura-Bold, Futura" font-size="40" font-weight="bold" fill="#FFFFFF">
-        <tspan x="240" y="1713">3rd Jan</tspan>
+        <tspan x="240" y="1713">{{certificate.publishedAt|date:'dd MMM'}}</tspan>
         <tspan x="403.24" y="1713" font-family="PingFangSC-Semibold, PingFang SC" font-weight="500">，</tspan>
-        <tspan x="443.24" y="1713" font-family="Futura-Medium, Futura" font-weight="400">2019</tspan>
+        <tspan x="443.24" y="1713" font-family="Futura-Medium, Futura"
+               font-weight="400">{{certificate.publishedAt|date:'yyyy'}}</tspan>
       </text>
       <text id="expiredAt" font-family="Futura-Bold, Futura" font-size="40" font-weight="bold" fill="#FFFFFF">
-        <tspan x="240" y="1782">Expired at: 3rd Jan</tspan>
+        <tspan x="240" y="1782">Expired at: {{certificate.expiredAt|date:'dd MMM'}}</tspan>
         <tspan x="652.24" y="1782" font-family="PingFangSC-Semibold, PingFang SC" font-weight="500">，</tspan>
-        <tspan x="692.24" y="1782" font-family="Futura-Medium, Futura" font-weight="400">2021</tspan>
+        <tspan x="692.24" y="1782" font-family="Futura-Medium, Futura"
+               font-weight="400">{{certificate.expiredAt|date:'yyyy'}}</tspan>
       </text>
     </g>
   </g>

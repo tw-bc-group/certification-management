@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CertificateModel } from '../models/certificate.model';
 
 @Component({
   selector: 'app-template-university',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./template-university.component.scss'],
 })
 export class TemplateUniversityComponent implements OnInit {
+  @Input()
+  certificate: CertificateModel;
 
   constructor() {
   }
