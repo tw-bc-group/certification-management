@@ -65,10 +65,6 @@ export class AppComponent implements OnDestroy {
     this.revokeUrl();
   }
 
-  mousewheel($event: MouseEvent): void {
-    console.log($event);
-  }
-
   private revokeUrl() {
     if (this.photo) {
       URL.revokeObjectURL(this.photo);
