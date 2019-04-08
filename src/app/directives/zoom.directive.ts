@@ -13,11 +13,8 @@ export class ZoomDirective {
 
   @HostListener('mousewheel', ['$event'])
   mouseWheel($event: WheelEvent): void {
-    if ($event.deltaY < 0) {
-      this.scale *= 1.1;
-    } else {
-      this.scale *= 0.9;
-    }
+    const factor = $event.deltaY / 4;
+    this.scale *= 1 - factor * 0.02;
     $event.preventDefault();
   }
 }
