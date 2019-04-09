@@ -3,6 +3,8 @@ import { Observable, Subject } from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
 import { HttpClient } from '@angular/common/http';
 import { blobToDataURL } from 'blob-util';
+import { CertificateModel, CertificateType } from './models/certificate.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -20,11 +22,20 @@ function loadImage(url: string): Observable<HTMLImageElement> {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-  photoUrl: string;
+  certificate: CertificateModel = {
+    photoUrl: '',
+    firstName: '志成',
+    lastName: '汪',
+    expiredAt: new Date('2020-01-01T00:00:00Z'),
+    publishedAt: new Date('2019-01-01T00:00:00Z'),
+    fingerprint: '0x17ddasdf1',
+    partnerLogoUrl: '',
+    type: CertificateType.Community,
+  };
   pngUrl: string;
-  username = '汪志成';
+  svgUrl: SafeResourceUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
   }
 
   photoChanged(files: FileList): void {
@@ -39,7 +50,7 @@ export class AppComponent implements OnDestroy {
       responseType: 'blob',
     }).subscribe((blob) => {
       blobToDataURL(blob).then(url => {
-        this.photoUrl = url;
+        this.certificate.photoUrl = url;
       });
     });
   }
@@ -47,8 +58,12 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
   }
 
-  saveAsPng(svg: SVGSVGElement): void {
-    loadImage(svgToDataUrl(svg.outerHTML)).subscribe((img) => {
+  saveAsPng(viewerSvg: SVGSVGElement): void {
+    const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
+    svg.setAttribute('width', '600px');
+    const svgUrl = svgToDataUrl(svg.outerHTML);
+    this.svgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(svgUrl);
+    loadImage(svgUrl).subscribe((img) => {
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;

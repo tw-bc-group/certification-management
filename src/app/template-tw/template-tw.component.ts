@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CertificateModel } from '../models/certificate.model';
 
 @Component({
@@ -9,6 +9,9 @@ import { CertificateModel } from '../models/certificate.model';
 export class TemplateTwComponent implements OnInit {
   @Input()
   certificate: CertificateModel;
+
+  @ViewChild('svg')
+  svg: SVGSVGElement;
 
   constructor() {
   }

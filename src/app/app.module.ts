@@ -11,6 +11,7 @@ import { TemplateTwComponent } from './template-tw/template-tw.component';
 import { TemplateCorporateComponent } from './template-corporate/template-corporate.component';
 import { TemplateCommunityComponent } from './template-community/template-community.component';
 import { TemplateUniversityComponent } from './template-university/template-university.component';
+import { NamePipe } from './pipes/name.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TemplateUniversityComponent } from './template-university/template-univ
     TemplateCorporateComponent,
     TemplateCommunityComponent,
     TemplateUniversityComponent,
+    NamePipe,
   ],
   imports: [
     BrowserModule,
