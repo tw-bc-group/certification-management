@@ -1,10 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
-import { HttpClient } from '@angular/common/http';
-import { blobToDataURL } from 'blob-util';
 import { CertificateModel, CertificateType } from './models/certificate.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { addYears, startOfDay } from 'date-fns';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -16,6 +15,8 @@ function loadImage(url: string): Observable<HTMLImageElement> {
   return result.asObservable();
 }
 
+const publishedAt = startOfDay(new Date());
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,36 +24,20 @@ function loadImage(url: string): Observable<HTMLImageElement> {
 })
 export class AppComponent implements OnDestroy {
   certificate: CertificateModel = {
+    certName: 'Agile Coach',
     photoUrl: '',
-    firstName: '志成',
-    lastName: '汪',
-    expiredAt: new Date('2020-01-01T00:00:00Z'),
-    publishedAt: new Date('2019-01-01T00:00:00Z'),
-    fingerprint: '0x17ddasdf1',
-    partnerLogoUrl: '',
-    type: CertificateType.Community,
+    firstName: '',
+    lastName: '',
+    expiredAt: addYears(publishedAt, 2),
+    publishedAt,
+    fingerprint: '',
+    partner: '',
+    type: CertificateType.Tw,
   };
   pngUrl: string;
   svgUrl: SafeResourceUrl;
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
-  }
-
-  photoChanged(files: FileList): void {
-    this.pngUrl = '';
-    const data = new FormData();
-    data.set('image_file', files[0], files[0].name);
-    data.set('size', 'auto');
-    this.http.post('https://api.remove.bg/v1.0/removebg', data, {
-      headers: {
-        'X-Api-Key': '9FHqa9UnV4fYfPn7eVYEagvp',
-      },
-      responseType: 'blob',
-    }).subscribe((blob) => {
-      blobToDataURL(blob).then(url => {
-        this.certificate.photoUrl = url;
-      });
-    });
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnDestroy(): void {

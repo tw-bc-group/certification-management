@@ -144,7 +144,7 @@
         </text>
       </g>
       <image id="logo" x="339" y="108" width="263" height="87"
-             [attr.xlink:href]="certificate.partnerLogoUrl"></image>
+             [attr.xlink:href]="certificate.partner|partnerLogo"></image>
       <text id="publishedAt" font-family="Futura-Bold, Futura" font-size="40" font-weight="bold" fill="#FFFFFF">
         <tspan x="240" y="1713">{{certificate.publishedAt|date:'dd MMM'}}</tspan>
         <tspan x="403.24" y="1713" font-family="PingFangSC-Semibold, PingFang SC" font-weight="500">，</tspan>

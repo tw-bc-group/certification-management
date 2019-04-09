@@ -1,8 +1,17 @@
+:host {
+  display: flex;
+
+  > * {
+    flex: auto;
+    padding: 20px;
+  }
+
+  > .preview {
+    flex: none;
+  }
+}
+
 svg {
   width: 300px;
   user-select: none;
-}
-
-img {
-  max-width: 200px;
 }

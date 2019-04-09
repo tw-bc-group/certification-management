@@ -12,6 +12,19 @@ import { TemplateCorporateComponent } from './template-corporate/template-corpor
 import { TemplateCommunityComponent } from './template-community/template-community.component';
 import { TemplateUniversityComponent } from './template-university/template-university.component';
 import { NamePipe } from './pipes/name.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CertFormComponent } from './cert-form/cert-form.component';
+import { FormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatSelectModule,
+} from '@angular/material';
+import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
 
 @NgModule({
   declarations: [
@@ -24,11 +37,22 @@ import { NamePipe } from './pipes/name.pipe';
     TemplateCommunityComponent,
     TemplateUniversityComponent,
     NamePipe,
+    CertFormComponent,
+    PartnerLogoPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

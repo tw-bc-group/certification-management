@@ -6,8 +6,9 @@ export enum CertificateType {
 }
 
 export interface CertificateModel {
+  certName: string;
   type: CertificateType;
-  partnerLogoUrl: string;
+  partner: string;
   photoUrl: string;
   firstName: string;
   lastName: string;
