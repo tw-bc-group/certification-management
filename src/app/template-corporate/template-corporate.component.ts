@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CertificateModel } from '../models/certificate.model';
 
 @Component({
@@ -11,9 +11,13 @@ export class TemplateCorporateComponent implements OnInit {
   certificate: CertificateModel;
 
   @ViewChild('svg')
-  svg: SVGSVGElement;
+  svgRef: ElementRef<SVGSVGElement>;
 
   constructor() {
+  }
+
+  get svg(): SVGSVGElement {
+    return this.svgRef.nativeElement;
   }
 
   ngOnInit() {
