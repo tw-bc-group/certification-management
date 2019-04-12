@@ -23,7 +23,7 @@ export class CertFormComponent implements OnInit {
     const data = new FormData();
     data.set('image_file', files[0], files[0].name);
     data.set('size', 'auto');
-    this.http.post('https://api.remove.bg/v1.0/removebg', data, {
+    this.http.post('/api/v1.0/removebg', data, {
       headers: {
         'X-Api-Key': '9FHqa9UnV4fYfPn7eVYEagvp',
       },
