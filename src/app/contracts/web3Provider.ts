@@ -13,8 +13,10 @@ const retrieveWeb3 = () => {
 };
 
 const walletAddress = () => {
-  if (window.ethereum) {
+  if (window.ethereum.selectedAddress) {
     return window.ethereum.selectedAddress;
+  } else {
+    alert('please unlock your meta mask wallet at first');
   }
 };
 
