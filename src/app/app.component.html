@@ -3,29 +3,33 @@
   <ng-container *ngIf="certificate.type==='Tw'">
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
     <p>
-      <button type="button" mat-flat-button color="primary" (click)="saveAsPng(template.svg)">生成证书</button>
+      <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
+      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>
     <p>
-      <button type="button" mat-flat-button color="primary" (click)="saveAsPng(template.svg)">生成证书</button>
+      <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
+      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Corporate'">
     <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
     <p>
-      <button type="button" mat-flat-button color="primary" (click)="saveAsPng(template.svg)">生成证书</button>
+      <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
+      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='University'">
     <app-template-university [certificate]="certificate" #template></app-template-university>
     <p>
-      <button type="button" mat-flat-button color="primary" (click)="saveAsPng(template.svg)">生成证书</button>
+      <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
+      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <div>
-    <a *ngIf="svgUrl" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
-    <a *ngIf="pngUrl" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
+    <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
+    <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
   </div>
 </div>

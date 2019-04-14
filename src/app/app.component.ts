@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
 import { CertificateModel, CertificateType } from './models/certificate.model';
@@ -6,7 +6,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { addYears, startOfDay } from 'date-fns';
 import { hexify, retrieveContract } from './contracts/web3Provider';
 import { HttpClient } from '@angular/common/http';
-
+import { flatMap, map } from 'rxjs/operators';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -39,6 +39,10 @@ export class AppComponent implements OnDestroy {
   };
   pngUrl: string;
   svgUrl: SafeResourceUrl;
+  issued = false;
+  downloadLink = false;
+  @ViewChild('template')
+  template: { svgRef: ElementRef };
 
   constructor(private sanitizer: DomSanitizer,
               private http: HttpClient) {
@@ -47,30 +51,65 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
   }
 
-  saveAsPng(viewerSvg: SVGSVGElement): void {
+  issue(): void {
     this.onChain().then(tokenId => {
-      const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-      svg.setAttribute('width', '600px');
-      const svgUrl = svgToDataUrl(svg.outerHTML);
-      loadImage(svgUrl).subscribe((img) => {
-        this.svgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(svgUrl);
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d').drawImage(img, 0, 0);
-        this.pngUrl = canvas.toDataURL('image/png');
-        this.upload(tokenId, this.pngUrl).subscribe((r) => console.log(r));
-      });
-    });
+      this.certificate.fingerprint = hexify(tokenId);
+      return tokenId;
+    }).then(tokenId => {
+      if (tokenId !== null) {
+        this.saveAsPng(tokenId, this.template.svgRef.nativeElement);
+      }
+    }).catch(err => {
+        console.error('fail to issue certification', err);
+      }
+    );
   }
 
-  upload(tokenId: string, data: string): Observable<any> {
+  saveAsPng(tokenId: number, viewerSvg: SVGSVGElement): void {
+    const svgUrl = this.toSvgUrl(viewerSvg);
+    loadImage(svgUrl)
+      .pipe(
+        map(this.toPngUrl),
+        flatMap(pngUrl => this.upload(tokenId, pngUrl))
+      )
+      .subscribe((message) => {
+        alert(JSON.stringify(message));
+        this.issued = true;
+      });
+  }
+
+  upload(tokenId: number, data: string): Observable<any> {
     return this.http.post('/photos', {tokenId, data}, {
       headers: {'Content-Type': 'application/json'}
     });
   }
 
-  async onChain(): Promise<string> {
+  private toSvgUrl(viewerSvg: SVGSVGElement): string {
+    const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
+    svg.setAttribute('width', '600px');
+    return svgToDataUrl(svg.outerHTML);
+  }
+
+  private toPngUrl(img: HTMLImageElement): string {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    return canvas.toDataURL('image/png');
+  }
+
+  downloadCert(viewerSvg: SVGSVGElement): void {
+    const url = this.toSvgUrl(viewerSvg);
+    this.svgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    loadImage(url).pipe(
+      map(this.toPngUrl)
+    ).subscribe((pngUrl) => {
+      this.pngUrl = pngUrl;
+      this.downloadLink = true;
+    });
+  }
+
+  async onChain(): Promise<number> {
     const tx = await retrieveContract().methods.issue(
       this.certificate.certName,
       this.certificate.firstName,
@@ -81,6 +120,6 @@ export class AppComponent implements OnDestroy {
       this.certificate.fingerprint
     ).send();
     const tokenId = tx.events.Transfer.returnValues.tokenId;
-    return hexify(tokenId);
+    return tokenId;
   }
 }
