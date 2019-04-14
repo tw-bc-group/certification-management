@@ -77,8 +77,9 @@ export class AppComponent implements OnDestroy {
         map(this.toPngUrl),
         flatMap(pngUrl => this.upload(tokenId, pngUrl))
       )
-      .subscribe((message) => {
-        alert(JSON.stringify(message));
+      .subscribe(() => {
+        alert(`Your Certification ID is ${tokenId}`);
+        console.log(tokenId);
         this.issued = true;
       });
   }
