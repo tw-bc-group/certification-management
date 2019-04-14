@@ -29,6 +29,9 @@
     </p>
   </ng-container>
   <div>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+  </div>
+  <div>
     <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
     <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
   </div>

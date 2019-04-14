@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
 import { CertificateModel, CertificateType } from './models/certificate.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { addYears, startOfDay } from 'date-fns';
-import { hexify, retrieveContract } from './contracts/web3Provider';
+import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider';
 import { HttpClient } from '@angular/common/http';
 import { flatMap, map } from 'rxjs/operators';
 
@@ -36,11 +36,13 @@ export class AppComponent implements OnDestroy {
     fingerprint: '',
     partner: '',
     type: CertificateType.Tw,
+    receiverAddress: ''
   };
   pngUrl: string;
   svgUrl: SafeResourceUrl;
   issued = false;
   downloadLink = false;
+  loading = false;
   @ViewChild('template')
   template: { svgRef: ElementRef };
 
@@ -53,19 +55,22 @@ export class AppComponent implements OnDestroy {
 
   issue(): void {
     this.onChain().then(tokenId => {
-      this.certificate.fingerprint = hexify(tokenId);
-      return tokenId;
+      const fingerprint = hexify(tokenId);
+      this.certificate.fingerprint = fingerprint;
+      this.loading = false;
+      return fingerprint;
     }).then(tokenId => {
       if (tokenId !== null) {
         this.saveAsPng(tokenId, this.template.svgRef.nativeElement);
       }
     }).catch(err => {
+        this.loading = false;
         console.error('fail to issue certification', err);
       }
     );
   }
 
-  saveAsPng(tokenId: number, viewerSvg: SVGSVGElement): void {
+  saveAsPng(tokenId: string, viewerSvg: SVGSVGElement): void {
     const svgUrl = this.toSvgUrl(viewerSvg);
     loadImage(svgUrl)
       .pipe(
@@ -78,7 +83,7 @@ export class AppComponent implements OnDestroy {
       });
   }
 
-  upload(tokenId: number, data: string): Observable<any> {
+  upload(tokenId: string, data: string): Observable<any> {
     return this.http.post('/photos', {tokenId, data}, {
       headers: {'Content-Type': 'application/json'}
     });
@@ -110,6 +115,7 @@ export class AppComponent implements OnDestroy {
   }
 
   async onChain(): Promise<number> {
+    this.loading = true;
     const tx = await retrieveContract().methods.issue(
       this.certificate.certName,
       this.certificate.firstName,
@@ -117,9 +123,8 @@ export class AppComponent implements OnDestroy {
       this.certificate.publishedAt.valueOf(),
       this.certificate.expiredAt.valueOf(),
       JSON.stringify({type: this.certificate.type, partner: this.certificate.partner}),
-      this.certificate.fingerprint
-    ).send();
-    const tokenId = tx.events.Transfer.returnValues.tokenId;
-    return tokenId;
+      this.certificate.receiverAddress || walletAddress()
+    ).send({from: walletAddress()});
+    return tx.events.Transfer.returnValues.tokenId;
   }
 }

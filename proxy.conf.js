@@ -8,7 +8,7 @@ module.exports = {
     "logLevel": "debug",
   },
   "/photos": {
-    "target": "http://localhost:3000/",
+    "target": "http://localhost:3001/",
     "secure": false,
     "pathRewrite": {
       "^/photos": "",

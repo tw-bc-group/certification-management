@@ -12,7 +12,7 @@ const retrieveWeb3 = () => {
   }
 };
 
-const walletAddress = () => {
+export const walletAddress = () => {
   if (window.ethereum.selectedAddress) {
     return window.ethereum.selectedAddress;
   } else {
@@ -22,7 +22,7 @@ const walletAddress = () => {
 
 export const retrieveContract = () => {
   const web3 = retrieveWeb3();
-  return new web3.eth.Contract(abi, contractAddress, {defaultAccount: walletAddress()});
+  return new web3.eth.Contract(abi, contractAddress);
 };
 
 export const hexify = (tokenId: number) => retrieveWeb3().utils.numberToHex(tokenId);

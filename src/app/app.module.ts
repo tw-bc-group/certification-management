@@ -21,7 +21,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatProgressSpinnerModule,
   MatSelectModule,
 } from '@angular/material';
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
@@ -53,6 +53,7 @@ import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
     MatIconModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -15,4 +15,5 @@ export interface CertificateModel {
   publishedAt: Date;
   expiredAt: Date;
   fingerprint: string;
+  receiverAddress: string;
 }
