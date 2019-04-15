@@ -5,11 +5,11 @@
 
   <div class="awardee-name">
     <mat-form-field>
-      <input type="text" placeholder="名" matInput name="firstName" [(ngModel)]="certificate.firstName">
+      <input type="text" placeholder="姓" matInput name="lastName" [(ngModel)]="certificate.lastName">
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="姓" matInput name="lastName" [(ngModel)]="certificate.lastName">
+      <input type="text" placeholder="名" matInput name="firstName" [(ngModel)]="certificate.firstName">
     </mat-form-field>
   </div>
 
@@ -33,9 +33,9 @@
 
   <mat-form-field>
     <mat-select name="type" [(ngModel)]="certificate.type">
-      <mat-option value="Tw">TW</mat-option>
+      <mat-option value="Tw">ThoughtWorks</mat-option>
       <mat-option value="Community">Community</mat-option>
-      <mat-option value="Corporate">Corporate</mat-option>
+      <mat-option value="Corporate">Enterprise</mat-option>
       <mat-option value="University">University</mat-option>
     </mat-select>
   </mat-form-field>

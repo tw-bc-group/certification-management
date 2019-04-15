@@ -25,7 +25,7 @@ export class CertFormComponent implements OnInit {
     data.set('size', 'auto');
     this.http.post('/api/v1.0/removebg', data, {
       headers: {
-        'X-Api-Key': '9FHqa9UnV4fYfPn7eVYEagvp',
+        'X-Api-Key': 'bwmYLyHc8AjPBn767ztnCxCw',
       },
       responseType: 'blob',
     }).subscribe((blob) => {

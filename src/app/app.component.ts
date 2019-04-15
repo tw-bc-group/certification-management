@@ -27,7 +27,7 @@ const publishedAt = startOfDay(new Date());
 })
 export class AppComponent implements OnDestroy {
   certificate: CertificateModel = {
-    certName: 'Agile Coach',
+    certName: 'AGILE COACH',
     photoUrl: '',
     firstName: '',
     lastName: '',
