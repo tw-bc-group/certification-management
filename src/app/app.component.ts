@@ -35,7 +35,7 @@ export class AppComponent implements OnDestroy {
     publishedAt,
     fingerprint: '',
     partner: '',
-    type: CertificateType.Tw,
+    type: CertificateType.ThoughtWorks,
     receiverAddress: ''
   };
   pngUrl: string;

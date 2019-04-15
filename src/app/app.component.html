@@ -1,6 +1,6 @@
 <app-cert-form [certificate]="certificate"></app-cert-form>
 <div class="preview">
-  <ng-container *ngIf="certificate.type==='Tw'">
+  <ng-container *ngIf="certificate.type==='ThoughtWorks'">
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
@@ -14,7 +14,7 @@
       <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
-  <ng-container *ngIf="certificate.type==='Corporate'">
+  <ng-container *ngIf="certificate.type==='Enterprise'">
     <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>

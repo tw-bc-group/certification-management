@@ -1,7 +1,7 @@
 export enum CertificateType {
-  Tw = 'Tw',
+  ThoughtWorks = 'ThoughtWorks',
   Community = 'Community',
-  Corporate = 'Corporate',
+  Enterprise = 'Enterprise',
   University = 'University',
 }
 
