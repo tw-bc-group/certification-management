@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import * as svgToDataUrl from 'svg-to-dataurl';
-import { CertificateModel, CertificateType } from './models/certificate.model';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { addYears, startOfDay } from 'date-fns';
+import {CertificateModel, CertificateType} from './models/certificate.model';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {addYears, startOfDay} from 'date-fns';
 import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider';
-import { HttpClient } from '@angular/common/http';
-import { flatMap, map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {flatMap, map} from 'rxjs/operators';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -36,6 +36,7 @@ export class AppComponent implements OnDestroy {
     fingerprint: '',
     partner: '',
     type: CertificateType.ThoughtWorks,
+    issuer: '',
     receiverAddress: ''
   };
   pngUrl: string;
@@ -123,7 +124,11 @@ export class AppComponent implements OnDestroy {
       this.certificate.lastName,
       this.certificate.publishedAt.valueOf(),
       this.certificate.expiredAt.valueOf(),
-      JSON.stringify({type: this.certificate.type, partner: this.certificate.partner}),
+      JSON.stringify({
+        type: this.certificate.type,
+        partner: this.certificate.partner,
+        issuer: this.certificate.issuer
+      }),
       this.certificate.receiverAddress || walletAddress()
     ).send({from: walletAddress()});
     return tx.events.Transfer.returnValues.tokenId;

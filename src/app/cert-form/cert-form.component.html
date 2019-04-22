@@ -49,6 +49,10 @@
   </mat-form-field>
 
   <mat-form-field>
+    <input type="text" placeholder="颁发者" matInput name="issuer" [(ngModel)]="certificate.issuer">
+  </mat-form-field>
+
+  <mat-form-field>
     <input type="text" placeholder="接收者钱包地址" matInput name="receiverAddress" [(ngModel)]="certificate.receiverAddress">
   </mat-form-field>
 </div>
