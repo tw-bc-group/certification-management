@@ -67,8 +67,8 @@ export class AppComponent implements OnDestroy {
     );
   }
 
-  private upload(tokenId: string, photos: any): Observable<any> {
-    return this.http.post('/photos', {tokenId, photos}, {
+  private upload(certId: string, photos: any): Observable<any> {
+    return this.http.post('/photos', {certId, photos}, {
       headers: {'Content-Type': 'application/json'}
     });
   }
