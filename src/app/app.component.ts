@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import * as svgToDataUrl from 'svg-to-dataurl';
 import {CertificateModel, CertificateType} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
@@ -59,11 +58,8 @@ export class AppComponent implements OnDestroy {
       const fingerprint = hexify(tokenId);
       this.certificate.fingerprint = fingerprint;
       this.loading = false;
+      this.issued = true;
       return fingerprint;
-    }).then(tokenId => {
-      if (tokenId !== null) {
-        this.saveAsPng(tokenId, this.template.svgRef.nativeElement);
-      }
     }).catch(err => {
         this.loading = false;
         console.error('fail to issue certification', err);
@@ -71,22 +67,8 @@ export class AppComponent implements OnDestroy {
     );
   }
 
-  saveAsPng(tokenId: string, viewerSvg: SVGSVGElement): void {
-    const svgUrl = this.toSvgUrl(viewerSvg);
-    loadImage(svgUrl)
-      .pipe(
-        map(this.toPngUrl),
-        flatMap(pngUrl => this.upload(tokenId, pngUrl))
-      )
-      .subscribe(() => {
-        alert(`Your Certification ID is ${tokenId}`);
-        console.log(tokenId);
-        this.issued = true;
-      });
-  }
-
-  upload(tokenId: string, data: string): Observable<any> {
-    return this.http.post('/photos', {tokenId, data}, {
+  private upload(tokenId: string, photos: any): Observable<any> {
+    return this.http.post('/photos', {tokenId, photos}, {
       headers: {'Content-Type': 'application/json'}
     });
   }
@@ -94,7 +76,8 @@ export class AppComponent implements OnDestroy {
   private toSvgUrl(viewerSvg: SVGSVGElement): string {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
     svg.setAttribute('width', '600px');
-    return svgToDataUrl(svg.outerHTML);
+    const base64Data = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+    return `data:image/svg+xml;base64,${base64Data}`;
   }
 
   private toPngUrl(img: HTMLImageElement): string {
@@ -106,11 +89,22 @@ export class AppComponent implements OnDestroy {
   }
 
   downloadCert(viewerSvg: SVGSVGElement): void {
-    const url = this.toSvgUrl(viewerSvg);
-    this.svgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    loadImage(url).pipe(
-      map(this.toPngUrl)
-    ).subscribe((pngUrl) => {
+    const svgDataUrl = this.toSvgUrl(viewerSvg);
+
+    const {fingerprint, lastName, firstName} = this.certificate;
+    const pictureName = `${lastName}_${firstName}`;
+
+    loadImage(svgDataUrl).pipe(
+      map(this.toPngUrl),
+      flatMap(pngDataUrl => this.upload(fingerprint, [{
+        fileName: `${pictureName}.png`,
+        dataUrl: pngDataUrl
+      }, {
+        fileName: `${pictureName}.svg`,
+        dataUrl: svgDataUrl
+      }]))
+    ).subscribe(({pngUrl, svgUrl}) => {
+      this.svgUrl = svgUrl;
       this.pngUrl = pngUrl;
       this.downloadLink = true;
     });
