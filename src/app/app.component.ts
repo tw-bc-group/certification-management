@@ -38,9 +38,8 @@ export class AppComponent implements OnDestroy {
     issuer: '',
     receiverAddress: ''
   };
-  pngUrl: string;
+  pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
-  issued = false;
   downloadLink = false;
   loading = false;
   @ViewChild('template')
@@ -54,48 +53,40 @@ export class AppComponent implements OnDestroy {
   }
 
   issue(): void {
-    this.onChain().then(tokenId => {
-      const fingerprint = hexify(tokenId);
-      this.certificate.fingerprint = fingerprint;
-      this.loading = false;
-      this.issued = true;
-      return fingerprint;
-    }).catch(err => {
+    this
+    .onChain()
+    .then((certId) => this.displayCertId(hexify(certId)))
+    .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
+    .catch(err => {
         this.loading = false;
+        this.downloadLink = false;
         console.error('fail to issue certification', err);
       }
     );
   }
 
-  private upload(certId: string, photos: any): Observable<any> {
-    return this.http.post('/photos', {certId, photos}, {
-      headers: {'Content-Type': 'application/json'}
+  private displayCertId(certId: string) {
+    this.certificate.fingerprint = certId;
+    this.loading = false;
+    return this.waitForViewChildReady();
+  }
+
+  private generateDownloadUrl() {
+    this.svgUrl = this.toSvg(this.template.svgRef.nativeElement);
+    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+    loadImage(svgDataUrl).pipe(flatMap(img => this.toPng(img))).subscribe(url => {
+      this.downloadLink = true;
+      this.pngUrl = url;
     });
   }
 
-  private toSvgUrl(viewerSvg: SVGSVGElement): string {
-    const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-    svg.setAttribute('width', '600px');
-    const base64Data = btoa(unescape(encodeURIComponent(svg.outerHTML)));
-    return `data:image/svg+xml;base64,${base64Data}`;
-  }
-
-  private toPngUrl(img: HTMLImageElement): string {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    return canvas.toDataURL('image/png');
-  }
-
-  downloadCert(viewerSvg: SVGSVGElement): void {
-    const svgDataUrl = this.toSvgUrl(viewerSvg);
-
+  private uploadCerts(): void {
+    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
     loadImage(svgDataUrl).pipe(
-      map(this.toPngUrl),
+      map(img => this.toPngDataUrl(img)),
       flatMap(pngDataUrl => this.upload(fingerprint, [{
         fileName: `${pictureName}.png`,
         dataUrl: pngDataUrl
@@ -109,6 +100,62 @@ export class AppComponent implements OnDestroy {
       this.downloadLink = true;
     });
   }
+
+  // Wait 1 second for fingerprint to be ready for show.
+  // TODO workaround: https://stackoverflow.com/questions/44948053/angular4-how-to-know-when-a-viewchild-has-been-reset
+  private waitForViewChildReady() {
+    return new Promise<string>((resolve) => {
+      const wait = setTimeout(() => {
+        clearTimeout(wait);
+        resolve('workaround!');
+      }, 1000);
+    });
+  }
+
+  private upload(certId: string, photos: any): Observable<any> {
+    return this.http.post('/photos', {certId, photos}, {
+      headers: {'Content-Type': 'application/json'}
+    });
+  }
+
+  private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
+    const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
+    svg.setAttribute('width', '600px');
+    const blob = new Blob([svg.outerHTML], {type: 'image/svg+xml'});
+    const url = URL.createObjectURL(blob);
+    const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return safeUrl;
+  }
+
+  private toSvgDataUrl(viewerSvg: SVGSVGElement): string {
+    const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
+    svg.setAttribute('width', '600px');
+    const base64Data = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+    return `data:image/svg+xml;base64,${base64Data}`;
+  }
+
+  private toPng(img: HTMLImageElement): Observable<SafeResourceUrl> {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    const result = new Subject<SafeResourceUrl>();
+    canvas.toBlob(blob => {
+      const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob));
+      result.next(url);
+    });
+
+    return result.asObservable();
+  }
+
+  private toPngDataUrl(img: HTMLImageElement): string {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    return canvas.toDataURL('image/png');
+  }
+
 
   async onChain(): Promise<number> {
     this.loading = true;

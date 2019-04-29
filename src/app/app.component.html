@@ -4,28 +4,24 @@
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
-      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
-      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Enterprise'">
     <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
-      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='University'">
     <app-template-university [certificate]="certificate" #template></app-template-university>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
-      <button type="button" [disabled]="!issued" mat-flat-button color="primary" (click)="downloadCert(template.svg)">下载证书</button>
     </p>
   </ng-container>
   <div>
