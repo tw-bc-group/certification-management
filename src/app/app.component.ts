@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {CertificateModel, CertificateType} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
+import QRCode from 'qrcode';
 import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider';
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
@@ -36,7 +37,8 @@ export class AppComponent implements OnDestroy {
     partner: '',
     type: CertificateType.ThoughtWorks,
     issuer: '',
-    receiverAddress: ''
+    receiverAddress: '',
+    qrCode: ''
   };
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
@@ -55,7 +57,7 @@ export class AppComponent implements OnDestroy {
   issue(): void {
     this
     .onChain()
-    .then((certId) => this.displayCertId(hexify(certId)))
+    .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
     .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
     .catch(err => {
         this.loading = false;
@@ -65,7 +67,8 @@ export class AppComponent implements OnDestroy {
     );
   }
 
-  private displayCertId(certId: string) {
+  private async displayCertIdAndQrCode(certId: string) {
+    this.certificate.qrCode = await QRCode.toString(certId);
     this.certificate.fingerprint = certId;
     this.loading = false;
     return this.waitForViewChildReady();

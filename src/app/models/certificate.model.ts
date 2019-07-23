@@ -17,4 +17,5 @@ export interface CertificateModel {
   fingerprint: string;
   issuer: string;
   receiverAddress: string;
+  qrCode: string;
 }
