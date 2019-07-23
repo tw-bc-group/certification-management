@@ -25,6 +25,7 @@ import {
   MatSelectModule,
 } from '@angular/material';
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
+import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
     NamePipe,
     CertFormComponent,
     PartnerLogoPipe,
+    StringToHTMLPipe,
   ],
   imports: [
     BrowserModule,
