@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
 import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider';
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
+import {Constants} from './utils/constants';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -68,7 +69,7 @@ export class AppComponent implements OnDestroy {
   }
 
   private async displayCertIdAndQrCode(certId: string) {
-    this.certificate.qrCode = await QRCode.toString(certId);
+    this.certificate.qrCode = await QRCode.toString(Constants.CERT_VIEWER_URL + certId);
     this.certificate.fingerprint = certId;
     this.loading = false;
     return this.waitForViewChildReady();
