@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CertificateModel } from '../models/certificate.model';
 import { blobToDataURL } from 'blob-util';
 import { HttpClient } from '@angular/common/http';
+import {Constants} from '../utils/constants';
 
 @Component({
   selector: 'app-cert-form',
@@ -25,7 +26,7 @@ export class CertFormComponent implements OnInit {
     data.set('size', 'auto');
     this.http.post('/api/v1.0/removebg', data, {
       headers: {
-        'X-Api-Key': 'bwmYLyHc8AjPBn767ztnCxCw',
+        'X-Api-Key': Constants.REMOVE_BG_API_KEY
       },
       responseType: 'blob',
     }).subscribe((blob) => {
