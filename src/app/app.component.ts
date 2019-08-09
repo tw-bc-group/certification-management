@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, from} from 'rxjs';
 import {CertificateModel, CertificateType} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
@@ -8,6 +8,7 @@ import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider'
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
+import {save} from './utils/photoStorage';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -117,9 +118,7 @@ export class AppComponent implements OnDestroy {
   }
 
   private upload(certId: string, photos: any): Observable<any> {
-    return this.http.post('/photos', {certId, photos}, {
-      headers: {'Content-Type': 'application/json'}
-    });
+    return from(save({certId, photos}));
   }
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
