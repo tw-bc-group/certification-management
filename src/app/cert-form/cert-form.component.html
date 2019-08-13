@@ -1,6 +1,15 @@
 <div class="cert-info">
   <mat-form-field>
-    <input type="text" placeholder="证书名称" matInput name="certName" [(ngModel)]="certificate.certName">
+    <ng-container *ngIf="certificate.type === 'ThoughtWorks'; else otherCertificates">
+        <select placeholder="证书名称" matNativeControl name="certName" [(ngModel)]="certificate.certName">
+            <option value="AGILE COACH">AGILE COACH</option>
+            <option value="ADVANCED AGILE COACH">ADVANCED AGILE COACH</option>
+            <option value="MASTER AGILE COACH">MASTER AGILE COACH</option>
+          </select>
+    </ng-container>
+    <ng-template #otherCertificates>
+      <input type="text" placeholder="证书名称" matInput name="certName" [(ngModel)]="certificate.certName">
+    </ng-template>
   </mat-form-field>
 
   <div class="awardee-name">

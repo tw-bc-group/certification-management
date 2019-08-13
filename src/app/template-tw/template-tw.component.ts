@@ -20,6 +20,14 @@ export class TemplateTwComponent implements OnInit {
     return this.svgRef.nativeElement;
   }
 
+  getCertBackgroudClass(): string {
+    return {
+      'AGILE COACH': 'agile-coach',
+      'ADVANCED AGILE COACH': 'advanced-agile-coach',
+      'MASTER AGILE COACH': 'master-agile-coach'
+    }[this.certificate.certName];
+  }
+
   ngOnInit() {
   }
 }

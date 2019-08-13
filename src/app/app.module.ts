@@ -26,6 +26,7 @@ import {
 } from '@angular/material';
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
 import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
+import { ChineseNamePipe } from './pipes/chinese-name.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
     CertFormComponent,
     PartnerLogoPipe,
     StringToHTMLPipe,
+    ChineseNamePipe,
   ],
   imports: [
     BrowserModule,
