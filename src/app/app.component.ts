@@ -46,8 +46,12 @@ export class AppComponent implements OnDestroy {
   svgUrl: SafeResourceUrl;
   downloadLink = false;
   loading = false;
+
   @ViewChild('template')
   template: { svgRef: ElementRef };
+
+  @ViewChild('TWSimple')
+  templateSimple: { svgRef: ElementRef };
 
   constructor(private sanitizer: DomSanitizer,
               private http: HttpClient) {

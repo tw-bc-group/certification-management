@@ -8,6 +8,7 @@ import { ZoomDirective } from './directives/zoom.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeResourceUrlPipe } from './pipes/safe-resource-url.pipe';
 import { TemplateTwComponent } from './template-tw/template-tw.component';
+import { TemplateTwSimpleComponent } from './template-tw-simple/template-tw-simple.component';
 import { TemplateCorporateComponent } from './template-corporate/template-corporate.component';
 import { TemplateCommunityComponent } from './template-community/template-community.component';
 import { TemplateUniversityComponent } from './template-university/template-university.component';
@@ -35,6 +36,7 @@ import { ChineseNamePipe } from './pipes/chinese-name.pipe';
     ZoomDirective,
     SafeResourceUrlPipe,
     TemplateTwComponent,
+    TemplateTwSimpleComponent,
     TemplateCorporateComponent,
     TemplateCommunityComponent,
     TemplateUniversityComponent,

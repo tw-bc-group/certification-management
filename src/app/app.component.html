@@ -2,6 +2,7 @@
 <div class="preview">
   <ng-container *ngIf="certificate.type==='ThoughtWorks'">
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
+    <app-template-tw-simple style="display:none" [certificate]="certificate" #TWSimple></app-template-tw-simple>
     <p>
       <button type="button" mat-flat-button color="primary" (click)="issue()">颁发证书</button>
     </p>
