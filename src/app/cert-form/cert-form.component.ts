@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CertificateModel } from '../models/certificate.model';
+import { CertificateModel, CertificateType } from '../models/certificate.model';
 import { blobToDataURL } from 'blob-util';
 import { HttpClient } from '@angular/common/http';
 import {Constants} from '../utils/constants';
@@ -18,6 +18,10 @@ export class CertFormComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  isThoughtworksCert(): boolean {
+    return this.certificate.type === CertificateType.ThoughtWorks;
   }
 
   photoChanged(files: FileList): void {

@@ -94,6 +94,15 @@ export class AppComponent implements OnDestroy {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
+    // deal with thoughtworks cert simple version
+    const simpleSvgs = [];
+    if (this.certificate.type === CertificateType.ThoughtWorks) {
+      simpleSvgs.push({
+        fileName: `${pictureName}_simple.svg`,
+        dataUrl: this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement)
+      });
+    }
+
     loadImage(svgDataUrl).pipe(
       map(img => this.toPngDataUrl(img)),
       flatMap(pngDataUrl => this.upload(fingerprint, [{
@@ -102,7 +111,7 @@ export class AppComponent implements OnDestroy {
       }, {
         fileName: `${pictureName}.svg`,
         dataUrl: svgDataUrl
-      }]))
+      }, ...simpleSvgs]))
     ).subscribe(({pngUrl, svgUrl}) => {
       this.svgUrl = svgUrl;
       this.pngUrl = pngUrl;

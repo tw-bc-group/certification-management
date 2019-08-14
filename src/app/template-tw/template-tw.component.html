@@ -237,11 +237,11 @@
       .cls-22,.cls-23,.cls-24{font-family:PingFangSC-Regular-GBpc-EUC-H, PingFang SC;}
       .cls-23,.cls-24{font-size:34px;}
       .cls-24{letter-spacing:0.51em;}
-      .cls-27{font-size:114px;}
+      .cls-27{font-size:114px;font-weight:bold;}
       .cls-27,.cls-28{font-family:PingFangSC-Semibold-GBpc-EUC-H, PingFang SC;}
       .cls-28{font-size:80px;}
       .cls-29{clip-path:url(#clip-path-10);}
-      .cls-30{font-size:40.82px;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H, Apple SD Gothic Neo;}
+      .cls-30{font-size:40.82px;font-weight:bold;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H, Apple SD Gothic Neo;}
       .background{fill:#F6A559}
       .background-advanced{fill:#F76938}
       .background-master{fill:#F25248}
@@ -532,12 +532,12 @@
           <tspan>{{certificate.issuer|slice:0:20}}</tspan>
         </text>
       </g>
-      <text class="cls-12" transform="translate(811.28 1925.15)">{{certificate.fingerprint ? '证书编号' : ''}}</text>
-      <text class="cls-12" transform="translate(811.91 2006.8)">
-        <tspan x="0" y="0">{{certificate.fingerprint | slice:0:32}}</tspan>
-        <tspan x="0" y="42">{{certificate.fingerprint | slice:32}}</tspan>
+      <text class="cls-12" transform="translate(730.28 1945.15)">{{certificate.fingerprint ? '证书编号' : ''}}</text>
+      <text class="cls-12" transform="translate(730.91 2026.8)">
+        <tspan x="0" y="0">{{certificate.fingerprint | slice:0:34}}</tspan>
+        <tspan x="0" y="42">{{certificate.fingerprint | slice:34}}</tspan>
       </text>
     </g>
   </g>
-  <g transform="translate(378.31 1853.51) scale(0.11)" [innerHTML]="certificate.qrCode | stringToHTML"></g>
+  <g transform="translate(338.31 1803.51) scale(0.15)" [innerHTML]="certificate.qrCode | stringToHTML"></g>
 </svg>

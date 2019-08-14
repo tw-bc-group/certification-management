@@ -1,5 +1,5 @@
-<svg #TWSimple xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300px" viewBox="0 0 1171.87 1419.86"
-  [appMovable]="{x:380,y:250}" #movable="appMovable" appZoom #zoom="appZoom">
+<svg #TWSimple xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300px" viewBox="0 0 1171.87 1601.99"
+  [appMovable]="{x:300,y:350}" #movable="appMovable" appZoom #zoom="appZoom">
   <defs>
     <style>
       .cls-simple-1,.cls-simple-22{fill:none;}
@@ -15,7 +15,7 @@
       .cls-simple-13,.cls-simple-14{font-size:34px;}
       .cls-simple-13,.cls-simple-14,.cls-simple-18{font-family:PingFangSC-Regular-GBpc-EUC-H, PingFang SC;}
       .cls-simple-14{letter-spacing:0.51em;}
-      .cls-simple-15{font-size:114px;}
+      .cls-simple-15{font-size:114px;font-weight: bold;}
       .cls-simple-15,.cls-simple-16{font-family:PingFangSC-Semibold-GBpc-EUC-H, PingFang SC;}
       .cls-simple-16{font-size:80px;}
       .cls-simple-17{clip-path:url(#clip-path-4);}
@@ -24,7 +24,7 @@
       .cls-simple-20{clip-path:url(#clip-path-6);}
       .cls-simple-21{opacity:0.5;}
       .cls-simple-22{stroke:#fff;stroke-miterlimit:10;}
-      .cls-simple-23{clip-path:url(#clip-path-7);}
+      .cls-simple-23{clip-path:url(#clip-path-7); font-weight: bold;}
       .cls-simple-24{font-size:40.82px;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H, Apple SD Gothic Neo;}
       .background{fill:#F6A559;}
       .background-advanced{fill:#F76938;}
@@ -66,7 +66,7 @@
     <clipPath id="clip-path-7">
       <rect class="cls-simple-1" x="198.59" y="241.62" width="386.2" height="93.9"/>
     </clipPath>
-    <rect id="path-3" x="55.35" y="33.17" width="1058.88" height="1347.79" rx="12.27"/>
+    <rect id="path-3" x="0" y="0" width="1171.87" height="1601.99" rx="12.27"/>
   </defs>
   <g class="cls-simple-2">
     <g id="TW-simple">
@@ -112,7 +112,7 @@
           </mask>
           <use id="Mask" [ngClass]="getCertBackgroundClass()" xlink:href="#path-3"></use>
           <image id="photo" mask="url(#mask-4)" [attr.x]="movable.offsetX" [attr.y]="movable.offsetY"
-                  [attr.width]="650 * zoom.scale" width="650"
+                  [attr.width]="768 * zoom.scale" width="768"
                   [attr.xlink:href]="certificate.photoUrl"></image>
           <use id="Mask" [ngClass]="getCertGradientClass()" xlink:href="#path-3"></use>
         </g>
@@ -123,34 +123,36 @@
         <text class="cls-simple-24" transform="translate(198.58 276.61)">CERTIFICATION OF </text>
         <text class="cls-simple-24" transform="translate(198.58 323.27)">COMPLETION</text>
       </g>
-      <text class="cls-simple-15" transform="translate(198.59 833.94)">
-        <tspan>{{certificate.certName | chineseName}}</tspan>
-      </text>
-      <text class="cls-simple-16" transform="translate(198.59 620.72)">
-        <tspan>{{certificate.lastName}} {{certificate.firstName}}</tspan>
-      </text>
-      <g class="cls-simple-19">
-        <text class="cls-simple-13" transform="translate(204.89 979.61)">颁发日期</text>
-        <text class="cls-simple-18" transform="translate(347.21 981.51)">：</text>
-        <text class="cls-simple-18" transform="translate(381.81 980.51)">
-          <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
+      <g transform="translate(0, 200)">
+        <text class="cls-simple-15" transform="translate(198.59 833.94)">
+          <tspan>{{certificate.certName | chineseName}}</tspan>
         </text>
-      </g>
-      <g class="cls-simple-17">
-        <text class="cls-simple-14" transform="translate(204.89 1067.08)">有效期</text>
-        <text class="cls-simple-18" transform="translate(347.21 1068.96)">：</text>
-        <text class="cls-simple-18" transform="translate(381.81 1068.96)">
-          <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
-          <tspan>-</tspan>
-          <tspan>{{certificate.expiredAt|date:'yyyy/MM/dd'}}</tspan>
+        <text class="cls-simple-16" transform="translate(198.59 620.72)">
+          <tspan>{{certificate.lastName}} {{certificate.firstName}}</tspan>
         </text>
-      </g>
-      <g class="cls-simple-20">
-        <text class="cls-simple-14" transform="translate(204.89 1156.75)">颁发者</text>
-        <text class="cls-simple-18" transform="translate(347.21 1157.07)">：</text>
-        <text class="cls-simple-18" transform="translate(381.81 1157.07)">
-          <tspan>{{certificate.issuer|slice:0:20}}</tspan>
-        </text>
+        <g class="cls-simple-19">
+          <text class="cls-simple-13" transform="translate(204.89 979.61)">颁发日期</text>
+          <text class="cls-simple-18" transform="translate(347.21 981.51)">：</text>
+          <text class="cls-simple-18" transform="translate(381.81 980.51)">
+            <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
+          </text>
+        </g>
+        <g class="cls-simple-17">
+          <text class="cls-simple-14" transform="translate(204.89 1067.08)">有效期</text>
+          <text class="cls-simple-18" transform="translate(347.21 1068.96)">：</text>
+          <text class="cls-simple-18" transform="translate(381.81 1068.96)">
+            <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
+            <tspan>-</tspan>
+            <tspan>{{certificate.expiredAt|date:'yyyy/MM/dd'}}</tspan>
+          </text>
+        </g>
+        <g class="cls-simple-20">
+          <text class="cls-simple-14" transform="translate(204.89 1156.75)">颁发者</text>
+          <text class="cls-simple-18" transform="translate(347.21 1157.07)">：</text>
+          <text class="cls-simple-18" transform="translate(381.81 1157.07)">
+            <tspan>{{certificate.issuer|slice:0:20}}</tspan>
+          </text>
+        </g>
       </g>
       <g class="cls-simple-21">
         <path class="cls-simple-22" d="M1316.5,257.41a243.45,243.45,0,0,1-190.59,91.7C991.22,349.11,882,239.92,882,105.23s109.18-243.87,243.87-243.87c123.19,0,225,91.33,241.54,210"/>
