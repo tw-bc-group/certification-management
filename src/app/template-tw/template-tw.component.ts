@@ -20,11 +20,19 @@ export class TemplateTwComponent implements OnInit {
     return this.svgRef.nativeElement;
   }
 
-  getCertBackgroudClass(): string {
+  getCertBackgroundClass(): string {
     return {
-      'AGILE COACH': 'agile-coach',
-      'ADVANCED AGILE COACH': 'advanced-agile-coach',
-      'MASTER AGILE COACH': 'master-agile-coach'
+      'AGILE COACH': 'background',
+      'ADVANCED AGILE COACH': 'background-advanced',
+      'MASTER AGILE COACH': 'background-master'
+    }[this.certificate.certName];
+  }
+
+  getCertGradientClass(): string {
+    return {
+      'AGILE COACH': 'radialGradient',
+      'ADVANCED AGILE COACH': 'radialGradient-advanced',
+      'MASTER AGILE COACH': 'radialGradient-master'
     }[this.certificate.certName];
   }
 
