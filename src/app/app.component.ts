@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {Observable, Subject, from} from 'rxjs';
+import {Observable, Subject, from, merge, zip, of} from 'rxjs';
 import {CertificateModel, CertificateType} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
@@ -90,28 +90,62 @@ export class AppComponent implements OnDestroy {
   }
 
   private uploadCerts(): void {
-    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
-    // deal with thoughtworks cert simple version
-    const simpleSvgs = [];
     if (this.certificate.type === CertificateType.ThoughtWorks) {
-      simpleSvgs.push({
-        fileName: `${pictureName}_simple.svg`,
-        dataUrl: this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement)
-      });
+      this.uploadCertsWithSimple(fingerprint, pictureName);
+    } else {
+      this.uploadCompleteCerts(fingerprint, pictureName);
     }
+  }
 
-    loadImage(svgDataUrl).pipe(
-      map(img => this.toPngDataUrl(img)),
-      flatMap(pngDataUrl => this.upload(fingerprint, [{
+  private uploadCertsWithSimple(certId: string, pictureName: string): void {
+    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+    const simpleSvgDataUrl = this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement);
+
+    zip(
+      loadImage(simpleSvgDataUrl).pipe(map(img => this.toPngDataUrl(img))),
+      loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
+    ).subscribe(([simplePngDataUrl, pngDataUrl]) => {
+      this.upload(certId, [{
+        key: 'png',
         fileName: `${pictureName}.png`,
         dataUrl: pngDataUrl
       }, {
+        key: 'svg',
         fileName: `${pictureName}.svg`,
         dataUrl: svgDataUrl
-      }, ...simpleSvgs]))
+      }, {
+        key: 'simplePng',
+        fileName: `${pictureName}_simple.png`,
+        dataUrl: simplePngDataUrl
+      }, {
+        key: 'simpleSvg',
+        fileName: `${pictureName}_simple.svg`,
+        dataUrl: simpleSvgDataUrl
+      }]).subscribe(({pngUrl, svgUrl}) => {
+        this.svgUrl = svgUrl;
+        this.pngUrl = pngUrl;
+        this.downloadLink = true;
+      });
+    });
+  }
+
+  private uploadCompleteCerts(certId: string, pictureName: string): void {
+    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+
+    loadImage(svgDataUrl).pipe(
+      map(img => this.toPngDataUrl(img)),
+      flatMap(pngDataUrl => this.upload(certId, [{
+        key: 'png',
+        fileName: `${pictureName}.png`,
+        dataUrl: pngDataUrl
+      }, {
+        key: 'svg',
+        fileName: `${pictureName}.svg`,
+        dataUrl: svgDataUrl
+      }]))
     ).subscribe(({pngUrl, svgUrl}) => {
       this.svgUrl = svgUrl;
       this.pngUrl = pngUrl;

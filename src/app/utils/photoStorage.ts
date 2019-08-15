@@ -22,30 +22,29 @@ export const save: ({
   photos
 }: {
   certId: string;
-  photos: Array<{ fileName: string; dataUrl: string }>;
+  photos: Array<{ key: string; fileName: string; dataUrl: string }>;
 }) => Promise<{ pngUrl: string; svgUrl: string }> = ({ certId, photos }) => {
   const mark = 'base64,';
-  const [png, svg, simpleSvg] = photos.map(({ fileName, dataUrl }) => {
+  const imagesObject = photos.map(({ key, fileName, dataUrl }) => {
     const data = dataUrl.substring(dataUrl.indexOf(mark) + mark.length);
-    return new AV.File(fileName, { base64: data });
+    return {
+      key,
+      image: new AV.File(fileName, { base64: data })
+    };
   });
 
-  return Promise.all([png.save(), svg.save(), simpleSvg && simpleSvg.save()])
-    .then(([pngFile, svgFile, simpleSvgFile]) => {
-      const photo = new AV.Object(LEANCLOUD_CLASS);
-      photo.set(INDEX, certId);
-      photo.set('png', pngFile);
-      photo.set('svg', svgFile);
-      photo.set('simpleSvg', simpleSvgFile);
-      return photo.save();
-    })
-    .then(photoObj => {
-      const pngUrl = photoObj.get('png').url();
-      console.log('png.url', pngUrl);
-      const svgUrl = photoObj.get('svg').url();
-      console.log('svg.url', svgUrl);
-      const simpleSvgUrl = photoObj.get('simpleSvg') && photoObj.get('simpleSvg').url();
-      console.log('simpleSvg.url', simpleSvgUrl);
-      return { pngUrl, svgUrl };
-    });
+  const photo = new AV.Object(LEANCLOUD_CLASS);
+  photo.set(INDEX, certId);
+
+  imagesObject.map((object) => {
+    photo.set(object.key, object.image);
+  });
+
+  return photo.save().then(photoObj => {
+    const pngUrl = photoObj.get('png').url();
+    console.log('png.url', pngUrl);
+    const svgUrl = photoObj.get('svg').url();
+    console.log('svg.url', svgUrl);
+    return { pngUrl, svgUrl };
+  });
 };
