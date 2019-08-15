@@ -233,9 +233,7 @@
       .cls-18{clip-path:url(#clip-path-4);}
       .cls-19{clip-path:url(#clip-path-5);}
       .cls-20{clip-path:url(#clip-path-6);}
-      .cls-22{font-size:32.66px;}
-      .cls-22,.cls-23,.cls-24{font-family:PingFangSC-Regular-GBpc-EUC-H, PingFang SC;}
-      .cls-23,.cls-24{font-size:34px;}
+      .cls-22,.cls-23,.cls-24{font-size:42px;font-family:PingFangSC-Regular-GBpc-EUC-H, PingFang SC;}
       .cls-24{letter-spacing:0.51em;}
       .cls-27{font-size:114px;font-weight:bold;}
       .cls-27,.cls-28{font-family:PingFangSC-Semibold-GBpc-EUC-H, PingFang SC;}
@@ -447,7 +445,7 @@
                   [attr.xlink:href]="certificate.photoUrl"></image>
           <use id="Mask" [ngClass]="getCertGradientClass()" xlink:href="#path-3"></use>
         </g>
-        <use id="Mask" [ngClass]="getCertGradientClass()" opacity="0.5" xlink:href="#path-3"></use>
+        <use id="Mask" [ngClass]="getCertBackgroundClass()" opacity="0.5" xlink:href="#path-3"></use>
       </g>
       <g class="cls-9">
         <path class="cls-14" d="M1622.08,669.8a243.43,243.43,0,0,1-190.58,91.7c-134.69,0-243.87-109.19-243.87-243.87s109.18-243.88,243.87-243.88c123.18,0,225,91.34,241.53,210"/>
@@ -509,34 +507,29 @@
       <text class="cls-27" transform="translate(504.17 1246.33)">
         <tspan>{{certificate.certName | chineseName}}</tspan>
       </text>
-      <g id="publishedAt">
-        <text class="cls-23" transform="translate(510.48 1392.01)">颁发日期</text>
-        <text class="cls-22" transform="translate(652.79 1393.9)">：</text>
-        <text class="cls-22" transform="translate(687.4 1392.9)">
-          <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
-        </text>
-      </g>
       <g id="expiredAt">
-        <text class="cls-24" transform="translate(510.48 1479.47)">有效期</text>
-        <text class="cls-22" transform="translate(652.79 1481.35)">：</text>
-        <text class="cls-22" transform="translate(687.4 1481.35)">
+        <text class="cls-24" transform="translate(510.23 1430.72)">有效期</text>
+        <text class="cls-22" transform="translate(684.65 1424.72)">：</text>
+        <text class="cls-22" transform="translate(735.75 1430.72)">
           <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
           <tspan>-</tspan>
           <tspan>{{certificate.expiredAt|date:'yyyy/MM/dd'}}</tspan>
         </text>
       </g>
+      <g id="publishedAt">
+        <text class="cls-23" transform="translate(510.23 1519.53)">颁发日期</text>
+        <text class="cls-22" transform="translate(684.65 1519.53)">：</text>
+        <text class="cls-22" transform="translate(735.75 1519.53)">
+          <tspan>{{certificate.publishedAt|date:'yyyy/MM/dd'}}</tspan>
+        </text>
+      </g>
       <g id="issuer">
-        <text class="cls-24" transform="translate(510.48 1569.15)">颁发者</text>
-        <text class="cls-22" transform="translate(652.79 1569.46)">：</text>
-        <text class="cls-22" transform="translate(687.4 1569.46)">
+        <text class="cls-24" transform="translate(510.23 1607.81)">颁发者</text>
+        <text class="cls-22" transform="translate(684.65 1606)">：</text>
+        <text class="cls-22" transform="translate(735.75 1608.23)">
           <tspan>{{certificate.issuer|slice:0:20}}</tspan>
         </text>
       </g>
-      <text class="cls-12" transform="translate(730.28 1945.15)">{{certificate.fingerprint ? '证书编号' : ''}}</text>
-      <text class="cls-12" transform="translate(730.91 2026.8)">
-        <tspan x="0" y="0">{{certificate.fingerprint | slice:0:34}}</tspan>
-        <tspan x="0" y="42">{{certificate.fingerprint | slice:34}}</tspan>
-      </text>
     </g>
   </g>
   <g transform="translate(338.31 1803.51) scale(0.15)" [innerHTML]="certificate.qrCode | stringToHTML"></g>
