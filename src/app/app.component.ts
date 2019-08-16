@@ -73,6 +73,12 @@ export class AppComponent implements OnDestroy {
     );
   }
 
+  checkFormValidation(): boolean {
+    const { firstName, lastName, issuer } = this.certificate;
+
+    return (!!firstName && !!lastName && !!issuer) ? false : true;
+  }
+
   private async displayCertIdAndQrCode(certId: string) {
     this.certificate.qrCode = await QRCode.toString(Constants.CERT_VIEWER_URL + certId);
     this.certificate.fingerprint = certId;

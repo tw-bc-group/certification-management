@@ -14,17 +14,19 @@
 
   <div class="awardee-name">
     <mat-form-field>
-      <input type="text" placeholder="姓" matInput name="lastName" [(ngModel)]="certificate.lastName">
+      <input type="text" required placeholder="姓" matInput id="lastName" name="lastName" [(ngModel)]="certificate.lastName">
+      <mat-error>请填写姓氏</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="名" matInput name="firstName" [(ngModel)]="certificate.firstName">
+      <input type="text" required placeholder="名" matInput id="firstName" name="firstName" [(ngModel)]="certificate.firstName">
+      <mat-error>请填写名字</mat-error>
     </mat-form-field>
   </div>
 
   <mat-form-field>
     <input placeholder="获得时间" matInput [matDatepicker]="pickerPublishedAt" name="publishedAt"
-           [(ngModel)]="certificate.publishedAt">
+    [(ngModel)]="certificate.publishedAt">
     <mat-datepicker-toggle matSuffix [for]="pickerPublishedAt">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
     </mat-datepicker-toggle>
@@ -33,7 +35,7 @@
 
   <mat-form-field>
     <input placeholder="过期时间" matInput [matDatepicker]="pickerExpiredAt" name="expiredAt"
-           [(ngModel)]="certificate.expiredAt">
+    [(ngModel)]="certificate.expiredAt">
     <mat-datepicker-toggle matSuffix [for]="pickerExpiredAt">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
     </mat-datepicker-toggle>
@@ -50,7 +52,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="合作方" name="type" [(ngModel)]="certificate.partner">
+    <mat-select placeholder="合作方" name="partner" [(ngModel)]="certificate.partner">
       <mat-option value="github">Github</mat-option>
       <mat-option value="huawei">Huawei</mat-option>
       <mat-option value="pku">Peking University</mat-option>
@@ -58,7 +60,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input type="text" placeholder="颁发者" matInput name="issuer" [(ngModel)]="certificate.issuer">
+    <input type="text" matInput id="issuer" name="issuer" required placeholder="颁发者" [(ngModel)]="certificate.issuer">
+    <mat-error>请填写颁发者</mat-error>
   </mat-form-field>
 
   <mat-form-field>
