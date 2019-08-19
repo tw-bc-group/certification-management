@@ -2,13 +2,20 @@ export const Constants = {
   CERT_VIEWER_URL: 'http://cac.thoughtworks.cn:5000/certification/',
   REMOVE_BG_API_KEY: 'g6w3dwNWwDWkeoNu6k2hy8hK',
   BACKGROUND_COLOR: {
-    'AGILE COACH': '#F6A559',
-    'ADVANCED AGILE COACH': '#F76938',
-    'MASTER AGILE COACH': '#F25248'
-  },
-  RADIALGRADIENT_COLOR: {
-    'AGILE COACH': '#F38C48',
-    'ADVANCED AGILE COACH': '#ED5D2B',
-    'MASTER AGILE COACH': '#E84D42'
+    'AGILE COACH': {
+      red: 246,
+      green: 165,
+      blue: 89
+    },
+    'ADVANCED AGILE COACH': {
+      red: 247,
+      green: 105,
+      blue: 56
+    },
+    'MASTER AGILE COACH': {
+      red: 242,
+      green: 82,
+      blue: 72
+    }
   }
 };

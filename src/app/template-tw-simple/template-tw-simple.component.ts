@@ -22,11 +22,13 @@ export class TemplateTwSimpleComponent implements OnInit {
   }
 
   get backgroundColor(): string {
-    return Constants.BACKGROUND_COLOR[this.certificate.certName];
+    const color = Constants.BACKGROUND_COLOR[this.certificate.certName];
+    return `rgb(${color.red}, ${color.green}, ${color.blue})`;
   }
 
   get radialGradientColor(): string {
-    return Constants.RADIALGRADIENT_COLOR[this.certificate.certName];
+    const color = Constants.BACKGROUND_COLOR[this.certificate.certName];
+    return `rgb(${color.red - 3}, ${color.green - 25}, ${color.blue - 17})`;
   }
 
   ngOnInit() {
