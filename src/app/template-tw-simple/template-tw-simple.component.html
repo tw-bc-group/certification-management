@@ -24,12 +24,6 @@
       .cls-simple-22{stroke:#fff;stroke-miterlimit:10;}
       .cls-simple-23{clip-path:url(#clip-path-7); font-weight: bold;}
       .cls-simple-24{font-size:40.82px;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H, Apple SD Gothic Neo;}
-      .background{fill:#F6A559;}
-      .background-advanced{fill:#F76938;}
-      .background-master{fill:#F25248;}
-      .radialGradient{fill:url(#radialGradient);}
-      .radialGradient-advanced{fill:url(#radialGradient-advanced);}
-      .radialGradient-master{fill:url(#radialGradient-master);}
     </style>
     <clipPath id="clip-path">
       <path class="cls-simple-1" d="M-718.94,1334.65v345.88H-879v-36.61s-37.33,36.22-153,36.22c-141.17,0-290.41-124.49-290.41-280.27s96.49-319.63,301.78-319.63C-820.95,1080.24-718.94,1249.87-718.94,1334.65ZM-1019.33,1238a142.42,142.42,0,0,0-142.42,142.42,142.42,142.42,0,0,0,142.42,142.42,142.42,142.42,0,0,0,142.42-142.42A142.42,142.42,0,0,0-1019.33,1238Z"/>
@@ -41,25 +35,11 @@
       <path class="cls-simple-1" d="M-721.16,1335.8v345.88H-881.27v-36.61s-37.32,36.22-153,36.22c-141.17,0-290.41-124.49-290.41-280.26s96.49-319.64,301.78-319.64C-823.17,1081.39-721.16,1251-721.16,1335.8Zm-300.39-96.68A142.42,142.42,0,0,0-1164,1381.54,142.41,142.41,0,0,0-1021.55,1524a142.41,142.41,0,0,0,142.42-142.41A142.42,142.42,0,0,0-1021.55,1239.12Z"/>
     </clipPath>
     <radialGradient id="radialGradient" cx="584.79" cy="707.06" fx="366.2067895683565" fy="88.27440687507988" r="1139.19" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f6a559" stop-opacity="0"/>
-      <stop offset="0.1" stop-color="#f6a257" stop-opacity="0.1"/>
-      <stop offset="0.32" stop-color="#f59c53" stop-opacity="0.37"/>
-      <stop offset="0.64" stop-color="#f4914c" stop-opacity="0.79"/>
-      <stop offset="0.78" stop-color="#f38c48"/>
-    </radialGradient>
-    <radialGradient id="radialGradient-advanced" cx="584.79" cy="707.06" fx="366.2067895683565" fy="88.27440687507988" r="1139.19" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ED5D2B" stop-opacity="0"/>
-      <stop offset="0.1" stop-color="#ED5D2B" stop-opacity="0.1"/>
-      <stop offset="0.32" stop-color="#ED5D2B" stop-opacity="0.37"/>
-      <stop offset="0.64" stop-color="#ED5D2B" stop-opacity="0.79"/>
-      <stop offset="0.78" stop-color="#ED5D2B"/>
-    </radialGradient>
-    <radialGradient id="radialGradient-master" cx="584.79" cy="707.06" fx="366.2067895683565" fy="88.27440687507988" r="1139.19" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#E84D42" stop-opacity="0"/>
-      <stop offset="0.1" stop-color="#E84D42" stop-opacity="0.1"/>
-      <stop offset="0.32" stop-color="#E84D42" stop-opacity="0.37"/>
-      <stop offset="0.64" stop-color="#E84D42" stop-opacity="0.79"/>
-      <stop offset="0.78" stop-color="#E84D42"/>
+      <stop offset="0" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0"/>
+      <stop offset="0.1" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.1"/>
+      <stop offset="0.32" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.37"/>
+      <stop offset="0.64" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.79"/>
+      <stop offset="0.78" [ngStyle]="{'stop-color': radialGradientColor}"/>
     </radialGradient>
     <clipPath id="clip-path-7">
       <rect class="cls-simple-1" x="198.59" y="241.62" width="386.2" height="93.9"/>
@@ -108,13 +88,13 @@
           <mask id="mask-4" fill="white">
             <use xlink:href="#path-3"></use>
           </mask>
-          <use id="Mask" [ngClass]="getCertBackgroundClass()" xlink:href="#path-3"></use>
+          <use id="Mask" [ngStyle]="{'fill': backgroundColor}" xlink:href="#path-3"></use>
           <image id="photo" mask="url(#mask-4)" [attr.x]="movable.offsetX" [attr.y]="movable.offsetY"
                   [attr.width]="768 * zoom.scale" width="768"
                   [attr.xlink:href]="certificate.photoUrl"></image>
-          <use id="Mask" [ngClass]="getCertGradientClass()" xlink:href="#path-3"></use>
+          <use id="Mask" fill="url(#radialGradient)" xlink:href="#path-3"></use>
         </g>
-        <use id="Mask" [ngClass]="getCertBackgroundClass()" opacity="0.5" xlink:href="#path-3"></use>
+        <use id="Mask" [ngStyle]="{'fill': backgroundColor}" opacity="0.5" xlink:href="#path-3"></use>
       </g>
       <!-- <rect [ngClass]="getCertGradientClass()" x="55.35" y="33.17" width="1058.88" height="1347.79" rx="12.27"/> -->
       <g class="cls-simple-23">

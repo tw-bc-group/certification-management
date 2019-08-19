@@ -240,45 +240,19 @@
       .cls-28{font-size:80px;}
       .cls-29{clip-path:url(#clip-path-10);}
       .cls-30{font-size:40.82px;font-weight:bold;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H, Apple SD Gothic Neo;}
-      .background{fill:#F6A559}
-      .background-advanced{fill:#F76938}
-      .background-master{fill:#F25248}
-      .radialGradient{fill:url(#radialGradient)}
-      .radialGradient-advanced{fill:url(#radialGradient-advanced)}
-      .radialGradient-master{fill:url(#radialGradient-master)}
     </style>
     <clipPath id="clip-path">
       <path class="cls-1" d="M1630.28,1747v345.88H1470.17v-36.61s-37.33,36.22-153,36.22c-141.18,0-290.41-124.49-290.41-280.27s96.48-319.63,301.77-319.63C1528.27,1492.63,1630.28,1662.26,1630.28,1747Zm-300.39-96.69a142.42,142.42,0,1,0,142.41,142.42A142.42,142.42,0,0,0,1329.89,1650.35Z"/>
     </clipPath>
     <radialGradient id="radialGradient" cx="890.37" cy="896.39" fx="279.8687838522949" fy="-701.3157724258454" r="1710.37" gradientTransform="translate(0 12.59) scale(1 0.99)" gradientUnits="userSpaceOnUse">
-      <stop offset="0.04" stop-color="#f6a559" stop-opacity="0"/>
-      <stop offset="0.11" stop-color="#f6a459" stop-opacity="0.02"/>
-      <stop offset="0.21" stop-color="#f6a357" stop-opacity="0.09"/>
-      <stop offset="0.32" stop-color="#f5a056" stop-opacity="0.2"/>
-      <stop offset="0.44" stop-color="#f59c53" stop-opacity="0.36"/>
-      <stop offset="0.56" stop-color="#f4974f" stop-opacity="0.56"/>
-      <stop offset="0.69" stop-color="#f4914b" stop-opacity="0.8"/>
-      <stop offset="0.79" stop-color="#f38c48"/>
-    </radialGradient>
-    <radialGradient id="radialGradient-advanced" cx="890.37" cy="896.39" fx="279.8687838522949" fy="-701.3157724258454" r="1710.37" gradientTransform="translate(0 12.59) scale(1 0.99)" gradientUnits="userSpaceOnUse">
-      <stop offset="0.04" stop-color="#ED5D2B" stop-opacity="0"/>
-      <stop offset="0.11" stop-color="#ED5D2B" stop-opacity="0.02"/>
-      <stop offset="0.21" stop-color="#ED5D2B" stop-opacity="0.09"/>
-      <stop offset="0.32" stop-color="#ED5D2B" stop-opacity="0.2"/>
-      <stop offset="0.44" stop-color="#ED5D2B" stop-opacity="0.36"/>
-      <stop offset="0.56" stop-color="#ED5D2B" stop-opacity="0.56"/>
-      <stop offset="0.69" stop-color="#ED5D2B" stop-opacity="0.8"/>
-      <stop offset="0.79" stop-color="#ED5D2B"/>
-    </radialGradient>
-    <radialGradient id="radialGradient-master" cx="890.37" cy="896.39" fx="279.8687838522949" fy="-701.3157724258454" r="1710.37" gradientTransform="translate(0 12.59) scale(1 0.99)" gradientUnits="userSpaceOnUse">
-      <stop offset="0.04" stop-color="#E84D42" stop-opacity="0"/>
-      <stop offset="0.11" stop-color="#E84D42" stop-opacity="0.02"/>
-      <stop offset="0.21" stop-color="#E84D42" stop-opacity="0.09"/>
-      <stop offset="0.32" stop-color="#E84D42" stop-opacity="0.2"/>
-      <stop offset="0.44" stop-color="#E84D42" stop-opacity="0.36"/>
-      <stop offset="0.56" stop-color="#E84D42" stop-opacity="0.56"/>
-      <stop offset="0.69" stop-color="#E84D42" stop-opacity="0.8"/>
-      <stop offset="0.79" stop-color="#E84D42"/>
+      <stop offset="0.04" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0"/>
+      <stop offset="0.11" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.02"/>
+      <stop offset="0.21" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.09"/>
+      <stop offset="0.32" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.2"/>
+      <stop offset="0.44" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.36"/>
+      <stop offset="0.56" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.56"/>
+      <stop offset="0.69" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.8"/>
+      <stop offset="0.79" [ngStyle]="{'stop-color': radialGradientColor}"/>
     </radialGradient>
     <clipPath id="clip-path-2">
       <polyline class="cls-1" points="1014.88 81.78 1327.67 81.78 1327.67 1793.93 316.41 1793.93 316.41 701.01"/>
@@ -311,8 +285,6 @@
   <g class="cls-2">
     <g id="TW">
       <rect fill="#FFFFFF" x="0" y="0" width="1621" height="2287"></rect>
-      <!-- <image class="cls-3" width="4563" height="7621" transform="translate(345.7 -15.12) scale(0.24)" xlink:href=""/> -->
-      <!-- <polygon [ngClass]="certificate.certName === 'AGILE COACH' ? 'cls-4' : 'cls-99'" points="1092.3 0 1419.81 0 1419.81 1792.77 360.93 1792.77 360.93 648.39"/> -->
       <g class="cls-5 cls-6 cls-7">
           <rect class="cls-8" x="866.49" y="1585.6" width="2148.81" height="18" transform="translate(1696.03 -905.37) rotate(45)"/>
           <rect class="cls-8" x="842.37" y="1609.72" width="2148.81" height="18" transform="translate(1706.02 -881.25) rotate(45)"/>
@@ -433,19 +405,18 @@
       <text class="cls-11" transform="translate(1443.43 191.97) rotate(90)">
         <tspan>{{certificate.certName}}</tspan>
       </text>
-      <!-- <polygon class="cls-13" points="1092.3 0 1419.81 0 1419.81 1792.77 360.93 1792.77 360.93 648.39"/> -->
       <g id="tw-cert-photo">
         <g id="26">
           <mask id="mask-4" fill="white">
             <use xlink:href="#path-3"></use>
           </mask>
-          <use id="Mask" [ngClass]="getCertBackgroundClass()" xlink:href="#path-3"></use>
+          <use id="Mask" [ngStyle]="{'fill': backgroundColor}" xlink:href="#path-3"></use>
           <image id="photo" mask="url(#mask-4)" [attr.x]="movable.offsetX" [attr.y]="movable.offsetY"
                   [attr.width]="1024 * zoom.scale" width="1024"
                   [attr.xlink:href]="certificate.photoUrl"></image>
-          <use id="Mask" [ngClass]="getCertGradientClass()" xlink:href="#path-3"></use>
+          <use id="Mask" fill="url(#radialGradient)" xlink:href="#path-3"></use>
         </g>
-        <use id="Mask" [ngClass]="getCertBackgroundClass()" opacity="0.5" xlink:href="#path-3"></use>
+        <use id="Mask" [ngStyle]="{'fill': backgroundColor}" opacity="0.5" xlink:href="#path-3"></use>
       </g>
       <g class="cls-9">
         <path class="cls-14" d="M1622.08,669.8a243.43,243.43,0,0,1-190.58,91.7c-134.69,0-243.87-109.19-243.87-243.87s109.18-243.88,243.87-243.88c123.18,0,225,91.34,241.53,210"/>

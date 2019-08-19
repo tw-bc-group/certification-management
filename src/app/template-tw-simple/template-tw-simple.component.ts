@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CertificateModel } from '../models/certificate.model';
+import { Constants } from './../utils/constants';
 
 @Component({
   selector: 'app-template-tw-simple',
@@ -20,20 +21,12 @@ export class TemplateTwSimpleComponent implements OnInit {
     return this.svgRef.nativeElement;
   }
 
-  getCertBackgroundClass(): string {
-    return {
-      'AGILE COACH': 'background',
-      'ADVANCED AGILE COACH': 'background-advanced',
-      'MASTER AGILE COACH': 'background-master'
-    }[this.certificate.certName];
+  get backgroundColor(): string {
+    return Constants.BACKGROUND_COLOR[this.certificate.certName];
   }
 
-  getCertGradientClass(): string {
-    return {
-      'AGILE COACH': 'radialGradient',
-      'ADVANCED AGILE COACH': 'radialGradient-advanced',
-      'MASTER AGILE COACH': 'radialGradient-master'
-    }[this.certificate.certName];
+  get radialGradientColor(): string {
+    return Constants.RADIALGRADIENT_COLOR[this.certificate.certName];
   }
 
   ngOnInit() {
