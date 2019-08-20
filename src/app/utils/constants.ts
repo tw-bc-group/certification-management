@@ -1,6 +1,6 @@
 export const Constants = {
   CERT_VIEWER_URL: 'http://cac.thoughtworks.cn:5000/certification/',
-  REMOVE_BG_API_KEY: 'g6w3dwNWwDWkeoNu6k2hy8hK',
+  REMOVE_BG_API_KEY: 'cX85oMeERZsfX8bCuRqA5B1a',
   BACKGROUND_COLOR: {
     'AGILE COACH': {
       red: 246,
