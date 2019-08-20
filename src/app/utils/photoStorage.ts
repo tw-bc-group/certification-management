@@ -1,9 +1,12 @@
+import { environment } from '../../environments/environment';
 import AV from 'leancloud-storage';
 
 AV.init({
-  appId: 'gVpjrW4U6TfrM4AGmxX9toma-9Nh9j0Va',
-  appKey: '5ypXCePx32LNLbO0sdSxcBlw'
+  appId: environment.lcAppId,
+  appKey: environment.lcAppKey
 });
+
+console.log('use lcAppId:', environment.lcAppId)
 
 const LEANCLOUD_CLASS = 'Photo';
 const INDEX = 'certId';

@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  lcAppId: 'gVpjrW4U6TfrM4AGmxX9toma-9Nh9j0Va',
+  lcAppKey: '5ypXCePx32LNLbO0sdSxcBlw'
 };
 
 /*
