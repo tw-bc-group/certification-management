@@ -8,7 +8,8 @@ import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider'
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
-import {save} from './utils/photoStorage';
+import {save, fetch} from './utils/photoStorage';
+import {icon} from './pipes/logos/icon';
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -20,7 +21,7 @@ function loadImage(url: string): Observable<HTMLImageElement> {
   return result.asObservable();
 }
 
-const publishedAt = startOfDay(new Date());
+const publishedAt = startOfDay(new Date('2013/5/13'));
 
 @Component({
   selector: 'app-root',
@@ -30,15 +31,15 @@ const publishedAt = startOfDay(new Date());
 export class AppComponent implements OnDestroy {
   certificate: CertificateModel = {
     certName: 'AGILE COACH',
-    photoUrl: '',
-    firstName: '',
-    lastName: '',
-    expiredAt: addYears(publishedAt, 2),
+    photoUrl: icon,
+    firstName: '宇',
+    lastName: '覃',
+    expiredAt: addYears(publishedAt, 10),
     publishedAt,
     fingerprint: '',
     partner: '',
     type: CertificateType.ThoughtWorks,
-    issuer: '',
+    issuer: '刘传湘',
     receiverAddress: '',
     qrCode: ''
   };
@@ -55,12 +56,15 @@ export class AppComponent implements OnDestroy {
 
   constructor(private sanitizer: DomSanitizer,
               private http: HttpClient) {
+    this.displayCertIdAndQrCode('0x7ee4593a2251145cc2832c7cbae7366271a133fb7471b3919d0c68f667c9f834');
   }
 
   ngOnDestroy(): void {
   }
 
   issue(): void {
+    this.uploadCerts();
+    return;
     this
     .onChain()
     .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))

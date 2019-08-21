@@ -1,5 +1,5 @@
 export const Constants = {
-  CERT_VIEWER_URL: 'http://cac.thoughtworks.cn:5000/certification/',
+  CERT_VIEWER_URL: 'https://cac.thoughtworks.cn/certification/',
   REMOVE_BG_API_KEY: 'cX85oMeERZsfX8bCuRqA5B1a',
   BACKGROUND_COLOR: {
     'AGILE COACH': {

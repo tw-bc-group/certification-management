@@ -1,8 +1,8 @@
 import AV from 'leancloud-storage';
 
 AV.init({
-  appId: 'gVpjrW4U6TfrM4AGmxX9toma-9Nh9j0Va',
-  appKey: '5ypXCePx32LNLbO0sdSxcBlw'
+  appId: 'UQYjpE8LmPcfocb5icHC8xr0-gzGzoHsz',
+  appKey: '71lAzzF9vt2clrTd8dyNAffW'
 });
 
 const LEANCLOUD_CLASS = 'Photo';
