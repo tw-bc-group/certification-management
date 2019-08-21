@@ -6,7 +6,7 @@ AV.init({
   appKey: environment.lcAppKey
 });
 
-console.log('use lcAppId:', environment.lcAppId)
+console.log('use lcAppId:', environment.lcAppId);
 
 const LEANCLOUD_CLASS = 'Photo';
 const INDEX = 'certId';
