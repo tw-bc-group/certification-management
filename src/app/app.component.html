@@ -2,29 +2,22 @@
 <div class="preview">
   <ng-container *ngIf="certificate.type==='ThoughtWorks'">
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
-    <app-template-tw-simple style="display:none" [certificate]="certificate" #TWSimple></app-template-tw-simple>
-    <p>
-      <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
-    </p>
+    <div>
+      <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
+    </div>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>
-    <p>
-      <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
-    </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Enterprise'">
     <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
-    <p>
-      <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
-    </p>
   </ng-container>
   <ng-container *ngIf="certificate.type==='University'">
     <app-template-university [certificate]="certificate" #template></app-template-university>
-    <p>
-      <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
-    </p>
   </ng-container>
+  <p>
+    <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
+  </p>
   <div>
     <mat-spinner *ngIf="loading"></mat-spinner>
   </div>
