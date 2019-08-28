@@ -99,11 +99,7 @@ export class AppComponent implements OnDestroy {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
-    if (this.certificate.type === CertificateType.ThoughtWorks) {
-      this.uploadCertsWithSimple(fingerprint, pictureName);
-    } else {
-      this.uploadCompleteCerts(fingerprint, pictureName);
-    }
+    this.uploadCertsWithSimple(fingerprint, pictureName);
   }
 
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
@@ -138,26 +134,26 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  private uploadCompleteCerts(certId: string, pictureName: string): void {
-    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+  // private uploadCompleteCerts(certId: string, pictureName: string): void {
+  //   const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
 
-    loadImage(svgDataUrl).pipe(
-      map(img => this.toPngDataUrl(img)),
-      flatMap(pngDataUrl => this.upload(certId, [{
-        key: 'png',
-        fileName: `${pictureName}.png`,
-        dataUrl: pngDataUrl
-      }, {
-        key: 'svg',
-        fileName: `${pictureName}.svg`,
-        dataUrl: svgDataUrl
-      }]))
-    ).subscribe(({pngUrl, svgUrl}) => {
-      this.svgUrl = svgUrl;
-      this.pngUrl = pngUrl;
-      this.downloadLink = true;
-    });
-  }
+  //   loadImage(svgDataUrl).pipe(
+  //     map(img => this.toPngDataUrl(img)),
+  //     flatMap(pngDataUrl => this.upload(certId, [{
+  //       key: 'png',
+  //       fileName: `${pictureName}.png`,
+  //       dataUrl: pngDataUrl
+  //     }, {
+  //       key: 'svg',
+  //       fileName: `${pictureName}.svg`,
+  //       dataUrl: svgDataUrl
+  //     }]))
+  //   ).subscribe(({pngUrl, svgUrl}) => {
+  //     this.svgUrl = svgUrl;
+  //     this.pngUrl = pngUrl;
+  //     this.downloadLink = true;
+  //   });
+  // }
 
   // Wait 1 second for fingerprint to be ready for show.
   // TODO workaround: https://stackoverflow.com/questions/44948053/angular4-how-to-know-when-a-viewchild-has-been-reset
