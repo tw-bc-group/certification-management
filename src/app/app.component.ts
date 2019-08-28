@@ -40,7 +40,7 @@ export class AppComponent implements OnDestroy {
     type: CertificateType.ThoughtWorks,
     issuer: '',
     receiverAddress: '',
-    qrCode: ''
+    qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges"><path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
@@ -172,7 +172,7 @@ export class AppComponent implements OnDestroy {
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-    svg.setAttribute('width', '600px');
+    svg.setAttribute('width', '900px');
     const blob = new Blob([svg.outerHTML], {type: 'image/svg+xml'});
     const url = URL.createObjectURL(blob);
     const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -181,7 +181,7 @@ export class AppComponent implements OnDestroy {
 
   private toSvgDataUrl(viewerSvg: SVGSVGElement): string {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-    svg.setAttribute('width', '600px');
+    svg.setAttribute('width', '900px');
     const base64Data = btoa(unescape(encodeURIComponent(svg.outerHTML)));
     return `data:image/svg+xml;base64,${base64Data}`;
   }
