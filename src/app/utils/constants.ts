@@ -23,7 +23,7 @@ export const certificationColors: ICertificationColors = {
       baseColor: '#F66F44', radiaGradientColor: '#EB5627'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
-      baseColor: '#F25248', radiaGradientColor: '#F76938'
+      baseColor: '#F25248', radiaGradientColor: '#DC3A30'
     }
   },
   [CertificateType.Community]: {
@@ -31,7 +31,7 @@ export const certificationColors: ICertificationColors = {
       baseColor: '#9CC8AD', radiaGradientColor: '#9CC8AD'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
-      baseColor: '#40BDB1', radiaGradientColor: '#9CC8AD'
+      baseColor: '#40BDB1', radiaGradientColor: '#1A9F93'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
       baseColor: '#138671', radiaGradientColor: '#214E44'
@@ -53,7 +53,7 @@ export const certificationColors: ICertificationColors = {
       baseColor: '#81C1F1', radiaGradientColor: '#8CD0FF'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
-      baseColor: '#318ACA', radiaGradientColor: '#6CC0FB'
+      baseColor: '#318ACA', radiaGradientColor: '#1F71AC'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
       baseColor: '#005FA3', radiaGradientColor: '#0B609D'
