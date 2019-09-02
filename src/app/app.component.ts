@@ -40,7 +40,8 @@ export class AppComponent implements OnDestroy {
     type: CertificateType.ThoughtWorks,
     issuer: '',
     receiverAddress: '',
-    qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges"><path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
+    qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
+    '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;

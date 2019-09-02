@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { CertificateModel,CertificateLevel } from '../models/certificate.model';
+import { CertificateModel, CertificateLevel } from '../models/certificate.model';
 import { certificationColors } from './../utils/constants';
 
 @Component({

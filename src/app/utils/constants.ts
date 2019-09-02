@@ -1,18 +1,18 @@
 import { environment } from '../../environments/environment';
-import { CertificateType,CertificateLevel } from '../models/certificate.model';
+import { CertificateType, CertificateLevel } from '../models/certificate.model';
 
 export interface ICertificationColorPair {
-  baseColor: string,
-  radiaGradientColor: string,
+  baseColor: string;
+  radiaGradientColor: string;
 }
 
 type ICertificationColorDict = {
   readonly [level in CertificateLevel]: ICertificationColorPair
-}
+};
 
 type ICertificationColors = {
   readonly [type in CertificateType]: ICertificationColorDict
-}
+};
 
 export const certificationColors: ICertificationColors = {
   [CertificateType.ThoughtWorks]: {
@@ -59,7 +59,7 @@ export const certificationColors: ICertificationColors = {
       baseColor: '#005FA3', radiaGradientColor: '#0B609D'
     }
   }
-}
+};
 
 export const Constants = {
   CERT_VIEWER_URL: environment.certViewUrl,
