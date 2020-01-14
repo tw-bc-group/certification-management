@@ -41,7 +41,8 @@ export class AppComponent implements OnDestroy {
     type: CertificateType.ThoughtWorks,
     issuer: '刘传湘',
     receiverAddress: '',
-    qrCode: ''
+    qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
+    '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
@@ -103,11 +104,7 @@ export class AppComponent implements OnDestroy {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
-    if (this.certificate.type === CertificateType.ThoughtWorks) {
-      this.uploadCertsWithSimple(fingerprint, pictureName);
-    } else {
-      this.uploadCompleteCerts(fingerprint, pictureName);
-    }
+    this.uploadCertsWithSimple(fingerprint, pictureName);
   }
 
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
@@ -142,26 +139,26 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  private uploadCompleteCerts(certId: string, pictureName: string): void {
-    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+  // private uploadCompleteCerts(certId: string, pictureName: string): void {
+  //   const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
 
-    loadImage(svgDataUrl).pipe(
-      map(img => this.toPngDataUrl(img)),
-      flatMap(pngDataUrl => this.upload(certId, [{
-        key: 'png',
-        fileName: `${pictureName}.png`,
-        dataUrl: pngDataUrl
-      }, {
-        key: 'svg',
-        fileName: `${pictureName}.svg`,
-        dataUrl: svgDataUrl
-      }]))
-    ).subscribe(({pngUrl, svgUrl}) => {
-      this.svgUrl = svgUrl;
-      this.pngUrl = pngUrl;
-      this.downloadLink = true;
-    });
-  }
+  //   loadImage(svgDataUrl).pipe(
+  //     map(img => this.toPngDataUrl(img)),
+  //     flatMap(pngDataUrl => this.upload(certId, [{
+  //       key: 'png',
+  //       fileName: `${pictureName}.png`,
+  //       dataUrl: pngDataUrl
+  //     }, {
+  //       key: 'svg',
+  //       fileName: `${pictureName}.svg`,
+  //       dataUrl: svgDataUrl
+  //     }]))
+  //   ).subscribe(({pngUrl, svgUrl}) => {
+  //     this.svgUrl = svgUrl;
+  //     this.pngUrl = pngUrl;
+  //     this.downloadLink = true;
+  //   });
+  // }
 
   // Wait 1 second for fingerprint to be ready for show.
   // TODO workaround: https://stackoverflow.com/questions/44948053/angular4-how-to-know-when-a-viewchild-has-been-reset
@@ -180,7 +177,7 @@ export class AppComponent implements OnDestroy {
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-    svg.setAttribute('width', '600px');
+    svg.setAttribute('width', '900px');
     const blob = new Blob([svg.outerHTML], {type: 'image/svg+xml'});
     const url = URL.createObjectURL(blob);
     const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -189,7 +186,7 @@ export class AppComponent implements OnDestroy {
 
   private toSvgDataUrl(viewerSvg: SVGSVGElement): string {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
-    svg.setAttribute('width', '600px');
+    svg.setAttribute('width', '900px');
     const base64Data = btoa(unescape(encodeURIComponent(svg.outerHTML)));
     return `data:image/svg+xml;base64,${base64Data}`;
   }

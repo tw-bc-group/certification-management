@@ -1,12 +1,12 @@
 <app-cert-form [certificate]="certificate"></app-cert-form>
 <div class="preview">
-  <ng-container *ngIf="certificate.type==='ThoughtWorks'">
+  <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
     <app-template-tw [certificate]="certificate" #template></app-template-tw>
     <div>
       <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
     </div>
-  </ng-container>
-  <ng-container *ngIf="certificate.type==='Community'">
+  <!-- </ng-container> -->
+  <!-- <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>
   </ng-container>
   <ng-container *ngIf="certificate.type==='Enterprise'">
@@ -14,7 +14,7 @@
   </ng-container>
   <ng-container *ngIf="certificate.type==='University'">
     <app-template-university [certificate]="certificate" #template></app-template-university>
-  </ng-container>
+  </ng-container> -->
   <p>
     <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
   </p>

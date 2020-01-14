@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { CertificateModel } from '../models/certificate.model';
-import { Constants } from './../utils/constants';
+import { CertificateModel, CertificateLevel } from '../models/certificate.model';
+import { certificationColors } from './../utils/constants';
 
 @Component({
   selector: 'app-template-tw',
@@ -22,13 +22,11 @@ export class TemplateTwComponent implements OnInit {
   }
 
   get backgroundColor(): string {
-    const color = Constants.BACKGROUND_COLOR[this.certificate.certName];
-    return `rgb(${color.red}, ${color.green}, ${color.blue})`;
+    return certificationColors[this.certificate.type][this.certificate.certName as CertificateLevel].baseColor;
   }
 
   get radialGradientColor(): string {
-    const color = Constants.BACKGROUND_COLOR[this.certificate.certName];
-    return `rgb(${color.red - 3}, ${color.green - 25}, ${color.blue - 17})`;
+    return certificationColors[this.certificate.type][this.certificate.certName as CertificateLevel].radiaGradientColor;
   }
 
   ngOnInit() {
