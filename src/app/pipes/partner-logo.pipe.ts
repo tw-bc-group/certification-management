@@ -2,11 +2,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { github } from './logos/github';
 import { huawei } from './logos/huawei';
 import { pku } from './logos/pku';
+import { oppo } from './logos/oppo';
 
 const logos = {
   github,
   huawei,
   pku,
+  oppo,
 };
 
 @Pipe({
