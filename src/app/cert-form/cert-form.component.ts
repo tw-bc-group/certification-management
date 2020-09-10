@@ -25,18 +25,26 @@ export class CertFormComponent implements OnInit {
   }
 
   photoChanged(files: FileList): void {
-    const data = new FormData();
-    data.set('image_file', files[0], files[0].name);
-    data.set('size', 'auto');
-    this.http.post('/api/v1.0/removebg', data, {
-      headers: {
-        'X-Api-Key': Constants.REMOVE_BG_API_KEY
-      },
-      responseType: 'blob',
-    }).subscribe((blob) => {
-      blobToDataURL(blob).then(url => {
-        this.certificate.photoUrl = url;
-      });
-    });
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      this.certificate.photoUrl = reader.result.toString();
+    };
+
+    // push to removebg;
+
+    // const data = new FormData();
+    // data.set('image_file', files[0], files[0].name);
+    // data.set('size', 'auto');
+    // this.http.post('https://api.remove.bg/v1.0/removebg', data, {
+    //   headers: {
+    //     'X-Api-Key': Constants.REMOVE_BG_API_KEY
+    //   },
+    //   responseType: 'blob',
+    // }).subscribe((blob) => {
+    //   blobToDataURL(blob).then(url => {
+    //     this.certificate.photoUrl = url;
+    //   });
+    // });
   }
 }

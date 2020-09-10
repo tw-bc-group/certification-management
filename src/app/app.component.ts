@@ -33,6 +33,8 @@ export class AppComponent implements OnDestroy {
     photoUrl: '',
     firstName: '',
     lastName: '',
+    firstNamePinyin: '',
+    lastNamePinyin: '',
     expiredAt: addYears(publishedAt, 2),
     publishedAt,
     fingerprint: '',

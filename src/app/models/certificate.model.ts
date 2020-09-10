@@ -17,7 +17,9 @@ export interface CertificateModel {
   partner: string;
   photoUrl: string;
   firstName: string;
+  firstNamePinyin: string;
   lastName: string;
+  lastNamePinyin: string;
   publishedAt: Date;
   expiredAt: Date;
   fingerprint: string;

@@ -28,6 +28,7 @@ import {
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
 import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
 import { ChineseNamePipe } from './pipes/chinese-name.pipe';
+import { TemplateJuniorDPMComponent } from './template-junior-dpm/template-junior-dpm.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ChineseNamePipe } from './pipes/chinese-name.pipe';
     TemplateCorporateComponent,
     TemplateCommunityComponent,
     TemplateUniversityComponent,
+    TemplateJuniorDPMComponent,
     NamePipe,
     CertFormComponent,
     PartnerLogoPipe,

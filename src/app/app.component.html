@@ -1,10 +1,11 @@
 <app-cert-form [certificate]="certificate"></app-cert-form>
 <div class="preview">
   <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
-    <app-template-tw [certificate]="certificate" #template></app-template-tw>
-    <div>
+    <!-- <app-template-tw [certificate]="certificate" #template></app-template-tw> -->
+    <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
+    <!-- <div>
       <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
-    </div>
+    </div> -->
   <!-- </ng-container> -->
   <!-- <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>
