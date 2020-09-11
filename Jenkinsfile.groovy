@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'source /var/lib/jenkins/.bashrc'
+                sh 'fnm install 10.18.0'
+                sh 'fnm use v10.18.0'
                 // sh 'yarn'
             }
         }
