@@ -1,33 +1,21 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REG = "${BC_DOCKER_REG}"
-        IMAGE_NAME = "${BC_DOCKER_REG}/cac-management"
+        AWS_PROFILE = "tw-bc-cn"
+        DOCKER_REG = "${DOCKER_REGISTRY}"
+        IMAGE_NAME = "${DOCKER_REGISTRY}/cac-management"
         IMAGE_TAG  = "build-${BUILD_NUMBER}"
     }
     stages {
-        stage('Install Dependencies') {
+        stage('Build Artifacts') {
             steps {
-                sh 'fnm install 10.18.0'
-                sh 'fnm use v10.18.0'
-                // sh 'yarn'
+                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
 
-        // stage('Build Artifacts') {
-        //     steps {
-        //         sh 'yarn build:prod'
-        //         sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
-        //     }
-        // }
-
         stage('Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-reg-cn', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER')]) {
-                    sh '''
-                    echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin $DOCKER_REG
-                    '''
-                }
+                sh 'aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}'
                 sh 'docker push ${IMAGE_NAME}:${IMAGE_TAG}'
                 sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG}'
             }
@@ -36,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'kubectl get namespaces cac || kubectl create namespace cac'
-                sh '/usr/local/bin/helm -n cac upgrade cac-management ./helm --set image.tag=${IMAGE_TAG}'
+                sh 'helm -n cac upgrade cac-management ./helm --set image.tag=${IMAGE_TAG} --set image.repository=${IMAGE_NAME}'
             }
         }
     }
