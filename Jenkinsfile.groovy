@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'kubectl get namespaces cac || kubectl create namespace cac'
-                sh 'helm -n cac upgrade cac-management ./helm --set image.tag=${IMAGE_TAG} --set image.repository=${IMAGE_NAME}'
+                sh 'helm -n cac upgrade --install cac-management ./helm --set image.tag=${IMAGE_TAG} --set image.repository=${IMAGE_NAME}'
             }
         }
     }
