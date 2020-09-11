@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash'
+                sh 'source /var/lib/jenkins/.bashrc'
                 // sh 'yarn'
             }
         }
