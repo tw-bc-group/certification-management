@@ -9,7 +9,6 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'node -v'
-                sh 'nvm -h'
                 sh 'fnm -h'
                 // sh 'yarn'
             }
