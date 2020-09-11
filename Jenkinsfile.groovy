@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'node -v'
-                sh 'fnm -h'
+                sh 'curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash'
                 // sh 'yarn'
             }
         }
