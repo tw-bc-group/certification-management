@@ -112,64 +112,6 @@
 				font-weight: 400;
 			}
 		</style>
-		<radialGradient id="radialGradient" cx="584.79" cy="707.06" fx="366.2067895683565" fy="88.27440687507988"
-			r="1139.19" gradientUnits="userSpaceOnUse">
-			<stop offset="0" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0" />
-			<stop offset="0.1" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.1" />
-			<stop offset="0.32" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.37" />
-			<stop offset="0.64" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0.79" />
-			<stop offset="0.78" [ngStyle]="{'stop-color': radialGradientColor}" />
-		</radialGradient>
-		<filter id="agile-coach-copy-a" width="114.9%" height="110.3%" x="-7.4%" y="-5.2%" filterUnits="objectBoundingBox">
-			<feOffset dx="30" dy="25" in="SourceAlpha" result="shadowOffsetOuter1" />
-			<feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="25" />
-			<feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1"
-				values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" />
-			<feMerge>
-				<feMergeNode in="shadowMatrixOuter1" />
-				<feMergeNode in="SourceGraphic" />
-			</feMerge>
-		</filter>
-		<polygon id="agile-coach-polygon" points="987.8 0 1315.31 0 1315.31 1792.77 256.43 1792.77 256.43 648.39" />
-		<mask id="agile-coach-center-mask" fill="#fff" transform="translate(200)">
-			<use xlink:href="#agile-coach-polygon" />
-		</mask>
-
-		<radialGradient id="agile-coach-copy-f" cx="42.358%" cy="28.846%" r="113.324%" fx="42.358%" fy="28.846%"
-			gradientTransform="scale(1 .59067) rotate(82.262 .31 .388)">
-			<stop offset="0%" [ngStyle]="{'stop-color': radialGradientColor}" stop-opacity="0" />
-			<stop offset="100%" [ngStyle]="{'stop-color': radialGradientColor}" />
-		</radialGradient>
-
-		<linearGradient x1="131.60441%" y1="18.3037487%" x2="9.20973352%" y2="90.2518858%" id="linearGradient-13">
-			<stop stop-color="#FFCA42" offset="0%"></stop>
-			<stop stop-color="#F12935" offset="100%"></stop>
-		</linearGradient>
-		<linearGradient x1="-173.953025%" y1="53.0200011%" x2="99.059771%" y2="53.0200011%" id="linearGradient-14">
-			<stop stop-color="#000000" stop-opacity="0.301319067" offset="0%"></stop>
-			<stop stop-color="#F76C3A" stop-opacity="0.764775815" offset="100%"></stop>
-		</linearGradient>
-		<linearGradient x1="-6.38831021%" y1="106.582714%" x2="104.347041%" y2="7.23374473%" id="linearGradient-15">
-			<stop stop-color="#3023AE" offset="0%"></stop>
-			<stop stop-color="#C86DD7" offset="100%"></stop>
-		</linearGradient>
-		<linearGradient x1="-173.953025%" y1="53.0200011%" x2="99.059771%" y2="53.0200011%" id="linearGradient-16">
-			<stop stop-color="#000000" stop-opacity="0.301319067" offset="0%"></stop>
-			<stop stop-color="#7F4AC3" offset="100%"></stop>
-		</linearGradient>
-		<linearGradient x1="103.109945%" y1="13.140351%" x2="0%" y2="100%" id="linearGradient-17">
-			<stop stop-color="#B4EC51" offset="0%"></stop>
-			<stop stop-color="#429321" offset="100%"></stop>
-		</linearGradient>
-		<linearGradient x1="-173.953025%" y1="53.0200011%" x2="99.059771%" y2="53.0200011%" id="linearGradient-18">
-			<stop stop-color="#000000" stop-opacity="0.301319067" offset="0%"></stop>
-			<stop stop-color="#7CC039" offset="100%"></stop>
-		</linearGradient>
-
-		<clipPath id="clip-path">
-			<path class="cls-1"
-				d="M1630.28 2003.51V2290h-132.63v-30.33s-30.92 30-126.76 30c-116.94 0-240.56-103.13-240.56-232.16s79.92-264.77 250-264.77c165.45.03 249.95 140.55 249.95 210.77zm-248.83-80.09a118 118 0 1 0 118 118 118 118 0 0 0-118-118z" />
-		</clipPath>
 		<pattern id="avatarImage" width="1" height="1" patternContentUnits="objectBoundingBox">
 			<image [attr.xlink:href]="certificate.photoUrl" x="0" y="0" width="1" height="1" preserveAspectRatio="none" />
 		</pattern>
