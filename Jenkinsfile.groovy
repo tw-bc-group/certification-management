@@ -6,9 +6,16 @@ pipeline {
         IMAGE_TAG  = "build-${BUILD_NUMBER}"
     }
     stages {
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-              sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+                sh 'yarn'
+            }
+        }
+
+        stage('Build Artifacts') {
+            steps {
+                sh 'yarn build:prod'
+                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
 
