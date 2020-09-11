@@ -8,16 +8,19 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'yarn'
+                sh 'node -v'
+                sh 'nvm -h'
+                sh 'fnm -h'
+                // sh 'yarn'
             }
         }
 
-        stage('Build Artifacts') {
-            steps {
-                sh 'yarn build:prod'
-                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
-            }
-        }
+        // stage('Build Artifacts') {
+        //     steps {
+        //         sh 'yarn build:prod'
+        //         sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+        //     }
+        // }
 
         stage('Push') {
             steps {
