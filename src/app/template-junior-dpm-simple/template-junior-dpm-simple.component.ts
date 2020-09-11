@@ -2,11 +2,11 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CertificateModel } from '../models/certificate.model';
 
 @Component({
-  selector: 'app-template-junior-dpm',
-  templateUrl: './template-junior-dpm.component.html',
-  styleUrls: ['./template-junior-dpm.component.scss'],
+  selector: 'app-template-junior-dpm-simple',
+  templateUrl: './template-junior-dpm-simple.component.html',
+  styleUrls: ['./template-junior-dpm-simple.component.scss'],
 })
-export class TemplateJuniorDPMComponent implements OnInit {
+export class TemplateJuniorDPMSimpleComponent implements OnInit {
   @Input()
   certificate: CertificateModel;
 
