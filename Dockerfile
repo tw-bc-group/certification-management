@@ -6,5 +6,5 @@ COPY ./ /ng-app
 RUN yarn build:prod
 
 FROM nginx:1.15.5
-COPY --from=build-stage deployment/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build-stage dist/cac-generator /usr/share/nginx/html
+COPY deployment/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build-stage dist/cac-generator /usr/share/nginx/html/admin
