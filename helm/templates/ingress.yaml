@@ -11,8 +11,9 @@ metadata:
   labels:
     {{- include "big-screen.labels" . | nindent 4 }}
 spec:
-  tls:
-    - secretName: cac-cert
+  - hosts:
+      - {{ .Values.cac.host }}
+      secretName: ca-cert-tls
   rules:
     - host: cac-management.cn.blockchain.thoughtworks.cn
       http:
