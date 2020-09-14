@@ -16,10 +16,10 @@ spec:
     - cac-management.cn.blockchain.thoughtworks.cn
     secretName: ca-cert-tls
   rules:
-    host: cac-management.cn.blockchain.thoughtworks.cn
+    - host: cac-management.cn.blockchain.thoughtworks.cn
     http:
       paths:
+        - path: /admin/
         backend:
           serviceName: {{ include "big-screen.fullname" . }}
           servicePort: 4000
-        path: /admin/
