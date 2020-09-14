@@ -20,6 +20,6 @@ spec:
     http:
       paths:
         - path: /admin/
-        backend:
-          serviceName: {{ include "big-screen.fullname" . }}
-          servicePort: 4000
+          backend:
+            serviceName: {{ include "big-screen.fullname" . }}
+            servicePort: 4000
