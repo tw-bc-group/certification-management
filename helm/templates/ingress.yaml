@@ -13,6 +13,7 @@ spec:
     - host: {{ .Values.cac.host }}
       http:
         paths:
+          - path: /
           - backend:
               serviceName: {{ include "big-screen.fullname" . }}
               servicePort: http
