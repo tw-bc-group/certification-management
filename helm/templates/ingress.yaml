@@ -10,10 +10,9 @@ metadata:
     {{- include "big-screen.labels" . | nindent 4 }}
 spec:
   rules:
-    - host: {{ .Values.cac.host }}
+    - host: cac-management.cn.blockchain.thoughtworks.cn
       http:
         paths:
-          - path: /
-            backend:
+          - backend:
               serviceName: {{ include "big-screen.fullname" . }}
               servicePort: http
