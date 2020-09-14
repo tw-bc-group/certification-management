@@ -78,3 +78,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+cac:
+  host: cac-management.cn.blockchain.thoughtworks.cn
