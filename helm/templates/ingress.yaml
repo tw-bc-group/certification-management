@@ -19,7 +19,7 @@ spec:
     - host: cac-management.cn.blockchain.thoughtworks.cn
       http:
         paths:
-          - path: /admin/
+          - path: /
             backend:
               serviceName: {{ include "big-screen.fullname" . }}
-              servicePort: 4000
+              servicePort: http
