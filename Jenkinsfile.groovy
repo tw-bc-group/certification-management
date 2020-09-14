@@ -9,6 +9,8 @@ pipeline {
     stages {
         stage('Build Artifacts') {
             steps {
+                sh 'sed "s/PROD_LC_APP_ID/${CAC_LC_APP_ID}/g"'
+                sh 'sed "s/PROD_LC_APP_KEY/${CAC_LC_APP_KEY}/g"'
                 sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }

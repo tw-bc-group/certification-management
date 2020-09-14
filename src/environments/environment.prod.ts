@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   certViewUrl: 'https://cac.thoughtworks.cn/certification/',
-  lcAppId: '',
-  lcAppKey: ''
+  lcAppId: 'PROD_LC_APP_ID',
+  lcAppKey: 'PROD_LC_APP_KEY'
 };
