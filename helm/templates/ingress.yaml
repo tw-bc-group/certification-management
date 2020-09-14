@@ -12,13 +12,13 @@ metadata:
     {{- include "big-screen.labels" . | nindent 4 }}
 spec:
   tls:
-    hosts: {{ .Values.cac.host }}
-    secretName: {{ include "big-screen.fullname" . }}-tls
+    - hosts:
+      - {{ .Values.cac.host }}
+      secretName: {{ include "big-screen.fullname" . }}-tls
   rules:
-    host: cac-management.cn.blockchain.thoughtworks.cn
+    - host: {{ .Values.cac.host }}
       http:
         paths:
-          - path: /
-            backend:
+          - backend:
               serviceName: {{ include "big-screen.fullname" . }}
               servicePort: http
