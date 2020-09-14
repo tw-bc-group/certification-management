@@ -11,13 +11,13 @@ metadata:
   labels:
     {{- include "big-screen.labels" . | nindent 4 }}
 spec:
-  - hosts:
-      - cac-management.cn.blockchain.thoughtworks.cn
-      secretName: ca-cert-tls
+  hosts: cac-management.cn.blockchain.thoughtworks.cn
+  secretName: ca-cert-tls
   rules:
-    - host: cac-management.cn.blockchain.thoughtworks.cn
-      http:
-        paths:
-          - backend:
-              serviceName: {{ include "big-screen.fullname" . }}
-              servicePort: 4000
+    host: cac-management.cn.blockchain.thoughtworks.cn
+    http:
+      paths:
+        backend:
+          serviceName: {{ include "big-screen.fullname" . }}
+          servicePort: 4000
+        path: /admin/
