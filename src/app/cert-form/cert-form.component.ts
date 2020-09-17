@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CertificateModel, CertificateType } from '../models/certificate.model';
 import { blobToDataURL } from 'blob-util';
 import { HttpClient } from '@angular/common/http';
@@ -14,10 +14,20 @@ export class CertFormComponent implements OnInit {
   @Input()
   certificate: CertificateModel;
 
+  @Input()
+  certificateTemplate: string;
+
+  @Output()
+  certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
+  }
+
+  changeTemplate(value: string) {
+    this.certificateTemplateChange.emit(value);
   }
 
   isThoughtworksCert(): boolean {

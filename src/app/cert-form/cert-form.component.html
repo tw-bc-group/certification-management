@@ -1,5 +1,12 @@
 <div class="cert-info">
   <mat-form-field>
+    <select placeholder="证书类型" matNativeControl name="certificateTemplate" [(ngModel)]="certificateTemplate" (ngModelChange)="changeTemplate($event)">
+      <option value="tw">敏捷教练</option>
+      <option value="dpm">数字产品经理</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field>
     <select placeholder="证书名称" matNativeControl name="certName" [(ngModel)]="certificate.certName">
       <option value="AGILE COACH">AGILE COACH</option>
       <option value="ADVANCED AGILE COACH">ADVANCED AGILE COACH</option>

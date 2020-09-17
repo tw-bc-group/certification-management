@@ -45,6 +45,7 @@ export class AppComponent implements OnDestroy {
     qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
     '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
+  certificateTemplate = 'tw';
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
   downloadLink = false;
