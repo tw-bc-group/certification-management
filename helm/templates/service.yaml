@@ -8,11 +8,6 @@ spec:
   type: ClusterIP
   ports:
   - port: 80
-    name: http
-    {{- if eq .Values.service.type "NodePort" }}
-    {{- if .Values.service.nodePort }}
-    nodePort: {{ .Values.service.nodePort }}
-    {{- end }}
-    {{- end }}
+    name: TCP
   selector:
     {{- include "big-screen.selectorLabels" . | nindent 4 }}
