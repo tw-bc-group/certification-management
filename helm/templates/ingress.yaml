@@ -21,4 +21,4 @@ spec:
         paths:
           - backend:
               serviceName: {{ include "big-screen.fullname" . }}
-              servicePort: 80
+              servicePort: 8080
