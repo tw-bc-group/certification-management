@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "big-screen.fullname" . }}
+  name: {{ include "cac.fullname" . }}
   labels:
-    {{- include "big-screen.labels" . | nindent 4 }}
+    {{- include "cac.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
   ports:
     - protocol: TCP
       port: 8080
   selector:
-    {{- include "big-screen.selectorLabels" . | nindent 4 }}
+    {{- include "cac.selectorLabels" . | nindent 4 }}

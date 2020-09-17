@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ include "big-screen.fullname" . }}
+  name: {{ include "cac.fullname" . }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/client-max-body-size: "1024m"
@@ -9,16 +9,16 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
     # cert-manager.io/cluster-issuer: "letsencrypt-prod"
   labels:
-    {{- include "big-screen.labels" . | nindent 4 }}
+    {{- include "cac.labels" . | nindent 4 }}
 spec:
    tls:
    - hosts:
      - cac-management.cn.blockchain.thoughtworks.cn
-     secretName: {{ include "big-screen.fullname" . }}-tls
+     secretName: {{ include "cac.fullname" . }}-tls
   rules:
     - host: cac-management.cn.blockchain.thoughtworks.cn
       http:
         paths:
           - backend:
-              serviceName: {{ include "big-screen.fullname" . }}
+              serviceName: {{ include "cac.fullname" . }}
               servicePort: 8080
