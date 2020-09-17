@@ -11,14 +11,15 @@ metadata:
   labels:
     {{- include "cac.labels" . | nindent 4 }}
 spec:
-   tls:
-   - hosts:
-     - cac-management.cn.blockchain.thoughtworks.cn
-     secretName: {{ include "cac.fullname" . }}-tls
+  tls:
+    - hosts:
+        - {{ .Values.cac.host }}
+      secretName: {{ include "cac.fullname" . }}-tls
   rules:
-    - host: cac-management.cn.blockchain.thoughtworks.cn
-      http:
-        paths:
-          - backend:
-              serviceName: {{ include "cac.fullname" . }}
-              servicePort: 8080
+      - host: {{ .Values.cac.host }}
+        http:
+          paths:
+            - backend:
+                serviceName: {{ include "cac.fullname" . }}
+                servicePort: 8080
+
