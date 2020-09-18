@@ -30,6 +30,8 @@ import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
 import { ChineseNamePipe } from './pipes/chinese-name.pipe';
 import { TemplateJuniorDPMComponent } from './template-junior-dpm/template-junior-dpm.component';
 import { TemplateJuniorDPMSimpleComponent } from './template-junior-dpm-simple/template-junior-dpm-simple.component';
+import { TemplateTwCorComponent } from './template-tw-cor/template-tw-cor.component';
+import { TemplateTwCorSimpleComponent } from './template-tw-cor-simple/template-tw-cor-simple.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { TemplateJuniorDPMSimpleComponent } from './template-junior-dpm-simple/t
     TemplateUniversityComponent,
     TemplateJuniorDPMComponent,
     TemplateJuniorDPMSimpleComponent,
+    TemplateTwCorComponent,
+    TemplateTwCorSimpleComponent,
     NamePipe,
     CertFormComponent,
     PartnerLogoPipe,

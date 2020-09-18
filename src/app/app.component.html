@@ -13,6 +13,12 @@
         <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
       </div>
     </ng-container>
+    <ng-container *ngIf="certificateTemplate === 'tw-cor'">
+      <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
+      <div>
+        <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
+      </div>
+    </ng-container>
   <!-- </ng-container> -->
   <!-- <ng-container *ngIf="certificate.type==='Community'">
     <app-template-community [certificate]="certificate" #template></app-template-community>

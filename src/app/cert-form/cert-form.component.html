@@ -2,7 +2,18 @@
   <mat-form-field>
     <select placeholder="证书类型" matNativeControl name="certificateTemplate" [(ngModel)]="certificateTemplate" (ngModelChange)="changeTemplate($event)">
       <option value="tw">敏捷教练</option>
+      <option value="tw-cor">合作方敏捷教练</option>
       <option value="dpm">数字产品经理</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <select placeholder="合作方" matNativeControl name="cor" [(ngModel)]="certificate.partner">
+      <option value="github">Github</option>
+      <option value="huawei">华为</option>
+      <option value="pku">PKU</option>
+      <option value="oppo">OPPO</option>
+      <option value="CMGFintech">招商金科</option>
     </select>
   </mat-form-field>
 
