@@ -9,7 +9,7 @@ const logos = {
   huawei,
   pku,
   oppo,
-  CMGFintech: '/assets/images/招商金科logo.png'
+  CMGFintech: 'assets/images/招商金科logo.png'
 };
 
 @Pipe({
