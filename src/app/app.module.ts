@@ -32,6 +32,7 @@ import { TemplateJuniorDPMComponent } from './template-junior-dpm/template-junio
 import { TemplateJuniorDPMSimpleComponent } from './template-junior-dpm-simple/template-junior-dpm-simple.component';
 import { TemplateTwCorComponent } from './template-tw-cor/template-tw-cor.component';
 import { TemplateTwCorSimpleComponent } from './template-tw-cor-simple/template-tw-cor-simple.component';
+import { EnglishNamePipe } from './pipes/english-name.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { TemplateTwCorSimpleComponent } from './template-tw-cor-simple/template-
     PartnerLogoPipe,
     StringToHTMLPipe,
     ChineseNamePipe,
+    EnglishNamePipe
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@
       .cls-23,.cls-24{font-size:42px;font-family:PingFangSC-Regular-GBpc-EUC-H,PingFang SC}
       .cls-24{letter-spacing:.51em}
       .cls-level{font-weight:700;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff;font-size:124px}
+      .cls-level-en{font-weight:300;font-family:PingFangSC;fill:#fff;font-size:70px}
       .cls-name{font-size:90px;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff}
       .cls-13{font-size:35px;font-family:PingFangSC-Light-GBpc-EUC-H,PingFang SC}
       .cls-6,.cls-7{opacity:0.4;font-family:Futura-Bold, Futura;font-weight:700;}
@@ -328,8 +329,9 @@
     <!-- words -->
     <g class="words">
       <g transform="translate(-50 0)">
-        <text class="cls-level" transform="translate(399.67 1246.33)">{{certificate.certName | chineseName}}</text>
-        <text class="cls-name" transform="translate(399.67 1033.12)">{{certificate.lastName}} {{certificate.firstName}}</text>
+        <text class="cls-level" transform="translate(399.67 1206.33)">{{certificate.certName | chineseName}}</text>
+        <text class="cls-level-en" transform="translate(399.67 1306.33)">{{certificate.certName | englishName}}</text>
+        <text class="cls-name" transform="translate(399.67 973.12)">{{certificate.lastName}} {{certificate.firstName}}</text>
         <text class="cls-22" transform="translate(399.67 689)">CERTIFICATION OF</text>
         <text class="cls-22" transform="translate(399.67 735.66)">COMPLETION</text>
         <text class="cls-23" transform="translate(410.23 1519.53)">颁发日期</text>

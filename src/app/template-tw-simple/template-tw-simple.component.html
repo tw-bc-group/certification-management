@@ -11,6 +11,7 @@
       .cls-simple-14{letter-spacing:0.51em;}
       .cls-simple-15{font-size:114px;font-weight: bold;}
       .cls-simple-15,.cls-simple-16{font-family:PingFangSC-Semibold-GBpc-EUC-H, PingFang SC;}
+      .cls-simple-15-en{font-family:PingFangSC;font-weight: 300;font-size: 70px;fill:#fff;}
       .cls-simple-16{font-size:80px;font-weight:700;}
       .cls-simple-21{opacity:0.5;}
       .cls-simple-22{stroke:#fff;stroke-miterlimit:10;}
@@ -49,10 +50,13 @@
         <text class="cls-simple-24" transform="translate(198.58 323.27)">COMPLETION</text>
       </g>
       <g transform="translate(0, 200)">
-        <text class="cls-simple-15" transform="translate(198.59 833.94)">
+        <text class="cls-simple-15" transform="translate(198.59 733.94)">
           <tspan>{{certificate.certName | chineseName}}</tspan>
         </text>
-        <text class="cls-simple-16" transform="translate(198.59 620.72)">
+        <text class="cls-simple-15-en" transform="translate(198.59 833.94)">
+          <tspan>{{certificate.certName | englishName}}</tspan>
+        </text>
+        <text class="cls-simple-16" transform="translate(198.59 520.72)">
           <tspan>{{certificate.lastName}} {{certificate.firstName}}</tspan>
         </text>
         <g class="cls-simple-17">
