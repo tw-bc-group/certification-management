@@ -1,11 +1,18 @@
 <div class="cert-info">
-  <mat-form-field>
-    <select placeholder="证书类型" matNativeControl name="certificateTemplate" [(ngModel)]="certificateTemplate" (ngModelChange)="changeTemplate($event)">
-      <option value="tw">敏捷教练</option>
-      <option value="tw-cor">合作方敏捷教练</option>
-      <option value="dpm">数字产品经理</option>
-    </select>
-  </mat-form-field>
+  <nz-form-item>
+    <nz-form-label>证书类型</nz-form-label>
+    <nz-select
+      id="gender"
+      name="certificateTemplate"
+      [(ngModel)]="certificateTemplate"
+      (ngModelChange)="changeTemplate($event)"
+      nzPlaceHolder="证书类型"
+    >
+      <nz-option nzValue="tw" nzLabel="敏捷教练"></nz-option>
+      <nz-option nzValue="tw-cor" nzLabel="合作方敏捷教练"></nz-option>
+      <nz-option nzValue="dpm" nzLabel="数字产品经理"></nz-option>
+    </nz-select>
+  </nz-form-item>
 
   <mat-form-field>
     <select placeholder="合作方" matNativeControl name="cor" [(ngModel)]="certificate.partner">
