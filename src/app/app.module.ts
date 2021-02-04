@@ -33,7 +33,15 @@ import { TemplateJuniorDPMSimpleComponent } from './template-junior-dpm-simple/t
 import { TemplateTwCorComponent } from './template-tw-cor/template-tw-cor.component';
 import { TemplateTwCorSimpleComponent } from './template-tw-cor-simple/template-tw-cor-simple.component';
 import { EnglishNamePipe } from './pipes/english-name.pipe';
-import { NzFormModule, NzInputModule, NzSelectModule } from 'ng-zorro-antd';
+import {
+  NzFormModule,
+  NzInputModule,
+  NzSelectModule,
+  NzPageHeaderModule,
+  NzLayoutModule,
+  NzGridModule,
+  NzButtonModule,
+} from 'ng-zorro-antd';
 
 @NgModule({
   declarations: [
@@ -73,7 +81,11 @@ import { NzFormModule, NzInputModule, NzSelectModule } from 'ng-zorro-antd';
     MatProgressSpinnerModule,
     NzFormModule,
     NzInputModule,
-    NzSelectModule
+    NzSelectModule,
+    NzLayoutModule,
+    NzPageHeaderModule,
+    NzGridModule,
+    NzButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

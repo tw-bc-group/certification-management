@@ -1,42 +1,50 @@
-<app-cert-form [certificate]="certificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
-<div class="preview">
-  <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
-    <ng-container *ngIf="certificateTemplate === 'tw'">
-      <app-template-tw [certificate]="certificate" #template></app-template-tw>
-      <div>
-        <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
+<nz-layout>
+  <nz-header>证书颁发系统</nz-header>
+  <nz-content>
+    <div class="left">
+      <app-cert-form [certificate]="certificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
+      <button nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
+    </div>
+
+      <div class="right">
+        <div class="preview">
+          <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
+          <ng-container *ngIf="certificateTemplate === 'tw'">
+            <app-template-tw [certificate]="certificate" #template></app-template-tw>
+            <div>
+              <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="certificateTemplate === 'dpm'">
+            <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
+            <div>
+              <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="certificateTemplate === 'tw-cor'">
+            <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
+            <div>
+              <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
+            </div>
+          </ng-container>
+          <!-- </ng-container> -->
+          <!-- <ng-container *ngIf="certificate.type==='Community'">
+            <app-template-community [certificate]="certificate" #template></app-template-community>
+          </ng-container>
+          <ng-container *ngIf="certificate.type==='Enterprise'">
+            <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
+          </ng-container>
+          <ng-container *ngIf="certificate.type==='University'">
+            <app-template-university [certificate]="certificate" #template></app-template-university>
+          </ng-container> -->
+          <div>
+            <mat-spinner *ngIf="loading"></mat-spinner>
+          </div>
+          <div>
+            <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
+            <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
+          </div>
+        </div>
       </div>
-    </ng-container>
-    <ng-container *ngIf="certificateTemplate === 'dpm'">
-      <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
-      <div>
-        <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="certificateTemplate === 'tw-cor'">
-      <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
-      <div>
-        <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
-      </div>
-    </ng-container>
-  <!-- </ng-container> -->
-  <!-- <ng-container *ngIf="certificate.type==='Community'">
-    <app-template-community [certificate]="certificate" #template></app-template-community>
-  </ng-container>
-  <ng-container *ngIf="certificate.type==='Enterprise'">
-    <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
-  </ng-container>
-  <ng-container *ngIf="certificate.type==='University'">
-    <app-template-university [certificate]="certificate" #template></app-template-university>
-  </ng-container> -->
-  <p>
-    <button type="button" mat-flat-button color="primary" [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
-  </p>
-  <div>
-    <mat-spinner *ngIf="loading"></mat-spinner>
-  </div>
-  <div>
-    <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
-    <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
-  </div>
-</div>
+  </nz-content>
+</nz-layout>

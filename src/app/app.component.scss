@@ -10,6 +10,34 @@
     flex: none;
     min-width: 450px;
   }
+
+  nz-header,
+  nz-footer {
+    background: #FFFFFF;
+    color: #f28c48;
+  }
+
+  nz-header{
+    margin-bottom: 24px;
+  }
+
+  nz-content{
+    width: 1060px;
+    margin: 0 auto;
+    display: flex;
+
+    .left{
+      width: 660px;
+      margin-right: 40px;
+      background-color: #FFFFFF;
+      padding: 16px 64px;
+    }
+
+    .right {
+     flex: 1;
+      background-color: #FFFFFF;
+    }
+  }
 }
 
 svg {
