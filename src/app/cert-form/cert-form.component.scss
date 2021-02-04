@@ -1,5 +1,19 @@
 :host {
   display: block;
+
+  .form-line{
+    display: flex;
+    justify-content: space-between;
+
+    nz-form-label{
+      display: block;
+      text-align: left;
+    }
+
+    nz-select, input{
+      width: 240px;
+    }
+  }
 }
 
 mat-form-field {

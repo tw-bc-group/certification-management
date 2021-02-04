@@ -41,7 +41,11 @@ import {
   NzLayoutModule,
   NzGridModule,
   NzButtonModule,
+  NzDatePickerModule
 } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+registerLocaleData(zh);
 
 @NgModule({
   declarations: [
@@ -85,7 +89,8 @@ import {
     NzLayoutModule,
     NzPageHeaderModule,
     NzGridModule,
-    NzButtonModule
+    NzButtonModule,
+    NzDatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

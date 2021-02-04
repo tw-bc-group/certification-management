@@ -1,106 +1,94 @@
 <div class="cert-info">
-  <nz-form-item>
-    <nz-form-label>证书类型</nz-form-label>
-    <nz-select
-      id="gender"
-      name="certificateTemplate"
-      [(ngModel)]="certificateTemplate"
-      (ngModelChange)="changeTemplate($event)"
-      nzPlaceHolder="证书类型"
-    >
-      <nz-option nzValue="tw" nzLabel="敏捷教练"></nz-option>
-      <nz-option nzValue="tw-cor" nzLabel="合作方敏捷教练"></nz-option>
-      <nz-option nzValue="dpm" nzLabel="数字产品经理"></nz-option>
-    </nz-select>
-  </nz-form-item>
+  <div class="form-line">
+    <nz-form-item>
+      <nz-form-label>证书类型</nz-form-label>
+      <nz-select
+        name="certificateTemplate"
+        [(ngModel)]="certificateTemplate"
+        (ngModelChange)="changeTemplate($event)"
+        nzPlaceHolder="证书类型"
+      >
+        <nz-option nzValue="tw" nzLabel="敏捷教练"></nz-option>
+        <nz-option nzValue="tw-cor" nzLabel="合作方敏捷教练"></nz-option>
+        <nz-option nzValue="dpm" nzLabel="数字产品经理"></nz-option>
+      </nz-select>
+    </nz-form-item>
 
-  <mat-form-field>
-    <select placeholder="合作方" matNativeControl name="cor" [(ngModel)]="certificate.partner">
-      <option value="github">Github</option>
-      <option value="huawei">华为</option>
-      <option value="pku">PKU</option>
-      <option value="oppo">OPPO</option>
-      <option value="CMGFintech">招商金科</option>
-      <option value="ABC">中国农业银行</option>
-    </select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <select placeholder="证书名称" matNativeControl name="certName" [(ngModel)]="certificate.certName">
-      <option value="AGILE COACH">AGILE COACH</option>
-      <option value="ADVANCED AGILE COACH">ADVANCED AGILE COACH</option>
-      <option value="MASTER AGILE COACH">MASTER AGILE COACH</option>
-    </select>
-  </mat-form-field>
-
-  <div class="awardee-name">
-    <mat-form-field>
-      <input type="text" required placeholder="姓" matInput id="lastName" name="lastName" [(ngModel)]="certificate.lastName">
-      <mat-error>请填写姓氏</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" required placeholder="名" matInput id="firstName" name="firstName" [(ngModel)]="certificate.firstName">
-      <mat-error>请填写名字</mat-error>
-    </mat-form-field>
+    <nz-form-item>
+      <nz-form-label>证书类型</nz-form-label>
+      <nz-select
+        name="cor"
+        [(ngModel)]="certificate.partner"
+        nzPlaceHolder="证书类型"
+      >
+        <nz-option nzValue="github" nzLabel="Github"></nz-option>
+        <nz-option nzValue="huawei" nzLabel="华为"></nz-option>
+        <nz-option nzValue="pku" nzLabel="PKU"></nz-option>
+        <nz-option nzValue="oppo" nzLabel="OPPO"></nz-option>
+        <nz-option nzValue="CMGFintech" nzLabel="招商金科"></nz-option>
+        <nz-option nzValue="ABC" nzLabel="中国农业银行"></nz-option>
+      </nz-select>
+    </nz-form-item>
   </div>
 
-  <div class="awardee-name">
-    <mat-form-field>
-      <input type="text" placeholder="姓（拼音）" matInput id="lastName" name="lastName" [(ngModel)]="certificate.lastNamePinyin">
-      <mat-error>请填写姓氏</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" placeholder="名（拼音）" matInput id="firstName" name="firstName" [(ngModel)]="certificate.firstNamePinyin">
-      <mat-error>请填写名字</mat-error>
-    </mat-form-field>
+  <div class="form-line">
+    <nz-form-item>
+      <nz-form-label>证书名称</nz-form-label>
+      <nz-select
+        name="certName" [(ngModel)]="certificate.certName"
+        nzPlaceHolder="证书名称"
+      >
+        <nz-option nzValue="AGILE COACH" nzLabel="AGILE COACH"></nz-option>
+        <nz-option nzValue="ADVANCED AGILE COACH" nzLabel="ADVANCED AGILE COACH"></nz-option>
+        <nz-option nzValue="MASTER AGILE COACH" nzLabel="MASTER AGILE COACH"></nz-option>
+      </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>认证类型</nz-form-label>
+      <nz-select
+        name="type"
+        [(ngModel)]="certificate.type"
+        nzPlaceHolder="认证类型"
+      >
+        <nz-option nzValue="ThoughtWorks" nzLabel="ThoughtWorks"></nz-option>
+        <nz-option nzValue="Community" nzLabel="Community"></nz-option>
+        <nz-option nzValue="Enterprise" nzLabel="Enterprise"></nz-option>
+        <nz-option nzValue="University" nzLabel="University"></nz-option>
+      </nz-select>
+    </nz-form-item>
+  </div>
+  <div class="form-line">
+    <nz-form-item>
+      <nz-form-label>姓</nz-form-label>
+      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" placeholder="姓" >
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>名</nz-form-label>
+      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" placeholder="姓" >
+    </nz-form-item>
   </div>
 
-  <mat-form-field>
-    <input placeholder="获得时间" matInput [matDatepicker]="pickerPublishedAt" name="publishedAt"
-    [(ngModel)]="certificate.publishedAt">
-    <mat-datepicker-toggle matSuffix [for]="pickerPublishedAt">
-      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #pickerPublishedAt></mat-datepicker>
-  </mat-form-field>
+  <div class="form-line">
+    <nz-form-item>
+      <nz-form-label>获得时间</nz-form-label>
+      <nz-date-picker name="publishedAt" [(ngModel)]="certificate.publishedAt"></nz-date-picker>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>过期时间</nz-form-label>
+      <nz-date-picker class="date-picker" name="expiredAt" [(ngModel)]="certificate.expiredAt"></nz-date-picker>
+    </nz-form-item>
+  </div>
 
-  <mat-form-field>
-    <input placeholder="过期时间" matInput [matDatepicker]="pickerExpiredAt" name="expiredAt"
-    [(ngModel)]="certificate.expiredAt">
-    <mat-datepicker-toggle matSuffix [for]="pickerExpiredAt">
-      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #pickerExpiredAt></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select name="type" [(ngModel)]="certificate.type">
-      <mat-option value="ThoughtWorks">ThoughtWorks</mat-option>
-      <mat-option value="Community">Community</mat-option>
-      <mat-option value="Enterprise">Enterprise</mat-option>
-      <mat-option value="University">University</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="合作方" name="partner" [(ngModel)]="certificate.partner">
-      <mat-option value="github">Github</mat-option>
-      <mat-option value="huawei">Huawei</mat-option>
-      <mat-option value="oppo">OPPO</mat-option>
-      <mat-option value="pku">Peking University</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input type="text" matInput id="issuer" name="issuer" required placeholder="颁发者" [(ngModel)]="certificate.issuer">
-    <mat-error>请填写颁发者</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input type="text" placeholder="接收者钱包地址" matInput name="receiverAddress" [(ngModel)]="certificate.receiverAddress">
-  </mat-form-field>
+  <div class="form-line">
+    <nz-form-item>
+      <nz-form-label>颁发者</nz-form-label>
+      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" placeholder="颁发者" >
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>接收者钱包地址</nz-form-label>
+      <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress" placeholder="接收者钱包地址" >
+    </nz-form-item>
+  </div>
 </div>
 
 <div class="photo">
