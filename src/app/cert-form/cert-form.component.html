@@ -50,12 +50,16 @@
       </nz-select>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label>姓</nz-form-label>
-      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" >
+      <nz-form-label nzRequired>姓</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required />
+      </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label>名</nz-form-label>
-      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" >
+      <nz-form-label nzRequired>名</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required />
+      </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
@@ -68,8 +72,10 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>颁发者</nz-form-label>
-      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" >
+      <nz-form-label nzRequired>颁发者</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required />
+      </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label>接收者钱包地址</nz-form-label>
