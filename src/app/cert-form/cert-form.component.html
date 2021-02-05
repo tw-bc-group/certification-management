@@ -1,5 +1,4 @@
 <div class="cert-info">
-  <div class="form-line">
     <nz-form-item>
       <nz-form-label>证书类型</nz-form-label>
       <nz-select
@@ -14,12 +13,12 @@
       </nz-select>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label>证书类型</nz-form-label>
+    <nz-form-item  *ngIf="certificateTemplate === 'tw-cor'">
+      <nz-form-label>合作方</nz-form-label>
       <nz-select
         name="cor"
         [(ngModel)]="certificate.partner"
-        nzPlaceHolder="证书类型"
+        nzPlaceHolder="合作方"
       >
         <nz-option nzValue="github" nzLabel="Github"></nz-option>
         <nz-option nzValue="huawei" nzLabel="华为"></nz-option>
@@ -29,10 +28,8 @@
         <nz-option nzValue="ABC" nzLabel="中国农业银行"></nz-option>
       </nz-select>
     </nz-form-item>
-  </div>
 
-  <div class="form-line">
-    <nz-form-item>
+    <nz-form-item *ngIf="certificateTemplate === 'tw' || certificateTemplate === 'tw-cor'">
       <nz-form-label>证书名称</nz-form-label>
       <nz-select
         name="certName" [(ngModel)]="certificate.certName"
@@ -43,7 +40,7 @@
         <nz-option nzValue="MASTER AGILE COACH" nzLabel="MASTER AGILE COACH"></nz-option>
       </nz-select>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item *ngIf="certificateTemplate === 'tw' || certificateTemplate === 'tw-cor'">
       <nz-form-label>认证类型</nz-form-label>
       <nz-select
         name="type"
@@ -56,8 +53,6 @@
         <nz-option nzValue="University" nzLabel="University"></nz-option>
       </nz-select>
     </nz-form-item>
-  </div>
-  <div class="form-line">
     <nz-form-item>
       <nz-form-label>姓</nz-form-label>
       <input nz-input name="lastName" [(ngModel)]="certificate.lastName" placeholder="姓" >
@@ -66,9 +61,7 @@
       <nz-form-label>名</nz-form-label>
       <input nz-input name="firstName" [(ngModel)]="certificate.firstName" placeholder="姓" >
     </nz-form-item>
-  </div>
 
-  <div class="form-line">
     <nz-form-item>
       <nz-form-label>获得时间</nz-form-label>
       <nz-date-picker name="publishedAt" [(ngModel)]="certificate.publishedAt"></nz-date-picker>
@@ -77,9 +70,7 @@
       <nz-form-label>过期时间</nz-form-label>
       <nz-date-picker class="date-picker" name="expiredAt" [(ngModel)]="certificate.expiredAt"></nz-date-picker>
     </nz-form-item>
-  </div>
 
-  <div class="form-line">
     <nz-form-item>
       <nz-form-label>颁发者</nz-form-label>
       <input nz-input name="issuer" [(ngModel)]="certificate.issuer" placeholder="颁发者" >
@@ -88,7 +79,6 @@
       <nz-form-label>接收者钱包地址</nz-form-label>
       <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress" placeholder="接收者钱包地址" >
     </nz-form-item>
-  </div>
 </div>
 
 <div class="photo">

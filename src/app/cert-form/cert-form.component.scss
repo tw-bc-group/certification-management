@@ -1,9 +1,14 @@
 :host {
   display: block;
 
-  .form-line{
+  .cert-info{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  nz-form-item{
+    &:nth-child(odd){
+      margin-right: 40px;
+    }
 
     nz-form-label{
       display: block;
