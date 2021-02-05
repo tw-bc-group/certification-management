@@ -5,7 +5,6 @@
         name="certificateTemplate"
         [(ngModel)]="certificateTemplate"
         (ngModelChange)="changeTemplate($event)"
-        nzPlaceHolder="证书类型"
       >
         <nz-option nzValue="tw" nzLabel="敏捷教练"></nz-option>
         <nz-option nzValue="tw-cor" nzLabel="合作方敏捷教练"></nz-option>
@@ -18,7 +17,6 @@
       <nz-select
         name="cor"
         [(ngModel)]="certificate.partner"
-        nzPlaceHolder="合作方"
       >
         <nz-option nzValue="github" nzLabel="Github"></nz-option>
         <nz-option nzValue="huawei" nzLabel="华为"></nz-option>
@@ -33,7 +31,6 @@
       <nz-form-label>证书名称</nz-form-label>
       <nz-select
         name="certName" [(ngModel)]="certificate.certName"
-        nzPlaceHolder="证书名称"
       >
         <nz-option nzValue="AGILE COACH" nzLabel="AGILE COACH"></nz-option>
         <nz-option nzValue="ADVANCED AGILE COACH" nzLabel="ADVANCED AGILE COACH"></nz-option>
@@ -45,7 +42,6 @@
       <nz-select
         name="type"
         [(ngModel)]="certificate.type"
-        nzPlaceHolder="认证类型"
       >
         <nz-option nzValue="ThoughtWorks" nzLabel="ThoughtWorks"></nz-option>
         <nz-option nzValue="Community" nzLabel="Community"></nz-option>
@@ -55,11 +51,11 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-label>姓</nz-form-label>
-      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" placeholder="姓" >
+      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" >
     </nz-form-item>
     <nz-form-item>
       <nz-form-label>名</nz-form-label>
-      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" placeholder="姓" >
+      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" >
     </nz-form-item>
 
     <nz-form-item>
@@ -73,11 +69,11 @@
 
     <nz-form-item>
       <nz-form-label>颁发者</nz-form-label>
-      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" placeholder="颁发者" >
+      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" >
     </nz-form-item>
     <nz-form-item>
       <nz-form-label>接收者钱包地址</nz-form-label>
-      <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress" placeholder="接收者钱包地址" >
+      <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress" >
     </nz-form-item>
 </div>
 
