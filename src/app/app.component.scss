@@ -11,6 +11,35 @@
     min-width: 450px;
   }
 
+  nz-header{
+    display: flex;
+    justify-content: space-between;
+
+    .tabs{
+      span{
+        height: 64px;
+        width: 76px;
+        text-align: center;
+        display: inline-block;
+        margin-right: 58px;
+        color: #596774;
+
+        &:last-child{
+          margin-right: 0;
+        }
+
+        &.active{
+          color: #f28c48;
+          border-bottom: 4px solid;
+        }
+
+        &.disabled{
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+
   nz-header,
   nz-footer {
     background: #FFFFFF;
@@ -34,7 +63,7 @@
     }
 
     .right {
-     flex: 1;
+      flex: 1;
       background-color: #FFFFFF;
     }
   }

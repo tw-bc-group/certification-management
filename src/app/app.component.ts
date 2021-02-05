@@ -50,6 +50,15 @@ export class AppComponent implements OnDestroy {
   svgUrl: SafeResourceUrl;
   downloadLink = false;
   loading = false;
+  tabs = [{
+    key: 'linkedCertificate',
+    title: '上链证书'
+  }, {
+    key: 'NonLinkedCertificate',
+    title: '非上链证书',
+    disabled: true
+  }];
+  tabKey = this.tabs[0].key;
 
   @ViewChild('template')
   template: { svgRef: ElementRef };
@@ -62,6 +71,13 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+  }
+
+  onTabChange(tabKey, disabled): void {
+    if (disabled) {
+      return;
+    }
+    this.tabKey = tabKey;
   }
 
   issue(): void {
