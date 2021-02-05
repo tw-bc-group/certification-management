@@ -1,14 +1,6 @@
 :host {
-  display: flex;
-
-  > * {
-    flex: auto;
-    padding: 20px;
-  }
-
-  > .preview {
-    flex: none;
-    min-width: 450px;
+  nz-layout{
+    min-height: 100vh;
   }
 
   nz-header{
@@ -52,7 +44,7 @@
 
   nz-content{
     width: 1060px;
-    margin: 0 auto;
+    margin: 0 auto 16px;
     display: flex;
 
     .left{
@@ -65,6 +57,13 @@
     .right {
       flex: 1;
       background-color: #FFFFFF;
+
+      .preview {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 16px 0 12px;
+      }
     }
   }
 }
