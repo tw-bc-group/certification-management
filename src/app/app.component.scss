@@ -7,6 +7,11 @@
     display: flex;
     justify-content: space-between;
 
+    .logo{
+      height: 48px;
+      margin-right: 8px;
+    }
+
     .tabs{
       span{
         height: 64px;
