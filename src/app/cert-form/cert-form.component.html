@@ -84,11 +84,17 @@
 </div>
 
 <div class="photo">
-  <p>
-    <mat-label>请上传学员照片：</mat-label>
-  </p>
-  <input #input (change)="photoChanged(input.files)" type="file"/>
-  <div style="background: black">
+  <div class="wrapper" *ngIf="!certificate.photoUrl">
+    <div class="upload">
+      <i class="upload-icon" nz-icon [nzType]="uploadLoading ? 'loading' : 'plus'"></i>
+      <div>上传学员照片</div>
+    </div>
+    <input #input (change)="photoChanged(input.files)" type="file"/>
+  </div>
+  <div class="image-container" *ngIf="certificate.photoUrl">
     <img [src]="certificate.photoUrl|safeResourceUrl"/>
+    <div class="mask">
+      <i class="delete-icon" nz-icon nzType="delete" nzTheme="outline"></i>
+    </div>
   </div>
 </div>

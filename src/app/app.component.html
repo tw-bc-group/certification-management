@@ -14,7 +14,9 @@
   <nz-content>
     <div class="left">
       <app-cert-form [certificate]="certificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
-      <button nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
+      <div class="issue-btn-wrapper">
+        <button nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
+      </div>
     </div>
 
     <div class="right">

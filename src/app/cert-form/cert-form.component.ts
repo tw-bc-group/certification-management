@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CertificateModel, CertificateType } from '../models/certificate.model';
 import { blobToDataURL } from 'blob-util';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +17,11 @@ import {Constants} from '../utils/constants';
 })
 export class CertFormComponent implements OnInit {
 
+  constructor(private http: HttpClient) {
+  }
+  avatarUrl: string | undefined = '';
+  uploadLoading = false;
+
   @Input()
   certificate: CertificateModel;
 
@@ -19,9 +30,6 @@ export class CertFormComponent implements OnInit {
 
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor(private http: HttpClient) {
-  }
 
   ngOnInit() {
   }
@@ -35,14 +43,7 @@ export class CertFormComponent implements OnInit {
   }
 
   photoChanged(files: FileList): void {
-    // const reader = new FileReader();
-    // reader.readAsDataURL(files[0]);
-    // reader.onload = () => {
-    //   this.certificate.photoUrl = reader.result.toString();
-    // };
-
-    // push to removebg;
-
+    this.uploadLoading = true;
     const data = new FormData();
     data.set('image_file', files[0], files[0].name);
     data.set('size', 'auto');
@@ -53,6 +54,7 @@ export class CertFormComponent implements OnInit {
       responseType: 'blob',
     }).subscribe((blob) => {
       blobToDataURL(blob).then(url => {
+        this.uploadLoading = false;
         this.certificate.photoUrl = url;
       });
     });
