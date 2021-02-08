@@ -94,7 +94,7 @@
   <div class="image-container" *ngIf="certificate.photoUrl">
     <img [src]="certificate.photoUrl|safeResourceUrl"/>
     <div class="mask">
-      <i class="delete-icon" nz-icon nzType="delete" nzTheme="outline"></i>
+      <i class="icon" nz-icon nzType="delete" nzTheme="outline" (click)="deleteImg()"></i>
     </div>
   </div>
 </div>

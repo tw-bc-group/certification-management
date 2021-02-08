@@ -19,7 +19,6 @@ export class CertFormComponent implements OnInit {
 
   constructor(private http: HttpClient) {
   }
-  avatarUrl: string | undefined = '';
   uploadLoading = false;
 
   @Input()
@@ -58,5 +57,9 @@ export class CertFormComponent implements OnInit {
         this.certificate.photoUrl = url;
       });
     });
+  }
+
+  deleteImg() {
+    this.certificate.photoUrl = '';
   }
 }

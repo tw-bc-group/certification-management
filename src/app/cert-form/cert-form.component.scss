@@ -75,8 +75,15 @@ img {
       justify-content: center;
       opacity: 0;
 
-      .delete-icon{
+      .icon{
         color: #FFFFFF;
+        font-size: 18px;
+        margin-right: 8px;
+        cursor: pointer;
+
+        &:last-child{
+          margin-right: 0;
+        }
       }
     }
   }
