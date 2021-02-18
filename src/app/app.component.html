@@ -18,7 +18,7 @@
     <div class="left">
       <app-cert-form [certificate]="certificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
       <div class="issue-btn-wrapper">
-        <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()">颁发证书</button>
+        <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()" [nzLoading]="loading">颁发证书</button>
       </div>
     </div>
 
@@ -52,9 +52,6 @@
       <ng-container *ngIf="certificate.type==='University'">
         <app-template-university [certificate]="certificate" #template></app-template-university>
       </ng-container> -->
-      <div>
-        <mat-spinner *ngIf="loading"></mat-spinner>
-      </div>
       <div>
         <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
         <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>

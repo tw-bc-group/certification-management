@@ -16,15 +16,6 @@ import { NamePipe } from './pipes/name.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CertFormComponent } from './cert-form/cert-form.component';
 import { FormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatNativeDateModule, MatProgressSpinnerModule,
-  MatSelectModule,
-} from '@angular/material';
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
 import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
 import { ChineseNamePipe } from './pipes/chinese-name.pipe';
@@ -82,15 +73,7 @@ const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatFormFieldModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule,
     NzFormModule,
     NzInputModule,
     NzSelectModule,
