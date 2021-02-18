@@ -34,6 +34,7 @@ export class CertFormComponent implements OnInit {
   }
 
   changeTemplate(value: string) {
+    this.certificate.partner = null;
     this.certificateTemplateChange.emit(value);
   }
 
