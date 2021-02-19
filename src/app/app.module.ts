@@ -30,15 +30,12 @@ import {
   NzSelectModule,
   NzPageHeaderModule,
   NzLayoutModule,
-  NzGridModule,
   NzButtonModule,
   NzDatePickerModule,
-  NzUploadModule,
-  NzModalModule
+  NzIconModule
 } from 'ng-zorro-antd';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { PlusOutline, DeleteOutline  } from '@ant-design/icons-angular/icons';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -79,12 +76,9 @@ const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
     NzSelectModule,
     NzLayoutModule,
     NzPageHeaderModule,
-    NzGridModule,
     NzButtonModule,
     NzDatePickerModule,
-    NzUploadModule,
     NzIconModule,
-    NzModalModule
   ],
   providers: [{ provide: NZ_ICONS, useValue: icons }],
   bootstrap: [AppComponent],
