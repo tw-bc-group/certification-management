@@ -11,6 +11,18 @@ export enum CertificateLevel {
   MASTER_AGILE_COACH = 'MASTER AGILE COACH'
 }
 
+export enum DpmLevel {
+  JUNIOR = 'JUNIOR',
+  INTERMEDIATE = 'INTERMEDIATE',
+  SENIOR = 'SENIOR',
+}
+
+export const dpmLevelNameMapping = {
+  [DpmLevel.JUNIOR] : '初阶',
+  [DpmLevel.INTERMEDIATE] : '中阶',
+  [DpmLevel.SENIOR] : '高阶',
+};
+
 export interface CertificateModel {
   certName: string;
   type: CertificateType;
@@ -26,4 +38,5 @@ export interface CertificateModel {
   issuer: string;
   receiverAddress: string;
   qrCode: string;
+  dpmLevel: DpmLevel;
 }

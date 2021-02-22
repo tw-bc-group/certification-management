@@ -1,13 +1,7 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { CertificateModel, CertificateType } from '../models/certificate.model';
-import { blobToDataURL } from 'blob-util';
-import { HttpClient } from '@angular/common/http';
+import {Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {CertificateModel, CertificateType, DpmLevel, dpmLevelNameMapping} from '../models/certificate.model';
+import {blobToDataURL} from 'blob-util';
+import {HttpClient} from '@angular/common/http';
 import {Constants} from '../utils/constants';
 
 @Component({
@@ -20,6 +14,20 @@ export class CertFormComponent implements OnInit {
   constructor(private http: HttpClient) {
   }
   uploadLoading = false;
+  dpmLevelOptions = [
+    {
+      value: DpmLevel.JUNIOR,
+      label: dpmLevelNameMapping[DpmLevel.JUNIOR]
+    },
+    {
+      value: DpmLevel.INTERMEDIATE,
+      label: dpmLevelNameMapping[DpmLevel.INTERMEDIATE]
+    },
+    {
+      value: DpmLevel.SENIOR,
+      label: dpmLevelNameMapping[DpmLevel.SENIOR]
+    }
+  ];
 
   @Input()
   certificate: CertificateModel;

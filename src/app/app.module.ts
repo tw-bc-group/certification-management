@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { PartnerLogoPipe } from './pipes/partner-logo.pipe';
 import { StringToHTMLPipe } from './pipes/string-to-html.pipe';
 import { ChineseNamePipe } from './pipes/chinese-name.pipe';
+import { DpmLevelNamePipe } from './pipes/dpm-level-name.pipe';
 import { TemplateJuniorDPMComponent } from './template-junior-dpm/template-junior-dpm.component';
 import { TemplateJuniorDPMSimpleComponent } from './template-junior-dpm-simple/template-junior-dpm-simple.component';
 import { TemplateTwCorComponent } from './template-tw-cor/template-tw-cor.component';
@@ -63,7 +64,8 @@ const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
     PartnerLogoPipe,
     StringToHTMLPipe,
     ChineseNamePipe,
-    EnglishNamePipe
+    EnglishNamePipe,
+    DpmLevelNamePipe
   ],
   imports: [
     BrowserModule,

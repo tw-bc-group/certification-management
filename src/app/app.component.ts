@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {Observable, Subject, from, merge, zip, of} from 'rxjs';
-import {CertificateModel, CertificateType} from './models/certificate.model';
+import {Observable, Subject, from, zip} from 'rxjs';
+import {CertificateModel, CertificateType, DpmLevel} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
 import QRCode from 'qrcode';
@@ -42,6 +42,7 @@ export class AppComponent implements OnDestroy {
     type: CertificateType.ThoughtWorks,
     issuer: '',
     receiverAddress: '',
+    dpmLevel: DpmLevel.JUNIOR,
     qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
     '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
