@@ -42,9 +42,7 @@
       <nz-select
         name="certName" [(ngModel)]="certificate.certName"
       >
-        <nz-option nzValue="AGILE COACH" nzLabel="AGILE COACH"></nz-option>
-        <nz-option nzValue="ADVANCED AGILE COACH" nzLabel="ADVANCED AGILE COACH"></nz-option>
-        <nz-option nzValue="MASTER AGILE COACH" nzLabel="MASTER AGILE COACH"></nz-option>
+        <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
       </nz-select>
     </nz-form-item>
     <nz-form-item *ngIf="certificateTemplate === 'tw' || certificateTemplate === 'tw-cor'">

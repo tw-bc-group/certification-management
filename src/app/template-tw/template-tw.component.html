@@ -14,9 +14,8 @@
       .cls-level-en{font-weight:300;font-family:PingFangSC;fill:#fff;font-size:70px}
       .cls-name{font-size:90px;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff}
       .cls-13{font-size:35px;font-family:PingFangSC-Light-GBpc-EUC-H,PingFang SC}
-      .cls-6,.cls-7{opacity:0.4;font-family:Futura-Bold, Futura;font-weight:700;}
-      .cls-6{font-size:38px;}
-      .cls-7{font-size:35px;fill:#a7a7a7;}
+      .cls-6{opacity:0.4;font-family:Futura-Bold, Futura;font-weight:700;font-size:35px;}
+      .cls-6-active{font-size:38px;}
     </style>
     <filter id="agile-coach-copy-a" width="114.9%" height="110.3%" x="-7.4%" y="-5.2%" filterUnits="objectBoundingBox">
       <feOffset dx="30" dy="25" in="SourceAlpha" result="shadowOffsetOuter1"/>
@@ -348,23 +347,9 @@
     </g>
 
     <g class="side-level">
-      <ng-template [ngIf]="certificate.certName==='AGILE COACH'">
-        <text class="cls-6" transform="translate(1334.47 1185) rotate(90)" [ngStyle]="{'fill': backgroundColor}" >PROFESSIONAL AGILE COACH</text>
-        <text class="cls-7" transform="translate(1335.03 603.5) rotate(90)">ADVANCED AGILE COACH</text>
-        <text class="cls-7" transform="translate(1335.03 89.54) rotate(90)">MASTER AGILE COACH</text>
-      </ng-template>
-
-      <ng-template [ngIf]="certificate.certName==='ADVANCED AGILE COACH'">
-        <text class="cls-7" transform="translate(1334.47 1494.85) rotate(90)" >AGILE COACH</text>
-        <text class="cls-6" transform="translate(1335.03 560.49) rotate(90)" [ngStyle]="{'fill': backgroundColor}">ADVANCED AGILE COACH</text>
-        <text class="cls-7" transform="translate(1335.03 89.54) rotate(90)">MASTER AGILE COACH</text>
-      </ng-template>
-
-      <ng-template [ngIf]="certificate.certName==='MASTER AGILE COACH'">
-        <text class="cls-7" transform="translate(1334.47 1494.85) rotate(90)">AGILE COACH</text>
-        <text class="cls-7" transform="translate(1335.03 936.39) rotate(90)">ADVANCED AGILE COACH</text>
-        <text class="cls-6" transform="translate(1335.03 89.54) rotate(90)" [ngStyle]="{'fill': backgroundColor}">MASTER AGILE COACH</text>
-      </ng-template>
+        <text class="cls-6" transform="translate(1334.47 1185) rotate(90)" [ngClass]="{'cls-6-active': certificate.certName === certificateLevel.PROFESSIONAL_AGILE_COACH}" [ngStyle]="{'fill': certificate.certName === certificateLevel.PROFESSIONAL_AGILE_COACH ? backgroundColor : '#a7a7a7'}" >PROFESSIONAL AGILE COACH</text>
+        <text class="cls-6" transform="translate(1335.03 603.5) rotate(90)" [ngClass]="{'cls-6-active': certificate.certName === certificateLevel.ADVANCED_AGILE_COACH}" [ngStyle]="{'fill': certificate.certName === certificateLevel.ADVANCED_AGILE_COACH ? backgroundColor : '#a7a7a7'}">ADVANCED AGILE COACH</text>
+        <text class="cls-6" transform="translate(1335.03 89.54) rotate(90)" [ngClass]="{'cls-6-active': certificate.certName === certificateLevel.MASTER_AGILE_COACH}" [ngStyle]="{'fill': certificate.certName === certificateLevel.MASTER_AGILE_COACH ? backgroundColor : '#a7a7a7'}">MASTER AGILE COACH</text>
     </g>
   </g>
 </svg>

@@ -16,7 +16,7 @@ type ICertificationColors = {
 
 export const certificationColors: ICertificationColors = {
   [CertificateType.ThoughtWorks]: {
-    [CertificateLevel.AGILE_COACH]: {
+    [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#F6A559', radiaGradientColor: '#F38C48'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
@@ -27,7 +27,7 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.Community]: {
-    [CertificateLevel.AGILE_COACH]: {
+    [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#9CC8AD', radiaGradientColor: '#9CC8AD'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
@@ -38,7 +38,7 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.Enterprise]: {
-    [CertificateLevel.AGILE_COACH]: {
+    [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#CEAFE2', radiaGradientColor: '#B397CC'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
@@ -49,7 +49,7 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.University]: {
-    [CertificateLevel.AGILE_COACH]: {
+    [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#81C1F1', radiaGradientColor: '#8CD0FF'
     },
     [CertificateLevel.ADVANCED_AGILE_COACH]: {
@@ -66,17 +66,17 @@ export const Constants = {
   // REMOVE_BG_API_KEY: 'cX85oMeERZsfX8bCuRqA5B1a',
   REMOVE_BG_API_KEY: 'DEYTXfrL7wnvs83LPasNRdzy',
   BACKGROUND_COLOR: {
-    'AGILE COACH': {
+    [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       red: 246,
       green: 165,
       blue: 89
     },
-    'ADVANCED AGILE COACH': {
+    [CertificateLevel.ADVANCED_AGILE_COACH]: {
       red: 247,
       green: 105,
       blue: 56
     },
-    'MASTER AGILE COACH': {
+    [CertificateLevel.MASTER_AGILE_COACH]: {
       red: 242,
       green: 82,
       blue: 72

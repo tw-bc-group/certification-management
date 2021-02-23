@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {Observable, Subject, from, zip} from 'rxjs';
-import {CertificateModel, CertificateType, DpmLevel} from './models/certificate.model';
+import {CertificateLevel, CertificateModel, CertificateType, DpmLevel} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
 import QRCode from 'qrcode';
@@ -29,7 +29,7 @@ const publishedAt = startOfDay(new Date());
 })
 export class AppComponent implements OnDestroy {
   certificate: CertificateModel = {
-    certName: 'AGILE COACH',
+    certName: CertificateLevel.PROFESSIONAL_AGILE_COACH,
     photoUrl: '',
     firstName: '',
     lastName: '',

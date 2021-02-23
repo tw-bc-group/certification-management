@@ -1,9 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CertificateLevel } from '../models/certificate.model';
 
 const englishNameMapping = {
-  'AGILE COACH': 'Professional Agile Coach',
-  'ADVANCED AGILE COACH': 'Advanced Agile Coach',
-  'MASTER AGILE COACH': 'Master Agile Coach',
+  [CertificateLevel.PROFESSIONAL_AGILE_COACH]: 'Professional Agile Coach',
+  [CertificateLevel.ADVANCED_AGILE_COACH]: 'Advanced Agile Coach',
+  [CertificateLevel.MASTER_AGILE_COACH]: 'Master Agile Coach',
 };
 
 @Pipe({

@@ -8,6 +8,8 @@ import { certificationColors } from '../utils/constants';
   styleUrls: ['./template-tw-cor.component.scss'],
 })
 export class TemplateTwCorComponent implements OnInit {
+  certificateLevel = CertificateLevel;
+
   @Input()
   certificate: CertificateModel;
 
