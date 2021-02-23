@@ -70,6 +70,21 @@
       </nz-form-control>
     </nz-form-item>
 
+    <ng-template [ngIf]="certificateTemplate === 'dpm'">
+      <nz-form-item>
+        <nz-form-label nzRequired>姓（拼音）</nz-form-label>
+        <nz-form-control>
+          <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" required />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>名（拼音）</nz-form-label>
+        <nz-form-control>
+          <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" required />
+        </nz-form-control>
+      </nz-form-item>
+    </ng-template>
+
     <nz-form-item>
       <nz-form-label>获得时间</nz-form-label>
       <nz-date-picker name="publishedAt" [(ngModel)]="certificate.publishedAt"></nz-date-picker>
