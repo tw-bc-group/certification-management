@@ -72,15 +72,15 @@
 
     <ng-template [ngIf]="certificateTemplate === 'dpm'">
       <nz-form-item>
-        <nz-form-label nzRequired>姓（拼音）</nz-form-label>
+        <nz-form-label>姓（拼音）</nz-form-label>
         <nz-form-control>
-          <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" required />
+          <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label nzRequired>名（拼音）</nz-form-label>
+        <nz-form-label>名（拼音）</nz-form-label>
         <nz-form-control>
-          <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" required />
+          <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" />
         </nz-form-control>
       </nz-form-item>
     </ng-template>
