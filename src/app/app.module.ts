@@ -40,6 +40,7 @@ import { PlusOutline, DeleteOutline  } from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { IconDefinition } from '@ant-design/icons-angular';
+import { TemplateNonLinkedTwAcComponent } from './template-non-linked-tw-ac/template-non-linked-tw-ac.component';
 registerLocaleData(zh);
 
 const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
@@ -65,7 +66,8 @@ const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
     StringToHTMLPipe,
     ChineseNamePipe,
     EnglishNamePipe,
-    DpmLevelNamePipe
+    DpmLevelNamePipe,
+    TemplateNonLinkedTwAcComponent
   ],
   imports: [
     BrowserModule,

@@ -6,9 +6,11 @@
         [(ngModel)]="certificateTemplate"
         (ngModelChange)="changeTemplate($event)"
       >
-        <nz-option nzValue="tw" nzLabel="敏捷教练"></nz-option>
-        <nz-option nzValue="tw-cor" nzLabel="合作方敏捷教练"></nz-option>
-        <nz-option nzValue="dpm" nzLabel="数字产品经理"></nz-option>
+        <nz-option
+          *ngFor="let option of certificateTemplateOptions"
+          [nzValue]="option.value"
+          [nzLabel]="option.label">
+        </nz-option>
       </nz-select>
     </nz-form-item>
 

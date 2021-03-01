@@ -16,7 +16,7 @@
   </nz-header>
   <nz-content>
     <div class="left">
-      <app-cert-form [certificate]="certificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
+      <app-cert-form [certificate]="certificate" [isLinkedCertificate]="isLinkedCertificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
       <div class="issue-btn-wrapper">
         <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()" [nzLoading]="loading">颁发证书</button>
       </div>
@@ -24,23 +24,34 @@
 
     <div class="preview">
       <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
-      <ng-container *ngIf="certificateTemplate === 'tw'">
-        <app-template-tw [certificate]="certificate" #template></app-template-tw>
-        <div>
-          <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
-        </div>
+      <ng-container *ngIf="isLinkedCertificate">
+        <ng-container *ngIf="certificateTemplate === 'tw'">
+          <app-template-tw [certificate]="certificate" #template></app-template-tw>
+          <div>
+            <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="certificateTemplate === 'dpm'">
+          <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
+          <div>
+            <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="certificateTemplate === 'tw-cor'">
+          <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
+          <div>
+            <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
+          </div>
+        </ng-container>
       </ng-container>
-      <ng-container *ngIf="certificateTemplate === 'dpm'">
-        <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
-        <div>
-          <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="certificateTemplate === 'tw-cor'">
-        <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
-        <div>
-          <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
-        </div>
+      <ng-container *ngIf="!isLinkedCertificate">
+        <app-template-non-linked-tw-ac
+          *ngIf="certificateTemplate === 'tw'"
+          [certificate]="certificate" #template>
+        </app-template-non-linked-tw-ac>
+        <ng-container *ngIf="certificateTemplate === 'tw-cor'">
+          <div>TW cor</div>
+        </ng-container>
       </ng-container>
       <!-- </ng-container> -->
       <!-- <ng-container *ngIf="certificate.type==='Community'">

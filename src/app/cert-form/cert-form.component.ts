@@ -1,10 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,} from '@angular/core';
 import {
   CertificateModel,
   CertificateType,
   DpmLevel,
   CertificateLevel,
-  dpmLevelNameMapping
+  dpmLevelNameMapping,
+  NonLinkedCertificateLevel,
+  CertificateTemplateOptions
 } from '../models/certificate.model';
 import {blobToDataURL} from 'blob-util';
 import {HttpClient} from '@angular/common/http';
@@ -15,7 +17,7 @@ import {Constants} from '../utils/constants';
   templateUrl: './cert-form.component.html',
   styleUrls: ['./cert-form.component.scss'],
 })
-export class CertFormComponent implements OnInit {
+export class CertFormComponent implements OnInit, OnChanges {
 
   constructor(private http: HttpClient) {
   }
@@ -24,18 +26,37 @@ export class CertFormComponent implements OnInit {
     value: level,
     label: dpmLevelNameMapping[level]
   }));
-  certificateLevelOptions = Object.keys(CertificateLevel).map((level) => ({
-    value: CertificateLevel[level],
-    label: CertificateLevel[level]
-  }));
+  certificateLevelOptions: {value: string, label: string}[];
+  certificateTemplateOptions = CertificateTemplateOptions;
   @Input()
   certificate: CertificateModel;
 
   @Input()
   certificateTemplate: string;
 
+  @Input()
+  isLinkedCertificate: boolean;
+
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.isLinkedCertificate && changes.isLinkedCertificate.previousValue !== changes.isLinkedCertificate.currentValue) {
+      if(changes.isLinkedCertificate.currentValue) {
+        this.certificateLevelOptions = Object.keys(CertificateLevel).map((level) => ({
+          value: CertificateLevel[level],
+          label: CertificateLevel[level]
+        }));
+        this.certificateTemplateOptions = CertificateTemplateOptions;
+      }else {
+        this.certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map((level) => ({
+          value: NonLinkedCertificateLevel[level],
+          label: NonLinkedCertificateLevel[level]
+        }));
+        this.certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm')
+      }
+    }
+  }
 
   ngOnInit() {
   }

@@ -1,6 +1,13 @@
 import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {Observable, Subject, from, zip} from 'rxjs';
-import {CertificateLevel, CertificateModel, CertificateType, DpmLevel} from './models/certificate.model';
+import {from, Observable, Subject, zip} from 'rxjs';
+import {
+  CertificateLevel,
+  CertificateModel,
+  CertificateTemplateType,
+  CertificateType,
+  DpmLevel,
+  NonLinkedCertificateLevel
+} from './models/certificate.model';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
 import QRCode from 'qrcode';
@@ -46,7 +53,7 @@ export class AppComponent implements OnDestroy {
     qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
     '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
   };
-  certificateTemplate = 'tw';
+  certificateTemplate = CertificateTemplateType.TW_AC;
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
   downloadLink = false;
@@ -55,9 +62,8 @@ export class AppComponent implements OnDestroy {
     key: 'linkedCertificate',
     title: '上链证书'
   }, {
-    key: 'NonLinkedCertificate',
+    key: 'nonLinkedCertificate',
     title: '非上链证书',
-    disabled: true
   }];
   tabKey = this.tabs[0].key;
 
@@ -74,19 +80,45 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
   }
 
+  get isLinkedCertificate() {
+    return this.tabKey === 'linkedCertificate';
+  }
+
   onTabChange(tabKey, disabled): void {
     if (disabled) {
       return;
     }
     this.tabKey = tabKey;
+    this.certificate.certName = this.isLinkedCertificate
+      ? CertificateLevel.PROFESSIONAL_AGILE_COACH
+      : NonLinkedCertificateLevel.AGILE_COACH;
+    this.certificateTemplate = CertificateTemplateType.TW_AC;
   }
 
   issue(): void {
+    if(this.isLinkedCertificate) {
+      this.issueLinkedCertificate();
+    }else {
+      this.issueNonLinkedCertificate();
+    }
+  }
+
+  issueLinkedCertificate(): void {
     this
-    .onChain()
-    .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
-    .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
-    .catch(err => {
+      .onChain()
+      .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
+      .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
+      .catch(err => {
+          this.loading = false;
+          this.downloadLink = false;
+          console.error('fail to issue certification', err);
+        }
+      );
+  }
+
+  issueNonLinkedCertificate(): void {
+    Promise.all([this.generateDownloadUrl(), this.uploadCerts()])
+      .catch(err => {
         this.loading = false;
         this.downloadLink = false;
         console.error('fail to issue certification', err);
@@ -120,7 +152,11 @@ export class AppComponent implements OnDestroy {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
-    this.uploadCertsWithSimple(fingerprint, pictureName);
+    if(this.isLinkedCertificate) {
+      this.uploadCertsWithSimple(fingerprint, pictureName);
+    }else {
+      this.uploadCertsWithoutSimple(fingerprint, pictureName);
+    }
   }
 
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
@@ -154,6 +190,28 @@ export class AppComponent implements OnDestroy {
       });
     });
   }
+
+  private uploadCertsWithoutSimple(certId: string, pictureName: string): void {
+    const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+
+    loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
+        .subscribe((pngDataUrl) => {
+      this.upload(certId, [{
+        key: 'png',
+        fileName: `${pictureName}.png`,
+        dataUrl: pngDataUrl
+      }, {
+        key: 'svg',
+        fileName: `${pictureName}.svg`,
+        dataUrl: svgDataUrl
+      }]).subscribe(({pngUrl, svgUrl}) => {
+        this.svgUrl = svgUrl;
+        this.pngUrl = pngUrl;
+        this.downloadLink = true;
+      });
+    });
+  }
+
 
   // private uploadCompleteCerts(certId: string, pictureName: string): void {
   //   const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);

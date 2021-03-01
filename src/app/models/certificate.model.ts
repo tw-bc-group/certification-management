@@ -11,6 +11,12 @@ export enum CertificateLevel {
   MASTER_AGILE_COACH = 'MASTER AGILE COACH'
 }
 
+export enum NonLinkedCertificateLevel {
+  AGILE_COACH = 'AGILE COACH',
+  JUNIOR_AGILE_COACH = 'JUNIOR AGILE COACH',
+  TRAINEE_AGILE_COACH = 'TRAINEE AGILE COACH'
+}
+
 export enum DpmLevel {
   JUNIOR = 'JUNIOR',
   INTERMEDIATE = 'INTERMEDIATE',
@@ -22,6 +28,18 @@ export const dpmLevelNameMapping = {
   [DpmLevel.INTERMEDIATE] : '中阶',
   [DpmLevel.SENIOR] : '高阶',
 };
+
+export enum CertificateTemplateType {
+  TW_AC = 'tw',
+  TW_COR_AC = 'tw-cor',
+  DPM = 'dpm'
+}
+
+export const CertificateTemplateOptions = [
+  { value: CertificateTemplateType.TW_AC, label: "敏捷教练" },
+  { value: CertificateTemplateType.TW_COR_AC, label: "合作方敏捷教练" },
+  { value: CertificateTemplateType.DPM, label: "数字产品经理" }
+];
 
 export interface CertificateModel {
   certName: string;
