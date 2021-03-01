@@ -1,0 +1,81 @@
+<div class="cert-info">
+  <nz-form-item>
+    <nz-form-label>证书类型</nz-form-label>
+    <nz-select
+      name="certificateTemplate"
+      [(ngModel)]="certificateTemplate"
+      (ngModelChange)="changeTemplate($event)"
+    >
+      <nz-option
+        *ngFor="let option of certificateTemplateOptions"
+        [nzValue]="option.value"
+        [nzLabel]="option.label">
+      </nz-option>
+    </nz-select>
+  </nz-form-item>
+
+  <nz-form-item  *ngIf="certificateTemplate === 'tw-cor'">
+    <nz-form-label>合作方</nz-form-label>
+    <nz-select
+      name="cor"
+      [(ngModel)]="certificate.partner"
+    >
+      <nz-option
+        *ngFor="let option of partnerOptions"
+        [nzValue]="option.value"
+        [nzLabel]="option.label"
+      ></nz-option>
+    </nz-select>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>证书名称</nz-form-label>
+    <nz-select
+      name="certName" [(ngModel)]="certificate.certName"
+    >
+      <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+    </nz-select>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>姓</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired>名</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>姓（拼音）</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>名（拼音）</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" />
+    </nz-form-control>
+  </nz-form-item>
+</div>
+
+<div class="photo">
+  <div class="wrapper" *ngIf="!certificate.photoUrl">
+    <div class="upload">
+      <i class="upload-icon" nz-icon [nzType]="uploadLoading ? 'loading' : 'plus'"></i>
+      <div>上传学员照片</div>
+    </div>
+    <input #input (change)="photoChanged(input.files)" type="file"/>
+  </div>
+  <div class="image-container" *ngIf="certificate.photoUrl">
+    <img [src]="certificate.photoUrl|safeResourceUrl"/>
+    <div class="mask">
+      <i class="icon" nz-icon nzType="delete" nzTheme="outline" (click)="deleteImg()"></i>
+    </div>
+  </div>
+</div>

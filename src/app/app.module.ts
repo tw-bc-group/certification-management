@@ -41,6 +41,7 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { TemplateNonLinkedTwAcComponent } from './template-non-linked-tw-ac/template-non-linked-tw-ac.component';
+import { NonLinkedCertFormComponent } from './non-linked-cert-form/non-linked-cert-form.component';
 registerLocaleData(zh);
 
 const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
@@ -67,7 +68,8 @@ const icons: IconDefinition[] = [ PlusOutline, DeleteOutline ];
     ChineseNamePipe,
     EnglishNamePipe,
     DpmLevelNamePipe,
-    TemplateNonLinkedTwAcComponent
+    TemplateNonLinkedTwAcComponent,
+    NonLinkedCertFormComponent
   ],
   imports: [
     BrowserModule,

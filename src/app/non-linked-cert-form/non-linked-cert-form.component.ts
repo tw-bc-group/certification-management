@@ -1,35 +1,30 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {
   CertificateModel,
-  CertificateType,
-  DpmLevel,
-  CertificateLevel,
-  dpmLevelNameMapping,
-  CertificateTemplateOptions
-} from '../models/certificate.model';
-import {blobToDataURL} from 'blob-util';
-import {HttpClient} from '@angular/common/http';
-import {Constants} from '../utils/constants';
+  CertificateTemplateOptions,
+  NonLinkedCertificateLevel,
+  PartnerOptions
+} from "../models/certificate.model";
+import {Constants} from "../utils/constants";
+import {blobToDataURL} from "blob-util";
 
 @Component({
-  selector: 'app-cert-form',
-  templateUrl: './cert-form.component.html',
-  styleUrls: ['./cert-form.component.scss'],
+  selector: 'app-non-linked-cert-form',
+  templateUrl: './non-linked-cert-form.component.html',
+  styleUrls: ['./non-linked-cert-form.component.scss']
 })
-export class CertFormComponent implements OnInit {
+export class NonLinkedCertFormComponent implements OnInit {
 
   constructor(private http: HttpClient) {
   }
   uploadLoading = false;
-  dpmLevelOptions = Object.keys(DpmLevel).map((level) => ({
-    value: level,
-    label: dpmLevelNameMapping[level]
+  certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map((level) => ({
+    value: NonLinkedCertificateLevel[level],
+    label: NonLinkedCertificateLevel[level]
   }));
-  certificateLevelOptions = Object.keys(CertificateLevel).map((level) => ({
-    value: CertificateLevel[level],
-    label: CertificateLevel[level]
-  }));
-  certificateTemplateOptions = CertificateTemplateOptions;
+  certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
+  partnerOptions = PartnerOptions;
   @Input()
   certificate: CertificateModel;
 
@@ -48,10 +43,6 @@ export class CertFormComponent implements OnInit {
   changeTemplate(value: string) {
     this.certificate.partner = null;
     this.certificateTemplateChange.emit(value);
-  }
-
-  isThoughtworksCert(): boolean {
-    return this.certificate.type === CertificateType.ThoughtWorks;
   }
 
   photoChanged(files: FileList): void {

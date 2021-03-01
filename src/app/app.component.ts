@@ -90,7 +90,7 @@ export class AppComponent implements OnInit, OnDestroy {
       lastName: '',
       firstNamePinyin: '',
       lastNamePinyin: '',
-      expiredAt: addYears(publishedAt, 2),
+      expiredAt: this.isLinkedCertificate ? addYears(publishedAt, 2) : null,
       publishedAt,
       fingerprint: '',
       partner: '',
@@ -145,8 +145,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   checkFormValidation(): boolean {
     const { firstName, lastName, issuer } = this.certificate;
-
-    return (!!firstName && !!lastName && !!issuer) ? false : true;
+    if(this.isLinkedCertificate){
+      return (!!firstName && !!lastName && !!issuer) ? false : true;
+    }else {
+      return (!!firstName && !!lastName) ? false : true;
+    }
   }
 
   private async displayCertIdAndQrCode(certId: string) {

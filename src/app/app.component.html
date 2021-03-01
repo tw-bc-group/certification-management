@@ -16,7 +16,17 @@
   </nz-header>
   <nz-content>
     <div class="left">
-      <app-cert-form [certificate]="certificate" [isLinkedCertificate]="isLinkedCertificate" [(certificateTemplate)]="certificateTemplate"></app-cert-form>
+      <app-cert-form
+        *ngIf="isLinkedCertificate"
+        [certificate]="certificate"
+        [isLinkedCertificate]="isLinkedCertificate"
+        [(certificateTemplate)]="certificateTemplate">
+      </app-cert-form>
+      <app-non-linked-cert-form
+        *ngIf="!isLinkedCertificate"
+        [certificate]="certificate"
+        [(certificateTemplate)]="certificateTemplate">
+      </app-non-linked-cert-form>
       <div class="issue-btn-wrapper">
         <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()" [nzLoading]="loading">颁发证书</button>
       </div>

@@ -4,21 +4,14 @@
     <style>
       .cls-1{isolation:isolate}
       .cls-5{fill:none;stroke-width:6px;stroke-miterlimit:10}
-      .cls-1,.cls-15{fill:none}
-      .cls-15{stroke-miterlimit:10;stroke:#fff}
-      .cls-22,.cls-23,.cls-24{fill:#fff}
+      .cls-1{fill:none}
       .cls-22{font-size:40.82px;font-weight:800;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H,Apple SD Gothic Neo}
-      .cls-23,.cls-24{font-size:42px;font-family:PingFangSC-Regular-GBpc-EUC-H,PingFang SC}
-      .cls-24{letter-spacing:.51em}
-      .cls-level{font-weight:700;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff;font-size:124px}
-      .cls-level-en{font-weight:300;font-family:PingFangSC;fill:#fff;font-size:70px}
+      .cls-23{fill:#231f20;font-size:42px;font-family:PingFangSC-Regular-GBpc-EUC-H,PingFang SC}
+      .cls-level{font-weight:700;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff;font-size:110px}
       .cls-name{font-size:90px;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff}
       .cls-title-1{font-size:124px; font-weight:700; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
       .cls-title-2{font-size:70px; font-weight:500; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
       .cls-title-3{font-size:90px; font-weight:500; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
-      .cls-13{font-size:35px;font-family:PingFangSC-Light-GBpc-EUC-H,PingFang SC}
-      .cls-6{opacity:0.4;font-family:Futura-Bold, Futura;font-weight:700;font-size:35px;}
-      .cls-6-active{font-size:38px;}
     </style>
     <filter id="agile-coach-copy-a" width="114.9%" height="110.3%" x="-7.4%" y="-5.2%" filterUnits="objectBoundingBox">
       <feOffset dx="30" dy="25" in="SourceAlpha" result="shadowOffsetOuter1"/>
@@ -29,7 +22,7 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <polygon id="agile-coach-polygon" points="592.88 370 1453 370 1453 2092.77 167.12 2092.77 167.12 700"/>
+    <polygon id="agile-coach-polygon" points="592.88 370 1453 370 1453 2010 167.12 2010 167.12 700"/>
 
 
     <mask id="agile-coach-center-mask" fill="#fff" transform="translate(200)">
@@ -93,16 +86,6 @@
         <path class="cls-5" [ngStyle]="{'stroke': backgroundColor}" d="M600,-10 a725 725 0 0 1 -600 580" />
         <path class="cls-5" [ngStyle]="{'stroke': backgroundColor}" d="M625,-10 a750 750 0 0 1 -625 605" />
       </g>
-
-      <!-- 阴影 -->
-<!--      <g filter="url(#agile-coach-copy-a)">-->
-<!--        <use [ngStyle]="{'fill': backgroundColor}" xlink:href="#agile-coach-polygon"/>-->
-<!--      </g>-->
-      <!-- 阴影 -->
-
-      <!-- 渐变 -->
-      <!-- <path fill="url(#agile-coach-copy-f)" d="M987.8 0h327.51v1792.77H256.43V648.39"/> -->
-      <!-- <path fill="#f6a559" d="M987.8 0h327.51v1792.77H256.43V648.39"/> -->
 
       <g id="tw-cert-photo">
         <g id="26">
@@ -326,22 +309,17 @@
     <!-- words -->
     <g class="words">
       <g transform="translate(-50 0)">
-        <text class="cls-level" transform="translate(399.67 1506.33)">{{certificate.certName | chineseName}}</text>
-        <text class="cls-level-en" transform="translate(399.67 1606.33)">{{certificate.certName | englishName}}</text>
-        <text class="cls-name" transform="translate(399.67 1273.12)">{{certificate.lastName}} {{certificate.firstName}}</text>
-        <text class="cls-title-1" transform="translate(649 542)">CERTIFICATE</text>
-        <text class="cls-title-2" transform="translate(739 640)">OF COMPLETION TO</text>
-        <text class="cls-title-3" transform="translate(819 778)">全部课程和实践</text>
-        <text class="cls-23" transform="translate(410.23 1819.53)">颁发日期</text>
-        <text class="cls-23" transform="translate(584.65 1819.53)">：</text>
-        <text class="cls-23" transform="translate(584.65 1724.72)">：</text>
-        <text class="cls-23" transform="translate(584.65 1906)">：</text>
-        <text class="cls-23" transform="translate(635.75 1819.53)">{{certificate.publishedAt|date:'yyyy/MM/dd'}}</text>
-        <text class="cls-23" transform="translate(635.75 1730.72)">{{certificate.publishedAt|date:'yyyy/MM/dd'}}-{{certificate.expiredAt|date:'yyyy/MM/dd'}}</text>
-        <text class="cls-23" transform="translate(635.75 1908.23)">{{certificate.issuer|slice:0:20}}</text>
-        <text class="cls-24" transform="translate(410.23 1907.81)">颁发者</text>
-        <text class="cls-24" transform="translate(410.23 1730.72)">有效期</text>
+        <text class="cls-level" transform="translate(399.67, 1690)">{{certificate.certName | chineseName}}</text>
+        <text class="cls-name" transform="translate(399.67, 1300)">{{certificate.lastName}} {{certificate.firstName}}</text>
+        <text class="cls-name" transform="translate(399.67, 1430)">{{certificate.lastNamePinyin}} {{certificate.firstNamePinyin}}</text>
+        <text class="cls-title-1" transform="translate(649, 542)">CERTIFICATE</text>
+        <text class="cls-title-2" transform="translate(739, 640)">OF COMPLETION TO</text>
+        <text class="cls-title-3" transform="translate(819, 778)">全部课程和实践</text>
       </g>
+    </g>
+    <g id="publish-date">
+      <text class="cls-23" transform="translate(167.12, 2110)">
+        日期：{{certificate.publishedAt|date:'yyyy年M月d日'}}</text>
     </g>
   </g>
 </svg>
