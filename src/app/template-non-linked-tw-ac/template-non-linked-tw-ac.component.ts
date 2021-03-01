@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {CertificateLevel, CertificateModel} from "../models/certificate.model";
+import {CertificateLevel, CertificateModel, CertificateTemplateType} from "../models/certificate.model";
 import {certificationColors} from "../utils/constants";
 
 @Component({
@@ -9,8 +9,12 @@ import {certificationColors} from "../utils/constants";
 })
 export class TemplateNonLinkedTwAcComponent implements OnInit {
   certificateLevel = CertificateLevel;
+  certificateTemplateType = CertificateTemplateType;
   @Input()
   certificate: CertificateModel;
+
+  @Input()
+  certificateTemplate: CertificateTemplateType;
 
   @ViewChild('svg')
   svgRef: ElementRef<SVGSVGElement>;

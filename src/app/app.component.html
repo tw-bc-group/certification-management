@@ -46,12 +46,9 @@
       </ng-container>
       <ng-container *ngIf="!isLinkedCertificate">
         <app-template-non-linked-tw-ac
-          *ngIf="certificateTemplate === 'tw'"
+          [certificateTemplate]="certificateTemplate"
           [certificate]="certificate" #template>
         </app-template-non-linked-tw-ac>
-        <ng-container *ngIf="certificateTemplate === 'tw-cor'">
-          <div>TW cor</div>
-        </ng-container>
       </ng-container>
       <!-- </ng-container> -->
       <!-- <ng-container *ngIf="certificate.type==='Community'">

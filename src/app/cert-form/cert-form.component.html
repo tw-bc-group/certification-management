@@ -102,7 +102,7 @@
         <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required />
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item *ngIf="isLinkedCertificate">
       <nz-form-label>接收者钱包地址</nz-form-label>
       <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress" >
     </nz-form-item>
