@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {from, Observable, Subject, zip} from 'rxjs';
 import {
   CertificateLevel,
@@ -34,25 +34,8 @@ const publishedAt = startOfDay(new Date());
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnDestroy {
-  certificate: CertificateModel = {
-    certName: CertificateLevel.PROFESSIONAL_AGILE_COACH,
-    photoUrl: '',
-    firstName: '',
-    lastName: '',
-    firstNamePinyin: '',
-    lastNamePinyin: '',
-    expiredAt: addYears(publishedAt, 2),
-    publishedAt,
-    fingerprint: '',
-    partner: '',
-    type: CertificateType.ThoughtWorks,
-    issuer: '',
-    receiverAddress: '',
-    dpmLevel: DpmLevel.JUNIOR,
-    qrCode: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
-    '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
-  };
+export class AppComponent implements OnInit, OnDestroy {
+  certificate: CertificateModel;
   certificateTemplate = CertificateTemplateType.TW_AC;
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
@@ -77,6 +60,10 @@ export class AppComponent implements OnDestroy {
               private http: HttpClient) {
   }
 
+  ngOnInit(): void {
+    this.initCertificate();
+  }
+
   ngOnDestroy(): void {
   }
 
@@ -89,10 +76,40 @@ export class AppComponent implements OnDestroy {
       return;
     }
     this.tabKey = tabKey;
-    this.certificate.certName = this.isLinkedCertificate
-      ? CertificateLevel.PROFESSIONAL_AGILE_COACH
-      : NonLinkedCertificateLevel.AGILE_COACH;
+    this.resetValues();
+  }
+
+  initCertificate(): void {
     this.certificateTemplate = CertificateTemplateType.TW_AC;
+    this.certificate = {
+      certName: this.isLinkedCertificate
+        ? CertificateLevel.PROFESSIONAL_AGILE_COACH
+        : NonLinkedCertificateLevel.AGILE_COACH,
+      photoUrl: '',
+      firstName: '',
+      lastName: '',
+      firstNamePinyin: '',
+      lastNamePinyin: '',
+      expiredAt: addYears(publishedAt, 2),
+      publishedAt,
+      fingerprint: '',
+      partner: '',
+      type: CertificateType.ThoughtWorks,
+      issuer: '',
+      receiverAddress: '',
+      dpmLevel: DpmLevel.JUNIOR,
+      qrCode: this.isLinkedCertificate
+        ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
+          '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
+        : null
+    }
+  }
+
+  resetValues() {
+    this.initCertificate();
+    this.downloadLink = false;
+    this.pngUrl = null;
+    this.svgUrl = null;
   }
 
   issue(): void {
