@@ -1,6 +1,8 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {CertificateLevel, CertificateModel, CertificateTemplateType} from "../models/certificate.model";
-import {certificationColors} from "../utils/constants";
+import {
+  CertificateModel,
+  CertificateTemplateType,
+} from "../models/certificate.model";
 
 @Component({
   selector: 'app-template-non-linked-tw-ac',
@@ -8,7 +10,6 @@ import {certificationColors} from "../utils/constants";
   styleUrls: ['./template-non-linked-tw-ac.component.scss']
 })
 export class TemplateNonLinkedTwAcComponent implements OnInit {
-  certificateLevel = CertificateLevel;
   certificateTemplateType = CertificateTemplateType;
   @Input()
   certificate: CertificateModel;
@@ -27,11 +28,7 @@ export class TemplateNonLinkedTwAcComponent implements OnInit {
   }
 
   get backgroundColor(): string {
-    return certificationColors[this.certificate.type][this.certificate.certName as CertificateLevel].baseColor;
-  }
-
-  get radialGradientColor(): string {
-    return certificationColors[this.certificate.type][this.certificate.certName as CertificateLevel].radiaGradientColor;
+    return '#F68548';
   }
 
   ngOnInit() {

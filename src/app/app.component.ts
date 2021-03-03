@@ -94,7 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
       publishedAt,
       fingerprint: '',
       partner: '',
-      type: CertificateType.ThoughtWorks,
+      type: this.isLinkedCertificate ? CertificateType.ThoughtWorks : null,
       issuer: '',
       receiverAddress: '',
       dpmLevel: DpmLevel.JUNIOR,
