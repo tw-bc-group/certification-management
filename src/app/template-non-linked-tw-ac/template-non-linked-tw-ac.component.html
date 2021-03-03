@@ -5,13 +5,12 @@
       .cls-1{isolation:isolate}
       .cls-5{fill:none;stroke-width:6px;stroke-miterlimit:10}
       .cls-1{fill:none}
-      .cls-22{font-size:40.82px;font-weight:800;font-family:AppleSDGothicNeo-Heavy-KSCpc-EUC-H,Apple SD Gothic Neo}
-      .cls-23{fill:#231f20;font-size:42px;font-family:PingFangSC-Regular-GBpc-EUC-H,PingFang SC}
+      .cls-13{font-size:38px;font-family:PingFangSC-Light-GBpc-EUC-H,PingFang SC}
       .cls-level{font-weight:700;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff;font-size:110px}
       .cls-name{font-size:90px;font-family:PingFangSC-Semibold, "PingFang SC";fill:#fff}
-      .cls-title-1{font-size:124px; font-weight:700; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
-      .cls-title-2{font-size:70px; font-weight:500; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
-      .cls-title-3{font-size:90px; font-weight:500; font-family: PingFangSC-Semibold, "PingFang SC"; fill:#fff}
+      .cls-title-1{font-size:124px; font-weight:900; font-family: AppleSDGothicNeo-Heavy-KSCpc-EUC-H,Apple SD Gothic Neo; fill:#fff}
+      .cls-title-2{font-size:70px; font-weight:500; font-family: AppleSDGothicNeo-Heavy-KSCpc-EUC-H,Apple SD Gothic Neo; fill:#fff}
+      .cls-title-3{font-size:86px; font-weight:800; font-family: PingFangSC; fill:#fff}
     </style>
 
     <polygon id="agile-coach-polygon" points="592.88 370 1463 370 1463 2010 167.12 2010 167.12 700"/>
@@ -146,7 +145,7 @@
     </g>
 
     <!---ThoughtWorks logo--->
-    <g id="White-TW-Logo" transform="translate(630.080717, 178.5)" fill="#000000">
+    <g id="White-TW-Logo" transform="translate(670.080717, 178.5)" fill="#000000">
       <g transform="scale(3.5)">
       <path
         d="M112.100253,5.87615582 C112.294668,5.88116483 112.429687,5.83284264 112.429687,5.60537474 C112.429687,5.35374574 112.181099,5.37348713 112.014182,5.37348713 L111.625901,5.37348713 L111.625901,5.87615582 L112.100253,5.87615582 Z M112.709348,6.93629766 L112.294668,6.93629766 L111.910512,6.15695493 L111.625901,6.15695493 L111.625901,6.93629766 L111.264293,6.93629766 L111.264293,5.08738437 L112.095303,5.08738437 C112.547381,5.08738437 112.763796,5.21820787 112.763796,5.65369693 C112.763796,5.9925416 112.597154,6.13279383 112.294668,6.15695493 L112.709348,6.93629766 Z M113.09323,6.00197032 C113.09323,5.24207433 112.601279,4.70021751 111.919037,4.70021751 C111.22387,4.70021751 110.744843,5.24207433 110.744843,6.00197032 C110.744843,6.77158969 111.22387,7.3084375 111.919037,7.3084375 C112.601279,7.3084375 113.09323,6.77158969 113.09323,6.00197032 Z M110.325214,6.00197032 C110.325214,5.06322327 111.034679,4.29890756 111.919037,4.29890756 C112.795144,4.29890756 113.513684,5.06322327 113.513684,6.00197032 C113.513684,6.95073539 112.795144,7.7156404 111.919037,7.7156404 C111.034679,7.7156404 110.325214,6.95073539 110.325214,6.00197032 Z"
@@ -188,8 +187,8 @@
     </g>
 
     <ng-template [ngIf]="certificateTemplate === certificateTemplateType.TW_COR_AC">
-      <g transform="translate(1090.080717, 128.5)">
-        <image id="partner-logo" x="0" y="0" width="263" height="144"
+      <g transform="translate(1430, 128.5)">
+        <image id="partner-logo" x="-240" y="0" width="263" height="144"
                [attr.xlink:href]="certificate.partner|partnerLogo">
         </image>
       </g>
@@ -201,13 +200,13 @@
         <text class="cls-level" transform="translate(339.67, 1690)">{{certificate.certName | chineseName}}</text>
         <text class="cls-name" transform="translate(339.67, 1300)">{{certificate.lastName}} {{certificate.firstName}}</text>
         <text class="cls-name" transform="translate(339.67, 1430)">{{certificate.lastNamePinyin}} {{certificate.firstNamePinyin}}</text>
-        <text class="cls-title-1" transform="translate(649, 542)">CERTIFICATE</text>
-        <text class="cls-title-2" transform="translate(739, 640)">OF COMPLETION TO</text>
-        <text class="cls-title-3" transform="translate(819, 778)">全部课程和实践</text>
+        <text class="cls-title-1" transform="translate(740, 542)">CERTIFICATE</text>
+        <text class="cls-title-2" transform="translate(845, 646)">OF COMPLETION TO</text>
+        <text class="cls-title-3" transform="translate(853, 778)">全部课程和实践</text>
       </g>
     </g>
     <g id="publish-date">
-      <text class="cls-23" transform="translate(167.12, 2110)">
+      <text class="cls-13" transform="translate(167.12, 2110)">
         日期：{{certificate.publishedAt|date:'yyyy年M月d日'}}</text>
     </g>
   </g>
