@@ -5,7 +5,8 @@ import {
   DpmLevel,
   CertificateLevel,
   dpmLevelNameMapping,
-  CertificateTemplateOptions
+  CertificateTemplateOptions,
+  PartnerOptions
 } from '../models/certificate.model';
 import {blobToDataURL} from 'blob-util';
 import {HttpClient} from '@angular/common/http';
@@ -30,6 +31,8 @@ export class CertFormComponent implements OnInit {
     label: CertificateLevel[level]
   }));
   certificateTemplateOptions = CertificateTemplateOptions;
+  partnerOptions = PartnerOptions;
+
   @Input()
   certificate: CertificateModel;
 

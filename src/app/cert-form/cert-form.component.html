@@ -20,12 +20,11 @@
         name="cor"
         [(ngModel)]="certificate.partner"
       >
-        <nz-option nzValue="github" nzLabel="Github"></nz-option>
-        <nz-option nzValue="huawei" nzLabel="华为"></nz-option>
-        <nz-option nzValue="pku" nzLabel="PKU"></nz-option>
-        <nz-option nzValue="oppo" nzLabel="OPPO"></nz-option>
-        <nz-option nzValue="CMGFintech" nzLabel="招商金科"></nz-option>
-        <nz-option nzValue="ABC" nzLabel="中国农业银行"></nz-option>
+        <nz-option
+          *ngFor="let option of partnerOptions"
+          [nzValue]="option.value"
+          [nzLabel]="option.label"
+        ></nz-option>e
       </nz-select>
     </nz-form-item>
 
