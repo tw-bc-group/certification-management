@@ -64,18 +64,4 @@
   </nz-form-item>
 </div>
 
-<div class="photo">
-  <div class="wrapper" *ngIf="!certificate.photoUrl">
-    <div class="upload">
-      <i class="upload-icon" nz-icon [nzType]="uploadLoading ? 'loading' : 'plus'"></i>
-      <div>上传学员照片</div>
-    </div>
-    <input #input (change)="photoChanged(input.files)" type="file"/>
-  </div>
-  <div class="image-container" *ngIf="certificate.photoUrl">
-    <img [src]="certificate.photoUrl|safeResourceUrl"/>
-    <div class="mask">
-      <i class="icon" nz-icon nzType="delete" nzTheme="outline" (click)="deleteImg()"></i>
-    </div>
-  </div>
-</div>
+<app-photo-upload [photoUrl]="certificate.photoUrl" (photoChange)="onPhotoChanged($event)"></app-photo-upload>

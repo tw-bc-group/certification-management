@@ -1,13 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {
   CertificateModel,
   CertificateTemplateOptions,
   NonLinkedCertificateLevel,
   PartnerOptions
 } from "../models/certificate.model";
-import {Constants} from "../utils/constants";
-import {blobToDataURL} from "blob-util";
 
 @Component({
   selector: 'app-non-linked-cert-form',
@@ -16,9 +13,8 @@ import {blobToDataURL} from "blob-util";
 })
 export class NonLinkedCertFormComponent implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
-  uploadLoading = false;
   certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map((level) => ({
     value: NonLinkedCertificateLevel[level],
     label: NonLinkedCertificateLevel[level]
@@ -45,25 +41,7 @@ export class NonLinkedCertFormComponent implements OnInit {
     this.certificateTemplateChange.emit(value);
   }
 
-  photoChanged(files: FileList): void {
-    this.uploadLoading = true;
-    const data = new FormData();
-    data.set('image_file', files[0], files[0].name);
-    data.set('size', 'auto');
-    this.http.post('https://api.remove.bg/v1.0/removebg', data, {
-      headers: {
-        'X-Api-Key': Constants.REMOVE_BG_API_KEY
-      },
-      responseType: 'blob',
-    }).subscribe((blob) => {
-      blobToDataURL(blob).then(url => {
-        this.uploadLoading = false;
-        this.certificate.photoUrl = url;
-      });
-    });
-  }
-
-  deleteImg() {
-    this.certificate.photoUrl = '';
+  onPhotoChanged(photoUrl: string): void {
+    this.certificate.photoUrl = photoUrl;
   }
 }
