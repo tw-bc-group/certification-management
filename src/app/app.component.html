@@ -28,8 +28,11 @@
         [(certificateTemplate)]="certificateTemplate">
       </app-non-linked-cert-form>
       <div class="issue-btn-wrapper">
-        <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()" (click)="issue()" [nzLoading]="loading">颁发证书</button>
+        <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()"
+                (click)="showModal()" [nzLoading]="loading">颁发证书
+        </button>
       </div>
+      <app-password-modal *ngIf="isVisible" [isVisible]="isVisible"></app-password-modal>
     </div>
 
     <div class="preview">

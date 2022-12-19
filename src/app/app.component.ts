@@ -49,6 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
     title: '非上链证书',
   }];
   tabKey = this.tabs[0].key;
+  isVisible = false;
 
   @ViewChild('template')
   template: { svgRef: ElementRef };
@@ -102,7 +103,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
           '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
         : null
-    }
+    };
   }
 
   resetValues() {
@@ -112,10 +113,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.svgUrl = null;
   }
 
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+
   issue(): void {
-    if(this.isLinkedCertificate) {
+    if (this.isLinkedCertificate) {
       this.issueLinkedCertificate();
-    }else {
+    } else {
       this.issueNonLinkedCertificate();
     }
   }
@@ -145,9 +151,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   checkFormValidation(): boolean {
     const { firstName, lastName, issuer } = this.certificate;
-    if(this.isLinkedCertificate){
+    if (this.isLinkedCertificate) {
       return (!!firstName && !!lastName && !!issuer) ? false : true;
-    }else {
+    } else {
       return (!!firstName && !!lastName) ? false : true;
     }
   }
@@ -172,9 +178,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
 
-    if(this.isLinkedCertificate) {
+    if (this.isLinkedCertificate) {
       this.uploadCertsWithSimple(fingerprint, pictureName);
-    }else {
+    } else {
       this.uploadCertsWithoutSimple(fingerprint, pictureName);
     }
   }
