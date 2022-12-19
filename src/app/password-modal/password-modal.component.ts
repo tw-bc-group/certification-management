@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-password-modal',
@@ -13,8 +13,19 @@ export class PasswordModalComponent implements OnInit {
   @Input()
   isVisible: boolean;
 
+  @Output()
+  issueCertificate: EventEmitter<any> = new EventEmitter();
+
+  verifyPassword() {
+    return this.password === '001' ? true : false;
+  }
+
   handleOk(): void {
     console.log('Button ok clicked!', this.password);
+    const result = this.verifyPassword();
+    if (result) {
+      this.issueCertificate.emit();
+    }
     this.isVisible = false;
   }
 
