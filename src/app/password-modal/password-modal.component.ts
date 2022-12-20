@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {environment} from '../../environments/environment';
 
 require('dotenv').config({path: '../../../.env'});
 
@@ -24,10 +25,16 @@ export class PasswordModalComponent implements OnInit {
   visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   verifyPassword() {
-    return this.password === (window as any).certificatePassword ? true : false;
-    // const pswd = process.env.PASSWORD;
-    // console.log(pswd);
-    // return this.password === pswd ? true : false;
+    // return this.password === (window as any).certificatePassword ? true : false;
+    // return this.password === process.env.PASSWORD ? true : false;
+
+    return this.password === environment.password ? true : false;
+
+  }
+
+
+  checkValidation(): boolean {
+    return !this.password;
   }
 
   handleOk(): void {
