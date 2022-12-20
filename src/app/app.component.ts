@@ -113,6 +113,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.svgUrl = null;
   }
 
+  onVisibleChange(isVisible: boolean): void {
+    this.isVisible = isVisible;
+  }
+
   showModal(): void {
     this.isVisible = true;
   }

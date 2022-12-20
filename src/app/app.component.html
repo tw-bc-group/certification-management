@@ -32,7 +32,7 @@
                 (click)="showModal()" [nzLoading]="loading">颁发证书
         </button>
       </div>
-      <app-password-modal *ngIf="isVisible" [isVisible]="isVisible"
+      <app-password-modal *ngIf="isVisible" [isVisible]="isVisible" (visibleChange)="onVisibleChange($event)"
                           (issueCertificate)="issue()"></app-password-modal>
     </div>
 
