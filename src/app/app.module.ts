@@ -45,6 +45,7 @@ import {TemplateNonLinkedTwAcComponent} from './template-non-linked-tw-ac/templa
 import {NonLinkedCertFormComponent} from './non-linked-cert-form/non-linked-cert-form.component';
 import {PhotoUploadComponent} from './photo-upload/photo-upload.component';
 import {PasswordModalComponent} from './password-modal/password-modal.component';
+import {NzMessageModule} from 'ng-zorro-antd/message';
 
 registerLocaleData(zh);
 
@@ -92,6 +93,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzDatePickerModule,
     NzIconModule,
     NzModalModule,
+    NzMessageModule
   ],
   providers: [{provide: NZ_ICONS, useValue: icons}],
   bootstrap: [AppComponent],

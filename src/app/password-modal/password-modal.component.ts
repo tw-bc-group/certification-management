@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 require('dotenv').config({path: '../../../.env'});
 
@@ -9,7 +10,7 @@ require('dotenv').config({path: '../../../.env'});
 export class PasswordModalComponent implements OnInit {
   password: string;
 
-  constructor() {
+  constructor(private message: NzMessageService) {
   }
 
 
@@ -23,18 +24,24 @@ export class PasswordModalComponent implements OnInit {
   visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   verifyPassword() {
-    // return this.password === (window as any).certificatePassword ? true : false;
-    const pswd = process.env.PASSWORD;
-    console.log(pswd);
-    return this.password === pswd ? true : false;
+    return this.password === (window as any).certificatePassword ? true : false;
+    // const pswd = process.env.PASSWORD;
+    // console.log(pswd);
+    // return this.password === pswd ? true : false;
   }
 
   handleOk(): void {
     const result = this.verifyPassword();
     if (result) {
+      this.message.success('证书颁发成功', {
+        nzDuration: 5000
+      });
       this.issueCertificate.emit();
+
     } else {
-      alert('密码错误，证书颁发失败');
+      this.message.error('密码错误，证书颁发失败', {
+        nzDuration: 5000
+      });
     }
     this.visibleChange.emit(false);
   }
