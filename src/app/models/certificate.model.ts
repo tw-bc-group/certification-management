@@ -36,18 +36,18 @@ export enum CertificateTemplateType {
 }
 
 export const CertificateTemplateOptions = [
-  { value: CertificateTemplateType.TW_AC, label: "敏捷教练" },
-  { value: CertificateTemplateType.TW_COR_AC, label: "合作方敏捷教练" },
-  { value: CertificateTemplateType.DPM, label: "数字产品经理" }
+  { value: CertificateTemplateType.TW_AC, label: '敏捷教练' },
+  { value: CertificateTemplateType.TW_COR_AC, label: '合作方敏捷教练' },
+  { value: CertificateTemplateType.DPM, label: '数字产品经理' }
 ];
 
 export const PartnerOptions = [
-  { value: "github", label: "Github" },
-  { value: "huawei", label: "华为" },
-  { value: "pku", label: "PKU" },
-  { value: "oppo", label: "OPPO" },
-  { value: "CMGFintech", label: "招商金科" },
-  { value: "ABC", label: "中国农业银行" }
+  { value: 'github', label: 'Github' },
+  { value: 'huawei', label: '华为' },
+  { value: 'pku', label: 'PKU' },
+  { value: 'oppo', label: 'OPPO' },
+  { value: 'CMGFintech', label: '招商金科' },
+  { value: 'ABC', label: '中国农业银行' }
 ];
 
 export interface CertificateModel {

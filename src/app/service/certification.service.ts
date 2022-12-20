@@ -1,6 +1,5 @@
-import { Certificate } from '../interfaces/certificate.interface';
 // import { HttpException } from '@exceptions/HttpException';
-import { client, generateDenomId, generateCertificateId, generateSchema, getAdminAddress, newBaseTx } from '../clients/nft';
+import { client, generateDenomId, generateCertificateId, generateSchema, getAdminAddress, newBaseTx } from '../clients/certificate';
 import { Client, TxType } from '@irita/irita-sdk';
 import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
 
