@@ -34,7 +34,7 @@ import {
   NzLayoutModule,
   NzModalModule,
   NzPageHeaderModule,
-  NzSelectModule
+  NzSelectModule, NgZorroAntdModule, NZ_I18N, en_US
 } from 'ng-zorro-antd';
 import {NZ_ICONS} from 'ng-zorro-antd/icon';
 import {DeleteOutline, PlusOutline} from '@ant-design/icons-angular/icons';
@@ -46,6 +46,7 @@ import {NonLinkedCertFormComponent} from './non-linked-cert-form/non-linked-cert
 import {PhotoUploadComponent} from './photo-upload/photo-upload.component';
 import {PasswordModalComponent} from './password-modal/password-modal.component';
 import {NzMessageModule} from 'ng-zorro-antd/message';
+import en from '@angular/common/locales/en';
 
 registerLocaleData(zh);
 
@@ -93,9 +94,10 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzDatePickerModule,
     NzIconModule,
     NzModalModule,
-    NzMessageModule
+    NzMessageModule,
+    NgZorroAntdModule
   ],
-  providers: [{provide: NZ_ICONS, useValue: icons}],
+  providers: [{provide: NZ_ICONS, useValue: icons}, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 })
 export class AppModule {
