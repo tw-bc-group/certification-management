@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
   lcAppId: 'QVS9yEu2f1BmLXX5APgPMr9M-gzGzoHsz',
-  lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt'
+  lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt',
+  password: '001'
 };
 
 /*
