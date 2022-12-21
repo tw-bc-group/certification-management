@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {environment} from '../../environments/environment';
 
-// require('dotenv').config({path: '../../../.env'});
+require('dotenv').config({path: '../../../.env'});
 
 @Component({
   selector: 'app-password-modal',

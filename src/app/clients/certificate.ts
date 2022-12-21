@@ -2,7 +2,7 @@ import config from '../config/config';
 import { BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError, TxResult, TxType } from '@irita/irita-sdk';
 import { v4 as uuid } from 'uuid';
 import DB from '../databases';
-// import * as TJS from 'typescript-json-schema';
+import * as TJS from 'typescript-json-schema';
 import { resolve } from 'path';
 import { CertificateModel } from '../models/certificate.model';
 
@@ -51,14 +51,14 @@ export const generateCollectionId = (): string => `nft${uuid().replace(/-/g, '')
 export const generateCollectionNftId = (cno: string, no: number): string => `${cno}${no.toString().padStart(10, '0')}`;
 
 export const generateSchema = () => {
-  // const settings: TJS.PartialArgs = {
-  //   required: true,
-  // };
-  // const compilerOptions: TJS.CompilerOptions = {
-  //   strictNullChecks: true,
-  // };
-  // const program = TJS.getProgramFromFiles([resolve('src/app/models/certificate.model.ts')], compilerOptions);
-  // return JSON.stringify(TJS.generateSchema(program, 'CertificateModel', settings));
+  const settings: TJS.PartialArgs = {
+    required: true,
+  };
+  const compilerOptions: TJS.CompilerOptions = {
+    strictNullChecks: true,
+  };
+  const program = TJS.getProgramFromFiles([resolve('src/app/models/certificate.model.ts')], compilerOptions);
+  return JSON.stringify(TJS.generateSchema(program, 'CertificateModel', settings));
 };
 
 export const getAdminAddress = async (): Promise<string> => {
