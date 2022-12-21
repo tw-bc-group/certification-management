@@ -11,6 +11,21 @@ class CertificateService {
   }
 
   /**
+   * issue denom
+   * @param denomName string denom name
+   * @returns Transaction hash string
+   */
+  public async issueDenom(denomName: string): Promise<{ denomId: string; hash: string }> {
+    const denomId = generateDenomId();
+    const schema = generateSchema();
+    const baseTx = newBaseTx();
+    const response = await this.certificateClient.nft.issueDenom(denomId, denomName, schema, true, true, baseTx);
+    return {
+      denomId,
+      hash: response.hash,
+    };
+  }
+  /**
    * create Certificate
    * @param userId number userId
    * @param userName string userName
