@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv';
 import dev from './dev';
-
-dotenv.config();
+import {environment} from '../../environments/environment';
 
 export interface Config {
   nodeEnv: string;
@@ -44,6 +42,7 @@ const irita = {
   apiKey: process.env.IRITA_API_KEY,
 };
 
+// tslint:disable-next-line:variable-name
 const env_cfg = {
   dev,
 };
@@ -55,5 +54,4 @@ const config: Config = {
   irita,
   ...env_cfg[app.env],
 };
-
 export default config;

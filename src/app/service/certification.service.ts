@@ -28,7 +28,6 @@ class CertificateService {
   /**
    * create Certificate
    * @param userId number userId
-   * @param userName string userName
    * @param firstName string
    * @param firstNamePinyin string
    * @param lastName string
@@ -36,7 +35,6 @@ class CertificateService {
    * @param denomName string denom name
    * @param certificateName string certificate name
    * @param photoUrl string nft image url
-   * @param count number number of NFT to be minted
    * @param certificateType string
    * @param partner string
    * @param publishedAt string
@@ -50,7 +48,6 @@ class CertificateService {
    */
   public async createDenomAndCertificate(
     userId: number,
-    userName: string,
     firstName: string,
     firstNamePinyin: string,
     lastName: string,
@@ -58,7 +55,6 @@ class CertificateService {
     denomName: string,
     certificateName: string,
     photoUrl: string,
-    count: number,
     certificateType: CertificateType,
     partner: string,
     publishedAt: Date,

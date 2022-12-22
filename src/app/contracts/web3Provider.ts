@@ -25,4 +25,4 @@ export const retrieveContract = () => {
   return new web3.eth.Contract(abi, contractAddress);
 };
 
-export const hexify = (tokenId: number) => retrieveWeb3().utils.numberToHex(tokenId);
+export const hexify = (tokenId: string) => retrieveWeb3().utils.stringToHex(tokenId);

@@ -16,6 +16,9 @@ import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
 import {save} from './utils/photoStorage';
+import CertificateService from './service/certification.service';
+
+const certService = new CertificateService();
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -146,11 +149,11 @@ export class AppComponent implements OnInit, OnDestroy {
   issueNonLinkedCertificate(): void {
     Promise.all([this.generateDownloadUrl(), this.uploadCerts()])
       .catch(err => {
-        this.loading = false;
-        this.downloadLink = false;
-        console.error('fail to issue certification', err);
-      }
-    );
+          this.loading = false;
+          this.downloadLink = false;
+          console.error('fail to issue certification', err);
+        }
+      );
   }
 
   checkFormValidation(): boolean {
@@ -318,7 +321,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
 
-  async onChain(): Promise<number> {
+  async onChain(): Promise<string> {
     this.loading = true;
     const tx = await retrieveContract().methods.issue(
       this.certificate.certName,
@@ -334,5 +337,24 @@ export class AppComponent implements OnInit, OnDestroy {
       this.certificate.receiverAddress || walletAddress()
     ).send({from: walletAddress()});
     return tx.events.Transfer.returnValues.tokenId;
+    // const userId = 1;
+    // const denomName = '';
+    // const firstName = this.certificate.firstName;
+    // const firstNamePinyin = this.certificate.firstNamePinyin;
+    // const lastName = this.certificate.lastName;
+    // const lastNamePinyin = this.certificate.lastNamePinyin;
+    // const certName = this.certificate.certName;
+    // const photoUrl = this.certificate.photoUrl;
+    // const type = this.certificate.type;
+    // const partner = this.certificate.partner;
+    // const expiredAt = this.certificate.expiredAt;
+    // const fingerprint = this.certificate.fingerprint;
+    // const issuer = this.certificate.issuer;
+    // const receiverAddress = this.certificate.receiverAddress;
+    // const qrCode = this.certificate.qrCode;
+    // const dpmLevel = this.certificate.dpmLevel;
+    // // tslint:disable-next-line:max-line-length
+    // const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
+    // return response.certId;
   }
 }
