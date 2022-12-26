@@ -1,42 +1,48 @@
 import config from '../config/config';
-import { BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError, TxResult, TxType } from '@irita/irita-sdk';
+import { BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError, TxResult, TxType } from '@irita/irita-sdk/dist/web';
 import { v4 as uuid } from 'uuid';
-import DB from '../databases';
-import * as TJS from 'typescript-json-schema';
+// import * as TJS from 'typescript-json-schema';
 import { resolve } from 'path';
 import { CertificateModel } from '../models/certificate.model';
 
 class IritaKeyDAO implements KeyDAO {
-  private wallets = DB.wallet;
+//  private wallets = DB.wallet;
 
   async write(name: string, key: Key): Promise<void> {
-    await this.wallets.create({
-      data: {
-        keyName: name,
-        ...key,
-      },
-    });
+    console.log('123');
+    // await this.wallets.create({
+    //   data: {
+    //     keyName: name,
+    //     ...key,
+    //   },
+    // });
+    return;
   }
 
   async read(name: string): Promise<Key> {
-    const wallet = await this.wallets.findFirst({
-      where: {
-        keyName: name,
-      },
-    });
+    console.log('321');
+    // const wallet = await this.wallets.findFirst({
+    //   where: {
+    //     keyName: name,
+    //   },
+    // });
+    // return {
+    //   address: wallet && wallet.address ? wallet.address : '',
+    //   privKey: wallet && wallet.privKey ? wallet.privKey : '',
+    // };
     return {
-      address: wallet && wallet.address ? wallet.address : '',
-      privKey: wallet && wallet.privKey ? wallet.privKey : '',
+      address: '',
+      privKey: '',
     };
   }
 
   async delete(name: string): Promise<void> {
-    const wallet = await this.wallets.findFirst({
-      where: {
-        keyName: name,
-      },
-    });
-    await this.wallets.delete({ where: { id: wallet.id } });
+    // const wallet = await this.wallets.findFirst({
+    //   where: {
+    //     keyName: name,
+    //   },
+    // });
+    // await this.wallets.delete({ where: { id: wallet.id } });
   }
 }
 
@@ -51,14 +57,15 @@ export const generateCollectionId = (): string => `nft${uuid().replace(/-/g, '')
 export const generateCollectionNftId = (cno: string, no: number): string => `${cno}${no.toString().padStart(10, '0')}`;
 
 export const generateSchema = () => {
-  const settings: TJS.PartialArgs = {
-    required: true,
-  };
-  const compilerOptions: TJS.CompilerOptions = {
-    strictNullChecks: true,
-  };
-  const program = TJS.getProgramFromFiles([resolve('src/app/models/certificate.model.ts')], compilerOptions);
-  return JSON.stringify(TJS.generateSchema(program, 'CertificateModel', settings));
+//  const settings: TJS.PartialArgs = {
+//    required: true,
+//  };
+//  const compilerOptions: TJS.CompilerOptions = {
+//    strictNullChecks: true,
+//  };
+//  const program = TJS.getProgramFromFiles([resolve('src/app/models/certificate.model.ts')], compilerOptions);
+//  return JSON.stringify(TJS.generateSchema(program, 'CertificateModel', settings));
+  return '';
 };
 
 export const getAdminAddress = async (): Promise<string> => {
