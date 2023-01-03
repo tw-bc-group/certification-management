@@ -1,19 +1,19 @@
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 import AV from 'leancloud-storage';
 
-AV.init({
-  appId: environment.lcAppId,
-  appKey: environment.lcAppKey
-});
+// AV.init({
+//   appId: environment.lcAppId,
+//   appKey: environment.lcAppKey
+// });
 
-console.log('use lcAppId:', environment.lcAppId);
+// console.log('use lcAppId:', environment.lcAppId);
 
 const LEANCLOUD_CLASS = 'Photo';
 const INDEX = 'certId';
 
-export const fetch: ({ certId }: { certId: string }) => Promise<object[]> = ({
-  certId
-}) => {
+export const fetch: ({certId}: { certId: string }) => Promise<object[]> = ({
+                                                                             certId
+                                                                           }) => {
   const query = new AV.Query(LEANCLOUD_CLASS);
   query.equalTo(INDEX, certId);
   query.include(['png', 'svg']);

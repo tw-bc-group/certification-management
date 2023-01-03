@@ -1,6 +1,15 @@
 import config from '../config/config';
-import { BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError, TxResult, TxType } from '@irita/irita-sdk/dist/web';
-import { v4 as uuid } from 'uuid';
+import {
+  BaseTx,
+  Key,
+  KeyDAO,
+  newClient,
+  PubkeyType,
+  SdkError,
+  TxResult,
+  TxType
+} from '../../../../irita-sdk-js/dist/web';
+import {v4 as uuid} from 'uuid';
 // import * as TJS from 'typescript-json-schema';
 import { resolve } from 'path';
 import { CertificateModel } from '../models/certificate.model';

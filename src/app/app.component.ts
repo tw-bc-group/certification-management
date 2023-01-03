@@ -16,9 +16,10 @@ import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
 import {save} from './utils/photoStorage';
+import {saveCertificate} from './utils/certificatesStorage';
 import CertificateService from './service/certification.service';
 
-const certService = new CertificateService();
+// const certService = new CertificateService();
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -226,23 +227,23 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private uploadCertsWithoutSimple(certId: string, pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
-
     loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
-        .subscribe((pngDataUrl) => {
-      this.upload(certId, [{
-        key: 'png',
-        fileName: `${pictureName}.png`,
-        dataUrl: pngDataUrl
-      }, {
-        key: 'svg',
-        fileName: `${pictureName}.svg`,
-        dataUrl: svgDataUrl
-      }]).subscribe(({pngUrl, svgUrl}) => {
-        this.svgUrl = svgUrl;
-        this.pngUrl = pngUrl;
-        this.downloadLink = true;
+      .subscribe((pngDataUrl) => {
+        this.uploadCertificate(certId, pictureName);
+        // this.upload(certId, [{
+        //   key: 'png',
+        //   fileName: `${pictureName}.png`,
+        //   dataUrl: pngDataUrl
+        // }, {
+        //   key: 'svg',
+        //   fileName: `${pictureName}.svg`,
+        //   dataUrl: svgDataUrl
+        // }]).subscribe(({pngUrl, svgUrl}) => {
+        //   this.svgUrl = svgUrl;
+        //   this.pngUrl = pngUrl;
+        //   this.downloadLink = true;
+        // });
       });
-    });
   }
 
 
@@ -280,6 +281,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private upload(certId: string, photos: any): Observable<any> {
     return from(save({certId, photos}));
+  }
+
+  private uploadCertificate(certId: string, photos: any): Observable<any> {
+    return from(saveCertificate({certId, photos, certificate: this.certificate}));
   }
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
@@ -354,6 +359,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // const qrCode = this.certificate.qrCode;
     // const dpmLevel = this.certificate.dpmLevel;
     // // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length
     // const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
     // return response.certId;
   }

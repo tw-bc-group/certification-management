@@ -1,6 +1,13 @@
 // import { HttpException } from '@exceptions/HttpException';
-import { client, generateDenomId, generateCertificateId, generateSchema, getAdminAddress, newBaseTx } from '../clients/certificate';
-import { Client, TxType } from '@irita/irita-sdk/dist/web';
+import {
+  client,
+  generateDenomId,
+  generateCertificateId,
+  generateSchema,
+  getAdminAddress,
+  newBaseTx
+} from '../clients/certificate';
+import {Client, TxType} from '../../../../irita-sdk-js/dist/web';
 import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
 
 class CertificateService {
