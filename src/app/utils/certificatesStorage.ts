@@ -1,6 +1,6 @@
 import {environment} from '../../environments/environment';
 import AV from 'leancloud-storage';
-import {CertificateModel} from "../models/certificate.model";
+import {CertificateModel} from '../models/certificate.model';
 
 AV.init({
   appId: environment.lcAppId,
@@ -44,8 +44,14 @@ export const saveCertificate: ({
     lcCertificate.set(object.key, object.image);
   });
   // todo set certificate fields
-  const {fingerprint, lastName, firstName} = this.certificate;
+  const {lastName, firstName, certificateTemplate, certName, issuer, type, publishedAt, expiredAt} = certificate;
   lcCertificate.set('name', `${lastName}_${firstName}`);
+  lcCertificate.set('certificateTemplate', certificateTemplate);
+  lcCertificate.set('certName', certName);
+  lcCertificate.set('issuer', issuer);
+  lcCertificate.set('type', type);
+  lcCertificate.set('publishedAt', publishedAt);
+  lcCertificate.set('expiredAt', expiredAt);
 
   return lcCertificate.save().then(photoObj => {
     const pngUrl = photoObj.get('png').url();

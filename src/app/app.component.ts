@@ -17,7 +17,6 @@ import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
 import {save} from './utils/photoStorage';
 import {saveCertificate} from './utils/certificatesStorage';
-import CertificateService from './service/certification.service';
 
 // const certService = new CertificateService();
 
@@ -85,8 +84,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initCertificate(): void {
-    this.certificateTemplate = CertificateTemplateType.TW_AC;
+    // this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.certificate = {
+      certificateTemplate: CertificateTemplateType.TW_AC,
       certName: this.isLinkedCertificate
         ? CertificateLevel.PROFESSIONAL_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
@@ -229,20 +229,20 @@ export class AppComponent implements OnInit, OnDestroy {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
       .subscribe((pngDataUrl) => {
-        this.uploadCertificate(certId, pictureName);
-        // this.upload(certId, [{
-        //   key: 'png',
-        //   fileName: `${pictureName}.png`,
-        //   dataUrl: pngDataUrl
-        // }, {
-        //   key: 'svg',
-        //   fileName: `${pictureName}.svg`,
-        //   dataUrl: svgDataUrl
-        // }]).subscribe(({pngUrl, svgUrl}) => {
-        //   this.svgUrl = svgUrl;
-        //   this.pngUrl = pngUrl;
-        //   this.downloadLink = true;
-        // });
+        // this.uploadCertificate(certId, pictureName);
+        this.uploadCertificate(certId, [{
+          key: 'png',
+          fileName: `${pictureName}.png`,
+          dataUrl: pngDataUrl
+        }, {
+          key: 'svg',
+          fileName: `${pictureName}.svg`,
+          dataUrl: svgDataUrl
+        }]).subscribe(({pngUrl, svgUrl}) => {
+          this.svgUrl = svgUrl;
+          this.pngUrl = pngUrl;
+          this.downloadLink = true;
+        });
       });
   }
 

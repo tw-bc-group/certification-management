@@ -1,0 +1,1 @@
+window.certificatePassword = '001';

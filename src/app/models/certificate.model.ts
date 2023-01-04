@@ -66,4 +66,5 @@ export interface CertificateModel {
   receiverAddress: string;
   qrCode: string;
   dpmLevel: DpmLevel;
+  certificateTemplate: CertificateTemplateType;
 }
