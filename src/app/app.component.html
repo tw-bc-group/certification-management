@@ -23,17 +23,18 @@
         [(certificateTemplate)]="certificateTemplate">
       </app-cert-form>
       <app-non-linked-cert-form
-        *ngIf="!isLinkedCertificate"
+        *ngIf="tabKey==='nonLinkedCertificate'"
         [certificate]="certificate"
         [(certificateTemplate)]="certificateTemplate">
       </app-non-linked-cert-form>
-      <div class="issue-btn-wrapper">
+      <div class="issue-btn-wrapper" *ngIf="tabKey!=='queryCertificate'">
         <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()"
                 (click)="showModal()" [nzLoading]="loading">颁发证书
         </button>
       </div>
       <app-password-modal *ngIf="isVisible" [isVisible]="isVisible" (visibleChange)="onVisibleChange($event)"
                           (issueCertificate)="issue()"></app-password-modal>
+      <app-query-page *ngIf="tabKey==='queryCertificate'"></app-query-page>
     </div>
 
     <div class="preview">

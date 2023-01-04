@@ -51,6 +51,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }, {
     key: 'nonLinkedCertificate',
     title: '非上链证书',
+  }, {
+    key: 'queryCertificate',
+    title: '证书查询',
   }];
   tabKey = this.tabs[0].key;
   isVisible = false;

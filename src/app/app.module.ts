@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -46,6 +47,7 @@ import {NonLinkedCertFormComponent} from './non-linked-cert-form/non-linked-cert
 import {PhotoUploadComponent} from './photo-upload/photo-upload.component';
 import {PasswordModalComponent} from './password-modal/password-modal.component';
 import {NzMessageModule} from 'ng-zorro-antd/message';
+import {QueryPageComponent} from './query-page/query-page.component';
 
 registerLocaleData(zh);
 
@@ -76,7 +78,8 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     TemplateNonLinkedTwAcComponent,
     NonLinkedCertFormComponent,
     PhotoUploadComponent,
-    PasswordModalComponent
+    PasswordModalComponent,
+    QueryPageComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzDatePickerModule,
     NzIconModule,
     NzModalModule,
-    NzMessageModule
+    NzMessageModule,
+    Ng2SearchPipeModule
   ],
   providers: [{provide: NZ_ICONS, useValue: icons}],
   bootstrap: [AppComponent],

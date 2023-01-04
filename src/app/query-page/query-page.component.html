@@ -1,0 +1,26 @@
+<h4>请输入ID查询证书</h4>
+<nz-form-control>
+  <nz-input-group [nzSuffix]="suffixTemplate" [nzPrefix]="prefixTemplate">
+    <input nz-input type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+           (keyup.enter)="search()"
+    >
+    <ng-template #prefixTemplate>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+    <ng-template #suffixTemplate>
+      <i
+        nz-icon
+        class="ant-input-clear-icon"
+        nzType="close-circle"
+        (click)="searchText=''"
+      ></i>
+    </ng-template>
+  </nz-input-group>
+</nz-form-control>
+<div class="btn-wrapper">
+  <button class="issue-btn" nz-button nzType="primary" nzGhost (click)="search()" [disabled]="!searchText"
+  >查询
+  </button>
+</div>
+
+
