@@ -33,20 +33,29 @@
     <nz-select
       name="certName" [(ngModel)]="certificate.certName"
     >
-      <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+      <nz-option *ngFor="let option of certificateLevelOptions" [nzValue]="option.value"
+                 [nzLabel]="option.label"></nz-option>
     </nz-select>
   </nz-form-item>
-
+  <nz-form-item>
+    <nz-form-label>认证方向</nz-form-label>
+    <nz-select
+      name="certDirection" [(ngModel)]="certificate.certDirection"
+    >
+      <nz-option *ngFor="let option of certificateDirectionOptions" [nzValue]="option.value"
+                 [nzLabel]="option.label"></nz-option>
+    </nz-select>
+  </nz-form-item>
   <nz-form-item>
     <nz-form-label nzRequired>姓</nz-form-label>
     <nz-form-control>
-      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required />
+      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label nzRequired>名</nz-form-label>
     <nz-form-control>
-      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required />
+      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required/>
     </nz-form-control>
   </nz-form-item>
 

@@ -24,9 +24,9 @@ export enum DpmLevel {
 }
 
 export const dpmLevelNameMapping = {
-  [DpmLevel.JUNIOR] : '初阶',
-  [DpmLevel.INTERMEDIATE] : '中阶',
-  [DpmLevel.SENIOR] : '高阶',
+  [DpmLevel.JUNIOR]: '初阶',
+  [DpmLevel.INTERMEDIATE]: '中阶',
+  [DpmLevel.SENIOR]: '高阶',
 };
 
 export enum CertificateTemplateType {
@@ -35,24 +35,35 @@ export enum CertificateTemplateType {
   DPM = 'dpm'
 }
 
+export enum CertificateDirection {
+  TECH = 'TECH',
+  MANAGE = 'MANAGE',
+}
+
+export const CertificateDirectionOptions = [
+  {value: CertificateDirection.TECH, label: '技术教练'},
+  {value: CertificateDirection.MANAGE, label: '管理教练'},
+];
+
 export const CertificateTemplateOptions = [
-  { value: CertificateTemplateType.TW_AC, label: '敏捷教练' },
-  { value: CertificateTemplateType.TW_COR_AC, label: '合作方敏捷教练' },
-  { value: CertificateTemplateType.DPM, label: '数字产品经理' }
+  {value: CertificateTemplateType.TW_AC, label: '敏捷教练'},
+  {value: CertificateTemplateType.TW_COR_AC, label: '合作方敏捷教练'},
+  {value: CertificateTemplateType.DPM, label: '数字产品经理'}
 ];
 
 export const PartnerOptions = [
-  { value: 'github', label: 'Github' },
-  { value: 'huawei', label: '华为' },
-  { value: 'pku', label: 'PKU' },
-  { value: 'oppo', label: 'OPPO' },
-  { value: 'CMGFintech', label: '招商金科' },
-  { value: 'ABC', label: '中国农业银行' }
+  {value: 'github', label: 'Github'},
+  {value: 'huawei', label: '华为'},
+  {value: 'pku', label: 'PKU'},
+  {value: 'oppo', label: 'OPPO'},
+  {value: 'CMGFintech', label: '招商金科'},
+  {value: 'ABC', label: '中国农业银行'}
 ];
 
 export interface CertificateModel {
   certName: string;
   type: CertificateType;
+  certDirection: CertificateDirection;
   partner: string;
   photoUrl: string;
   firstName: string;

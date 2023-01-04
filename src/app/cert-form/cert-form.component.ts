@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
-  CertificateModel,
-  DpmLevel,
+  CertificateDirectionOptions,
   CertificateLevel,
-  dpmLevelNameMapping,
+  CertificateModel,
   CertificateTemplateOptions,
+  DpmLevel,
+  dpmLevelNameMapping,
   PartnerOptions
 } from '../models/certificate.model';
 
@@ -25,6 +26,7 @@ export class CertFormComponent implements OnInit {
     value: CertificateLevel[level],
     label: CertificateLevel[level]
   }));
+  certificateDirectionOptions = CertificateDirectionOptions;
   certificateTemplateOptions = CertificateTemplateOptions;
   partnerOptions = PartnerOptions;
 

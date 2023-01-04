@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {from, Observable, Subject, zip} from 'rxjs';
 import {
+  CertificateDirection,
   CertificateLevel,
   CertificateModel,
   CertificateTemplateType,
@@ -87,6 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.certificate = {
       certificateTemplate: CertificateTemplateType.TW_AC,
+      certDirection: CertificateDirection.TECH,
       certName: this.isLinkedCertificate
         ? CertificateLevel.PROFESSIONAL_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,

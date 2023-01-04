@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
+  CertificateDirectionOptions,
   CertificateModel,
   CertificateTemplateOptions,
   NonLinkedCertificateLevel,
   PartnerOptions
-} from "../models/certificate.model";
+} from '../models/certificate.model';
 
 @Component({
   selector: 'app-non-linked-cert-form',
@@ -15,12 +16,15 @@ export class NonLinkedCertFormComponent implements OnInit {
 
   constructor() {
   }
+
   certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map((level) => ({
     value: NonLinkedCertificateLevel[level],
     label: NonLinkedCertificateLevel[level]
   }));
   certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
   partnerOptions = PartnerOptions;
+  certificateDirectionOptions = CertificateDirectionOptions;
+
   @Input()
   certificate: CertificateModel;
 

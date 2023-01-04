@@ -44,10 +44,11 @@ export const saveCertificate: ({
     lcCertificate.set(object.key, object.image);
   });
   // todo set certificate fields
-  const {lastName, firstName, certificateTemplate, certName, issuer, type, publishedAt, expiredAt} = certificate;
+  const {lastName, firstName, certificateTemplate, certName, certDirection, issuer, type, publishedAt, expiredAt} = certificate;
   lcCertificate.set('name', `${lastName}_${firstName}`);
   lcCertificate.set('certificateTemplate', certificateTemplate);
   lcCertificate.set('certName', certName);
+  lcCertificate.set('certDirection', certDirection);
   lcCertificate.set('issuer', issuer);
   lcCertificate.set('type', type);
   lcCertificate.set('publishedAt', publishedAt);
