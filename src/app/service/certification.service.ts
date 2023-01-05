@@ -1,20 +1,7 @@
 // import { HttpException } from '@exceptions/HttpException';
-import {
-  client,
-  generateDenomId,
-  generateCertificateId,
-  generateSchema,
-  getAdminAddress,
-  newBaseTx
-} from '../clients/certificate';
+import {client, generateCertificateId, generateDenomId, generateSchema, getAdminAddress, newBaseTx} from '../clients/certificate';
 import {Client, TxType} from '../../../../irita-sdk-js/dist/web';
-import {
-  CertificateDirection,
-  CertificateModel,
-  CertificateTemplateType,
-  CertificateType,
-  DpmLevel
-} from '../models/certificate.model';
+import {CertificateDirection, CertificateModel, CertificateTemplateType, CertificateType, DpmLevel} from '../models/certificate.model';
 
 class CertificateService {
   certificateClient: Client;
@@ -77,8 +64,8 @@ class CertificateService {
     receiverAddress: string,
     qrCode: string,
     dpmLevel: DpmLevel,
-    certificateTemplate: CertificateTemplateType,
-    certDirection: CertificateDirection
+    certDirection: CertificateDirection,
+    certificateTemplate: CertificateTemplateType
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
     const baseTx = newBaseTx();
@@ -114,8 +101,8 @@ class CertificateService {
       receiverAddress,
       qrCode,
       dpmLevel,
-      certificateTemplate,
-      certDirection
+      certDirection,
+      certificateTemplate
     };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,

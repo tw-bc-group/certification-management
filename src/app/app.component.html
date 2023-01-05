@@ -34,7 +34,7 @@
       </div>
       <app-password-modal *ngIf="isVisible" [isVisible]="isVisible" (visibleChange)="onVisibleChange($event)"
                           (issueCertificate)="issue()"></app-password-modal>
-      <app-query-page *ngIf="tabKey==='queryCertificate'"></app-query-page>
+      <app-query-page *ngIf="tabKey==='queryCertificate'" (valueChange)="onValueChange($event)"></app-query-page>
     </div>
 
     <div class="preview">

@@ -126,6 +126,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isVisible = isVisible;
   }
 
+  onValueChange(queriedCertificate): void {
+    // tslint:disable-next-line:forin
+    for (const key in this.certificate) {
+      this.certificate[key] = queriedCertificate[key];
+    }
+    this.certificate.firstName = queriedCertificate.name.split('_')[0];
+    this.certificate.lastName = queriedCertificate.name.split('_')[0];
+  }
+
   showModal(): void {
     this.isVisible = true;
   }
