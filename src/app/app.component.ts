@@ -133,6 +133,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.certificate.firstName = queriedCertificate.name.split('_')[0];
     this.certificate.lastName = queriedCertificate.name.split('_')[0];
+    this.svgUrl = queriedCertificate.svg.attributes.url;
+    this.pngUrl = queriedCertificate.png.attributes.url;
+    this.downloadLink = true;
   }
 
   showModal(): void {
