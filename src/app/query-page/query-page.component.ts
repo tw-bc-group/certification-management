@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {fetchCertificate} from '../utils/certificatesStorage';
 
 
 @Component({
@@ -14,7 +15,15 @@ export class QueryPageComponent implements OnInit {
   }
 
   search(): void {
-    console.log('==========', this.searchText);
+    console.log('certId: ', this.searchText);
+    const certId = this.searchText;
+    const promise = fetchCertificate({certId});
+    promise.then((resolved) => {
+      // @ts-ignore
+      console.log('query result: ', resolved[0].attributes);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   initSearchText(): void {

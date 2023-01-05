@@ -12,12 +12,12 @@ console.log('use lcAppId:', AV.applicationId);
 const LEANCLOUD_CLASS_CERTIFICATES = 'Certificates';
 const INDEX = 'certId';
 
-export const fetch: ({certId}: { certId: string }) => Promise<object[]> = ({
+export const fetchCertificate: ({certId}: { certId: string }) => Promise<object[]> = ({
                                                                              certId
                                                                            }) => {
   const query = new AV.Query(LEANCLOUD_CLASS_CERTIFICATES);
   query.equalTo(INDEX, certId);
-  query.include(['name']);
+  query.include(['certId', 'certName', 'certificateTemplate', 'issuer', 'name', 'png', 'publishedAt', 'svg', 'type']);
   return query.find();
 };
 

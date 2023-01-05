@@ -8,7 +8,13 @@ import {
   newBaseTx
 } from '../clients/certificate';
 import {Client, TxType} from '../../../../irita-sdk-js/dist/web';
-import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
+import {
+  CertificateDirection,
+  CertificateModel,
+  CertificateTemplateType,
+  CertificateType,
+  DpmLevel
+} from '../models/certificate.model';
 
 class CertificateService {
   certificateClient: Client;
@@ -71,6 +77,8 @@ class CertificateService {
     receiverAddress: string,
     qrCode: string,
     dpmLevel: DpmLevel,
+    certificateTemplate: CertificateTemplateType,
+    certDirection: CertificateDirection
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
     const baseTx = newBaseTx();
@@ -106,6 +114,8 @@ class CertificateService {
       receiverAddress,
       qrCode,
       dpmLevel,
+      certificateTemplate,
+      certDirection
     };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,
