@@ -18,8 +18,11 @@ import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
 import {save} from './utils/photoStorage';
 import {saveCertificate} from './utils/certificatesStorage';
+import {v4 as uuid} from 'uuid';
+import CertificateService from './service/certification.service';
 
-// const certService = new CertificateService();
+
+const certService = new CertificateService();
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -140,6 +143,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showModal(): void {
     this.isVisible = true;
+    console.log('====', this.svgUrl);
   }
 
 
@@ -199,6 +203,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  private generateCertificateId = (count: number): string => `cert_${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
   private uploadCerts(): void {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
@@ -206,10 +211,11 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isLinkedCertificate) {
       this.uploadCertsWithSimple(fingerprint, pictureName);
     } else {
-      this.uploadCertsWithoutSimple(fingerprint, pictureName);
+      // todo 等可以上链后统一certId规则
+      const certId = this.generateCertificateId(1);
+      this.uploadCertsWithoutSimple(certId, pictureName);
     }
   }
-
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     const simpleSvgDataUrl = this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement);
