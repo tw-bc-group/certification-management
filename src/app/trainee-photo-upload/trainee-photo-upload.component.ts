@@ -1,15 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Constants} from "../utils/constants";
-import {blobToDataURL} from "blob-util";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {Constants} from '../utils/constants';
+import {blobToDataURL} from 'blob-util';
 
 @Component({
-  selector: 'app-photo-upload',
-  templateUrl: './photo-upload.component.html',
-  styleUrls: ['./photo-upload.component.scss']
+  selector: 'app-trainee-photo-upload',
+  templateUrl: './trainee-photo-upload.component.html',
+  styleUrls: ['./trainee-photo-upload.component.scss']
 })
-export class PhotoUploadComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+export class TraineePhotoUploadComponent implements OnInit {
+  constructor(private http: HttpClient) {
+  }
 
   uploading = false;
 

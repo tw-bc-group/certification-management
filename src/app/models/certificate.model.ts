@@ -66,6 +66,7 @@ export interface CertificateModel {
   certDirection: CertificateDirection;
   partner: string;
   photoUrl: string;
+  logoUrl: string;
   firstName: string;
   firstNamePinyin: string;
   lastName: string;

@@ -19,10 +19,9 @@ import {Constants} from './utils/constants';
 import {save} from './utils/photoStorage';
 import {saveCertificate} from './utils/certificatesStorage';
 import {v4 as uuid} from 'uuid';
-import CertificateService from './service/certification.service';
 
 
-const certService = new CertificateService();
+// const certService = new CertificateService();
 
 function loadImage(url: string): Observable<HTMLImageElement> {
   const result = new Subject<HTMLImageElement>();
@@ -99,6 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ? CertificateLevel.PROFESSIONAL_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
       photoUrl: '',
+      logoUrl: '',
       firstName: '',
       lastName: '',
       firstNamePinyin: '',

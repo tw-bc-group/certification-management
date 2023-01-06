@@ -43,10 +43,11 @@ import zh from '@angular/common/locales/zh';
 import {IconDefinition} from '@ant-design/icons-angular';
 import {TemplateNonLinkedTwAcComponent} from './template-non-linked-tw-ac/template-non-linked-tw-ac.component';
 import {NonLinkedCertFormComponent} from './non-linked-cert-form/non-linked-cert-form.component';
-import {PhotoUploadComponent} from './photo-upload/photo-upload.component';
+import {TraineePhotoUploadComponent} from './trainee-photo-upload/trainee-photo-upload.component';
 import {PasswordModalComponent} from './password-modal/password-modal.component';
 import {NzMessageModule} from 'ng-zorro-antd/message';
 import {QueryPageComponent} from './query-page/query-page.component';
+import {LogoPhotoUploadComponent} from './logo-photo-upload/logo-photo-upload.component';
 
 registerLocaleData(zh);
 
@@ -76,9 +77,10 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     DpmLevelNamePipe,
     TemplateNonLinkedTwAcComponent,
     NonLinkedCertFormComponent,
-    PhotoUploadComponent,
+    TraineePhotoUploadComponent,
     PasswordModalComponent,
-    QueryPageComponent
+    QueryPageComponent,
+    LogoPhotoUploadComponent
   ],
   imports: [
     BrowserModule,

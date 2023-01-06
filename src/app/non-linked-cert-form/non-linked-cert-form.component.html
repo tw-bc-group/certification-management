@@ -61,9 +61,14 @@
   <nz-form-item>
     <nz-form-label>名（拼音）</nz-form-label>
     <nz-form-control>
-      <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" />
+      <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin"/>
     </nz-form-control>
   </nz-form-item>
 </div>
 
-<app-photo-upload [photoUrl]="certificate.photoUrl" (photoChange)="onPhotoChanged($event)"></app-photo-upload>
+<div class="photo-upload">
+  <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
+                            (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
+  <app-logo-photo-upload [logoUrl]="certificate.logoUrl"
+                         (photoChange)="onPhotoChanged($event)"></app-logo-photo-upload>
+</div>
