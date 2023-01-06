@@ -14,18 +14,11 @@
     </nz-select>
   </nz-form-item>
 
-  <nz-form-item  *ngIf="certificateTemplate === 'tw-cor'">
+  <nz-form-item *ngIf="certificateTemplate === 'tw-cor'">
     <nz-form-label>合作方</nz-form-label>
-    <nz-select
-      name="cor"
-      [(ngModel)]="certificate.partner"
-    >
-      <nz-option
-        *ngFor="let option of partnerOptions"
-        [nzValue]="option.value"
-        [nzLabel]="option.label"
-      ></nz-option>e
-    </nz-select>
+    <nz-form-control>
+      <input nz-input name="partner" [(ngModel)]="certificate.partner"/>
+    </nz-form-control>
   </nz-form-item>
 
   <nz-form-item *ngIf="certificateTemplate === 'dpm'">
