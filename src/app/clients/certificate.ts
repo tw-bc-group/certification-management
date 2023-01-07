@@ -59,12 +59,6 @@ export const generateDenomId = (): string => `thoughtworks${uuid().replace(/-/g,
 
 export const generateCertificateId = (count: number): string => `nft${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
 
-export const generateNftIdByExistsCollectionId = (cid: string, count: number): string => `nft${cid}${count.toString().padStart(10, '0')}`;
-
-export const generateCollectionId = (): string => `nft${uuid().replace(/-/g, '')}`;
-
-export const generateCollectionNftId = (cno: string, no: number): string => `${cno}${no.toString().padStart(10, '0')}`;
-
 export const generateSchema = () => {
 //  const settings: TJS.PartialArgs = {
 //    required: true,
