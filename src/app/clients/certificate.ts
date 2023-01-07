@@ -8,7 +8,7 @@ import {
   SdkError,
   TxResult,
   TxType
-} from '../../../../irita-sdk-js/dist/web';
+} from '@irita/irita-sdk';
 import {v4 as uuid} from 'uuid';
 // import * as TJS from 'typescript-json-schema';
 import { resolve } from 'path';
