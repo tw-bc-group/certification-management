@@ -69,5 +69,10 @@
     "typescript": "3.2.2",
     "webpack-bundle-analyzer": "4.7.0",
     "prisma": "^3.12.0"
+  },
+  "browser": {
+    "fs": false,
+    "net": false,
+    "tls": false
   }
 }
