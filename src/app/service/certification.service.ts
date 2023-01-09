@@ -1,6 +1,6 @@
 // import { HttpException } from '@exceptions/HttpException';
 import {client, generateCertificateId, generateDenomId, generateSchema, getAdminAddress, newBaseTx} from '../clients/certificate';
-import {Client, TxType} from '../../../../irita-sdk-js/dist/web';
+import {Client, TxType} from '@irita/irita-sdk/dist/web';
 import {CertificateDirection, CertificateModel, CertificateTemplateType, CertificateType, DpmLevel} from '../models/certificate.model';
 
 class CertificateService {
@@ -54,6 +54,7 @@ class CertificateService {
     lastNamePinyin: string,
     denomName: string,
     certificateName: string,
+    logoUrl: string,
     photoUrl: string,
     certificateType: CertificateType,
     partner: string,
@@ -89,6 +90,7 @@ class CertificateService {
       certName: certificateName,
       type: certificateType,
       partner,
+      logoUrl,
       photoUrl,
       firstName,
       firstNamePinyin,
