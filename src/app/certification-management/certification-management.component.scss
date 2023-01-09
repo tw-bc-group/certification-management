@@ -1,0 +1,96 @@
+:host {
+  nz-layout{
+    min-height: 100vh;
+  }
+
+  nz-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 calc(50vw - 530px);
+
+    .logo{
+      height: 48px;
+      margin-right: 8px;
+    }
+
+    .tabs{
+      cursor: pointer;
+
+      span{
+        height: 64px;
+        width: 76px;
+        text-align: center;
+        display: inline-block;
+        margin-right: 58px;
+        color: #596774;
+
+        &:last-child{
+          margin-right: 0;
+        }
+
+        &.active{
+          color: #f28c48;
+          border-bottom: 4px solid;
+        }
+
+        &.disabled{
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+
+  nz-header,
+  nz-footer {
+    background: #FFFFFF;
+    color: #f28c48;
+  }
+
+  nz-header{
+    margin-bottom: 24px;
+  }
+
+  nz-content{
+    width: 1060px;
+    margin: 0 auto 16px;
+    display: flex;
+
+    .left{
+      flex: 1;
+      margin-right: 40px;
+      background-color: #FFFFFF;
+      padding: 16px 64px;
+    }
+
+    .preview {
+      width: 360px;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 16px 0 12px;
+    }
+
+    .issue-btn-wrapper{
+      margin-top: 60px;
+      text-align: right;
+
+      .issue-btn{
+        margin-right: 0;
+        color: #f49950;
+        border-color: #f49950;
+
+        &:disabled{
+          border: solid 1px #d9d9d9;
+          background-color: rgba(0, 0, 0, 0.04);
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+  }
+}
+
+svg {
+  width: 300px;
+  user-select: none;
+}

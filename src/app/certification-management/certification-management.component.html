@@ -1,0 +1,84 @@
+<nz-layout>
+  <nz-header>
+    <div>
+      <img class="logo" src="assets/logo.png" />
+      <span>证书颁发系统</span>
+    </div>
+    <div class="tabs">
+      <span
+        *ngFor="let tab of tabs"
+        [ngClass]="{active: tabKey === tab.key,disabled: tab.disabled}"
+        (click)="onTabChange(tab.key, tab.disabled)"
+      >
+        {{tab.title}}
+      </span>
+    </div>
+  </nz-header>
+  <nz-content>
+    <div class="left">
+      <app-cert-form
+        *ngIf="isLinkedCertificate"
+        [certificate]="certificate"
+        [isLinkedCertificate]="isLinkedCertificate"
+        [(certificateTemplate)]="certificateTemplate">
+      </app-cert-form>
+      <app-non-linked-cert-form
+        *ngIf="tabKey==='nonLinkedCertificate'"
+        [certificate]="certificate"
+        [(certificateTemplate)]="certificateTemplate">
+      </app-non-linked-cert-form>
+      <div class="issue-btn-wrapper" *ngIf="tabKey!=='queryCertificate'">
+        <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()"
+                (click)="showModal()" [nzLoading]="loading">颁发证书
+        </button>
+      </div>
+      <app-password-modal *ngIf="isVisible" [isVisible]="isVisible" (visibleChange)="onVisibleChange($event)"
+                          (issueCertificate)="issue()"></app-password-modal>
+      <app-query-page *ngIf="tabKey==='queryCertificate'" (valueChange)="onValueChange($event)"></app-query-page>
+    </div>
+
+    <div class="preview">
+      <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
+      <ng-container *ngIf="isLinkedCertificate">
+        <ng-container *ngIf="certificateTemplate === 'tw'">
+          <app-template-tw [certificate]="certificate" #template></app-template-tw>
+          <div>
+            <app-template-tw-simple [certificate]="certificate" #TWSimple></app-template-tw-simple>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="certificateTemplate === 'dpm'">
+          <app-template-junior-dpm [certificate]="certificate" #template></app-template-junior-dpm>
+          <div>
+            <app-template-junior-dpm-simple [certificate]="certificate" #TWSimple></app-template-junior-dpm-simple>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="certificateTemplate === 'tw-cor'">
+          <app-template-tw-cor [certificate]="certificate" #template></app-template-tw-cor>
+          <div>
+            <app-template-tw-cor-simple [certificate]="certificate" #TWSimple></app-template-tw-cor-simple>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!isLinkedCertificate">
+        <app-template-non-linked-tw-ac
+          [certificateTemplate]="certificateTemplate"
+          [certificate]="certificate" #template>
+        </app-template-non-linked-tw-ac>
+      </ng-container>
+      <!-- </ng-container> -->
+      <!-- <ng-container *ngIf="certificate.type==='Community'">
+        <app-template-community [certificate]="certificate" #template></app-template-community>
+      </ng-container>
+      <ng-container *ngIf="certificate.type==='Enterprise'">
+        <app-template-corporate [certificate]="certificate" #template></app-template-corporate>
+      </ng-container>
+      <ng-container *ngIf="certificate.type==='University'">
+        <app-template-university [certificate]="certificate" #template></app-template-university>
+      </ng-container> -->
+      <div>
+        <a *ngIf="downloadLink" [href]="svgUrl" target="_blank" download="{{certificate|name}}的证书.svg">下载 SVG 版本</a>
+        <a *ngIf="downloadLink" [href]="pngUrl" target="_blank" download="{{certificate|name}}的证书.png">下载 PNG 版本</a>
+      </div>
+    </div>
+  </nz-content>
+</nz-layout>
