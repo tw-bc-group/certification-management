@@ -2,6 +2,7 @@ import dev from './dev';
 import {environment} from '../../environments/environment';
 
 export interface Config {
+  nodeEnv: string;
   app: {
     env: string;
     port: string;
@@ -24,8 +25,8 @@ export interface Config {
 }
 
 export const app = {
-  env: 'dev',
-  port: '',
+  env: environment.APP_ENV || 'dev',
+  port: environment.APP_PORT,
 };
 
 export const jwt = {
@@ -33,12 +34,12 @@ export const jwt = {
 };
 
 const irita = {
-  node: process.env.IRITA_NODE,
-  chainId: process.env.IRITA_CHAIN_ID,
-  keystorePassword: process.env.IRITA_KEY_PASSWORD,
-  adminKeyName: process.env.IRITA_KEY_NAME,
-  adminKeyMnemonic: process.env.IRITA_MNEMONIC,
-  apiKey: process.env.IRITA_API_KEY,
+  node: environment.IRITA_NODE,
+  chainId: environment.IRITA_CHAIN_ID,
+  keystorePassword: environment.IRITA_KEY_PASSWORD,
+  adminKeyName: environment.IRITA_KEY_NAME,
+  adminKeyMnemonic: environment.IRITA_MNEMONIC,
+  apiKey: environment.IRITA_API_KEY,
 };
 
 // tslint:disable-next-line:variable-name

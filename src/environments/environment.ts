@@ -10,13 +10,17 @@ export const environment = {
   // lcAppId: 'QVS9yEu2f1BmLXX5APgPMr9M-gzGzoHsz',
   // lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt',
   password: '001',
-  IRITA_NODE: '',
-  IRITA_CHAIN_ID: '',
-  IRITA_KEY_PASSWORD: '',
-  IRITA_KEY_NAME: '',
-  IRITA_MNEMONIC: '',
+  IRITA_NODE: 'http://testnet.bianjie.ai:26657',
+  IRITA_CHAIN_ID: 'testing',
+  IRITA_KEY_PASSWORD: '12345678',
+  IRITA_KEY_NAME: 'tw',
+  // tslint:disable-next-line:max-line-length
+  IRITA_MNEMONIC: 'exit effort connect element tiny squeeze worry brown great coffee canoe hole depend great comfort resemble visual patrol smart speak travel cushion damp lake',
   IRITA_API_KEY: '',
-  JWT_SECRETKEY: ''
+  JWT_SECRETKEY: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
+  APP_PORT: '3000',
+  APP_ENV: 'dev',
+
 };
 
 /*
