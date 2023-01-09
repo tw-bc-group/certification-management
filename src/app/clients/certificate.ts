@@ -56,7 +56,7 @@ class IritaKeyDAO implements KeyDAO {
 
 export const generateDenomId = (): string => `thoughtworks${uuid().replace(/-/g, '')}`;
 
-export const generateCertificateId = (count: number): string => `nft${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
+export const generateCertificateId = (count: number): string => `certId${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
 
 export const generateSchema = () => {
 //  const settings: TJS.PartialArgs = {
