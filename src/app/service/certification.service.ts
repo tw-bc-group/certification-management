@@ -72,13 +72,12 @@ class CertificateService {
     // todo 如何获取irita的key name
     const sender = await getAdminAddress();
     const denomId = generateDenomId();
-    const schema = generateSchema();
+    // const schema = generateSchema();
     const issueDenomMsg = {
       type: TxType.MsgIssueDenom,
       value: {
         id: denomId,
         name: denomName,
-        schema,
         sender,
         mintRestricted: true,
         updateRestricted: true,
@@ -115,10 +114,11 @@ class CertificateService {
       }
     };
     const msgs = [issueDenomMsg, mintCertificateMsg];
+    console.log(issueDenomMsg);
+    console.log(mintCertificateMsg);
     const simulation = await this.certificateClient.tx.simulate(msgs, baseTx);
+    console.log('check');
     // Fee multiplier 1.2 recommended by bianjie staff
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const amount = Math.floor(simulation.gasInfo.gasUsed * 1.2).toString();
     const realTx = newBaseTx({
       fee: {
