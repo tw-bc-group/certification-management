@@ -44,7 +44,19 @@ export const saveCertificate: ({
     lcCertificate.set(object.key, object.image);
   });
   // todo set certificate fields
-  const {lastName, firstName, certificateTemplate, certName, certDirection, issuer, type, publishedAt, expiredAt, partner} = certificate;
+  const {
+    lastName,
+    firstName,
+    certificateTemplate,
+    certName,
+    certDirection,
+    issuer,
+    type,
+    publishedAt,
+    expiredAt,
+    partner,
+    subordinateCompany
+  } = certificate;
   lcCertificate.set('name', `${lastName}_${firstName}`);
   lcCertificate.set('certificateTemplate', certificateTemplate);
   lcCertificate.set('certName', certName);
@@ -54,6 +66,7 @@ export const saveCertificate: ({
   lcCertificate.set('publishedAt', publishedAt);
   lcCertificate.set('expiredAt', expiredAt);
   lcCertificate.set('partner', partner);
+  lcCertificate.set('subordinateCompany', subordinateCompany);
 
   return lcCertificate.save().then(photoObj => {
     const pngUrl = photoObj.get('png').url();

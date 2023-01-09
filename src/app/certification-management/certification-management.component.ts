@@ -12,7 +12,7 @@ import {
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
 import QRCode from 'qrcode';
-import {hexify, retrieveContract, walletAddress} from '../contracts/web3Provider';
+import {hexify} from '../contracts/web3Provider';
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from '../utils/constants';
@@ -96,6 +96,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.certificate = {
       certificateTemplate: CertificateTemplateType.TW_AC,
       certDirection: CertificateDirection.TECH,
+      subordinateCompany: '',
       certName: this.isLinkedCertificate
         ? CertificateLevel.PROFESSIONAL_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
@@ -140,8 +141,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.certificate.lastName = queriedCertificate.name.split('_')[1];
     this.svgUrl = queriedCertificate.svg.attributes.url;
     this.pngUrl = queriedCertificate.png.attributes.url;
-    this.changeDetector.detectChanges();
     this.downloadLink = true;
+    this.changeDetector.detectChanges();
   }
 
   showModal(): void {
@@ -383,9 +384,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     const receiverAddress = this.certificate.receiverAddress;
     const qrCode = this.certificate.qrCode;
     const dpmLevel = this.certificate.dpmLevel;
-    const logoUrl = this.certificate.logoUrl;
-    const certDirection = this.certificate.certDirection;
-    const certTemplate = this.certificate.certificateTemplate;
     // tslint:disable-next-line:max-line-length
     const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
     return response.certId;

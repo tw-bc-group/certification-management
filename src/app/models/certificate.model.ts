@@ -79,4 +79,5 @@ export interface CertificateModel {
   qrCode: string;
   dpmLevel: DpmLevel;
   certificateTemplate?: CertificateTemplateType;
+  subordinateCompany?: string;
 }

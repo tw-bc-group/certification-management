@@ -40,6 +40,13 @@
     </nz-select>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-label>所属公司</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="subordinateCompany" [(ngModel)]="certificate.subordinateCompany"/>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label nzRequired>姓</nz-form-label>
     <nz-form-control>
       <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
