@@ -1,21 +1,10 @@
 import config from '../config/config';
-import {
-  BaseTx,
-  Key,
-  KeyDAO,
-  newClient,
-  PubkeyType,
-  SdkError,
-  TxResult,
-  TxType
-} from '@irita/irita-sdk';
+import {BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError} from '@irita/irita-sdk';
 import {v4 as uuid} from 'uuid';
+
 // import * as TJS from 'typescript-json-schema';
-import { resolve } from 'path';
-import { CertificateModel } from '../models/certificate.model';
 
 class IritaKeyDAO implements KeyDAO {
-//  private wallets = DB.wallet;
 
   async write(name: string, key: Key): Promise<void> {
     console.log('123');
@@ -100,7 +89,7 @@ export const newBaseTx = (baseTx?: Partial<BaseTx>): BaseTx => {
 };
 
 const newBaseTxForMint = (): BaseTx => {
-  const defaultBaseTx: BaseTx = {
+  return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
     pubkeyType: PubkeyType.sm2,
@@ -110,29 +99,7 @@ const newBaseTxForMint = (): BaseTx => {
     },
     gas: '400000',
   };
-  return defaultBaseTx;
 };
-
-// https://github.com/bianjieai/opb-faq/issues/21
-// export const mintAndTransfer = async (nft: Nft): Promise<TxResult> => {
-//   console.log('Minting NFT: ', nft);
-//   const sender = await getAdminAddress();
-//   const msgs: any[] = [
-//     {
-//       type: TxType.MsgMintNFT,
-//       value: {
-//         id: nft.nft.id,
-//         denom_id: nft.denom.id,
-//         name: nft.nft.name,
-//         uri: nft.imageUrl,
-//         data: JSON.stringify(nft),
-//         sender,
-//         recipient: nft.creator.wallet,
-//       },
-//     },
-//   ];
-//   return await client.tx.buildAndSend(msgs, newBaseTxForMint());
-// };
 
 // Instantiate client 实例化客户端
 const headers = config.irita.apiKey && { headers: { 'x-api-key': config.irita.apiKey } };
