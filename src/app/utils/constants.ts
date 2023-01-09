@@ -1,5 +1,5 @@
-import { environment } from '../../environments/environment';
-import {CertificateType, CertificateLevel, NonLinkedCertificateLevel} from '../models/certificate.model';
+import {environment} from '../../environments/environment';
+import {CertificateLevel, CertificateType, NonLinkedCertificateLevel} from '../models/certificate.model';
 
 export interface ICertificationColorPair {
   baseColor: string;
@@ -15,7 +15,7 @@ type ICertificationColors = {
 };
 
 export const certificationColors: ICertificationColors = {
-  [CertificateType.ThoughtWorks]: {
+  [CertificateType.Thoughtworks]: {
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#F6A559', radiaGradientColor: '#F38C48'
     },

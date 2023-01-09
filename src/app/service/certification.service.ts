@@ -1,7 +1,7 @@
 // import { HttpException } from '@exceptions/HttpException';
 import {client, generateCertificateId, generateDenomId, generateSchema, getAdminAddress, newBaseTx} from '../clients/certificate';
 import {Client, TxType} from '@irita/irita-sdk';
-import {CertificateDirection, CertificateModel, CertificateTemplateType, CertificateType, DpmLevel} from '../models/certificate.model';
+import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
 
 class CertificateService {
   certificateClient: Client;
@@ -25,6 +25,7 @@ class CertificateService {
       hash: response.hash,
     };
   }
+
   /**
    * create Certificate
    * @param userId number userId
@@ -35,6 +36,7 @@ class CertificateService {
    * @param denomName string denom name
    * @param certificateName string certificate name
    * @param photoUrl string nft image url
+   * @param logoUrl string partner logo url
    * @param certificateType string
    * @param partner string
    * @param publishedAt string
@@ -54,7 +56,6 @@ class CertificateService {
     lastNamePinyin: string,
     denomName: string,
     certificateName: string,
-    logoUrl: string,
     photoUrl: string,
     certificateType: CertificateType,
     partner: string,
@@ -65,8 +66,6 @@ class CertificateService {
     receiverAddress: string,
     qrCode: string,
     dpmLevel: DpmLevel,
-    certDirection: CertificateDirection,
-    certificateTemplate: CertificateTemplateType
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
     const baseTx = newBaseTx();
@@ -90,7 +89,6 @@ class CertificateService {
       certName: certificateName,
       type: certificateType,
       partner,
-      logoUrl,
       photoUrl,
       firstName,
       firstNamePinyin,
@@ -103,8 +101,6 @@ class CertificateService {
       receiverAddress,
       qrCode,
       dpmLevel,
-      certDirection,
-      certificateTemplate
     };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,
@@ -112,7 +108,7 @@ class CertificateService {
         id: certId,
         denom_id: denomId,
         name: certificateName,
-        uri: photoUrl,
+        url: photoUrl,
         data: JSON.stringify(certificate),
         sender,
         recipient: creatorAddress,

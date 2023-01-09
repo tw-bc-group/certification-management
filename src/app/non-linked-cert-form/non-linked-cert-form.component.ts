@@ -45,7 +45,11 @@ export class NonLinkedCertFormComponent implements OnInit {
     this.certificateTemplateChange.emit(value);
   }
 
-  onPhotoChanged(logoUrl: string): void {
+  onPhotoChanged(photoUrl: string): void {
+    this.certificate.photoUrl = photoUrl;
+  }
+
+  onLogoChanged(logoUrl: string): void {
     this.certificate.logoUrl = logoUrl;
   }
 }

@@ -45,7 +45,7 @@
       name="type"
       [(ngModel)]="certificate.type"
     >
-      <nz-option nzValue="ThoughtWorks" nzLabel="ThoughtWorks"></nz-option>
+      <nz-option nzValue="Thoughtworks" nzLabel="Thoughtworks"></nz-option>
       <nz-option nzValue="Community" nzLabel="Community"></nz-option>
       <nz-option nzValue="Enterprise" nzLabel="Enterprise"></nz-option>
       <nz-option nzValue="University" nzLabel="University"></nz-option>
@@ -109,5 +109,9 @@
   </nz-form-item>
 </div>
 
-<app-trainee-photo-upload [photoUrl]="certificate.photoUrl"
-                          (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
+<div class="photo-upload">
+  <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
+                            (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
+  <app-logo-photo-upload [logoUrl]="certificate.logoUrl"
+                         (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
+</div>

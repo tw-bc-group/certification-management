@@ -12,7 +12,7 @@ import {
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {addYears, startOfDay} from 'date-fns';
 import QRCode from 'qrcode';
-import {hexify, retrieveContract, walletAddress} from './contracts/web3Provider';
+import {hexify} from './contracts/web3Provider';
 import {HttpClient} from '@angular/common/http';
 import {flatMap, map} from 'rxjs/operators';
 import {Constants} from './utils/constants';
@@ -108,13 +108,13 @@ export class AppComponent implements OnInit, OnDestroy {
       publishedAt,
       fingerprint: '',
       partner: '',
-      type: this.isLinkedCertificate ? CertificateType.ThoughtWorks : null,
+      type: this.isLinkedCertificate ? CertificateType.Thoughtworks : null,
       issuer: '',
       receiverAddress: '',
       dpmLevel: DpmLevel.JUNIOR,
       qrCode: this.isLinkedCertificate
         ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
-          '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
+        '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
         : null
     };
   }
@@ -144,7 +144,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showModal(): void {
     this.isVisible = true;
-    console.log('====', this.svgUrl);
   }
 
 
@@ -352,39 +351,39 @@ export class AppComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    const tx = await retrieveContract().methods.issue(
-      this.certificate.certName,
-      this.certificate.firstName,
-      this.certificate.lastName,
-      this.certificate.publishedAt.valueOf(),
-      this.certificate.expiredAt.valueOf(),
-      JSON.stringify({
-        type: this.certificate.type,
-        partner: this.certificate.partner,
-        issuer: this.certificate.issuer
-      }),
-      this.certificate.receiverAddress || walletAddress()
-    ).send({from: walletAddress()});
-    return tx.events.Transfer.returnValues.tokenId;
-    // const userId = 1;
-    // const denomName = '';
-    // const firstName = this.certificate.firstName;
-    // const firstNamePinyin = this.certificate.firstNamePinyin;
-    // const lastName = this.certificate.lastName;
-    // const lastNamePinyin = this.certificate.lastNamePinyin;
-    // const certName = this.certificate.certName;
-    // const photoUrl = this.certificate.photoUrl;
-    // const type = this.certificate.type;
-    // const partner = this.certificate.partner;
-    // const expiredAt = this.certificate.expiredAt;
-    // const fingerprint = this.certificate.fingerprint;
-    // const issuer = this.certificate.issuer;
-    // const receiverAddress = this.certificate.receiverAddress;
-    // const qrCode = this.certificate.qrCode;
-    // const dpmLevel = this.certificate.dpmLevel;
-    // // tslint:disable-next-line:max-line-length
+    // const tx = await retrieveContract().methods.issue(
+    //   this.certificate.certName,
+    //   this.certificate.firstName,
+    //   this.certificate.lastName,
+    //   this.certificate.publishedAt.valueOf(),
+    //   this.certificate.expiredAt.valueOf(),
+    //   JSON.stringify({
+    //     type: this.certificate.type,
+    //     partner: this.certificate.partner,
+    //     issuer: this.certificate.issuer
+    //   }),
+    //   this.certificate.receiverAddress || walletAddress()
+    // ).send({from: walletAddress()});
+    // return tx.events.Transfer.returnValues.tokenId;
+    const userId = 1;
+    const denomName = '';
+    const firstName = this.certificate.firstName;
+    const firstNamePinyin = this.certificate.firstNamePinyin;
+    const lastName = this.certificate.lastName;
+    const lastNamePinyin = this.certificate.lastNamePinyin;
+    const certName = this.certificate.certName;
+    const photoUrl = this.certificate.photoUrl;
+    const type = this.certificate.type;
+    const partner = this.certificate.partner;
+    const expiredAt = this.certificate.expiredAt;
+    const fingerprint = this.certificate.fingerprint;
+    const issuer = this.certificate.issuer;
+    const receiverAddress = this.certificate.receiverAddress;
+    const qrCode = this.certificate.qrCode;
+    const dpmLevel = this.certificate.dpmLevel;
     // tslint:disable-next-line:max-line-length
-    // const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
-    // return response.certId;
+    // tslint:disable-next-line:max-line-length
+    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
+    return response.certId;
   }
 }

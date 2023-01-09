@@ -26,13 +26,11 @@ export class LogoPhotoUploadComponent implements OnInit {
   photoChanged(files: FileList): void {
     this.uploading = true;
     blobToDataURL(files[0]).then(url => {
-        console.log('----------', url);
         this.uploading = false;
         this.logoUrl = url;
         this.photoChange.emit(url);
       }
     );
-    console.log('========', this.logoUrl);
   }
 
   deleteImg() {

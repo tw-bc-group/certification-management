@@ -1,5 +1,5 @@
 export enum CertificateType {
-  ThoughtWorks = 'ThoughtWorks',
+  Thoughtworks = 'Thoughtworks',
   Community = 'Community',
   Enterprise = 'Enterprise',
   University = 'University',
@@ -63,10 +63,10 @@ export const PartnerOptions = [
 export interface CertificateModel {
   certName: string;
   type: CertificateType;
-  certDirection: CertificateDirection;
+  certDirection?: CertificateDirection;
   partner: string;
   photoUrl: string;
-  logoUrl: string;
+  logoUrl?: string;
   firstName: string;
   firstNamePinyin: string;
   lastName: string;
@@ -78,5 +78,5 @@ export interface CertificateModel {
   receiverAddress: string;
   qrCode: string;
   dpmLevel: DpmLevel;
-  certificateTemplate: CertificateTemplateType;
+  certificateTemplate?: CertificateTemplateType;
 }

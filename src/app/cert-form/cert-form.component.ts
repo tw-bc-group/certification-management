@@ -53,4 +53,8 @@ export class CertFormComponent implements OnInit {
   onPhotoChanged(photoUrl: string): void {
     this.certificate.photoUrl = photoUrl;
   }
+
+  onLogoChanged(logoUrl: string): void {
+    this.certificate.logoUrl = logoUrl;
+  }
 }

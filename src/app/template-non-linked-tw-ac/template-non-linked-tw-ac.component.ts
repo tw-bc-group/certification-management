@@ -1,8 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {
-  CertificateModel,
-  CertificateTemplateType,
-} from "../models/certificate.model";
+import {CertificateModel, CertificateTemplateType,} from '../models/certificate.model';
 
 @Component({
   selector: 'app-template-non-linked-tw-ac',
