@@ -29,7 +29,6 @@ class IritaKeyDAO implements KeyDAO {
   }
 
   async read(name: string): Promise<Key> {
-    console.log('321');
     // const wallet = await this.wallets.findFirst({
     //   where: {
     //     keyName: name,

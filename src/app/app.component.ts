@@ -387,7 +387,7 @@ export class AppComponent implements OnInit, OnDestroy {
     const certDirection = this.certificate.certDirection;
     const certTemplate = this.certificate.certificateTemplate;
     // tslint:disable-next-line:max-line-length
-    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, logoUrl, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel, certDirection, certTemplate);
+    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
     return response.certId;
   }
 }
