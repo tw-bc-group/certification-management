@@ -9,7 +9,14 @@ export const environment = {
   lcAppKey: '71lAzzF9vt2clrTd8dyNAffW',
   // lcAppId: 'QVS9yEu2f1BmLXX5APgPMr9M-gzGzoHsz',
   // lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt',
-  password: '001'
+  password: '001',
+  IRITA_NODE: '',
+  IRITA_CHAIN_ID: '',
+  IRITA_KEY_PASSWORD: '',
+  IRITA_KEY_NAME: '',
+  IRITA_MNEMONIC: '',
+  IRITA_API_KEY: '',
+  JWT_SECRETKEY: ''
 };
 
 /*
