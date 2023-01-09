@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {from, Observable, Subject, zip} from 'rxjs';
 import {
   CertificateDirection,
@@ -68,7 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
   templateSimple: { svgRef: ElementRef };
 
   constructor(private sanitizer: DomSanitizer,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -139,6 +140,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.certificate.lastName = queriedCertificate.name.split('_')[1];
     this.svgUrl = queriedCertificate.svg.attributes.url;
     this.pngUrl = queriedCertificate.png.attributes.url;
+    this.changeDetector.detectChanges();
     this.downloadLink = true;
   }
 

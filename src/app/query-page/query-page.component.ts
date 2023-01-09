@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NzMessageService} from 'ng-zorro-antd/message';
 import {fetchCertificate} from '../utils/certificatesStorage';
 
 
@@ -11,7 +10,7 @@ import {fetchCertificate} from '../utils/certificatesStorage';
 export class QueryPageComponent implements OnInit {
   searchText: string;
 
-  constructor(private message: NzMessageService) {
+  constructor() {
   }
 
   @Output()
@@ -19,12 +18,9 @@ export class QueryPageComponent implements OnInit {
 
 
   search(): void {
-    console.log('certId: ', this.searchText);
     const certId = this.searchText;
     const promise = fetchCertificate({certId});
     promise.then((resolved) => {
-      // @ts-ignore
-      console.log('query result: ', resolved[0].attributes);
       // @ts-ignore
       this.valueChange.emit(resolved[0].attributes);
     }).catch(err => {
