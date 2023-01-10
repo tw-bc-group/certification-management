@@ -76,7 +76,6 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     DpmLevelNamePipe,
     TraineePhotoUploadComponent,
     LogoPhotoUploadComponent,
-    LoginComponent,
     CertificationManagementComponent,
   ],
   providers: [{provide: NZ_ICONS, useValue: icons}],

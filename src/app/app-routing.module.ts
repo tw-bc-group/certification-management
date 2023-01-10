@@ -6,7 +6,7 @@ import { CertificationManagementComponent } from './certification-management/cer
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'certification-management', component: CertificationManagementComponent },
-  { path: '',   redirectTo: '/certification-management', pathMatch: 'full' },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

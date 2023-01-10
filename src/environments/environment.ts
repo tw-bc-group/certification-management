@@ -9,6 +9,7 @@ export const environment = {
   lcAppKey: '71lAzzF9vt2clrTd8dyNAffW',
   // lcAppId: 'QVS9yEu2f1BmLXX5APgPMr9M-gzGzoHsz',
   // lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt',
+  username: 'cac-admin',
   password: '001',
   IRITA_NODE: 'http://localhost:4200/testnet',
   IRITA_CHAIN_ID: 'testing',
