@@ -69,10 +69,8 @@ class CertificateService {
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
     const baseTx = newBaseTx();
-    // todo 如何获取irita的key name
     const sender = await getAdminAddress();
     const denomId = generateDenomId();
-    // const schema = generateSchema();
     const issueDenomMsg = {
       type: TxType.MsgIssueDenom,
       value: {
@@ -114,12 +112,10 @@ class CertificateService {
       }
     };
     const msgs = [issueDenomMsg, mintCertificateMsg];
-    console.log(issueDenomMsg);
-    console.log(mintCertificateMsg);
-    const simulation = await this.certificateClient.tx.simulate(msgs, baseTx);
-    console.log('check');
+    // const simulation = await this.certificateClient.tx.simulate(msgs, baseTx);
     // Fee multiplier 1.2 recommended by bianjie staff
-    const amount = Math.floor(simulation.gasInfo.gasUsed * 1.2).toString();
+    // const amount = Math.floor(simulation.gasInfo.gasUsed * 1.2).toString();
+    const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTx({
       fee: {
         denom: 'ugas',
