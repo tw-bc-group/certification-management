@@ -2,6 +2,7 @@ import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from 
 import {fetchCertificate} from '../utils/certificatesStorage';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {CertificateDirectionOptions, CertificateTemplateOptions} from '../models/certificate.model';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class QueryPageComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['certificateTemplate', 'certDirection', 'partner', 'name'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  certificateTemplateOptions = CertificateTemplateOptions;
+  certificateDirectionOptions = CertificateDirectionOptions;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

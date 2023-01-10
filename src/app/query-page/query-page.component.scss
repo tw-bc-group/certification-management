@@ -1,7 +1,4 @@
 
-.btn-wrapper {
-  margin-top: 10px;
-}
 
 .issue-btn {
   color: #f28c48;
@@ -11,4 +8,24 @@
 table {
   width: 100%;
   margin-top: 50px;
+}
+
+
+.search {
+  display: flex;
+}
+
+nz-form-item {
+  &:nth-child(even) {
+    margin-right: 10px;
+  }
+
+  nz-select {
+    width: 135px;
+  }
+}
+
+.input {
+  width: 567px;
+  margin-right: 80px;
 }
