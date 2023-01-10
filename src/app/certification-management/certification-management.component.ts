@@ -182,7 +182,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   checkFormValidation(): boolean {
-    const { firstName, lastName, issuer } = this.certificate;
+    const {firstName, lastName, issuer} = this.certificate;
     if (this.isLinkedCertificate) {
       return (!!firstName && !!lastName && !!issuer) ? false : true;
     } else {
@@ -207,6 +207,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private generateCertificateId = (count: number): string => `cert_${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
+
   private uploadCerts(): void {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
@@ -219,6 +220,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       this.uploadCertsWithoutSimple(certId, pictureName);
     }
   }
+
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     const simpleSvgDataUrl = this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement);
@@ -384,8 +386,9 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     const receiverAddress = this.certificate.receiverAddress;
     const qrCode = this.certificate.qrCode;
     const dpmLevel = this.certificate.dpmLevel;
-    // tslint:disable-next-line:max-line-length
-    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
+    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName,
+      lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer,
+      receiverAddress, qrCode, dpmLevel);
     return response.certId;
   }
 }
