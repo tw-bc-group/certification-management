@@ -10,7 +10,9 @@ import {
   NzLayoutModule,
   NzModalModule,
   NzPageHeaderModule,
+  NzPaginationModule,
   NzSelectModule,
+  NzTableModule,
 } from 'ng-zorro-antd';
 import {CertFormComponent} from '../cert-form/cert-form.component';
 import {NonLinkedCertFormComponent} from '../non-linked-cert-form/non-linked-cert-form.component';
@@ -41,11 +43,9 @@ import {EnglishNamePipe} from '../pipes/english-name.pipe';
 import {DpmLevelNamePipe} from '../pipes/dpm-level-name.pipe';
 import {TraineePhotoUploadComponent} from '../trainee-photo-upload/trainee-photo-upload.component';
 import {LogoPhotoUploadComponent} from '../logo-photo-upload/logo-photo-upload.component';
-import {LoginComponent} from '../login/login.component';
 import {NZ_ICONS} from 'ng-zorro-antd/icon';
 import {IconDefinition} from '@ant-design/icons-angular';
 import {DeleteOutline, PlusOutline} from '@ant-design/icons-angular/icons';
-import {MatPaginatorModule, MatTableModule} from '@angular/material';
 
 const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 
@@ -94,8 +94,8 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
+    NzTableModule,
+    NzPaginationModule,
   ]
 })
 export class CertificationManagementModule { }
