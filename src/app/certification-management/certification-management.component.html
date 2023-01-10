@@ -37,7 +37,7 @@
       <app-query-page *ngIf="tabKey==='queryCertificate'" (valueChange)="onValueChange($event)"></app-query-page>
     </div>
 
-    <div class="preview">
+    <div class="preview" *ngIf="tabKey!=='queryCertificate'">
       <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
       <ng-container *ngIf="isLinkedCertificate">
         <ng-container *ngIf="certificateTemplate === 'tw'">
