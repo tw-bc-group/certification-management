@@ -119,6 +119,6 @@
 <div class="photo-upload">
   <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
                             (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
-  <app-logo-photo-upload [logoUrl]="certificate.logoUrl"
+  <app-logo-photo-upload *ngIf="certificateTemplate === 'tw-cor'" [logoUrl]="certificate.logoUrl"
                          (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
 </div>
