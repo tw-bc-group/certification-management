@@ -1,0 +1,26 @@
+{
+  "/testnet": {
+    "target": "http://testnet.bianjie.ai:26657/",
+    "secure": false,
+    "pathRewrite": {
+      "^/testnet": ""
+    },
+    "logLevel": "debug"
+  },
+  "/api": {
+    "target": "https://api.remove.bg/",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  },
+  "/photos": {
+    "target": "https://localhost:3000/photos",
+    "secure": false,
+    "pathRewrite": {
+      "^/photos": ""
+    },
+    "logLevel": "debug"
+  }
+}

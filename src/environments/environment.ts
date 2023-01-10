@@ -10,7 +10,7 @@ export const environment = {
   // lcAppId: 'QVS9yEu2f1BmLXX5APgPMr9M-gzGzoHsz',
   // lcAppKey: 'im6EPY8zPE38G2rf9rP53TDt',
   password: '001',
-  IRITA_NODE: 'http://testnet.bianjie.ai:26657',
+  IRITA_NODE: 'http://localhost:4200/testnet',
   IRITA_CHAIN_ID: 'testing',
   IRITA_KEY_PASSWORD: '12345678',
   IRITA_KEY_NAME: 'tw',
