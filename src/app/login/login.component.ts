@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
-    if (this.validateUsername() || this.validatePassword()) {
+    const usernameInvalid = this.validateUsername();
+    const passwordInvalid = this.validatePassword();
+    if (usernameInvalid || passwordInvalid) {
       return;
     }
     this.router.navigate(['/', 'certification-management']);
