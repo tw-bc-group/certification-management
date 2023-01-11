@@ -4,6 +4,7 @@ import {CertificationManagementComponent} from './certification-management.compo
 import {
   NzButtonModule,
   NzDatePickerModule,
+  NzEmptyModule,
   NzFormModule,
   NzIconModule,
   NzInputModule,
@@ -96,6 +97,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     BrowserAnimationsModule,
     NzTableModule,
     NzPaginationModule,
+    NzEmptyModule,
   ]
 })
 export class CertificationManagementModule { }

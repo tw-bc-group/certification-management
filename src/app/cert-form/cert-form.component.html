@@ -14,12 +14,6 @@
     </nz-select>
   </nz-form-item>
 
-  <nz-form-item *ngIf="certificateTemplate === 'tw-cor'">
-    <nz-form-label>合作方</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="partner" [(ngModel)]="certificate.partner"/>
-    </nz-form-control>
-  </nz-form-item>
 
   <nz-form-item *ngIf="certificateTemplate === 'dpm'">
     <nz-form-label>等级</nz-form-label>
@@ -51,7 +45,7 @@
       <nz-option nzValue="University" nzLabel="University"></nz-option>
     </nz-select>
   </nz-form-item>
-  <nz-form-item>
+  <nz-form-item *ngIf="certificateTemplate !== 'dpm'">
     <nz-form-label>认证方向</nz-form-label>
     <nz-select
       name="certDirection" [(ngModel)]="certificate.certDirection"

@@ -45,7 +45,8 @@
 </div>
 
 <div class="table">
-  <nz-table #basicTable [nzData]="listOfData" nzShowSizeChanger="true" nzShowQuickJumper="true" nzPageSize="15">
+  <nz-table #basicTable [nzData]="listOfData" nzShowSizeChanger="true" nzShowQuickJumper="true" nzPageSize="15"
+            [nzNoResult]="noResult">
     <thead>
     <tr>
       <th>证书类型</th>
@@ -63,5 +64,7 @@
     </tr>
     </tbody>
   </nz-table>
-
+  <ng-template #noResult>
+    <nz-empty nzNotFoundContent="暂无内容" nzNotFoundImage="assets/no-result-image.png"></nz-empty>
+  </ng-template>
 </div>
