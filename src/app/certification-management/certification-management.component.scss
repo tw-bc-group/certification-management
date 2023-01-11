@@ -38,6 +38,25 @@
         }
       }
     }
+
+    .user {
+      .ant-avatar {
+        color:#FFFFFF;
+        background-color:#F8B893;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      span {
+        margin-left: 14px;
+        color: #48494B;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
   }
 
   nz-header,

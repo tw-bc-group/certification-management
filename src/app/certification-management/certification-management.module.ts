@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CertificationManagementComponent} from './certification-management.component';
 import {
+  NzAvatarModule,
   NzButtonModule,
   NzDatePickerModule,
   NzEmptyModule,
@@ -98,6 +99,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzTableModule,
     NzPaginationModule,
     NzEmptyModule,
+    NzAvatarModule,
   ]
 })
 export class CertificationManagementModule { }
