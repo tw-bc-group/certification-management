@@ -1,17 +1,49 @@
-<nz-card nzTitle="Login">
+<div class="login-sidebar"></div>
+<img src="assets/loginsketch.png" class="login-sketch"/>
+<div class="login-form">
+  <div class="login-logo-title">
+    <img src="assets/logo.png"/>
+    <span>证书颁发系统</span>
+  </div>
+  <h2>用户登录</h2>
   <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-    <input nz-input placeholder="请输入用户名" formControlName="username" class="username-input">
-    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-      <div *ngIf="username.errors?.required || username.errors?.invalidUsername">
-        请输入正确的用户名
+    <label for="username">用户名</label>
+    <nz-input-group [nzSuffix]="usernameCleanIcon" class="username-input-group">
+      <input
+        id="username"
+        nz-input placeholder="请输入用户名"
+        formControlName="username"
+        class="username-input"
+        [ngClass]="{invalid: username.invalid && (username.dirty || username.touched)}"
+      >
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+        <div *ngIf="username.errors?.required">
+          请输入用户名
+        </div>
       </div>
-    </div>
-    <input nz-input type="password" placeholder="请输入密码" formControlName="password" class="password-input">
-    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-      <div *ngIf="password.errors?.required || password.errors?.invalidPassword">
-        请输入密码
+      <ng-template #usernameCleanIcon>
+        <i nz-icon nzType="close-circle" nzTheme="fill" *ngIf="username.value" (click)="username.setValue('')"></i>
+      </ng-template>
+    </nz-input-group>
+    <label for="password">密码</label>
+    <nz-input-group [nzSuffix]="passwordCleanIcon" class="password-input-group">
+      <input
+        id="password"
+        nz-input type="password"
+        placeholder="请输入密码"
+        formControlName="password"
+        class="password-input"
+        [ngClass]="{invalid: password.invalid && (password.dirty || password.touched)}"
+      >
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors?.required">
+          请输入密码
+        </div>
       </div>
-    </div>
-    <button nz-button nzType="default" type="submit" [disabled]="loginForm.invalid" class="submit-button">Login</button>
+      <ng-template #passwordCleanIcon>
+        <i nz-icon nzType="close-circle" nzTheme="fill" *ngIf="password.value" (click)="password.setValue('')"></i>
+      </ng-template>
+    </nz-input-group>
+    <button nz-button nzType="default" type="submit" [disabled]="loginForm.invalid" class="submit-button">登录</button>
   </form>
-</nz-card>
+</div>
