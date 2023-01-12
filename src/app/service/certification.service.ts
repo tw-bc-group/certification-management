@@ -112,9 +112,10 @@ class CertificateService {
       }
     };
     const msgs = [issueDenomMsg, mintCertificateMsg];
-    // const simulation = await this.certificateClient.tx.simulate(msgs, baseTx);
-    // Fee multiplier 1.2 recommended by bianjie staff
-    // const amount = Math.floor(simulation.gasInfo.gasUsed * 1.2).toString();
+    /*
+    * issue Denom需要simulation
+    * issue certificate不用simulation（目前写死一个amount用于测试链）
+    * */
     const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTx({
       fee: {
