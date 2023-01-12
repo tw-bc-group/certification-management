@@ -2,12 +2,9 @@ import config from '../config/config';
 import {BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError} from '@irita/irita-sdk';
 import {v4 as uuid} from 'uuid';
 
-// import * as TJS from 'typescript-json-schema';
-
 class IritaKeyDAO implements KeyDAO {
-
+  // private wallets = new PrismaClient({ log: ['query', 'info', 'warn', 'error'] });
   async write(name: string, key: Key): Promise<void> {
-    console.log('123');
     // await this.wallets.create({
     //   data: {
     //     keyName: name,
@@ -17,18 +14,12 @@ class IritaKeyDAO implements KeyDAO {
     return;
   }
 
+  // 目前address和privKey是写死的
   async read(name: string): Promise<Key> {
-    // const wallet = await this.wallets.findFirst({
-    //   where: {
-    //     keyName: name,
-    //   },
-    // });
-    // return {
-    //   address: wallet && wallet.address ? wallet.address : '',
-    //   privKey: wallet && wallet.privKey ? wallet.privKey : '',
-    // };
     return {
+      // address and privKey should not be pushed to repo
       address: '',
+      // tslint:disable-next-line:max-line-length
       privKey: '',
     };
   }
@@ -45,7 +36,7 @@ class IritaKeyDAO implements KeyDAO {
 
 export const generateDenomId = (): string => `thoughtworks${uuid().replace(/-/g, '')}`;
 
-export const generateCertificateId = (count: number): string => `certId${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
+export const generateCertificateId = (count: number): string => `cert${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
 
 export const generateSchema = () => {
 //  const settings: TJS.PartialArgs = {
@@ -73,14 +64,14 @@ export const getAdminAddress = async (): Promise<string> => {
 };
 
 export const newBaseTx = (baseTx?: Partial<BaseTx>): BaseTx => {
-  const amount = '400000';
+  const amount = '100000';
   const defaultBaseTx: BaseTx = {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
     pubkeyType: PubkeyType.sm2,
     fee: {
       denom: 'ugas',
-      amount,
+      amount: '1',
     },
     gas: amount,
   };
