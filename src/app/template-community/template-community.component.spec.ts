@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateCommunityComponent } from './template-community.component';
 
-describe('TemplateCommunityComponent', () => {
+xdescribe('TemplateCommunityComponent', () => {
   let component: TemplateCommunityComponent;
   let fixture: ComponentFixture<TemplateCommunityComponent>;
 

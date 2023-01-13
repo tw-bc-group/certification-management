@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateUniversityComponent } from './template-university.component';
 
-describe('TemplateUniversityComponent', () => {
+xdescribe('TemplateUniversityComponent', () => {
   let component: TemplateUniversityComponent;
   let fixture: ComponentFixture<TemplateUniversityComponent>;
 

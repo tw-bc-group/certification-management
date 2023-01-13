@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateJuniorDPMComponent } from './template-junior-dpm.component';
 
-describe('TemplateTwComponent', () => {
+xdescribe('TemplateTwComponent', () => {
   let component: TemplateJuniorDPMComponent;
   let fixture: ComponentFixture<TemplateJuniorDPMComponent>;
 

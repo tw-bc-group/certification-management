@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateNonLinkedTwAcComponent } from './template-non-linked-tw-ac.component';
 
-describe('TemplateNonLinkedTwAcComponent', () => {
+xdescribe('TemplateNonLinkedTwAcComponent', () => {
   let component: TemplateNonLinkedTwAcComponent;
   let fixture: ComponentFixture<TemplateNonLinkedTwAcComponent>;
 

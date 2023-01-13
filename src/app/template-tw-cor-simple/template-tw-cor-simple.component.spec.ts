@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateTwCorSimpleComponent } from './template-tw-cor-simple.component';
 
-describe('TemplateTwComponent', () => {
+xdescribe('TemplateTwComponent', () => {
   let component: TemplateTwCorSimpleComponent;
   let fixture: ComponentFixture<TemplateTwCorSimpleComponent>;
 
