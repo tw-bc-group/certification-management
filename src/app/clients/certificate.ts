@@ -50,6 +50,15 @@ export const generateSchema = () => {
   return '';
 };
 
+// Instantiate client 实例化客户端
+const headers = config.irita.apiKey && { headers: { 'x-api-key': config.irita.apiKey } };
+export const client = newClient({
+  node: config.irita.node,
+  chainId: config.irita.chainId,
+  keyDAO: new IritaKeyDAO(),
+  rpcConfig: { ...headers, timeout: 20000 },
+});
+
 export const getAdminAddress = async (): Promise<string> => {
   try {
     return await client.keys.show(config.irita.adminKeyName);
@@ -92,11 +101,3 @@ const newBaseTxForMint = (): BaseTx => {
   };
 };
 
-// Instantiate client 实例化客户端
-const headers = config.irita.apiKey && { headers: { 'x-api-key': config.irita.apiKey } };
-export const client = newClient({
-  node: config.irita.node,
-  chainId: config.irita.chainId,
-  keyDAO: new IritaKeyDAO(),
-  rpcConfig: { ...headers, timeout: 20000 },
-});
