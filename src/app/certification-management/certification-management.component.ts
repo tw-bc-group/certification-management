@@ -227,7 +227,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       loadImage(simpleSvgDataUrl).pipe(map(img => this.toPngDataUrl(img))),
       loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
     ).subscribe(([simplePngDataUrl, pngDataUrl]) => {
-      this.upload(certId, [{
+      this.uploadCertificate(certId, [{
         key: 'png',
         fileName: `${pictureName}.png`,
         dataUrl: pngDataUrl
@@ -354,20 +354,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    // const tx = await retrieveContract().methods.issue(
-    //   this.certificate.certName,
-    //   this.certificate.firstName,
-    //   this.certificate.lastName,
-    //   this.certificate.publishedAt.valueOf(),
-    //   this.certificate.expiredAt.valueOf(),
-    //   JSON.stringify({
-    //     type: this.certificate.type,
-    //     partner: this.certificate.partner,
-    //     issuer: this.certificate.issuer
-    //   }),
-    //   this.certificate.receiverAddress || walletAddress()
-    // ).send({from: walletAddress()});
-    // return tx.events.Transfer.returnValues.tokenId;
     const userId = 1;
     const denomName = '';
     const firstName = this.certificate.firstName;
