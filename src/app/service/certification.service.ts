@@ -1,6 +1,14 @@
 // import { HttpException } from '@exceptions/HttpException';
-import {client, generateCertificateId, generateDenomId, generateSchema, getAdminAddress, newBaseTx} from '../clients/certificate';
-import {Client, TxType} from '@irita/irita-sdk';
+import {
+  client,
+  generateCertificateId,
+  generateDenomId,
+  generateSchema,
+  getAdminAddress,
+  newBaseTx,
+  newBaseTxForMint
+} from '../clients/certificate';
+import {Client, TxResult, TxType} from '@irita/irita-sdk';
 import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
 
 class CertificateService {
@@ -77,6 +85,11 @@ class CertificateService {
         id: denomId,
         name: denomName,
         sender,
+        /*
+        * mintRestricted
+        * false 任何人都可以发行NFT
+        * true 只有Denom的所有者可以发行此类别的NFT
+        * */
         mintRestricted: true,
         updateRestricted: true,
       },
@@ -116,13 +129,13 @@ class CertificateService {
     * issue Denom需要simulation
     * issue certificate不用simulation（目前写死一个amount用于测试链）
     * */
-    const amount = Math.floor(4000 * 1.2).toString();
+    // const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTx({
       fee: {
         denom: 'ugas',
-        amount,
+        amount: '400000',
       },
-      gas: amount,
+      gas: '400000',
     });
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
     return {
@@ -131,6 +144,25 @@ class CertificateService {
       hash: response.hash,
     };
   }
+
+  public async mintAndTransferCertificate(certificate: CertificateModel, id: string, denomName: string): Promise<TxResult> {
+    console.log('Minting Certificate: ', certificate);
+    const sender = await getAdminAddress();
+    const msgs: any[] = [{
+      type: TxType.MsgMintNFT,
+      value: {
+        id: '',
+        denom_id: id,
+        name: denomName,
+        uri: certificate.photoUrl,
+        sender,
+        recipient: sender,
+      },
+    }];
+    return await this.certificateClient.tx.buildAndSend(msgs, newBaseTxForMint());
 }
+}
+
+
 
 export default CertificateService;
