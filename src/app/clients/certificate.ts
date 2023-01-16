@@ -88,7 +88,7 @@ export const newBaseTx = (baseTx?: Partial<BaseTx>): BaseTx => {
   return defaultBaseTx;
 };
 
-const newBaseTxForMint = (): BaseTx => {
+export const newBaseTxForMint = (): BaseTx => {
   return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
