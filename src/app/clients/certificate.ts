@@ -3,18 +3,7 @@ import {BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError} from '@irita/irita
 import {v4 as uuid} from 'uuid';
 
 class IritaKeyDAO implements KeyDAO {
-  // private wallets = new PrismaClient({ log: ['query', 'info', 'warn', 'error'] });
-  async write(name: string, key: Key): Promise<void> {
-    // await this.wallets.create({
-    //   data: {
-    //     keyName: name,
-    //     ...key,
-    //   },
-    // });
-    return;
-  }
-
-  // 目前address和privKey是写死的
+  // TODO address and privKey need to config in .env
   async read(name: string): Promise<Key> {
     return {
       // address and privKey should not be pushed to repo
@@ -24,13 +13,12 @@ class IritaKeyDAO implements KeyDAO {
     };
   }
 
-  async delete(name: string): Promise<void> {
-    // const wallet = await this.wallets.findFirst({
-    //   where: {
-    //     keyName: name,
-    //   },
-    // });
-    // await this.wallets.delete({ where: { id: wallet.id } });
+  delete(name: string): Promise<void> {
+    return Promise.resolve(undefined);
+  }
+
+  write(name: string, key: Key): Promise<void> {
+    return Promise.resolve(undefined);
   }
 }
 
