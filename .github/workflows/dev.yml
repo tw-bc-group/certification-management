@@ -41,11 +41,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build --if-present
-
       - name: Lint
         run: npm run lint
 
       - name: Test
-        run: npm run test-headless
+        run: npm run test:ci
+
+      - name: Build
+        run: npm run build --if-present
