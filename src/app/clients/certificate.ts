@@ -72,23 +72,8 @@ export const getAdminAddress = async (): Promise<string> => {
   }
 };
 
-export const newBaseTx = (baseTx?: Partial<BaseTx>): BaseTx => {
-  const amount = '100000';
-  const defaultBaseTx: BaseTx = {
-    from: config.irita.adminKeyName,
-    password: config.irita.keystorePassword,
-    pubkeyType: PubkeyType.sm2,
-    fee: {
-      denom: 'ugas',
-      amount: '1',
-    },
-    gas: amount,
-  };
-  Object.assign(defaultBaseTx, baseTx);
-  return defaultBaseTx;
-};
-
-export const newBaseTxForMint = (): BaseTx => {
+export const newBaseTxForDenom = (baseTx?: Partial<BaseTx>): BaseTx => {
+  const amount = '400000';
   return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
@@ -97,7 +82,21 @@ export const newBaseTxForMint = (): BaseTx => {
       denom: 'ugas',
       amount: '400000',
     },
-    gas: '400000',
+    gas: amount,
+  };
+};
+
+export const newBaseTxForMint = (): BaseTx => {
+  const amount = '400000';
+  return {
+    from: config.irita.adminKeyName,
+    password: config.irita.keystorePassword,
+    pubkeyType: PubkeyType.sm2,
+    fee: {
+      denom: 'ugas',
+      amount,
+    },
+    gas: amount,
   };
 };
 
