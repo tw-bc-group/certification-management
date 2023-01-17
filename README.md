@@ -31,3 +31,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 1. fill in environment.prod.ts
 2. npm run build:prod # build prod dist locally
 3. scp to service nginx folder
+
+## Irita testnet config
+1. Denom Id:
+   thoughtworks165779e87abe418baeac6aef3a213135
+2. Denom Name: Certificate
+
+You can search for the corresponding certificate on the test chain by denomId
