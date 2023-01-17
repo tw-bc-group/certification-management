@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
-  lcAppId: 'UQYjpE8LmPcfocb5icHC8xr0-gzGzoHsz',
-  lcAppKey: '71lAzzF9vt2clrTd8dyNAffW',
+  lcAppId: 'dllCrYFTwcOCHkT9R6KvUOzw-gzGzoHsz',
+  lcAppKey: '9wtbNNpGFyMKTv4Cy6hWKbHz',
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: 'http://localhost:4200/testnet',
