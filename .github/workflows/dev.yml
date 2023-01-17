@@ -49,3 +49,12 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
+
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.1.5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+          SOURCE: "dist/cac-generator/"
+          REMOTE_HOST: "i-03aa0fbc7e233d6c4"
+          REMOTE_USER: "ubuntu"
+          TARGET: "/usr/share/nginx/html/admin/"
