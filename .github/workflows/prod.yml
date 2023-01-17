@@ -1,10 +1,6 @@
 name: CICD
 
-on:
-  push:
-    branches: [ "feature/irita" ]
-  pull_request:
-    branches: [ "feature/irita" ]
+on: workflow_dispatch
 
 jobs:
   build:
@@ -48,7 +44,7 @@ jobs:
         run: npm run test:ci
 
       - name: Build
-        run: npm run build --if-present
+        run: npm run build:prod --if-present
 
       - name: Deploy
         uses: easingthemes/ssh-deploy@v2.1.5
