@@ -354,24 +354,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    const userId = 1;
-    const denomName = '';
-    const firstName = this.certificate.firstName;
-    const firstNamePinyin = this.certificate.firstNamePinyin;
-    const lastName = this.certificate.lastName;
-    const lastNamePinyin = this.certificate.lastNamePinyin;
-    const certName = this.certificate.certName;
-    const photoUrl = this.certificate.photoUrl;
-    const type = this.certificate.type;
-    const partner = this.certificate.partner;
-    const expiredAt = this.certificate.expiredAt;
-    const fingerprint = this.certificate.fingerprint;
-    const issuer = this.certificate.issuer;
-    const receiverAddress = this.certificate.receiverAddress;
-    const qrCode = this.certificate.qrCode;
-    const dpmLevel = this.certificate.dpmLevel;
-    // tslint:disable-next-line:max-line-length
-    const response = await certService.createDenomAndCertificate(userId, firstName, firstNamePinyin, lastName, lastNamePinyin, denomName, certName, photoUrl, type, partner, publishedAt, expiredAt, fingerprint, issuer, receiverAddress, qrCode, dpmLevel);
-    return response.certId;
+    const denomId = 'thoughtworks165779e87abe418baeac6aef3a213135';
+    const response = await certService.mintAndTransferCertificate(this.certificate, denomId);
+    return response.hash;
   }
 }
