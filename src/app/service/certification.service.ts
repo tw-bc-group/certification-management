@@ -5,7 +5,7 @@ import {
   generateDenomId,
   generateSchema,
   getAdminAddress,
-  newBaseTx,
+  newBaseTxForDenom,
   newBaseTxForMint
 } from '../clients/certificate';
 import {Client, TxResult, TxType} from '@irita/irita-sdk';
@@ -26,7 +26,7 @@ class CertificateService {
   public async issueDenom(denomName: string): Promise<{ denomId: string; hash: string }> {
     const denomId = generateDenomId();
     const schema = generateSchema();
-    const baseTx = newBaseTx();
+    const baseTx = newBaseTxForDenom();
     const response = await this.certificateClient.nft.issueDenom(denomId, denomName, schema, true, true, baseTx);
     return {
       denomId,
@@ -76,7 +76,7 @@ class CertificateService {
     dpmLevel: DpmLevel,
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
-    const baseTx = newBaseTx();
+    const baseTx = newBaseTxForDenom();
     const sender = await getAdminAddress();
     const denomId = generateDenomId();
     const issueDenomMsg = {
@@ -130,13 +130,7 @@ class CertificateService {
     * issue certificate不用simulation（目前写死一个amount用于测试链）
     * */
     // const amount = Math.floor(4000 * 1.2).toString();
-    const realTx = newBaseTx({
-      fee: {
-        denom: 'ugas',
-        amount: '400000',
-      },
-      gas: '400000',
-    });
+    const realTx = newBaseTxForDenom();
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
     return {
       denomId,
@@ -145,16 +139,17 @@ class CertificateService {
     };
   }
 
-  public async mintAndTransferCertificate(certificate: CertificateModel, id: string, denomName: string): Promise<TxResult> {
-    console.log('Minting Certificate: ', certificate);
+  public async mintAndTransferCertificate(certificate: CertificateModel, denomId: string): Promise<TxResult> {
     const sender = await getAdminAddress();
+    const certId = generateCertificateId(1);
     const msgs: any[] = [{
       type: TxType.MsgMintNFT,
       value: {
-        id: '',
-        denom_id: id,
-        name: denomName,
+        id: certId, // cert id
+        denom_id: denomId,
+        name: certificate.certName, // cert name
         uri: certificate.photoUrl,
+        data: JSON.stringify(certificate),
         sender,
         recipient: sender,
       },
