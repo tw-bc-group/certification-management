@@ -55,6 +55,6 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
           SOURCE: "dist/cac-generator/"
-          REMOTE_HOST: "i-03aa0fbc7e233d6c4"
+          REMOTE_HOST: "https://ec2-52-81-13-55.cn-north-1.compute.amazonaws.com.cn/"
           REMOTE_USER: "ubuntu"
           TARGET: "/usr/share/nginx/html/admin/"
