@@ -43,7 +43,6 @@ export const saveCertificate: ({
   imagesObject.map((object) => {
     lcCertificate.set(object.key, object.image);
   });
-  // todo set certificate fields
   const {
     lastName,
     firstName,

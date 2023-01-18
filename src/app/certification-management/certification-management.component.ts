@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {config, from, Observable, Subject, zip} from 'rxjs';
+import { from, Observable, Subject, zip} from 'rxjs';
 import {
   CertificateDirection,
   CertificateLevel,
@@ -18,8 +18,8 @@ import {flatMap, map} from 'rxjs/operators';
 import {Constants} from '../utils/constants';
 import {save} from '../utils/photoStorage';
 import {saveCertificate} from '../utils/certificatesStorage';
-import {v4 as uuid} from 'uuid';
 import CertificateService from '../service/certification.service';
+import {generateCertificateId} from '../clients/certificate';
 
 
 const certService = new CertificateService();
@@ -206,7 +206,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     });
   }
 
-  private generateCertificateId = (count: number): string => `cert_${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
   private uploadCerts(): void {
     const {fingerprint, lastName, firstName} = this.certificate;
     const pictureName = `${lastName}_${firstName}`;
@@ -214,9 +213,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     if (this.isLinkedCertificate) {
       this.uploadCertsWithSimple(fingerprint, pictureName);
     } else {
-      // todo 等可以上链后统一certId规则
-      const certId = this.generateCertificateId(1);
-      this.uploadCertsWithoutSimple(certId, pictureName);
+      this.uploadCertsWithoutSimple(pictureName);
     }
   }
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
@@ -251,8 +248,9 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     });
   }
 
-  private uploadCertsWithoutSimple(certId: string, pictureName: string): void {
+  private uploadCertsWithoutSimple(pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
+    const certId = generateCertificateId(1);
     loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
       .subscribe((pngDataUrl) => {
         // this.uploadCertificate(certId, pictureName);
@@ -310,7 +308,10 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private uploadCertificate(certId: string, photos: any): Observable<any> {
-    return from(saveCertificate({certId, photos, certificate: this.certificate}));
+    // save: table of Photo
+    // saveCertificate: table of Certificate
+    saveCertificate({certId, photos, certificate: this.certificate});
+    return from(save({certId, photos}));
   }
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
