@@ -10,6 +10,7 @@ import {
 } from '../clients/certificate';
 import {Client, TxResult, TxType} from '@irita/irita-sdk';
 import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
+import config from '../config';
 
 class CertificateService {
   certificateClient: Client;
@@ -139,14 +140,14 @@ class CertificateService {
     };
   }
 
-  public async mintAndTransferCertificate(certificate: CertificateModel, denomId: string): Promise<TxResult> {
+  public async mintAndTransferCertificate(certificate: CertificateModel): Promise<TxResult> {
     const sender = await getAdminAddress();
     const certId = generateCertificateId(1);
     const msgs: any[] = [{
       type: TxType.MsgMintNFT,
       value: {
         id: certId, // cert id
-        denom_id: denomId,
+        denom_id: config.irita.denomId,
         name: certificate.certName, // cert name
         uri: certificate.photoUrl,
         data: JSON.stringify(certificate),

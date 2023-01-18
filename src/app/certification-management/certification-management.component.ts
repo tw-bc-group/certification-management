@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {from, Observable, Subject, zip} from 'rxjs';
+import {config, from, Observable, Subject, zip} from 'rxjs';
 import {
   CertificateDirection,
   CertificateLevel,
@@ -354,8 +354,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    const denomId = 'thoughtworks165779e87abe418baeac6aef3a213135';
-    const response = await certService.mintAndTransferCertificate(this.certificate, denomId);
+    const response = await certService.mintAndTransferCertificate(this.certificate);
     return response.hash;
   }
 }

@@ -21,6 +21,8 @@ export interface Config {
     adminKeyName: string;
     adminKeyMnemonic: string;
     apiKey: string;
+    denomId: string;
+    denomName: string;
   };
 }
 
@@ -40,6 +42,8 @@ const irita = {
   adminKeyName: environment.IRITA_KEY_NAME,
   adminKeyMnemonic: environment.IRITA_MNEMONIC,
   apiKey: environment.IRITA_API_KEY,
+  denomId: environment.IRITA_DENOM_ID,
+  denomName: environment.IRITA_DENOM_NAME
 };
 
 // tslint:disable-next-line:variable-name
