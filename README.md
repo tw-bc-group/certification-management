@@ -1,5 +1,7 @@
 # CacGenerator
 
+[![CICD-dev](https://github.com/tw-bc-group/certification-management/actions/workflows/dev.yml/badge.svg)](https://github.com/tw-bc-group/certification-management/actions/workflows/dev.yml) [![CICD-prod](https://github.com/tw-bc-group/certification-management/actions/workflows/prod.yml/badge.svg)](https://github.com/tw-bc-group/certification-management/actions/workflows/prod.yml)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
 ## Development server
