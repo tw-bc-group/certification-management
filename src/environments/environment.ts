@@ -1,12 +1,14 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+declare var LC_APP_ID: string;
+declare var LC_APP_KEY: string;
 
 export const environment = {
   production: false,
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
-  lcAppId: 'dllCrYFTwcOCHkT9R6KvUOzw-gzGzoHsz',
-  lcAppKey: '9wtbNNpGFyMKTv4Cy6hWKbHz',
+  lcAppId: LC_APP_ID,
+  lcAppKey: LC_APP_KEY,
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: 'http://localhost:4200/testnet',

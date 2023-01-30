@@ -1,8 +1,11 @@
+declare var LC_APP_ID: string;
+declare var LC_APP_KEY: string;
+
 export const environment = {
   production: true,
   certViewUrl: 'https://cac.thoughtworks.cn/certification/',
-  lcAppId: 'UQYjpE8LmPcfocb5icHC8xr0-gzGzoHsz',
-  lcAppKey: '71lAzzF9vt2clrTd8dyNAffW',
+  lcAppId: LC_APP_ID,
+  lcAppKey: LC_APP_KEY,
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: 'http://localhost:4200/testnet',
