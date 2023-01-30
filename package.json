@@ -8,8 +8,8 @@
     "build:dev": "ng build --extra-webpack-config webpack.partial.js --configuration dev",
     "build:prod": "NODE_OPTIONS=--max-old-space-size=4096 ng build --extra-webpack-config webpack.partial.js --prod",
     "postinstall": "node patch.js",
-    "test": "ng test",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "test": "ng test --extra-webpack-config webpack.partial.js",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --extra-webpack-config webpack.partial.js",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/cac-generator/stats.json"
