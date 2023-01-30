@@ -1,5 +1,7 @@
 declare var LC_APP_ID: string;
 declare var LC_APP_KEY: string;
+declare var IRITA_WALLET_ADDRESS: string;
+declare var IRITA_WALLET_PRIVATE_KEY: string;
 
 export const environment = {
   production: true,
@@ -20,6 +22,6 @@ export const environment = {
   APP_ENV: 'dev',
   IRITA_DENOM_ID: 'thoughtworks165779e87abe418baeac6aef3a213135',
   IRITA_DENOM_NAME: 'Certificate',
-  IRITA_WALLET_ADDRESS: '',
-  IRITA_WALLET_PRIVATE_KEY: ''
+  IRITA_WALLET_ADDRESS,
+  IRITA_WALLET_PRIVATE_KEY
 };
