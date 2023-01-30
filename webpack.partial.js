@@ -1,5 +1,9 @@
 const webpack = require('webpack');
-require('dotenv').config({ path: '.env' });
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV === 'local') {
+  dotenv.config({ path: '.env.local' });
+}
 
 module.exports = {
   plugins: [

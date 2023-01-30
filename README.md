@@ -4,6 +4,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
+## Init local env variables
+1. create `env.local` file in the root directory.
+2. add env variables for local development.
+3. eg: `LC_APP_ID=LC_APP_ID_PLACEHOLDER` and `LC_APP_KEY=LC_APP_KEY_PLACEHOLDER`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
