@@ -149,8 +149,8 @@ class CertificateService {
         id: certId, // cert id
         denom_id: config.irita.denomId,
         name: certificate.certName, // cert name
-        uri: certificate.photoUrl,
-        data: JSON.stringify(certificate),
+        // uri: certificate.photoUrl,
+        // data: JSON.stringify(certificate),
         sender,
         recipient: sender,
       },

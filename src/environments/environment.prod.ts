@@ -18,4 +18,8 @@ export const environment = {
   JWT_SECRETKEY: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
   APP_PORT: '3000',
   APP_ENV: 'dev',
+  IRITA_DENOM_ID: 'thoughtworks165779e87abe418baeac6aef3a213135',
+  IRITA_DENOM_NAME: 'Certificate',
+  IRITA_WALLET_ADDRESS: '',
+  IRITA_WALLET_PRIVATE_KEY: ''
 };

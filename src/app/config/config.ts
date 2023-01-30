@@ -23,6 +23,8 @@ export interface Config {
     apiKey: string;
     denomId: string;
     denomName: string;
+    walletAddress: string;
+    encryptedWalletPrivateKey: string;
   };
 }
 
@@ -43,7 +45,9 @@ const irita = {
   adminKeyMnemonic: environment.IRITA_MNEMONIC,
   apiKey: environment.IRITA_API_KEY,
   denomId: environment.IRITA_DENOM_ID,
-  denomName: environment.IRITA_DENOM_NAME
+  denomName: environment.IRITA_DENOM_NAME,
+  walletAddress: environment.IRITA_WALLET_ADDRESS,
+  encryptedWalletPrivateKey: environment.IRITA_WALLET_PRIVATE_KEY
 };
 
 // tslint:disable-next-line:variable-name

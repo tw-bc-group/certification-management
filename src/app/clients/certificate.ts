@@ -7,9 +7,9 @@ class IritaKeyDAO implements KeyDAO {
   async read(name: string): Promise<Key> {
     return {
       // address and privKey should not be pushed to repo
-      address: '',
+      address: config.irita.walletAddress,
       // tslint:disable-next-line:max-line-length
-      privKey: '',
+      privKey: config.irita.encryptedWalletPrivateKey,
     };
   }
 
@@ -75,7 +75,7 @@ export const newBaseTxForDenom = (baseTx?: Partial<BaseTx>): BaseTx => {
 };
 
 export const newBaseTxForMint = (): BaseTx => {
-  const amount = '400000';
+  const amount = '4000000';
   return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
