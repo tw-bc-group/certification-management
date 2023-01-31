@@ -1,16 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-declare var LC_APP_ID: string;
-declare var LC_APP_KEY: string;
-declare var IRITA_WALLET_ADDRESS: string;
-declare var IRITA_WALLET_PRIVATE_KEY: string;
+import {secretEnv} from './secret-env';
 
 export const environment = {
   production: false,
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
-  lcAppId: LC_APP_ID,
-  lcAppKey: LC_APP_KEY,
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: 'https://dev.cac.thoughtworks.cn/testnet',
@@ -25,8 +20,7 @@ export const environment = {
   APP_ENV: 'dev',
   IRITA_DENOM_ID: 'thoughtworks165779e87abe418baeac6aef3a213135',
   IRITA_DENOM_NAME: 'Certificate',
-  IRITA_WALLET_ADDRESS,
-  IRITA_WALLET_PRIVATE_KEY
+  ...secretEnv
 };
 
 /*

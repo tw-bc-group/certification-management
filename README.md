@@ -45,3 +45,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 2. Denom Name: Certificate
 
 You can search for the corresponding certificate on the test chain by denomId
+
+## Create a new secret env var
+1. Crate secrets var `TEST_NEW_VAR` in the github. [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
+2. Add new secrets var `TEST_NEW_VAR` to the `envVars` for `webpack.partial.js`.
+3. Add new secrets var `TEST_NEW_VAR` to the `secretEnv` for `src/environments/secret-env.ts`
+4. Add new secrets var `TEST_NEW_VAR` to the Build step for `CICD` workflows(dev、prod)
+5. In local development, we can add new secrets var `TEST_NEW_VAR` value to the `env.local`.
