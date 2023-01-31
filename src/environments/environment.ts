@@ -8,7 +8,7 @@ export const environment = {
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
   username: 'cac-admin',
   password: '001',
-  IRITA_NODE: `http://${window.location.host}/testnet`,
+  IRITA_NODE: `https://${window.location.host}/testnet`,
   IRITA_CHAIN_ID: 'testing',
   IRITA_KEY_PASSWORD: '12345678',
   IRITA_KEY_NAME: 'tw',
