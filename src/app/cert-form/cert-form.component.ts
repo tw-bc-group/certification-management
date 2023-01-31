@@ -6,7 +6,8 @@ import {
   CertificateTemplateOptions,
   DpmLevel,
   dpmLevelNameMapping,
-  PartnerOptions
+  PartnerOptions,
+  CompanyRadios
 } from '../models/certificate.model';
 
 @Component({
@@ -29,6 +30,9 @@ export class CertFormComponent implements OnInit {
   certificateDirectionOptions = CertificateDirectionOptions;
   certificateTemplateOptions = CertificateTemplateOptions;
   partnerOptions = PartnerOptions;
+
+  companyRadios = CompanyRadios;
+  companyRadio = null;
 
   @Input()
   certificate: CertificateModel;

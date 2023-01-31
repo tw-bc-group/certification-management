@@ -7,8 +7,8 @@
     <div class="tabs">
       <span
         *ngFor="let tab of tabs"
-        [ngClass]="{active: tabKey === tab.key,disabled: tab.disabled}"
-        (click)="onTabChange(tab.key, tab.disabled)"
+        [ngClass]="{active: tabKey === tab.key}"
+        (click)="onTabChange(tab.key)"
       >
         {{tab.title}}
       </span>
@@ -18,6 +18,15 @@
       <span>Admin1</span>
     </div>
   </nz-header>
+  <div class="certificate-tabs">
+    <p>证书发布</p>
+    <button class="linked-certificate" nz-button nzType="primary" [ngClass]="{active: subTabKey === certificateTabs.LINKED_CERTIFICATE}"
+            (click)="onSubTabChange(certificateTabs.LINKED_CERTIFICATE)">上链证书
+    </button>
+    <button class="non-linked-certificate" nz-button nzType="primary" [ngClass]="{active: subTabKey === certificateTabs.NON_LINKED_CERTIFICATE}"
+            (click)="onSubTabChange(certificateTabs.NON_LINKED_CERTIFICATE)">非上链证书
+    </button>
+  </div>
   <nz-content>
     <div class="left">
       <app-cert-form
@@ -27,19 +36,19 @@
         [(certificateTemplate)]="certificateTemplate">
       </app-cert-form>
       <app-non-linked-cert-form
-        *ngIf="tabKey==='nonLinkedCertificate'"
+        *ngIf="subTabKey===certificateTabs.NON_LINKED_CERTIFICATE"
         [certificate]="certificate"
         [(certificateTemplate)]="certificateTemplate">
       </app-non-linked-cert-form>
-      <div class="issue-btn-wrapper" *ngIf="tabKey!=='queryCertificate'">
+      <div class="issue-btn-wrapper" *ngIf="tabKey!==certificateTabs.QUERY_CERTIFICATE">
         <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()"
                 (click)="issue()" [nzLoading]="loading">颁发证书
         </button>
       </div>
-      <app-query-page *ngIf="tabKey==='queryCertificate'" (valueChange)="onValueChange($event)"></app-query-page>
+      <app-query-page *ngIf="tabKey===certificateTabs.QUERY_CERTIFICATE" (valueChange)="onValueChange($event)"></app-query-page>
     </div>
 
-    <div class="preview" *ngIf="tabKey!=='queryCertificate'">
+    <div class="preview" *ngIf="tabKey!==certificateTabs.QUERY_CERTIFICATE">
       <!-- <ng-container *ngIf="certificate.type==='ThoughtWorks'"> -->
       <ng-container *ngIf="isLinkedCertificate">
         <ng-container *ngIf="certificateTemplate === 'tw'">

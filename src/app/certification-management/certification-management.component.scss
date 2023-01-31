@@ -69,6 +69,33 @@
     margin-bottom: 24px;
   }
 
+  .certificate-tabs {
+    width: 1060px;
+    margin: 0 auto 16px;
+    p {
+      font-size: 18px;
+      font-weight: 700;
+      color: #262A30;
+      margin-bottom: 12px;
+    }
+
+    .linked-certificate, .non-linked-certificate {
+      border-radius: 8px;
+      background: #DCDEE0;
+      color: #7B7E83;
+      border-color: transparent;
+
+      &.active {
+        background: #F2732B;
+        color: #FFFFFF;
+      }
+    }
+
+    .non-linked-certificate {
+      margin-left: 20px;
+    }
+  }
+
   nz-content{
     width: 1060px;
     margin: 0 auto 16px;

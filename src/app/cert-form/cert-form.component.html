@@ -13,6 +13,15 @@
       </nz-option>
     </nz-select>
   </nz-form-item>
+  <nz-form-item *ngIf="certificateTemplate !== 'dpm'">
+    <nz-form-label>认证方向</nz-form-label>
+    <nz-select
+      name="certDirection" [(ngModel)]="certificate.certDirection"
+    >
+      <nz-option *ngFor="let option of certificateDirectionOptions" [nzValue]="option.value"
+                 [nzLabel]="option.label"></nz-option>
+    </nz-select>
+  </nz-form-item>
 
 
   <nz-form-item *ngIf="certificateTemplate === 'dpm'">
@@ -26,34 +35,46 @@
   </nz-form-item>
 
   <nz-form-item *ngIf="certificateTemplate === 'tw' || certificateTemplate === 'tw-cor'">
-    <nz-form-label>证书名称</nz-form-label>
+    <nz-form-label>等级</nz-form-label>
     <nz-select
       name="certName" [(ngModel)]="certificate.certName"
     >
       <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
     </nz-select>
   </nz-form-item>
-  <nz-form-item *ngIf="certificateTemplate === 'tw' || certificateTemplate === 'tw-cor'">
-    <nz-form-label>认证类型</nz-form-label>
+  <nz-form-item>
+    <nz-form-label nzRequired>颁发者</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required/>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>获得时间</nz-form-label>
+    <nz-date-picker name="publishedAt" [(ngModel)]="certificate.publishedAt"></nz-date-picker>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>过期时间</nz-form-label>
+    <nz-date-picker class="date-picker" name="expiredAt" [(ngModel)]="certificate.expiredAt"></nz-date-picker>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>认证对象所属公司</nz-form-label>
+    <nz-radio-group [(ngModel)]="companyRadio">
+      <label nz-radio [nzValue]="companyRadios.THOUGHTWORKS">Thoughtworks</label>
+      <label nz-radio [nzValue]="companyRadios.OTHERS">其他公司</label>
+    </nz-radio-group>
+  </nz-form-item>
+  <nz-form-item *ngIf="companyRadio === companyRadios.OTHERS">
+    <nz-form-label>认证对象所属公司</nz-form-label>
     <nz-select
-      name="type"
-      [(ngModel)]="certificate.type"
+      name="subordinateCompany"
+      [(ngModel)]="certificate.subordinateCompany"
     >
-      <nz-option nzValue="Thoughtworks" nzLabel="Thoughtworks"></nz-option>
-      <nz-option nzValue="Community" nzLabel="Community"></nz-option>
-      <nz-option nzValue="Enterprise" nzLabel="Enterprise"></nz-option>
-      <nz-option nzValue="University" nzLabel="University"></nz-option>
+<!--      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>-->
     </nz-select>
   </nz-form-item>
-  <nz-form-item *ngIf="certificateTemplate !== 'dpm'">
-    <nz-form-label>认证方向</nz-form-label>
-    <nz-select
-      name="certDirection" [(ngModel)]="certificate.certDirection"
-    >
-      <nz-option *ngFor="let option of certificateDirectionOptions" [nzValue]="option.value"
-                 [nzLabel]="option.label"></nz-option>
-    </nz-select>
-  </nz-form-item>
+
   <nz-form-item>
     <nz-form-label nzRequired>姓</nz-form-label>
     <nz-form-control>
@@ -81,28 +102,6 @@
       </nz-form-control>
     </nz-form-item>
   </ng-template>
-
-  <nz-form-item>
-    <nz-form-label>获得时间</nz-form-label>
-    <nz-date-picker name="publishedAt" [(ngModel)]="certificate.publishedAt"></nz-date-picker>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label>过期时间</nz-form-label>
-    <nz-date-picker class="date-picker" name="expiredAt" [(ngModel)]="certificate.expiredAt"></nz-date-picker>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzRequired>颁发者</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required/>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label>所属公司</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="subordinateCompany" [(ngModel)]="certificate.subordinateCompany"/>
-    </nz-form-control>
-  </nz-form-item>
 
   <nz-form-item *ngIf="isLinkedCertificate">
     <nz-form-label>接收者钱包地址</nz-form-label>

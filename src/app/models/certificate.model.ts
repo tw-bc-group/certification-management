@@ -6,8 +6,9 @@ export enum CertificateType {
 }
 
 export enum CertificateLevel {
+  ASSOCIATE_AGILE_COACH = 'ASSOCIATE AGILE COACH',
   PROFESSIONAL_AGILE_COACH = 'PROFESSIONAL AGILE COACH',
-  ADVANCED_AGILE_COACH = 'ADVANCED AGILE COACH',
+  SENIOR_PROFESSIONAL_AGILE_COACH = 'SENIOR PROFESSIONAL AGILE COACH',
   MASTER_AGILE_COACH = 'MASTER AGILE COACH'
 }
 
@@ -40,14 +41,25 @@ export enum CertificateDirection {
   MANAGE = 'MANAGE',
 }
 
+export enum CompanyRadios {
+  THOUGHTWORKS = 'THOUGHTWORKS',
+  OTHERS = 'OTHERS'
+}
+
+export enum CertificateTabs {
+  CERTIFICATE_PUBLISH = 'CERTIFICATE_PUBLISH',
+  QUERY_CERTIFICATE = 'QUERY_CERTIFICATE',
+  LINKED_CERTIFICATE = 'LINKED_CERTIFICATE',
+  NON_LINKED_CERTIFICATE = 'NON_LINKED_CERTIFICATE',
+}
+
 export const CertificateDirectionOptions = [
-  {value: CertificateDirection.TECH, label: '技术教练'},
-  {value: CertificateDirection.MANAGE, label: '管理教练'},
+  {value: CertificateDirection.TECH, label: '技术方向'},
+  {value: CertificateDirection.MANAGE, label: '管理方向'},
 ];
 
 export const CertificateTemplateOptions = [
   {value: CertificateTemplateType.TW_AC, label: '敏捷教练'},
-  {value: CertificateTemplateType.TW_COR_AC, label: '合作方敏捷教练'},
   {value: CertificateTemplateType.DPM, label: '数字产品经理'}
 ];
 

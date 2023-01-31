@@ -12,7 +12,7 @@ import {
   NzLayoutModule,
   NzModalModule,
   NzPageHeaderModule,
-  NzPaginationModule,
+  NzPaginationModule, NzRadioModule,
   NzSelectModule,
   NzTableModule,
 } from 'ng-zorro-antd';
@@ -98,6 +98,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzPaginationModule,
     NzEmptyModule,
     NzAvatarModule,
+    NzRadioModule,
   ]
 })
 export class CertificationManagementModule { }

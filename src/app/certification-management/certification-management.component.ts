@@ -1,23 +1,24 @@
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { from, Observable, Subject, zip} from 'rxjs';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { from, Observable, Subject, zip } from 'rxjs';
 import {
   CertificateDirection,
   CertificateLevel,
   CertificateModel,
+  CertificateTabs,
   CertificateTemplateType,
   CertificateType,
   DpmLevel,
-  NonLinkedCertificateLevel
+  NonLinkedCertificateLevel,
 } from '../models/certificate.model';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {addYears, startOfDay} from 'date-fns';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { addYears, startOfDay } from 'date-fns';
 import QRCode from 'qrcode';
-import {hexify} from '../contracts/web3Provider';
-import {HttpClient} from '@angular/common/http';
-import {flatMap, map} from 'rxjs/operators';
-import {Constants} from '../utils/constants';
-import {save} from '../utils/photoStorage';
-import {saveCertificate} from '../utils/certificatesStorage';
+import { hexify } from '../contracts/web3Provider';
+import { HttpClient } from '@angular/common/http';
+import { flatMap, map } from 'rxjs/operators';
+import { Constants } from '../utils/constants';
+import { save } from '../utils/photoStorage';
+import { saveCertificate } from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
 import {generateCertificateId} from '../clients/certificate';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -50,16 +51,21 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   downloadLink = false;
   loading = false;
   tabs = [{
-    key: 'linkedCertificate',
-    title: '上链证书'
+    key: CertificateTabs.CERTIFICATE_PUBLISH,
+    title: '证书发布',
   }, {
-    key: 'nonLinkedCertificate',
-    title: '非上链证书',
-  }, {
-    key: 'queryCertificate',
+    key: CertificateTabs.QUERY_CERTIFICATE,
     title: '证书查询',
   }];
   tabKey = this.tabs[0].key;
+  subTabs = [{
+    key: CertificateTabs.LINKED_CERTIFICATE,
+    title: '上链证书'
+  }, {
+    key: CertificateTabs.NON_LINKED_CERTIFICATE,
+    title: '非上链证书',
+  }];
+  subTabKey = this.subTabs[0].key;
   isVisible = false;
 
   @ViewChild('template')
@@ -82,14 +88,20 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   get isLinkedCertificate() {
-    return this.tabKey === 'linkedCertificate';
+    return this.subTabKey === CertificateTabs.LINKED_CERTIFICATE;
   }
 
-  onTabChange(tabKey, disabled): void {
-    if (disabled) {
-      return;
-    }
+  get certificateTabs() {
+    return CertificateTabs;
+  }
+
+  onTabChange(tabKey): void {
     this.tabKey = tabKey;
+    this.resetValues();
+  }
+
+  onSubTabChange(subTabKey): void {
+    this.subTabKey = subTabKey;
     this.resetValues();
   }
 

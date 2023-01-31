@@ -16,10 +16,13 @@ type ICertificationColors = {
 
 export const certificationColors: ICertificationColors = {
   [CertificateType.Thoughtworks]: {
+    [CertificateLevel.ASSOCIATE_AGILE_COACH]: {
+      baseColor: '#F6A559', radiaGradientColor: '#F38C48'
+    },
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#F6A559', radiaGradientColor: '#F38C48'
     },
-    [CertificateLevel.ADVANCED_AGILE_COACH]: {
+    [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#F66F44', radiaGradientColor: '#EB5627'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
@@ -36,10 +39,13 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.Community]: {
+    [CertificateLevel.ASSOCIATE_AGILE_COACH]: {
+      baseColor: '#F6A559', radiaGradientColor: '#F38C48'
+    },
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#9CC8AD', radiaGradientColor: '#9CC8AD'
     },
-    [CertificateLevel.ADVANCED_AGILE_COACH]: {
+    [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#40BDB1', radiaGradientColor: '#1A9F93'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
@@ -56,10 +62,13 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.Enterprise]: {
+    [CertificateLevel.ASSOCIATE_AGILE_COACH]: {
+      baseColor: '#F6A559', radiaGradientColor: '#F38C48'
+    },
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#CEAFE2', radiaGradientColor: '#B397CC'
     },
-    [CertificateLevel.ADVANCED_AGILE_COACH]: {
+    [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#825AB9', radiaGradientColor: '#8E63CA'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
@@ -76,10 +85,13 @@ export const certificationColors: ICertificationColors = {
     }
   },
   [CertificateType.University]: {
+    [CertificateLevel.ASSOCIATE_AGILE_COACH]: {
+      baseColor: '#F6A559', radiaGradientColor: '#F38C48'
+    },
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#81C1F1', radiaGradientColor: '#8CD0FF'
     },
-    [CertificateLevel.ADVANCED_AGILE_COACH]: {
+    [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: {
       baseColor: '#318ACA', radiaGradientColor: '#1F71AC'
     },
     [CertificateLevel.MASTER_AGILE_COACH]: {
@@ -106,7 +118,7 @@ export const Constants = {
       green: 165,
       blue: 89
     },
-    [CertificateLevel.ADVANCED_AGILE_COACH]: {
+    [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: {
       red: 247,
       green: 105,
       blue: 56
