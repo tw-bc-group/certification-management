@@ -4,7 +4,8 @@ import {CertificateModel} from '../models/certificate.model';
 
 AV.init({
   appId: environment.LC_APP_ID,
-  appKey: environment.LC_APP_KEY
+  appKey: environment.LC_APP_KEY,
+  serverURLs: environment.LC_SERVER_URLS
 });
 
 console.log('use lcAppId:', AV.applicationId);
@@ -22,10 +23,10 @@ export const fetchCertificate: ({certId}: { certId: string }) => Promise<object[
 };
 
 export const saveCertificate: ({
-                                 certId,
-                                 photos,
-                                 certificate
-                               }: {
+ certId,
+ photos,
+ certificate
+}: {
   certId: string;
   photos: Array<{ key: string; fileName: string; dataUrl: string }>;
   certificate: CertificateModel;

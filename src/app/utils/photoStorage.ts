@@ -2,8 +2,8 @@ import {environment} from '../../environments/environment';
 import AV from 'leancloud-storage';
 
 // AV.init({
-//   appId: environment.lcAppId,
-//   appKey: environment.lcAppKey
+//   appId: environment.LC_APP_ID,
+//   appKey: environment.LC_APP_KEY
 // });
 
 // console.log('use lcAppId:', environment.lcAppId);
