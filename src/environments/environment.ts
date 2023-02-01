@@ -5,7 +5,7 @@ import {secretEnv} from './secret-env';
 
 export const environment = {
   production: false,
-  certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
+  certViewUrl: 'https://cac.thoughtworks.cn/certification/',
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: `${window.location.origin}/testnet`,
