@@ -47,6 +47,8 @@ import {LogoPhotoUploadComponent} from '../logo-photo-upload/logo-photo-upload.c
 import {NZ_ICONS} from 'ng-zorro-antd/icon';
 import {IconDefinition} from '@ant-design/icons-angular';
 import {DeleteOutline, PlusOutline} from '@ant-design/icons-angular/icons';
+import {AddCompanyModalComponent} from '../add-company-modal/add-company-modal.component';
+import {CompanyPhotoUploadComponent} from '../company-photo-upload/company-photo-upload.component';
 
 const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 
@@ -77,6 +79,8 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     TraineePhotoUploadComponent,
     LogoPhotoUploadComponent,
     CertificationManagementComponent,
+    AddCompanyModalComponent,
+    CompanyPhotoUploadComponent,
   ],
   providers: [{provide: NZ_ICONS, useValue: icons}],
   imports: [

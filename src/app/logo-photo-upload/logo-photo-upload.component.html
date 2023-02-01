@@ -2,7 +2,8 @@
   <div class="wrapper" *ngIf="!logoUrl">
     <div class="upload">
       <i class="upload-icon" nz-icon [nzType]="uploading ? 'loading' : 'plus'"></i>
-      <div>上传合作方Logo</div>
+      <div>公司Logo</div>
+      <div>（选填）</div>
     </div>
     <input #input (change)="photoChanged(input.files)" type="file"/>
   </div>

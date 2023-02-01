@@ -1,0 +1,13 @@
+<div class="cert-info">
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="新增公司" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+            [nzOkDisabled]="checkValidation()">
+    <nz-form-item>
+      <nz-form-label nzRequired>公司名称</nz-form-label>
+      <nz-form-control>
+        <input nz-input [(ngModel)]="companyName" required/>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-modal>
+</div>
+
+

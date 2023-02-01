@@ -6,6 +6,7 @@ import {
   NonLinkedCertificateLevel,
   PartnerOptions,
 } from '../models/certificate.model';
+import companies from '../utils/otherCompanies.json';
 
 @Component({
   selector: 'app-non-linked-cert-form',
@@ -25,6 +26,7 @@ export class NonLinkedCertFormComponent implements OnInit {
   partnerOptions = PartnerOptions;
   certificateDirectionOptions = CertificateDirectionOptions;
   companyRadio = null;
+  otherCompaniesOptions = companies;
 
   @Input()
   certificate: CertificateModel;
@@ -37,6 +39,8 @@ export class NonLinkedCertFormComponent implements OnInit {
 
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
+  isAddCompanyModalVisible = false;
 
   ngOnInit() {
   }
@@ -56,5 +60,14 @@ export class NonLinkedCertFormComponent implements OnInit {
 
   onLogoChanged(logoUrl: string): void {
     this.certificate.logoUrl = logoUrl;
+  }
+
+  onVisibleChange(isVisible: boolean): void {
+    this.isAddCompanyModalVisible = isVisible;
+  }
+
+  addCompany(companyName: string): void {
+    this.otherCompaniesOptions.push(companyName);
+    this.certificate.subordinateCompany = companyName;
   }
 }

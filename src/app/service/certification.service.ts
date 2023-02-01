@@ -75,6 +75,7 @@ class CertificateService {
     receiverAddress: string,
     qrCode: string,
     dpmLevel: DpmLevel,
+    idNumber: string,
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(userId.toString());
     const baseTx = newBaseTxForDenom();
@@ -112,6 +113,7 @@ class CertificateService {
       receiverAddress,
       qrCode,
       dpmLevel,
+      idNumber,
     };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,

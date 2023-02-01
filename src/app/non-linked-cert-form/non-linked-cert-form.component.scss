@@ -12,7 +12,8 @@
 
   .cert-info{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 66px;
   }
   nz-form-item{
     &.company-area {
@@ -25,13 +26,24 @@
     }
 
     nz-select, input {
-      width: 240px;
+      width: 100%;
+    }
+  }
+  .add-new-company {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-size: 14px;
+      color: #F2732B;
+      cursor: pointer;
     }
   }
 }
 
-::ng-deep .ant-calendar-picker .ant-calendar-picker {
-  width: 240px;
+::ng-deep .ant-calendar-picker {
+  width: 100%;
 }
 
 .photo-upload {

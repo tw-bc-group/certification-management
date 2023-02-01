@@ -9,6 +9,7 @@ import {
   PartnerOptions,
   CompanyRadios
 } from '../models/certificate.model';
+import companies from '../utils/otherCompanies.json';
 
 @Component({
   selector: 'app-cert-form',
@@ -30,6 +31,7 @@ export class CertFormComponent implements OnInit {
   certificateDirectionOptions = CertificateDirectionOptions;
   certificateTemplateOptions = CertificateTemplateOptions;
   partnerOptions = PartnerOptions;
+  otherCompaniesOptions = companies;
 
   companyRadio = null;
 
@@ -41,6 +43,8 @@ export class CertFormComponent implements OnInit {
 
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
+  isAddCompanyModalVisible = false;
 
   ngOnInit() {
   }
@@ -60,5 +64,14 @@ export class CertFormComponent implements OnInit {
 
   onLogoChanged(logoUrl: string): void {
     this.certificate.logoUrl = logoUrl;
+  }
+
+  onVisibleChange(isVisible: boolean): void {
+    this.isAddCompanyModalVisible = isVisible;
+  }
+
+  addCompany(companyName: string): void {
+    this.otherCompaniesOptions.push(companyName);
+    this.certificate.subordinateCompany = companyName;
   }
 }

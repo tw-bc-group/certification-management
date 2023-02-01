@@ -41,13 +41,25 @@
     </nz-radio-group>
   </nz-form-item>
   <nz-form-item *ngIf="companyRadio === companyRadios.OTHERS">
-    <nz-form-label>认证对象所属公司</nz-form-label>
+    <div class="add-new-company">
+      <nz-form-label>认证对象所属公司</nz-form-label>
+      <span (click)="onVisibleChange(true)">新增公司</span>
+    </div>
     <nz-select
       name="subordinateCompany"
       [(ngModel)]="certificate.subordinateCompany"
     >
-      <!--      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>-->
+      <nz-option  *ngFor="let option of otherCompaniesOptions" [nzValue]="option" [nzLabel]="option"></nz-option>
     </nz-select>
+  </nz-form-item>
+  <app-add-company-modal *ngIf="isAddCompanyModalVisible"
+                         [isVisible]="isAddCompanyModalVisible"
+                         (visibleChange)="onVisibleChange($event)"
+                         (addCompany)="addCompany($event)"
+  ></app-add-company-modal>
+  <nz-form-item>
+    <app-logo-photo-upload *ngIf="companyRadio === companyRadios.OTHERS" [logoUrl]="certificate.logoUrl"
+                           (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
   </nz-form-item>
 </div>
 
@@ -55,8 +67,6 @@
 <div class="photo-upload">
   <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
                             (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
-  <app-logo-photo-upload *ngIf="certificateTemplate === 'tw-cor'" [logoUrl]="certificate.logoUrl"
-                         (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
 </div>
 <div class="cert-info">
   <nz-form-item>
