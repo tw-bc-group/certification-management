@@ -99,8 +99,8 @@ export const certificationColors: ICertificationColors = {
 
 export const Constants = {
   CERT_VIEWER_URL: environment.certViewUrl,
-  // REMOVE_BG_API_KEY: 'cX85oMeERZsfX8bCuRqA5B1a',
-  REMOVE_BG_API_KEY: 'DEYTXfrL7wnvs83LPasNRdzy',
+  REMOVE_BG_API_KEY: 'QquoGk9SpMBPFcQ8wJiZruMP',
+  // REMOVE_BG_API_KEY: 'DEYTXfrL7wnvs83LPasNRdzy',
   BACKGROUND_COLOR: {
     [CertificateLevel.PROFESSIONAL_AGILE_COACH]: {
       red: 246,
