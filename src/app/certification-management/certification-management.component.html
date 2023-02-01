@@ -19,20 +19,23 @@
     </div>
   </nz-header>
   <div class="certificate-tabs">
-    <p>证书发布</p>
-    <button class="linked-certificate" nz-button nzType="primary" [ngClass]="{active: subTabKey === certificateTabs.LINKED_CERTIFICATE}"
+    <p>{{isCertificatePublish ? '证书发布' : '证书查询'}}</p>
+    <button *ngIf="isCertificatePublish"
+            class="linked-certificate" nz-button nzType="primary"
+            [ngClass]="{active: subTabKey === certificateTabs.LINKED_CERTIFICATE}"
             (click)="onSubTabChange(certificateTabs.LINKED_CERTIFICATE)">上链证书
     </button>
-    <button class="non-linked-certificate" nz-button nzType="primary" [ngClass]="{active: subTabKey === certificateTabs.NON_LINKED_CERTIFICATE}"
+    <button *ngIf="isCertificatePublish"
+            class="non-linked-certificate" nz-button nzType="primary"
+            [ngClass]="{active: subTabKey === certificateTabs.NON_LINKED_CERTIFICATE}"
             (click)="onSubTabChange(certificateTabs.NON_LINKED_CERTIFICATE)">非上链证书
     </button>
   </div>
   <nz-content>
     <div class="left">
       <app-cert-form
-        *ngIf="isLinkedCertificate"
+        *ngIf="isCertificatePublish && isLinkedCertificate"
         [certificate]="certificate"
-        [isLinkedCertificate]="isLinkedCertificate"
         [(certificateTemplate)]="certificateTemplate">
       </app-cert-form>
       <app-non-linked-cert-form

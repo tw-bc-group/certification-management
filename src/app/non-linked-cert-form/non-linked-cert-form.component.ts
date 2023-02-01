@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   CertificateDirectionOptions,
   CertificateModel,
-  CertificateTemplateOptions,
+  CertificateTemplateOptions, CompanyRadios,
   NonLinkedCertificateLevel,
-  PartnerOptions
+  PartnerOptions,
 } from '../models/certificate.model';
 
 @Component({
@@ -24,6 +24,7 @@ export class NonLinkedCertFormComponent implements OnInit {
   certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
   partnerOptions = PartnerOptions;
   certificateDirectionOptions = CertificateDirectionOptions;
+  companyRadio = null;
 
   @Input()
   certificate: CertificateModel;
@@ -38,6 +39,10 @@ export class NonLinkedCertFormComponent implements OnInit {
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
+  }
+
+  get companyRadios() {
+    return CompanyRadios;
   }
 
   changeTemplate(value: string) {

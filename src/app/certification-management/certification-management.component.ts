@@ -91,6 +91,10 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     return this.subTabKey === CertificateTabs.LINKED_CERTIFICATE;
   }
 
+  get isCertificatePublish() {
+    return this.tabKey === CertificateTabs.CERTIFICATE_PUBLISH;
+  }
+
   get certificateTabs() {
     return CertificateTabs;
   }
@@ -108,6 +112,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   initCertificate(): void {
     // this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.certificate = {
+      idNumber: '',
       certificateTemplate: CertificateTemplateType.TW_AC,
       certDirection: CertificateDirection.TECH,
       subordinateCompany: '',

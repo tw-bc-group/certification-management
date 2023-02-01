@@ -87,7 +87,8 @@ export interface CertificateModel {
   expiredAt: Date;
   fingerprint: string;
   issuer: string;
-  receiverAddress: string;
+  idNumber: string;
+  receiverAddress?: string;
   qrCode: string;
   dpmLevel: DpmLevel;
   certificateTemplate?: CertificateTemplateType;

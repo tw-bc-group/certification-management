@@ -1,15 +1,23 @@
 :host {
   display: block;
 
-  .cert-info{
-    display: flex;
-    flex-wrap: wrap;
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 3px;
+    border-left: 3px solid #F2732B;
+    line-height: 20px;
+    margin-bottom: 28px;
   }
-  nz-form-item{
-    &:nth-child(odd){
-      margin-right: 40px;
-    }
+  .cert-info{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 
+  nz-form-item{
+    &.company-area {
+      grid-column-start: 1;
+    }
     nz-form-label{
       display: block;
       text-align: left;

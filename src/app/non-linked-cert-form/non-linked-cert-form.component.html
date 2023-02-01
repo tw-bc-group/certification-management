@@ -1,3 +1,4 @@
+<div><p class="section-title">证书基础信息</p></div>
 <div class="cert-info">
   <nz-form-item>
     <nz-form-label>证书类型</nz-form-label>
@@ -13,23 +14,6 @@
       </nz-option>
     </nz-select>
   </nz-form-item>
-
-  <nz-form-item *ngIf="certificateTemplate === 'tw-cor'">
-    <nz-form-label>合作方</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="cor" [(ngModel)]="certificate.partner"/>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label>证书名称</nz-form-label>
-    <nz-select
-      name="certName" [(ngModel)]="certificate.certName"
-    >
-      <nz-option *ngFor="let option of certificateLevelOptions" [nzValue]="option.value"
-                 [nzLabel]="option.label"></nz-option>
-    </nz-select>
-  </nz-form-item>
   <nz-form-item>
     <nz-form-label>认证方向</nz-form-label>
     <nz-select
@@ -40,42 +24,56 @@
     </nz-select>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label>所属公司</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="subordinateCompany" [(ngModel)]="certificate.subordinateCompany"/>
-    </nz-form-control>
+    <nz-form-label>等级</nz-form-label>
+    <nz-select
+      name="certName" [(ngModel)]="certificate.certName"
+    >
+      <nz-option *ngFor="let option of certificateLevelOptions" [nzValue]="option.value"
+                 [nzLabel]="option.label"></nz-option>
+    </nz-select>
   </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label nzRequired>姓</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
-    </nz-form-control>
+  <nz-form-item class="company-area">
+    <nz-form-label>认证对象所属公司</nz-form-label>
+    <nz-radio-group [(ngModel)]="companyRadio">
+      <label nz-radio [nzValue]="companyRadios.THOUGHTWORKS">Thoughtworks</label>
+      <label nz-radio [nzValue]="companyRadios.OTHERS">其他公司</label>
+    </nz-radio-group>
   </nz-form-item>
-  <nz-form-item>
-    <nz-form-label nzRequired>名</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required/>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label>姓（拼音）</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label>名（拼音）</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin"/>
-    </nz-form-control>
+  <nz-form-item *ngIf="companyRadio === companyRadios.OTHERS">
+    <nz-form-label>认证对象所属公司</nz-form-label>
+    <nz-select
+      name="subordinateCompany"
+      [(ngModel)]="certificate.subordinateCompany"
+    >
+      <!--      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>-->
+    </nz-select>
   </nz-form-item>
 </div>
 
+<div><p class="section-title">认证对象信息</p></div>
 <div class="photo-upload">
   <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
                             (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
   <app-logo-photo-upload *ngIf="certificateTemplate === 'tw-cor'" [logoUrl]="certificate.logoUrl"
                          (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
+</div>
+<div class="cert-info">
+  <nz-form-item>
+    <nz-form-label nzRequired>姓</nz-form-label>
+    <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired>名</nz-form-label>
+    <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required/>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>姓（拼音）</nz-form-label>
+    <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>名（拼音）</nz-form-label>
+    <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin"/>
+  </nz-form-item>
 </div>

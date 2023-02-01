@@ -31,7 +31,6 @@ export class CertFormComponent implements OnInit {
   certificateTemplateOptions = CertificateTemplateOptions;
   partnerOptions = PartnerOptions;
 
-  companyRadios = CompanyRadios;
   companyRadio = null;
 
   @Input()
@@ -40,13 +39,14 @@ export class CertFormComponent implements OnInit {
   @Input()
   certificateTemplate: string;
 
-  @Input()
-  isLinkedCertificate: boolean;
-
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
+  }
+
+  get companyRadios() {
+    return CompanyRadios;
   }
 
   changeTemplate(value: string) {

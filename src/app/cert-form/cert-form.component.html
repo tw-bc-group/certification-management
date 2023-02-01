@@ -1,3 +1,4 @@
+<div><p class="section-title">证书基础信息</p></div>
 <div class="cert-info">
   <nz-form-item>
     <nz-form-label>证书类型</nz-form-label>
@@ -44,9 +45,7 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-label nzRequired>颁发者</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required/>
-    </nz-form-control>
+    <input nz-input name="issuer" [(ngModel)]="certificate.issuer" required/>
   </nz-form-item>
 
   <nz-form-item>
@@ -58,7 +57,7 @@
     <nz-date-picker class="date-picker" name="expiredAt" [(ngModel)]="certificate.expiredAt"></nz-date-picker>
   </nz-form-item>
 
-  <nz-form-item>
+  <nz-form-item class="company-area">
     <nz-form-label>认证对象所属公司</nz-form-label>
     <nz-radio-group [(ngModel)]="companyRadio">
       <label nz-radio [nzValue]="companyRadios.THOUGHTWORKS">Thoughtworks</label>
@@ -74,44 +73,43 @@
 <!--      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>-->
     </nz-select>
   </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label nzRequired>姓</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label nzRequired>名</nz-form-label>
-    <nz-form-control>
-      <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required/>
-    </nz-form-control>
-  </nz-form-item>
-
-  <ng-template [ngIf]="certificateTemplate === 'dpm'">
-    <nz-form-item>
-      <nz-form-label>姓（拼音）</nz-form-label>
-      <nz-form-control>
-        <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label>名（拼音）</nz-form-label>
-      <nz-form-control>
-        <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" />
-      </nz-form-control>
-    </nz-form-item>
-  </ng-template>
-
-  <nz-form-item *ngIf="isLinkedCertificate">
-    <nz-form-label>接收者钱包地址</nz-form-label>
-    <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress">
-  </nz-form-item>
 </div>
 
+<div><p class="section-title">认证对象信息</p></div>
 <div class="photo-upload">
   <app-trainee-photo-upload class="trainee-upload" [photoUrl]="certificate.photoUrl"
                             (photoChange)="onPhotoChanged($event)"></app-trainee-photo-upload>
   <app-logo-photo-upload *ngIf="certificateTemplate === 'tw-cor'" [logoUrl]="certificate.logoUrl"
                          (photoChange)="onLogoChanged($event)"></app-logo-photo-upload>
+</div>
+<div class="cert-info">
+  <nz-form-item>
+    <nz-form-label nzRequired>姓</nz-form-label>
+    <input nz-input name="lastName" [(ngModel)]="certificate.lastName" required/>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired>名</nz-form-label>
+    <input nz-input name="firstName" [(ngModel)]="certificate.firstName" required/>
+  </nz-form-item>
+
+  <ng-template [ngIf]="certificateTemplate === 'dpm'">
+    <nz-form-item>
+      <nz-form-label>姓（拼音）</nz-form-label>
+      <input nz-input name="lastNamePinyin" [(ngModel)]="certificate.lastNamePinyin" />
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>名（拼音）</nz-form-label>
+      <input nz-input name="firstNamePinyin" [(ngModel)]="certificate.firstNamePinyin" />
+    </nz-form-item>
+  </ng-template>
+
+  <nz-form-item>
+    <nz-form-label>认证对象身份证号</nz-form-label>
+    <input nz-input name="idNumber" [(ngModel)]="certificate.idNumber">
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>接收者钱包地址(选填)</nz-form-label>
+    <input nz-input name="receiverAddress" [(ngModel)]="certificate.receiverAddress">
+  </nz-form-item>
 </div>
