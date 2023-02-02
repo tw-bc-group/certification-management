@@ -19,7 +19,6 @@ import {
 import {CertFormComponent} from '../cert-form/cert-form.component';
 import {NonLinkedCertFormComponent} from '../non-linked-cert-form/non-linked-cert-form.component';
 import {NzMessageModule} from 'ng-zorro-antd/message';
-import {PasswordModalComponent} from '../password-modal/password-modal.component';
 import {QueryPageComponent} from '../query-page/query-page.component';
 import {TemplateTwComponent} from '../template-tw/template-tw.component';
 import {TemplateTwSimpleComponent} from '../template-tw-simple/template-tw-simple.component';
@@ -54,7 +53,6 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 @NgModule({
   declarations: [
     CertFormComponent,
-    PasswordModalComponent,
     NonLinkedCertFormComponent,
     QueryPageComponent,
     TemplateTwComponent,

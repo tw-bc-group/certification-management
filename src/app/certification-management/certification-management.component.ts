@@ -20,6 +20,7 @@ import {save} from '../utils/photoStorage';
 import {saveCertificate} from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
 import {generateCertificateId} from '../clients/certificate';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 
 const certService = new CertificateService();
@@ -69,7 +70,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   constructor(private sanitizer: DomSanitizer,
               private http: HttpClient,
-              private changeDetector: ChangeDetectorRef) {
+              private changeDetector: ChangeDetectorRef,
+              private message: NzMessageService) {
   }
 
   ngOnInit(): void {
@@ -163,22 +165,37 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       .onChain()
       .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
       .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
+      .then(() => {
+        this.message.success('证书颁发成功', {
+          nzDuration: 5000
+        });
+      })
       .catch(err => {
-          this.loading = false;
           this.downloadLink = false;
           console.error('fail to issue certification', err);
         }
-      );
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   issueNonLinkedCertificate(): void {
+    this.loading = true;
     Promise.all([this.generateDownloadUrl(), this.uploadCerts()])
+      .then(() => {
+        this.message.success('证书颁发成功', {
+          nzDuration: 5000
+        });
+      })
       .catch(err => {
-          this.loading = false;
           this.downloadLink = false;
           console.error('fail to issue certification', err);
         }
-      );
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   checkFormValidation(): boolean {
@@ -193,7 +210,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   private async displayCertIdAndQrCode(certId: string) {
     this.certificate.qrCode = await QRCode.toString(Constants.CERT_VIEWER_URL + certId);
     this.certificate.fingerprint = certId;
-    this.loading = false;
     return this.waitForViewChildReady();
   }
 
