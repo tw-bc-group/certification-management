@@ -9,7 +9,8 @@ const envVars = [
   'LC_APP_ID',
   'LC_APP_KEY',
   'IRITA_WALLET_ADDRESS',
-  'IRITA_WALLET_PRIVATE_KEY'
+  'IRITA_WALLET_PRIVATE_KEY',
+  'REMOVE_BG_API_KEY'
 ];
 
 let definePluginObject = {};
