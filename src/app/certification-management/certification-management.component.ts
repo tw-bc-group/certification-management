@@ -117,7 +117,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       certDirection: CertificateDirection.TECH,
       subordinateCompany: '',
       certName: this.isLinkedCertificate
-        ? CertificateLevel.PROFESSIONAL_AGILE_COACH
+        ? CertificateLevel.ASSOCIATE_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
       photoUrl: '',
       logoUrl: '',

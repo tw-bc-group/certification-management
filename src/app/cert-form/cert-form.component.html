@@ -40,7 +40,7 @@
     <nz-select
       name="certName" [(ngModel)]="certificate.certName"
     >
-      <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+      <nz-option  *ngFor="let option of certificateLevelOptions" [nzValue]="option.value" [nzLabel]="option.label | chineseName"></nz-option>
     </nz-select>
   </nz-form-item>
   <nz-form-item>
