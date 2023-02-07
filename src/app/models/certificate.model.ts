@@ -54,8 +54,8 @@ export enum CertificateTabs {
 }
 
 export const CertificateDirectionOptions = [
-  {value: CertificateDirection.TECH, label: '技术方向'},
   {value: CertificateDirection.MANAGE, label: '管理方向'},
+  {value: CertificateDirection.TECH, label: '技术方向'},
 ];
 
 export const CertificateTemplateOptions = [
