@@ -1,7 +1,11 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {fetchCertificate} from '../utils/certificatesStorage';
 import {MatPaginator} from '@angular/material/paginator';
-import {CertificateDirectionOptions, CertificateTemplateOptions} from '../models/certificate.model';
+import {
+  CertificateDirection,
+  CertificateDirectionOptions,
+  CertificateTemplateOptions
+} from '../models/certificate.model';
 
 interface Header {
   certificateTemplate: number;
@@ -43,9 +47,14 @@ export class QueryPageComponent implements OnInit {
   listOfData: Header[] = [];
 
   constructor() {
+    this.search();
   }
 
-  searchText: string;
+  nameText: string;
+
+  certDirectionText: CertificateDirection;
+
+  certCount = 0;
 
   // displayedColumns: string[] = ['certificateTemplate', 'certDirection', 'partner', 'name'];
   // dataSource = new MatTableDataSource<header>(ELEMENT_DATA);
@@ -64,21 +73,28 @@ export class QueryPageComponent implements OnInit {
 
 
   search(): void {
-    const certId = this.searchText;
-    const promise = fetchCertificate({certId});
+    const name = this.nameText;
+    const promise = fetchCertificate({name, certDirection: this.certDirectionText});
     promise.then((resolved) => {
-      // @ts-ignore
-      this.valueChange.emit(resolved[0].attributes);
+        // @ts-ignore
+        this.valueChange.emit(resolved.list[0].attributes);
+        this.certCount = resolved.count;
     }).catch(err => {
       console.log(err);
     });
   }
 
   initSearchText(): void {
-    this.searchText = '';
+    this.nameText = '';
   }
 
   ngOnInit(): void {
     this.initSearchText();
   }
+
+  handleNameClear(): void {
+    this.nameText = '';
+    this.search();
+  }
+
 }
