@@ -1,23 +1,11 @@
 <div class="searchContainer">
   <div class="search">
-    <nz-form-control>
-      <nz-input-group [nzSuffix]="suffixTemplate" [nzPrefix]="prefixTemplate" class="input">
-        <input nz-input type="text" name="search" [(ngModel)]="nameText" autocomplete="off"
-               (keyup.enter)="search()" placeholder="搜索认证对象名称"
-        >
-        <ng-template #prefixTemplate>
-          <i nz-icon nzType="search"></i>
-        </ng-template>
-        <ng-template #suffixTemplate>
-          <i
-            nz-icon
-            class="ant-input-clear-icon"
-            nzType="close-circle"
-            (click)="handleNameClear()"
-          ></i>
-        </ng-template>
-      </nz-input-group>
-    </nz-form-control>
+    <nz-input-group [nzSuffix]="clearNameTemplate" [nzPrefix]="prefixTemplate" class="input">
+      <input nz-input type="text" name="searchByName" [(ngModel)]="nameText" autocomplete="off"
+             (keyup.enter)="search()" placeholder="搜索认证对象名称"
+      >
+      <ng-template #prefixTemplate></ng-template>
+    </nz-input-group>
     <nz-form-item>
       <nz-select
         name="certificateDirection"
@@ -34,20 +22,34 @@
         </nz-option>
       </nz-select>
     </nz-form-item>
-    <nz-form-item >
-      <nz-select
-        name="certificateCompany"
-        nzPlaceHolder="认证对象所属公司"
+    <nz-input-group [nzSuffix]="clearSubordinateCompanyTemplate" [nzPrefix]="prefixTemplate" class="input">
+      <input nz-input type="text" name="searchBySubordinateCompany" [(ngModel)]="subordinateCompanyText" autocomplete="off"
+             (keyup.enter)="search()" placeholder="搜索认证对象所属公司"
       >
-        <nz-option
-          *ngFor="let option of certificateTemplateOptions"
-          [nzValue]="option.value"
-          [nzLabel]="option.label">
-        </nz-option>
-      </nz-select>
-    </nz-form-item>
+    </nz-input-group>
   </div>
   <span class="certCount" >证书数量：{{certCount}}</span>
+  <ng-template #prefixTemplate>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+  <ng-template #clearSubordinateCompanyTemplate>
+    <i
+      nz-icon
+      class="ant-input-clear-icon"
+      nzType="close-circle"
+      id="subordinateCompanyClear"
+      (click)="handleSubordinateCompanyClear()"
+    ></i>
+  </ng-template>
+  <ng-template #clearNameTemplate>
+    <i
+      nz-icon
+      class="ant-input-clear-icon"
+      nzType="close-circle"
+      id="nameClear"
+      (click)="handleNameClear()"
+    ></i>
+  </ng-template>
 </div>
 
 <div class="table">

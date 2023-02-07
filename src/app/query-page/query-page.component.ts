@@ -4,7 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {
   CertificateDirection,
   CertificateDirectionOptions, CertificateModel,
-  CertificateTemplateOptions, CertificateTemplateType,
+  CertificateTemplateOptions, CertificateTemplateType
 } from '../models/certificate.model';
 import {map} from 'lodash';
 
@@ -35,6 +35,7 @@ export class QueryPageComponent implements OnInit {
 
   certDirectionText: CertificateDirection;
 
+  subordinateCompanyText: string;
   certCount = 0;
 
   certificateTemplateOptions = CertificateTemplateOptions;
@@ -48,7 +49,8 @@ export class QueryPageComponent implements OnInit {
 
   search(): void {
     const name = this.nameText;
-    fetchCertificate({name, certDirection: this.certDirectionText})
+    const subordinateCompany = this.subordinateCompanyText;
+    fetchCertificate({name, certDirection: this.certDirectionText, subordinateCompany})
       .then((list) => {
         // @ts-ignore
         this.valueChange.emit(list[0].attributes);
@@ -73,6 +75,7 @@ export class QueryPageComponent implements OnInit {
 
   initSearchText(): void {
     this.nameText = '';
+    this.subordinateCompanyText = '';
   }
 
   ngOnInit(): void {
@@ -81,6 +84,10 @@ export class QueryPageComponent implements OnInit {
 
   handleNameClear(): void {
     this.nameText = '';
+    this.search();
+  }
+  handleSubordinateCompanyClear(): void {
+    this.subordinateCompanyText = '';
     this.search();
   }
 
