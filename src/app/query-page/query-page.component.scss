@@ -11,9 +11,31 @@ table {
 }
 
 
-.search {
+.searchContainer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+
+  .search {
+    display: flex;
+    height: 56px;
+    align-items: center;
+    .certCount {
+      display: flex;
+      float: right;
+    }
+    .ant-form-item {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      .ant-select > .ant-select-selection {
+        height: 36px;
+      }
+    }
+  }
 }
+
 
 nz-form-item {
   &:nth-child(even) {
@@ -26,6 +48,7 @@ nz-form-item {
 }
 
 .input {
-  width: 567px;
-  margin-right: 80px;
+  width: 246px;
+  //height: 36px;
+  margin-right: 10px;
 }
