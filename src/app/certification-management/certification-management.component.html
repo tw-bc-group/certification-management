@@ -39,7 +39,7 @@
         [(certificateTemplate)]="certificateTemplate">
       </app-cert-form>
       <app-non-linked-cert-form
-        *ngIf="subTabKey===certificateTabs.NON_LINKED_CERTIFICATE"
+        *ngIf="isCertificatePublish && subTabKey===certificateTabs.NON_LINKED_CERTIFICATE"
         [certificate]="certificate"
         [(certificateTemplate)]="certificateTemplate">
       </app-non-linked-cert-form>

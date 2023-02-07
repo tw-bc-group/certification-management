@@ -6,7 +6,7 @@ import {
   NonLinkedCertificateLevel,
   PartnerOptions,
 } from '../models/certificate.model';
-import companies from '../utils/otherCompanies.json';
+import { companies } from '../utils/otherCompanies';
 
 @Component({
   selector: 'app-non-linked-cert-form',
