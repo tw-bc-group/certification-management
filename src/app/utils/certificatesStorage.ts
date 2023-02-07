@@ -11,15 +11,30 @@ AV.init({
 console.log('use lcAppId:', AV.applicationId);
 
 const LEANCLOUD_CLASS_CERTIFICATES = 'Certificates';
-const INDEX = 'certId';
 
-export const fetchCertificate: ({certId}: { certId: string }) => Promise<object[]> = ({
-                                                                             certId
-                                                                           }) => {
+export const fetchCertificate: ({
+  name,
+  certDirection
+}: { name: any; certDirection: any }) => Promise<{ count: number; list: object[] }> = async ({
+  name,
+  certDirection
+}) => {
   const query = new AV.Query(LEANCLOUD_CLASS_CERTIFICATES);
-  query.equalTo(INDEX, certId);
+  if (name) {
+    query.equalTo('name', name);
+  }
+  if (certDirection) {
+    query.equalTo('certDirection', certDirection);
+  }
   query.include(['certId', 'certName', 'certificateTemplate', 'issuer', 'name', 'png', 'publishedAt', 'svg', 'type']);
-  return query.find();
+  const list = await query.find();
+  const count = await query.count();
+  return Promise.resolve(
+    {
+      list,
+      count
+    }
+  );
 };
 
 export const saveCertificate: ({
@@ -32,7 +47,7 @@ export const saveCertificate: ({
   certificate: CertificateModel;
 }) => Promise<{ pngUrl: string; svgUrl: string }> = ({certId, photos, certificate}) => {
   const lcCertificate = new AV.Object(LEANCLOUD_CLASS_CERTIFICATES);
-  lcCertificate.set(INDEX, certId);
+  lcCertificate.set('certId', certId);
   const mark = 'base64,';
   const imagesObject = photos.map(({key, fileName, dataUrl}) => {
     const data = dataUrl.substring(dataUrl.indexOf(mark) + mark.length);
