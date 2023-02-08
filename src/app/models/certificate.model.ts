@@ -39,6 +39,7 @@ export enum CertificateTemplateType {
 export enum CertificateDirection {
   TECH = 'TECH',
   MANAGE = 'MANAGE',
+  PRODUCT = 'PRODUCT',
 }
 
 export enum CompanyRadios {
@@ -56,6 +57,11 @@ export enum CertificateTabs {
 export const CertificateDirectionOptions = [
   {value: CertificateDirection.MANAGE, label: '管理方向'},
   {value: CertificateDirection.TECH, label: '技术方向'},
+];
+
+export const CertificateDirectionSelectOptions = [
+  ...CertificateDirectionOptions,
+  {value: CertificateDirection.PRODUCT, label: '产品方向'},
 ];
 
 export const CertificateTemplateOptions = [

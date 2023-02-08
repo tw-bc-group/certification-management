@@ -40,6 +40,7 @@ export class QueryPageComponent implements OnInit {
 
   certificateTemplateOptions = CertificateTemplateOptions;
   certificateDirectionOptions = CertificateDirectionOptions;
+  certificateDirectionSelectOptions = CertificateDirectionSelectOptions;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

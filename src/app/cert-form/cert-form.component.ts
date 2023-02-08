@@ -1,15 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
+  CertificateDirection,
   CertificateDirectionOptions,
   CertificateLevel,
   CertificateModel,
   CertificateTemplateOptions,
+  CompanyRadios,
   DpmLevel,
   dpmLevelNameMapping,
-  PartnerOptions,
-  CompanyRadios
+  PartnerOptions
 } from '../models/certificate.model';
-import { companies } from '../utils/otherCompanies';
+import {companies} from '../utils/otherCompanies';
 
 @Component({
   selector: 'app-cert-form',
@@ -55,6 +56,9 @@ export class CertFormComponent implements OnInit {
 
   changeTemplate(value: string) {
     this.certificate.partner = null;
+    value === 'dpm' ?
+      this.certificate.certDirection = CertificateDirection.PRODUCT :
+      this.certificate.certDirection = CertificateDirection.MANAGE;
     this.certificateTemplateChange.emit(value);
   }
 
