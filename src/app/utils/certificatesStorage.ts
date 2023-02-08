@@ -15,7 +15,7 @@ const LEANCLOUD_CLASS_CERTIFICATES = 'Certificates';
 export const fetchCertificate: ({
   name,
   certDirection
-}: { name: any; certDirection: any }) => Promise<{ count: number; list: object[] }> = async ({
+}: { name: any; certDirection: any }) => Promise<object[]> = async ({
   name,
   certDirection
 }) => {
@@ -27,14 +27,8 @@ export const fetchCertificate: ({
     query.equalTo('certDirection', certDirection);
   }
   query.include(['certId', 'certName', 'certificateTemplate', 'issuer', 'name', 'png', 'publishedAt', 'svg', 'type']);
-  const list = await query.find();
-  const count = await query.count();
-  return Promise.resolve(
-    {
-      list,
-      count
-    }
-  );
+  query.descending('publishedAt');
+  return query.find();
 };
 
 export const saveCertificate: ({

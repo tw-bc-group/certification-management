@@ -48,6 +48,8 @@ import {NZ_ICONS} from 'ng-zorro-antd/icon';
 import {IconDefinition} from '@ant-design/icons-angular';
 import {DeleteOutline, PlusOutline} from '@ant-design/icons-angular/icons';
 import {AddCompanyModalComponent} from '../add-company-modal/add-company-modal.component';
+import {CertificateTemplatePipe} from '../pipes/certificate-template.pipe';
+import {CertificateDirectionPipe} from '../pipes/certificate-direction.pipe';
 
 const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 
@@ -75,6 +77,8 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     ChineseNamePipe,
     EnglishNamePipe,
     DpmLevelNamePipe,
+    CertificateTemplatePipe,
+    CertificateDirectionPipe,
     TraineePhotoUploadComponent,
     LogoPhotoUploadComponent,
     CertificationManagementComponent,

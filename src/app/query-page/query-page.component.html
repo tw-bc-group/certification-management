@@ -57,16 +57,20 @@
     <tr>
       <th>证书类型</th>
       <th>认证方向</th>
-      <th>合作方</th>
-      <th>认证人</th>
+      <th>等级</th>
+      <th>认证对象所属公司</th>
+      <th>认证对象</th>
+      <th>过期时间</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.certificateTemplate }}</td>
-      <td>{{ data.certDirection }}</td>
-      <td>{{ data.partner }}</td>
+      <td>{{ data.certificateTemplate | certificateTemplate }}</td>
+      <td>{{ data.certDirection | certificateDirection }}</td>
+      <td>{{ data.certificateTemplate === 'tw' ? (data.level | chineseName) : (data.level | dpmLevelName) }}</td>
+      <td>{{ data.subordinateCompany }}</td>
       <td>{{ data.name }}</td>
+      <td>{{ data.expiredAt | date: 'yyyy-MM-dd' }}</td>
     </tr>
     </tbody>
   </nz-table>
