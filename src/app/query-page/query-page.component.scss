@@ -21,17 +21,15 @@ table {
     display: flex;
     height: 56px;
     align-items: center;
+
     .certCount {
       display: flex;
       float: right;
+      line-height: 18px;
     }
     .ant-form-item {
       margin-top: 0;
       margin-bottom: 0;
-
-      .ant-select > .ant-select-selection {
-        height: 36px;
-      }
     }
   }
 }
@@ -39,7 +37,7 @@ table {
 
 nz-form-item {
   &:nth-child(even) {
-    margin-right: 10px;
+    margin-right: 14px;
   }
 
   nz-select {
@@ -47,10 +45,18 @@ nz-form-item {
   }
 }
 
+:host ::ng-deep nz-select .ant-select-selection {
+  height: 36px;
+}
+
+:host ::ng-deep nz-select .ant-select-selection__rendered {
+  line-height: 34px;
+}
+
 .input {
   width: 246px;
-  //height: 36px;
-  margin-right: 10px;
+  height: 36px;
+  margin-right: 14px;
 }
 
 .operation{
@@ -67,3 +73,5 @@ nz-form-item {
    cursor: pointer;
   }
 }
+
+
