@@ -241,7 +241,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   private uploadCerts(): void {
     const {fingerprint, lastName, firstName} = this.certificate;
-    const pictureName = `${lastName}_${firstName}`;
+    const pictureName = `${lastName}${firstName}`;
 
     if (this.isLinkedCertificate) {
       this.uploadCertsWithSimple(fingerprint, pictureName);

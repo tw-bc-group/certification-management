@@ -70,7 +70,7 @@ export const saveCertificate: ({
     partner,
     subordinateCompany
   } = certificate;
-  lcCertificate.set('name', `${lastName}_${firstName}`);
+  lcCertificate.set('name', `${lastName}${firstName}`);
   lcCertificate.set('certificateTemplate', certificateTemplate);
   lcCertificate.set('certName', certName);
   lcCertificate.set('certDirection', certDirection);
