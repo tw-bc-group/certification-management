@@ -2,9 +2,7 @@ import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core'
 import {fetchCertificate} from '../utils/certificatesStorage';
 import {MatPaginator} from '@angular/material/paginator';
 import {
-  CertificateDirection,
-  CertificateDirectionOptions, CertificateModel,
-  CertificateTemplateOptions, CertificateTemplateType
+  CertificateDirection, CertificateDirectionOptions
 } from '../models/certificate.model';
 import {map} from 'lodash';
 
@@ -38,9 +36,7 @@ export class QueryPageComponent implements OnInit {
   subordinateCompanyText: string;
   certCount = 0;
 
-  certificateTemplateOptions = CertificateTemplateOptions;
-  certificateDirectionOptions = CertificateDirectionOptions;
-  certificateDirectionSelectOptions = CertificateDirectionSelectOptions;
+  certificateDirectionSelectOptions = CertificateDirectionOptions;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

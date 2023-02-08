@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
-  CertificateDirectionOptions,
+  AgileCoachCertificateDirectionOptions,
   CertificateModel,
   CertificateTemplateOptions, CompanyRadios,
   NonLinkedCertificateLevel,
@@ -24,7 +24,7 @@ export class NonLinkedCertFormComponent implements OnInit {
   }));
   certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
   partnerOptions = PartnerOptions;
-  certificateDirectionOptions = CertificateDirectionOptions;
+  certificateDirectionOptions = AgileCoachCertificateDirectionOptions;
   companyRadio = CompanyRadios.THOUGHTWORKS;
   otherCompaniesOptions = companies;
 

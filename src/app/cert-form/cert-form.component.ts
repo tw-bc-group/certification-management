@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   CertificateDirection,
-  CertificateDirectionOptions,
+  AgileCoachCertificateDirectionOptions,
   CertificateLevel,
   CertificateModel,
   CertificateTemplateOptions,
@@ -29,7 +29,7 @@ export class CertFormComponent implements OnInit {
     value: CertificateLevel[level],
     label: CertificateLevel[level]
   }));
-  certificateDirectionOptions = CertificateDirectionOptions;
+  certificateDirectionOptions = AgileCoachCertificateDirectionOptions;
   certificateTemplateOptions = CertificateTemplateOptions;
   partnerOptions = PartnerOptions;
   otherCompaniesOptions = companies;

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CertificateDirectionOptions } from '../models/certificate.model';
+import {AgileCoachCertificateDirectionOptions} from '../models/certificate.model';
 import {find} from 'lodash';
 import {get} from 'lodash';
 
@@ -8,6 +8,6 @@ import {get} from 'lodash';
 })
 export class CertificateDirectionPipe implements PipeTransform {
   transform(value: string): string {
-    return get(find(CertificateDirectionOptions, { value }), 'label');
+    return get(find(AgileCoachCertificateDirectionOptions, { value }), 'label');
   }
 }

@@ -54,14 +54,15 @@ export enum CertificateTabs {
   NON_LINKED_CERTIFICATE = 'NON_LINKED_CERTIFICATE',
 }
 
-export const CertificateDirectionOptions = [
+export const AgileCoachCertificateDirectionOptions = [
   {value: CertificateDirection.MANAGE, label: '管理方向'},
   {value: CertificateDirection.TECH, label: '技术方向'},
 ];
 
-export const CertificateDirectionSelectOptions = [
-  ...CertificateDirectionOptions,
-  {value: CertificateDirection.PRODUCT, label: '产品方向'},
+export const CertificateDirectionOptions = [
+  {value: CertificateDirection.MANAGE, label: '管理方向'},
+  {value: CertificateDirection.TECH, label: '技术方向'},
+  {value: CertificateDirection.PRODUCT, label: '产品方向'}
 ];
 
 export const CertificateTemplateOptions = [
