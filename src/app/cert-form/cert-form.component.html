@@ -60,7 +60,8 @@
   <nz-form-item class="company-area">
     <nz-form-label>认证对象所属公司</nz-form-label>
     <nz-radio-group [(ngModel)]="companyRadio">
-      <label nz-radio [nzValue]="companyRadios.THOUGHTWORKS">Thoughtworks</label>
+      <label nz-radio [nzValue]="companyRadios.THOUGHTWORKS"
+             (click)="certificate.subordinateCompany = companyRadios.THOUGHTWORKS">Thoughtworks</label>
       <label nz-radio [nzValue]="companyRadios.OTHERS">其他公司</label>
     </nz-radio-group>
   </nz-form-item>
