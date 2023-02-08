@@ -57,12 +57,13 @@
             [nzNoResult]="noResult">
     <thead>
     <tr>
-      <th>证书类型</th>
-      <th>认证方向</th>
-      <th>等级</th>
-      <th>认证对象所属公司</th>
-      <th>认证对象</th>
-      <th>过期时间</th>
+      <th id="certificateTemplate">证书类型</th>
+      <th id="certDirection">认证方向</th>
+      <th id="level">等级</th>
+      <th id="subordinateCompany">认证对象所属公司</th>
+      <th id="name">认证对象</th>
+      <th id="expiredAt">过期时间</th>
+      <th id="operation">操作</th>
     </tr>
     </thead>
     <tbody>
@@ -73,6 +74,10 @@
       <td>{{ data.subordinateCompany }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.expiredAt | date: 'yyyy-MM-dd' }}</td>
+      <td>
+        <span class="operation">查看</span>
+        <span class="operation">下载</span>
+      </td>
     </tr>
     </tbody>
   </nz-table>
