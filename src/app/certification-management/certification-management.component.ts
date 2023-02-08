@@ -115,7 +115,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       idNumber: '',
       certificateTemplate: CertificateTemplateType.TW_AC,
       certDirection: CertificateDirection.TECH,
-      subordinateCompany: '',
+      subordinateCompany: 'THOUGHTWORKS',
       certName: this.isLinkedCertificate
         ? CertificateLevel.ASSOCIATE_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
@@ -216,11 +216,11 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   checkFormValidation(): boolean {
-    const { firstName, lastName, issuer } = this.certificate;
+    const { firstName, lastName, issuer, subordinateCompany } = this.certificate;
     if (this.isLinkedCertificate) {
-      return (!!firstName && !!lastName && !!issuer) ? false : true;
+      return (!!firstName && !!lastName && !!issuer && !!subordinateCompany) ? false : true;
     } else {
-      return (!!firstName && !!lastName) ? false : true;
+      return (!!firstName && !!lastName && !!subordinateCompany) ? false : true;
     }
   }
 

@@ -34,7 +34,7 @@ export class CertFormComponent implements OnInit {
   partnerOptions = PartnerOptions;
   otherCompaniesOptions = companies;
 
-  companyRadio = null;
+  companyRadio = CompanyRadios.THOUGHTWORKS;
 
   @Input()
   certificate: CertificateModel;
@@ -42,8 +42,14 @@ export class CertFormComponent implements OnInit {
   @Input()
   certificateTemplate: string;
 
+  @Input()
+  subordinateCompany: string;
+
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  subordinateCompanyChange: EventEmitter<string> = new EventEmitter<string>();
 
   isAddCompanyModalVisible = false;
 
@@ -60,6 +66,13 @@ export class CertFormComponent implements OnInit {
       this.certificate.certDirection = CertificateDirection.PRODUCT :
       this.certificate.certDirection = CertificateDirection.MANAGE;
     this.certificateTemplateChange.emit(value);
+  }
+
+  changeSubordinateCompany(value: string) {
+    value === CompanyRadios.THOUGHTWORKS ?
+      this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS :
+      this.certificate.subordinateCompany = '';
+    this.subordinateCompanyChange.emit(value);
   }
 
   onPhotoChanged(photoUrl: string): void {

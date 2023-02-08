@@ -25,7 +25,7 @@ export class NonLinkedCertFormComponent implements OnInit {
   certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
   partnerOptions = PartnerOptions;
   certificateDirectionOptions = CertificateDirectionOptions;
-  companyRadio = null;
+  companyRadio = CompanyRadios.THOUGHTWORKS;
   otherCompaniesOptions = companies;
 
   @Input()
@@ -37,8 +37,14 @@ export class NonLinkedCertFormComponent implements OnInit {
   @Input()
   isLinkedCertificate: boolean;
 
+  @Input()
+  subordinateCompany: string;
+
   @Output()
   certificateTemplateChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  subordinateCompanyChange: EventEmitter<string> = new EventEmitter<string>();
 
   isAddCompanyModalVisible = false;
 
@@ -52,6 +58,13 @@ export class NonLinkedCertFormComponent implements OnInit {
   changeTemplate(value: string) {
     this.certificate.partner = null;
     this.certificateTemplateChange.emit(value);
+  }
+
+  changeSubordinateCompany(value: string) {
+    value === CompanyRadios.THOUGHTWORKS ?
+      this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS :
+      this.certificate.subordinateCompany = '';
+    this.subordinateCompanyChange.emit(value);
   }
 
   onPhotoChanged(photoUrl: string): void {
