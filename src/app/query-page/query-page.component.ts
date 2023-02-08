@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {fetchCertificate} from '../utils/certificatesStorage';
 import {MatPaginator} from '@angular/material/paginator';
 import {
@@ -41,16 +41,11 @@ export class QueryPageComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  @Output()
-  valueChange: EventEmitter<any> = new EventEmitter();
-
   search(): void {
     const name = this.nameText;
     const subordinateCompany = this.subordinateCompanyText;
     fetchCertificate({name, certDirection: this.certDirectionText, subordinateCompany})
       .then((list) => {
-        // @ts-ignore
-        this.valueChange.emit(list[0].attributes);
         const certificates = map(list, 'attributes');
         this.mapCertificationList(certificates);
         this.certCount = certificates.length;

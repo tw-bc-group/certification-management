@@ -151,19 +151,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.isVisible = isVisible;
   }
 
-  onValueChange(queriedCertificate: any): void {
-    // tslint:disable-next-line:forin
-    for (const key in this.certificate) {
-      this.certificate[key] = queriedCertificate[key];
-    }
-    this.certificate.firstName = queriedCertificate.name.split('_')[0];
-    this.certificate.lastName = queriedCertificate.name.split('_')[1];
-    this.svgUrl = queriedCertificate.svg.attributes.url;
-    this.pngUrl = queriedCertificate.png.attributes.url;
-    this.downloadLink = true;
-    this.changeDetector.detectChanges();
-  }
-
   showModal(): void {
     this.isVisible = true;
   }

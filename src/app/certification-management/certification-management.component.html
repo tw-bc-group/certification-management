@@ -48,7 +48,7 @@
                 (click)="issue()" [nzLoading]="loading">颁发证书
         </button>
       </div>
-      <app-query-page *ngIf="tabKey===certificateTabs.QUERY_CERTIFICATE" (valueChange)="onValueChange($event)"></app-query-page>
+      <app-query-page *ngIf="tabKey===certificateTabs.QUERY_CERTIFICATE"></app-query-page>
     </div>
 
     <div class="preview" *ngIf="tabKey!==certificateTabs.QUERY_CERTIFICATE">
