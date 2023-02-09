@@ -1,3 +1,4 @@
+import { CertificateTemplateType } from './../models/certificate.model';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   CertificateDirection,
@@ -8,7 +9,8 @@ import {
   CompanyRadios,
   DpmLevel,
   dpmLevelNameMapping,
-  PartnerOptions
+  PartnerOptions,
+  CertificateType
 } from '../models/certificate.model';
 import {companies} from '../utils/otherCompanies';
 
@@ -22,8 +24,8 @@ export class CertFormComponent implements OnInit {
   constructor() {
   }
   dpmLevelOptions = Object.keys(DpmLevel).map((level) => ({
-    value: level,
-    label: dpmLevelNameMapping[level]
+    value: DpmLevel[level],
+    label: DpmLevel[level]
   }));
   certificateLevelOptions = Object.keys(CertificateLevel).map((level) => ({
     value: CertificateLevel[level],
@@ -62,9 +64,14 @@ export class CertFormComponent implements OnInit {
 
   changeTemplate(value: string) {
     this.certificate.partner = null;
-    value === 'dpm' ?
-      this.certificate.certDirection = CertificateDirection.PRODUCT :
+    
+    if(value === CertificateTemplateType.DPM){
+      this.certificate.certDirection = CertificateDirection.PRODUCT;
+      this.certificate.certName = DpmLevel.JUNIOR;
+    }else {
       this.certificate.certDirection = CertificateDirection.MANAGE;
+      this.certificate.certName = CertificateLevel.ASSOCIATE_AGILE_COACH;
+    }
     this.certificateTemplateChange.emit(value);
   }
 

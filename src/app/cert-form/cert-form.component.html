@@ -28,10 +28,10 @@
   <nz-form-item *ngIf="certificateTemplate === 'dpm'">
     <nz-form-label>等级</nz-form-label>
     <nz-select
-      name="dpmLevel"
-      [(ngModel)]="certificate.dpmLevel"
+      name="certName"
+      [(ngModel)]="certificate.certName"
     >
-      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+      <nz-option  *ngFor="let option of dpmLevelOptions" [nzValue]="option.value" [nzLabel]="option.label | chineseName"></nz-option>
     </nz-select>
   </nz-form-item>
 
