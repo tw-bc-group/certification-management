@@ -31,7 +31,7 @@ export const fetchCertificate: ({
     query.equalTo('subordinateCompany', subordinateCompany);
   }
   query.include(['certId', 'certName', 'certificateTemplate', 'issuer', 'name', 'png', 'publishedAt', 'svg', 'type']);
-  query.descending('publishedAt');
+  query.descending('createdAt');
   return query.find();
 };
 
