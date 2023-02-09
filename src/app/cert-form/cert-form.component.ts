@@ -1,5 +1,5 @@
 import { CertificateTemplateType } from './../models/certificate.model';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   CertificateDirection,
   AgileCoachCertificateDirectionOptions,
@@ -10,9 +10,9 @@ import {
   DpmLevel,
   dpmLevelNameMapping,
   PartnerOptions,
-  CertificateType
+  CertificateType,
 } from '../models/certificate.model';
-import {companies} from '../utils/otherCompanies';
+import { companies } from '../utils/otherCompanies';
 
 @Component({
   selector: 'app-cert-form',
@@ -20,16 +20,14 @@ import {companies} from '../utils/otherCompanies';
   styleUrls: ['./cert-form.component.scss'],
 })
 export class CertFormComponent implements OnInit {
-
-  constructor() {
-  }
+  constructor() {}
   dpmLevelOptions = Object.keys(DpmLevel).map((level) => ({
     value: DpmLevel[level],
-    label: DpmLevel[level]
+    label: DpmLevel[level],
   }));
   certificateLevelOptions = Object.keys(CertificateLevel).map((level) => ({
     value: CertificateLevel[level],
-    label: CertificateLevel[level]
+    label: CertificateLevel[level],
   }));
   certificateDirectionOptions = AgileCoachCertificateDirectionOptions;
   certificateTemplateOptions = CertificateTemplateOptions;
@@ -55,8 +53,7 @@ export class CertFormComponent implements OnInit {
 
   isAddCompanyModalVisible = false;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get companyRadios() {
     return CompanyRadios;
@@ -64,23 +61,22 @@ export class CertFormComponent implements OnInit {
 
   changeTemplate(value: string) {
     this.certificate.partner = null;
-    if(value === CertificateTemplateType.DPM){
+    if (value === CertificateTemplateType.DPM) {
       this.certificate.certDirection = CertificateDirection.PRODUCT;
       this.certificate.certName = DpmLevel.JUNIOR;
       this.certificate.certificateTemplate = CertificateTemplateType.DPM;
-    }else {
+    } else {
       this.certificate.certDirection = CertificateDirection.MANAGE;
       this.certificate.certName = CertificateLevel.ASSOCIATE_AGILE_COACH;
       this.certificate.certificateTemplate = CertificateTemplateType.TW_AC;
     }
-    
     this.certificateTemplateChange.emit(value);
   }
 
   changeSubordinateCompany(value: string) {
-    value === CompanyRadios.THOUGHTWORKS ?
-      this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS :
-      this.certificate.subordinateCompany = '';
+    value === CompanyRadios.THOUGHTWORKS
+      ? (this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS)
+      : (this.certificate.subordinateCompany = '');
     this.subordinateCompanyChange.emit(value);
   }
 
