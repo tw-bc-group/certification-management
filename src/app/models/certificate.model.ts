@@ -43,7 +43,7 @@ export enum CertificateDirection {
 }
 
 export enum CompanyRadios {
-  THOUGHTWORKS = 'THOUGHTWORKS',
+  THOUGHTWORKS = 'Thoughtworks',
   OTHERS = 'OTHERS'
 }
 

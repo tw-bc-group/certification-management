@@ -7,6 +7,7 @@ import {
   CertificateTabs,
   CertificateTemplateType,
   CertificateType,
+  CompanyRadios,
   DpmLevel,
   NonLinkedCertificateLevel,
 } from '../models/certificate.model';
@@ -115,7 +116,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       idNumber: '',
       certificateTemplate: CertificateTemplateType.TW_AC,
       certDirection: CertificateDirection.TECH,
-      subordinateCompany: 'THOUGHTWORKS',
+      subordinateCompany: CompanyRadios.THOUGHTWORKS,
       certName: this.isLinkedCertificate
         ? CertificateLevel.ASSOCIATE_AGILE_COACH
         : NonLinkedCertificateLevel.AGILE_COACH,
