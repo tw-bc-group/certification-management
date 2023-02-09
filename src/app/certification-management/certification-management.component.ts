@@ -102,6 +102,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   onTabChange(tabKey): void {
     this.tabKey = tabKey;
+    this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.resetValues();
   }
 

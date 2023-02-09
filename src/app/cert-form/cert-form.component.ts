@@ -42,7 +42,7 @@ export class CertFormComponent implements OnInit {
   certificate: CertificateModel;
 
   @Input()
-  certificateTemplate: string;
+  certificateTemplate: CertificateTemplateType;
 
   @Input()
   subordinateCompany: string;
@@ -64,14 +64,16 @@ export class CertFormComponent implements OnInit {
 
   changeTemplate(value: string) {
     this.certificate.partner = null;
-    
     if(value === CertificateTemplateType.DPM){
       this.certificate.certDirection = CertificateDirection.PRODUCT;
       this.certificate.certName = DpmLevel.JUNIOR;
+      this.certificate.certificateTemplate = CertificateTemplateType.DPM;
     }else {
       this.certificate.certDirection = CertificateDirection.MANAGE;
       this.certificate.certName = CertificateLevel.ASSOCIATE_AGILE_COACH;
+      this.certificate.certificateTemplate = CertificateTemplateType.TW_AC;
     }
+    
     this.certificateTemplateChange.emit(value);
   }
 
