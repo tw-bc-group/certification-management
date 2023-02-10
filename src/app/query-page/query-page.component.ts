@@ -13,6 +13,7 @@ interface Header {
   subordinateCompany: string;
   expiredAt: Date;
   name: string;
+  pngUrl: File;
 }
 
 @Component({
@@ -62,6 +63,7 @@ export class QueryPageComponent implements OnInit {
       subordinateCompany: certification.subordinateCompany,
       expiredAt: certification.expiredAt,
       name: certification.name,
+      pngUrl: certification.png.attributes.url,
       }));
   }
 

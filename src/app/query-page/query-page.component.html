@@ -76,7 +76,7 @@
       <td>{{ data.expiredAt | date: 'yyyy-MM-dd' }}</td>
       <td>
         <span class="operation">查看</span>
-        <span class="operation">下载</span>
+        <a class="operation" [href]="data.pngUrl" target="_blank" download="{{data.name}}的证书.png">下载</a>
       </td>
     </tr>
     </tbody>
