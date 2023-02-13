@@ -53,6 +53,7 @@
                 background: #F8F8F8;
                 margin-left: 40px;
                 padding-top: 16px;
+
             }
 
             ul {
@@ -60,6 +61,7 @@
                 color: #262A30;
                 padding-inline-start: 30px;
                 font-family: PingFang SC;
+                padding-right: 2px;
 
                 label {
                     font-size: 16px;
@@ -74,6 +76,8 @@
                     font-weight: 400;
                     line-height: 20px;
                     letter-spacing: 0px;
+                    width: 196px;
+                    word-wrap:break-word;
                 }
             }
         }

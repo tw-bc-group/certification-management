@@ -17,28 +17,29 @@
       <section class="detail">
         <ul>
           <label>证书信息</label>
-          <li>
+          <li *ngIf="certDetail.certificateTemplate">
             证书类型：{{ certDetail.certificateTemplate | certificateTemplate }}
           </li>
-          <li>等级： {{ certDetail.level | chineseName }}</li>
-          <li>颁发者：{{ certDetail.issuer ? certDetail.issuer : '' }}</li>
-          <li>认证类型：{{ certDetail.type ? certDetail.type : '' }}</li>
-          <li>
-            认证方向：{{
-              certDetail.certDirection
-                ? (certDetail.certDirection | certificateDirection)
-                : 'null'
+          <li *ngIf="certDetail.level">
+            等级： {{ certDetail.level | chineseName }}
+          </li>
+          <li *ngIf="certDetail.issuer">颁发者：{{ certDetail.issuer }}</li>
+          <li *ngIf="certDetail.type">认证类型：{{ certDetail.type }}</li>
+          <li *ngIf="certDetail.certDirection">
+            认证方向：{{ certDetail.certDirection | certificateDirection }}
+          </li>
+          <li *ngIf="certDetail.name">姓名：{{ certDetail.name }}</li>
+          <li *ngIf="certDetail.subordinateCompany">
+            认证对象所属公司：{{
+              certDetail.subordinateCompany +
+                'ahhahahahahahhahahahahahahahahhahahahahahahahhahaha'
             }}
           </li>
-          <li>姓名：{{ certDetail.name }}</li>
-          <li>认证对象所属公司：{{ certDetail.subordinateCompany }}</li>
-          <li>获得时间：{{ certDetail.publishedAt | date : 'yyyy-MM-dd' }}</li>
-          <li>
-            过期时间：{{
-              certDetail.expiredAt
-                ? (certDetail.expiredAt | date : 'yyyy-MM-dd')
-                : ''
-            }}
+          <li *ngIf="certDetail.publishedAt">
+            获得时间：{{ certDetail.publishedAt | date : 'yyyy-MM-dd' }}
+          </li>
+          <li *ngIf="certDetail.expiredAt">
+            过期时间：{{ certDetail.expiredAt | date : 'yyyy-MM-dd' }}
           </li>
         </ul>
       </section>
