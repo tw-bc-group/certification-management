@@ -1,6 +1,9 @@
 import { DpmLevel } from './../models/certificate.model';
 import { Pipe, PipeTransform } from '@angular/core';
-import {CertificateLevel, NonLinkedCertificateLevel} from '../models/certificate.model';
+import {
+  CertificateLevel,
+  NonLinkedCertificateLevel,
+} from '../models/certificate.model';
 
 const chineseNameMapping = {
   [NonLinkedCertificateLevel.AGILE_COACH]: '敏捷教练',
@@ -10,9 +13,9 @@ const chineseNameMapping = {
   [CertificateLevel.PROFESSIONAL_AGILE_COACH]: '专业敏捷教练',
   [CertificateLevel.SENIOR_PROFESSIONAL_AGILE_COACH]: '资深敏捷教练',
   [CertificateLevel.MASTER_AGILE_COACH]: '大师级敏捷教练',
-  [DpmLevel.JUNIOR]: '初阶',
-  [DpmLevel.INTERMEDIATE]: '中阶',
-  [DpmLevel.SENIOR]: '高阶',
+  [DpmLevel.JUNIOR]: '初阶数字产品经理',
+  [DpmLevel.INTERMEDIATE]: '中阶数字产品经理',
+  [DpmLevel.SENIOR]: '高阶数字产品经理',
 };
 
 @Pipe({

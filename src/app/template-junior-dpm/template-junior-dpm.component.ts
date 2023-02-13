@@ -13,13 +13,11 @@ export class TemplateJuniorDPMComponent implements OnInit {
   @ViewChild('svg')
   svgRef: ElementRef<SVGSVGElement>;
 
-  constructor() {
-  }
+  constructor() {}
 
   get svg(): SVGSVGElement {
     return this.svgRef.nativeElement;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

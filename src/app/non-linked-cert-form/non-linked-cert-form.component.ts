@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AgileCoachCertificateDirectionOptions,
   CertificateModel,
-  CertificateTemplateOptions, CompanyRadios,
+  CertificateTemplateOptions,
+  CompanyRadios,
   NonLinkedCertificateLevel,
   PartnerOptions,
 } from '../models/certificate.model';
@@ -11,18 +12,20 @@ import { companies } from '../utils/otherCompanies';
 @Component({
   selector: 'app-non-linked-cert-form',
   templateUrl: './non-linked-cert-form.component.html',
-  styleUrls: ['./non-linked-cert-form.component.scss']
+  styleUrls: ['./non-linked-cert-form.component.scss'],
 })
 export class NonLinkedCertFormComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
-
-  certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map((level) => ({
-    value: NonLinkedCertificateLevel[level],
-    label: NonLinkedCertificateLevel[level]
-  }));
-  certificateTemplateOptions = CertificateTemplateOptions.filter(option => option.value !== 'dpm');
+  certificateLevelOptions = Object.keys(NonLinkedCertificateLevel).map(
+    (level) => ({
+      value: NonLinkedCertificateLevel[level],
+      label: NonLinkedCertificateLevel[level],
+    })
+  );
+  certificateTemplateOptions = CertificateTemplateOptions.filter(
+    (option) => option.value !== 'dpm'
+  );
   partnerOptions = PartnerOptions;
   certificateDirectionOptions = AgileCoachCertificateDirectionOptions;
   companyRadio = CompanyRadios.THOUGHTWORKS;
@@ -48,8 +51,7 @@ export class NonLinkedCertFormComponent implements OnInit {
 
   isAddCompanyModalVisible = false;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get companyRadios() {
     return CompanyRadios;
@@ -61,9 +63,9 @@ export class NonLinkedCertFormComponent implements OnInit {
   }
 
   changeSubordinateCompany(value: string) {
-    value === CompanyRadios.THOUGHTWORKS ?
-      this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS :
-      this.certificate.subordinateCompany = '';
+    value === CompanyRadios.THOUGHTWORKS
+      ? (this.certificate.subordinateCompany = CompanyRadios.THOUGHTWORKS)
+      : (this.certificate.subordinateCompany = '');
     this.subordinateCompanyChange.emit(value);
   }
 
