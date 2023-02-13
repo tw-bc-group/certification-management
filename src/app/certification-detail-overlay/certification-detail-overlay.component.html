@@ -30,10 +30,7 @@
           </li>
           <li *ngIf="certDetail.name">姓名：{{ certDetail.name }}</li>
           <li *ngIf="certDetail.subordinateCompany">
-            认证对象所属公司：{{
-              certDetail.subordinateCompany +
-                'ahhahahahahahhahahahahahahahahhahahahahahahahhahaha'
-            }}
+            认证对象所属公司：{{ certDetail.subordinateCompany }}
           </li>
           <li *ngIf="certDetail.publishedAt">
             获得时间：{{ certDetail.publishedAt | date : 'yyyy-MM-dd' }}
