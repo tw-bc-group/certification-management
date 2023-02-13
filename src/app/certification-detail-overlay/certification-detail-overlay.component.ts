@@ -1,12 +1,12 @@
-import { fetchCertificate } from "../utils/certificatesStorage";
-import { CertificateModel } from "../models/certificate.model";
-import { Component, Input, OnInit } from "@angular/core";
-import { map } from "lodash";
+import { fetchCertificate } from '../utils/certificatesStorage';
+import { CertificateModel } from '../models/certificate.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { map } from 'lodash';
 
 @Component({
-  selector: "certification-detail-overlay",
-  templateUrl: "./certification-detail-overlay.component.html",
-  styleUrls: ["./certification-detail-overlay.component.scss"],
+  selector: 'certification-detail-overlay',
+  templateUrl: './certification-detail-overlay.component.html',
+  styleUrls: ['./certification-detail-overlay.component.scss'],
 })
 export class CertificationDetailOverlayComponent implements OnInit {
   @Input()
@@ -26,7 +26,7 @@ export class CertificationDetailOverlayComponent implements OnInit {
       certId: this.certId,
     })
       .then((cert) => {
-        const certificates = map(cert, "attributes");
+        const certificates = map(cert, 'attributes');
         this.certDetail = certificates[0];
         this.isOpen = !this.isOpen;
       })
