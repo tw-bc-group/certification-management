@@ -1,0 +1,51 @@
+<span (click)="handleCheckClick()"> 查看 </span>
+<div *ngIf="isOpen" class="mask" (click)="handleOutClick()">
+  <div class="container" (click)="$event.stopPropagation()">
+    <header>
+      <span> 证书详情 </span>
+      <i
+        nz-icon
+        nzType="close"
+        nzTheme="outline"
+        (click)="handleCheckClick()"
+      ></i>
+    </header>
+    <main>
+      <section class="img">
+        <img
+          src="{{ certDetail.png.attributes.url }}"
+          width="334px"
+          height="491px"
+        />
+      </section>
+      <section class="detail">
+        <ul>
+          <label>证书信息</label>
+          <li>
+            证书类型：{{ certDetail.certificateTemplate | certificateTemplate }}
+          </li>
+          <li>等级： {{ certDetail.certName | chineseName }}</li>
+          <li>颁发者：{{ certDetail.issuer ? certDetail.issuer : 'null' }}</li>
+          <li>认证类型：{{ certDetail.type ? certDetail.type : 'null' }}</li>
+          <li>
+            认证方向：{{
+              certDetail.certDirection
+                ? (certDetail.certDirection | certificateDirection)
+                : 'null'
+            }}
+          </li>
+          <li>姓名：{{ certDetail.name }}</li>
+          <li>认证对象所属公司：{{ certDetail.searchBySubordinateCompany }}</li>
+          <li>获得时间：{{ certDetail.publishedAt | date : 'yyyy-MM-dd' }}</li>
+          <li>
+            过期时间：{{
+              certDetail.expiredAt
+                ? (certDetail.expiredAt | date : 'yyyy-MM-dd')
+                : '永久'
+            }}
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</div>

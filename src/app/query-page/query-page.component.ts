@@ -1,12 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {fetchCertificate} from '../utils/certificatesStorage';
-import {MatPaginator} from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { fetchCertificate } from '../utils/certificatesStorage';
+import { MatPaginator } from '@angular/material/paginator';
 import {
-  CertificateDirection, CertificateDirectionOptions
+  CertificateDirection,
+  CertificateDirectionOptions,
 } from '../models/certificate.model';
-import {map} from 'lodash';
+import { map } from 'lodash';
 
 interface Header {
+  certId: string;
   certificateTemplate: number;
   certDirection: string;
   level: number;
@@ -21,8 +23,6 @@ interface Header {
   templateUrl: './query-page.component.html',
   styleUrls: ['./query-page.component.scss'],
 })
-
-
 export class QueryPageComponent implements OnInit {
   listOfData: Header[] = [];
 
@@ -45,18 +45,24 @@ export class QueryPageComponent implements OnInit {
   search(): void {
     const name = this.nameText;
     const subordinateCompany = this.subordinateCompanyText;
-    fetchCertificate({name, certDirection: this.certDirectionText, subordinateCompany})
+    fetchCertificate({
+      name,
+      certDirection: this.certDirectionText,
+      subordinateCompany,
+    })
       .then((list) => {
         const certificates = map(list, 'attributes');
         this.mapCertificationList(certificates);
         this.certCount = certificates.length;
-    }).catch(err => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   mapCertificationList(certificates): void {
-    this.listOfData = map(certificates, certification => ({
+    this.listOfData = map(certificates, (certification) => ({
+      certId: certification.certId,
       certificateTemplate: certification.certificateTemplate,
       certDirection: certification.certDirection,
       level: certification.certName,
@@ -64,7 +70,7 @@ export class QueryPageComponent implements OnInit {
       expiredAt: certification.expiredAt,
       name: certification.name,
       pngUrl: certification.png.attributes.url,
-      }));
+    }));
   }
 
   initSearchText(): void {
@@ -84,5 +90,4 @@ export class QueryPageComponent implements OnInit {
     this.subordinateCompanyText = '';
     this.search();
   }
-
 }

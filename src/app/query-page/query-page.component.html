@@ -1,9 +1,19 @@
 <div class="searchContainer">
   <div class="search">
-    <nz-input-group [nzSuffix]="clearNameTemplate" [nzPrefix]="prefixTemplate" class="input">
-      <input nz-input type="text" name="searchByName" [(ngModel)]="nameText" autocomplete="off"
-             (keyup.enter)="search()" placeholder="搜索认证对象名称"
-      >
+    <nz-input-group
+      [nzSuffix]="clearNameTemplate"
+      [nzPrefix]="prefixTemplate"
+      class="input"
+    >
+      <input
+        nz-input
+        type="text"
+        name="searchByName"
+        [(ngModel)]="nameText"
+        autocomplete="off"
+        (keyup.enter)="search()"
+        placeholder="搜索认证对象名称"
+      />
       <ng-template #prefixTemplate></ng-template>
     </nz-input-group>
     <nz-form-item>
@@ -22,13 +32,23 @@
         </nz-option>
       </nz-select>
     </nz-form-item>
-    <nz-input-group [nzSuffix]="clearSubordinateCompanyTemplate" [nzPrefix]="prefixTemplate" class="input">
-      <input nz-input type="text" name="searchBySubordinateCompany" [(ngModel)]="subordinateCompanyText" autocomplete="off"
-             (keyup.enter)="search()" placeholder="搜索认证对象所属公司"
-      >
+    <nz-input-group
+      [nzSuffix]="clearSubordinateCompanyTemplate"
+      [nzPrefix]="prefixTemplate"
+      class="input"
+    >
+      <input
+        nz-input
+        type="text"
+        name="searchBySubordinateCompany"
+        [(ngModel)]="subordinateCompanyText"
+        autocomplete="off"
+        (keyup.enter)="search()"
+        placeholder="搜索认证对象所属公司"
+      />
     </nz-input-group>
   </div>
-  <span class="certCount" >证书数量：{{certCount}}</span>
+  <span class="certCount">证书数量：{{ certCount }}</span>
   <ng-template #prefixTemplate>
     <i nz-icon nzType="search"></i>
   </ng-template>
@@ -53,35 +73,53 @@
 </div>
 
 <div class="table">
-  <nz-table #basicTable [nzData]="listOfData" nzShowSizeChanger="true" nzShowQuickJumper="true" nzPageSize="15"
-            [nzNoResult]="noResult">
+  <nz-table
+    #basicTable
+    [nzData]="listOfData"
+    nzShowSizeChanger="true"
+    nzShowQuickJumper="true"
+    nzPageSize="15"
+    [nzNoResult]="noResult"
+  >
     <thead>
-    <tr>
-      <th id="certificateTemplate">证书类型</th>
-      <th id="certDirection">认证方向</th>
-      <th id="level">等级</th>
-      <th id="subordinateCompany">认证对象所属公司</th>
-      <th id="name">认证对象</th>
-      <th id="expiredAt">过期时间</th>
-      <th id="operation">操作</th>
-    </tr>
+      <tr>
+        <th id="certificateTemplate">证书类型</th>
+        <th id="certDirection">认证方向</th>
+        <th id="level">等级</th>
+        <th id="subordinateCompany">认证对象所属公司</th>
+        <th id="name">认证对象</th>
+        <th id="expiredAt">过期时间</th>
+        <th id="operation">操作</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.certificateTemplate | certificateTemplate }}</td>
-      <td>{{ data.certDirection | certificateDirection }}</td>
-      <td>{{ data.level | chineseName }}</td>
-      <td>{{ data.subordinateCompany }}</td>
-      <td>{{ data.name }}</td>
-      <td>{{ data.expiredAt | date: 'yyyy-MM-dd' }}</td>
-      <td>
-        <span class="operation">查看</span>
-        <a class="operation" [href]="data.pngUrl" target="_blank" download="{{data.name}}的证书.png">下载</a>
-      </td>
-    </tr>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.certificateTemplate | certificateTemplate }}</td>
+        <td>{{ data.certDirection | certificateDirection }}</td>
+        <td>{{ data.level | chineseName }}</td>
+        <td>{{ data.subordinateCompany }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.expiredAt | date : 'yyyy-MM-dd' }}</td>
+        <td>
+          <certification-detail-overlay
+            class="operation"
+            [certId]="data.certId"
+          ></certification-detail-overlay>
+          <a
+            class="operation"
+            [href]="data.pngUrl"
+            target="_blank"
+            download="{{ data.name }}的证书.png"
+            >下载</a
+          >
+        </td>
+      </tr>
     </tbody>
   </nz-table>
   <ng-template #noResult>
-    <nz-empty nzNotFoundContent="暂无内容" nzNotFoundImage="assets/no-result-image.png"></nz-empty>
+    <nz-empty
+      nzNotFoundContent="暂无内容"
+      nzNotFoundImage="assets/no-result-image.png"
+    ></nz-empty>
   </ng-template>
 </div>
