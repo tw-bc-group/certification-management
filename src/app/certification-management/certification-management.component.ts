@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { from, Observable, Subject, zip } from 'rxjs';
 import {
   CertificateDirection,
@@ -21,9 +28,8 @@ import { Constants } from '../utils/constants';
 import { save } from '../utils/photoStorage';
 import { saveCertificate } from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
-import {generateCertificateId} from '../clients/certificate';
-import {NzMessageService} from 'ng-zorro-antd/message';
-
+import { generateCertificateId } from '../clients/certificate';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 const certService = new CertificateService();
 
@@ -51,21 +57,27 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   svgUrl: SafeResourceUrl;
   downloadLink = false;
   loading = false;
-  tabs = [{
-    key: CertificateTabs.CERTIFICATE_PUBLISH,
-    title: '证书发布',
-  }, {
-    key: CertificateTabs.QUERY_CERTIFICATE,
-    title: '证书查询',
-  }];
+  tabs = [
+    {
+      key: CertificateTabs.CERTIFICATE_PUBLISH,
+      title: '证书发布',
+    },
+    {
+      key: CertificateTabs.QUERY_CERTIFICATE,
+      title: '证书查询',
+    },
+  ];
   tabKey = this.tabs[0].key;
-  subTabs = [{
-    key: CertificateTabs.LINKED_CERTIFICATE,
-    title: '上链证书'
-  }, {
-    key: CertificateTabs.NON_LINKED_CERTIFICATE,
-    title: '非上链证书',
-  }];
+  subTabs = [
+    {
+      key: CertificateTabs.LINKED_CERTIFICATE,
+      title: '上链证书',
+    },
+    {
+      key: CertificateTabs.NON_LINKED_CERTIFICATE,
+      title: '非上链证书',
+    },
+  ];
   subTabKey = this.subTabs[0].key;
   isVisible = false;
 
@@ -75,18 +87,18 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   @ViewChild('TWSimple')
   templateSimple: { svgRef: ElementRef };
 
-  constructor(private sanitizer: DomSanitizer,
-              private http: HttpClient,
-              private changeDetector: ChangeDetectorRef,
-              private message: NzMessageService) {
-  }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private http: HttpClient,
+    private changeDetector: ChangeDetectorRef,
+    private message: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.initCertificate();
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   get isLinkedCertificate() {
     return this.subTabKey === CertificateTabs.LINKED_CERTIFICATE;
@@ -119,7 +131,9 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       certDirection: CertificateDirection.TECH,
       subordinateCompany: CompanyRadios.THOUGHTWORKS,
       certName: this.isLinkedCertificate
-        ? CertificateLevel.ASSOCIATE_AGILE_COACH
+        ? this.certificateTemplate === CertificateTemplateType.TW_AC
+          ? CertificateLevel.ASSOCIATE_AGILE_COACH
+          : DpmLevel.JUNIOR
         : NonLinkedCertificateLevel.AGILE_COACH,
       photoUrl: '',
       logoUrl: '',
@@ -137,8 +151,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       dpmLevel: DpmLevel.JUNIOR,
       qrCode: this.isLinkedCertificate
         ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
-        '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
-        : null
+          '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
+        : null,
     };
   }
 
@@ -157,7 +171,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.isVisible = true;
   }
 
-
   issue(): void {
     if (this.isLinkedCertificate) {
       this.issueLinkedCertificate();
@@ -167,20 +180,18 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   issueLinkedCertificate(): void {
-    this
-      .onChain()
+    this.onChain()
       .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
       .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
       .then(() => {
         this.message.success('证书颁发成功', {
-          nzDuration: 5000
+          nzDuration: 5000,
         });
       })
-      .catch(err => {
-          this.downloadLink = false;
-          console.error('fail to issue certification', err);
-        }
-      )
+      .catch((err) => {
+        this.downloadLink = false;
+        console.error('fail to issue certification', err);
+      })
       .finally(() => {
         this.loading = false;
       });
@@ -191,30 +202,34 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     Promise.all([this.generateDownloadUrl(), this.uploadCerts()])
       .then(() => {
         this.message.success('证书颁发成功', {
-          nzDuration: 5000
+          nzDuration: 5000,
         });
       })
-      .catch(err => {
-          this.downloadLink = false;
-          console.error('fail to issue certification', err);
-        }
-      )
+      .catch((err) => {
+        this.downloadLink = false;
+        console.error('fail to issue certification', err);
+      })
       .finally(() => {
         this.loading = false;
       });
   }
 
   checkFormValidation(): boolean {
-    const { firstName, lastName, issuer, subordinateCompany } = this.certificate;
+    const { firstName, lastName, issuer, subordinateCompany } =
+      this.certificate;
     if (this.isLinkedCertificate) {
-      return (!!firstName && !!lastName && !!issuer && !!subordinateCompany) ? false : true;
+      return !!firstName && !!lastName && !!issuer && !!subordinateCompany
+        ? false
+        : true;
     } else {
-      return (!!firstName && !!lastName && !!subordinateCompany) ? false : true;
+      return !!firstName && !!lastName && !!subordinateCompany ? false : true;
     }
   }
 
   private async displayCertIdAndQrCode(certId: string) {
-    this.certificate.qrCode = await QRCode.toString(Constants.CERT_VIEWER_URL + certId);
+    this.certificate.qrCode = await QRCode.toString(
+      Constants.CERT_VIEWER_URL + certId
+    );
     this.certificate.fingerprint = certId;
     return this.waitForViewChildReady();
   }
@@ -222,14 +237,16 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   private generateDownloadUrl() {
     this.svgUrl = this.toSvg(this.template.svgRef.nativeElement);
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
-    loadImage(svgDataUrl).pipe(flatMap(img => this.toPng(img))).subscribe(url => {
-      this.downloadLink = true;
-      this.pngUrl = url;
-    });
+    loadImage(svgDataUrl)
+      .pipe(flatMap((img) => this.toPng(img)))
+      .subscribe((url) => {
+        this.downloadLink = true;
+        this.pngUrl = url;
+      });
   }
 
   private uploadCerts(): void {
-    const {fingerprint, lastName, firstName} = this.certificate;
+    const { fingerprint, lastName, firstName } = this.certificate;
     const pictureName = `${lastName}${firstName}`;
 
     if (this.isLinkedCertificate) {
@@ -240,29 +257,36 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
   private uploadCertsWithSimple(certId: string, pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
-    const simpleSvgDataUrl = this.toSvgDataUrl(this.templateSimple.svgRef.nativeElement);
+    const simpleSvgDataUrl = this.toSvgDataUrl(
+      this.templateSimple.svgRef.nativeElement
+    );
 
     zip(
-      loadImage(simpleSvgDataUrl).pipe(map(img => this.toPngDataUrl(img))),
-      loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
+      loadImage(simpleSvgDataUrl).pipe(map((img) => this.toPngDataUrl(img))),
+      loadImage(svgDataUrl).pipe(map((img) => this.toPngDataUrl(img)))
     ).subscribe(([simplePngDataUrl, pngDataUrl]) => {
-      this.uploadCertificate(certId, [{
-        key: 'png',
-        fileName: `${pictureName}.png`,
-        dataUrl: pngDataUrl
-      }, {
-        key: 'svg',
-        fileName: `${pictureName}.svg`,
-        dataUrl: svgDataUrl
-      }, {
-        key: 'simplePng',
-        fileName: `${pictureName}_simple.png`,
-        dataUrl: simplePngDataUrl
-      }, {
-        key: 'simpleSvg',
-        fileName: `${pictureName}_simple.svg`,
-        dataUrl: simpleSvgDataUrl
-      }]).subscribe(({pngUrl, svgUrl}) => {
+      this.uploadCertificate(certId, [
+        {
+          key: 'png',
+          fileName: `${pictureName}.png`,
+          dataUrl: pngDataUrl,
+        },
+        {
+          key: 'svg',
+          fileName: `${pictureName}.svg`,
+          dataUrl: svgDataUrl,
+        },
+        {
+          key: 'simplePng',
+          fileName: `${pictureName}_simple.png`,
+          dataUrl: simplePngDataUrl,
+        },
+        {
+          key: 'simpleSvg',
+          fileName: `${pictureName}_simple.svg`,
+          dataUrl: simpleSvgDataUrl,
+        },
+      ]).subscribe(({ pngUrl, svgUrl }) => {
         this.svgUrl = svgUrl;
         this.pngUrl = pngUrl;
         this.downloadLink = true;
@@ -273,25 +297,28 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   private uploadCertsWithoutSimple(pictureName: string): void {
     const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
     const certId = generateCertificateId(1);
-    loadImage(svgDataUrl).pipe(map(img => this.toPngDataUrl(img)))
+    loadImage(svgDataUrl)
+      .pipe(map((img) => this.toPngDataUrl(img)))
       .subscribe((pngDataUrl) => {
         // this.uploadCertificate(certId, pictureName);
-        this.uploadCertificate(certId, [{
-          key: 'png',
-          fileName: `${pictureName}.png`,
-          dataUrl: pngDataUrl
-        }, {
-          key: 'svg',
-          fileName: `${pictureName}.svg`,
-          dataUrl: svgDataUrl
-        }]).subscribe(({pngUrl, svgUrl}) => {
+        this.uploadCertificate(certId, [
+          {
+            key: 'png',
+            fileName: `${pictureName}.png`,
+            dataUrl: pngDataUrl,
+          },
+          {
+            key: 'svg',
+            fileName: `${pictureName}.svg`,
+            dataUrl: svgDataUrl,
+          },
+        ]).subscribe(({ pngUrl, svgUrl }) => {
           this.svgUrl = svgUrl;
           this.pngUrl = pngUrl;
           this.downloadLink = true;
         });
       });
   }
-
 
   // private uploadCompleteCerts(certId: string, pictureName: string): void {
   //   const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
@@ -326,20 +353,20 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private upload(certId: string, photos: any): Observable<any> {
-    return from(save({certId, photos}));
+    return from(save({ certId, photos }));
   }
 
   private uploadCertificate(certId: string, photos: any): Observable<any> {
     // save: table of Photo
     // saveCertificate: table of Certificate
-    saveCertificate({certId, photos, certificate: this.certificate});
-    return from(save({certId, photos}));
+    saveCertificate({ certId, photos, certificate: this.certificate });
+    return from(save({ certId, photos }));
   }
 
   private toSvg(viewerSvg: SVGSVGElement): SafeResourceUrl {
     const svg = viewerSvg.cloneNode(true) as SVGSVGElement;
     svg.setAttribute('width', '900px');
-    const blob = new Blob([svg.outerHTML], {type: 'image/svg+xml'});
+    const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
     const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     return safeUrl;
@@ -358,8 +385,10 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     canvas.height = img.height;
     canvas.getContext('2d').drawImage(img, 0, 0);
     const result = new Subject<SafeResourceUrl>();
-    canvas.toBlob(blob => {
-      const url = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob));
+    canvas.toBlob((blob) => {
+      const url = this.sanitizer.bypassSecurityTrustResourceUrl(
+        URL.createObjectURL(blob)
+      );
       result.next(url);
     });
 
@@ -374,10 +403,11 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     return canvas.toDataURL('image/png');
   }
 
-
   async onChain(): Promise<string> {
     this.loading = true;
-    const response = await certService.mintAndTransferCertificate(this.certificate);
+    const response = await certService.mintAndTransferCertificate(
+      this.certificate
+    );
     return response.hash;
   }
 }
