@@ -101,10 +101,10 @@
         <td>{{ data.name }}</td>
         <td>{{ data.expiredAt | date : 'yyyy-MM-dd' }}</td>
         <td>
-          <certification-detail-overlay
+          <app-certification-detail-overlay
             class="operation"
             [certDetail]="data"
-          ></certification-detail-overlay>
+          ></app-certification-detail-overlay>
           <a
             class="operation"
             [href]="data.pngUrl"

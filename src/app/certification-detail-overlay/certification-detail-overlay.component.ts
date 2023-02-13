@@ -1,10 +1,8 @@
-import { fetchCertificate } from '../utils/certificatesStorage';
 import { CertificateModel } from '../models/certificate.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { map } from 'lodash';
 
 @Component({
-  selector: 'certification-detail-overlay',
+  selector: 'app-certification-detail-overlay',
   templateUrl: './certification-detail-overlay.component.html',
   styleUrls: ['./certification-detail-overlay.component.scss'],
 })
