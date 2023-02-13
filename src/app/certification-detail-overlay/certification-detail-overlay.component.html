@@ -12,11 +12,7 @@
     </header>
     <main>
       <section class="img">
-        <img
-          src="{{ certDetail.png.attributes.url }}"
-          width="334px"
-          height="491px"
-        />
+        <img src="{{ certDetail.pngUrl }}" width="334px" height="491px" />
       </section>
       <section class="detail">
         <ul>
@@ -24,7 +20,7 @@
           <li>
             证书类型：{{ certDetail.certificateTemplate | certificateTemplate }}
           </li>
-          <li>等级： {{ certDetail.certName | chineseName }}</li>
+          <li>等级： {{ certDetail.level | chineseName }}</li>
           <li>颁发者：{{ certDetail.issuer ? certDetail.issuer : '' }}</li>
           <li>认证类型：{{ certDetail.type ? certDetail.type : '' }}</li>
           <li>

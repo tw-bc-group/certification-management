@@ -10,9 +10,6 @@ import { map } from 'lodash';
 })
 export class CertificationDetailOverlayComponent implements OnInit {
   @Input()
-  certId: string;
-
-  // @Input()
   certDetail: CertificateModel;
 
   isOpen = false;
@@ -22,17 +19,7 @@ export class CertificationDetailOverlayComponent implements OnInit {
   ngOnInit(): void {}
 
   handleCheckClick(): void {
-    fetchCertificate({
-      certId: this.certId,
-    })
-      .then((cert) => {
-        const certificates = map(cert, 'attributes');
-        this.certDetail = certificates[0];
-        this.isOpen = !this.isOpen;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.isOpen = !this.isOpen;
   }
 
   handleOutClick(): void {

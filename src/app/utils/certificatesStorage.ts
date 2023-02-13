@@ -16,20 +16,15 @@ export const fetchCertificate: ({
   name,
   certDirection,
 }: {
-  certId?: string;
   name?: any;
   certDirection?: any;
   subordinateCompany?: any;
 }) => Promise<object[]> = async ({
-  certId,
   name,
   certDirection,
   subordinateCompany,
 }) => {
   const query = new AV.Query(LEANCLOUD_CLASS_CERTIFICATES);
-  if (certId) {
-    query.equalTo('certId', certId);
-  }
   if (name) {
     query.equalTo('name', name);
   }
@@ -39,17 +34,6 @@ export const fetchCertificate: ({
   if (subordinateCompany) {
     query.equalTo('subordinateCompany', subordinateCompany);
   }
-  query.include([
-    'certId',
-    'certName',
-    'certificateTemplate',
-    'issuer',
-    'name',
-    'png',
-    'publishedAt',
-    'svg',
-    'type',
-  ]);
   query.descending('createdAt');
   return query.find();
 };
