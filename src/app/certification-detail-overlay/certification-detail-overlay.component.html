@@ -32,6 +32,12 @@
           <li *ngIf="certDetail.subordinateCompany">
             认证对象所属公司：{{ certDetail.subordinateCompany }}
           </li>
+          <li *ngIf="certDetail.identityNumber">
+            认证对象身份证号：{{ certDetail.identityNumber }}
+          </li>
+          <li *ngIf="certDetail.phoneNumber">
+            电话号码：{{ certDetail.phoneNumber }}
+          </li>
           <li *ngIf="certDetail.publishedAt">
             获得时间：{{ certDetail.publishedAt | date : 'yyyy-MM-dd' }}
           </li>
