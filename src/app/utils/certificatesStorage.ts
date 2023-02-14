@@ -76,6 +76,8 @@ export const saveCertificate: ({
     expiredAt,
     partner,
     subordinateCompany,
+    identityNumber,
+    phoneNumber,
   } = certificate;
   lcCertificate.set('name', `${lastName}${firstName}`);
   lcCertificate.set('certificateTemplate', certificateTemplate);
@@ -87,6 +89,8 @@ export const saveCertificate: ({
   lcCertificate.set('expiredAt', expiredAt);
   lcCertificate.set('partner', partner);
   lcCertificate.set('subordinateCompany', subordinateCompany);
+  lcCertificate.set('identityNumber', identityNumber);
+  lcCertificate.set('phoneNumber', phoneNumber);
 
   return lcCertificate.save().then((photoObj) => {
     const pngUrl = photoObj.get('png').url();

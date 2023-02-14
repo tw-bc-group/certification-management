@@ -9,13 +9,13 @@ export enum CertificateLevel {
   ASSOCIATE_AGILE_COACH = 'ASSOCIATE AGILE COACH',
   PROFESSIONAL_AGILE_COACH = 'PROFESSIONAL AGILE COACH',
   SENIOR_PROFESSIONAL_AGILE_COACH = 'SENIOR PROFESSIONAL AGILE COACH',
-  MASTER_AGILE_COACH = 'MASTER AGILE COACH'
+  MASTER_AGILE_COACH = 'MASTER AGILE COACH',
 }
 
 export enum NonLinkedCertificateLevel {
   AGILE_COACH = 'AGILE COACH',
   JUNIOR_AGILE_COACH = 'JUNIOR AGILE COACH',
-  TRAINEE_AGILE_COACH = 'TRAINEE AGILE COACH'
+  TRAINEE_AGILE_COACH = 'TRAINEE AGILE COACH',
 }
 
 export enum DpmLevel {
@@ -33,7 +33,7 @@ export const dpmLevelNameMapping = {
 export enum CertificateTemplateType {
   TW_AC = 'tw',
   TW_COR_AC = 'tw-cor',
-  DPM = 'dpm'
+  DPM = 'dpm',
 }
 
 export enum CertificateDirection {
@@ -44,7 +44,7 @@ export enum CertificateDirection {
 
 export enum CompanyRadios {
   THOUGHTWORKS = 'Thoughtworks',
-  OTHERS = 'OTHERS'
+  OTHERS = 'OTHERS',
 }
 
 export enum CertificateTabs {
@@ -55,28 +55,28 @@ export enum CertificateTabs {
 }
 
 export const AgileCoachCertificateDirectionOptions = [
-  {value: CertificateDirection.MANAGE, label: '管理方向'},
-  {value: CertificateDirection.TECH, label: '技术方向'},
+  { value: CertificateDirection.MANAGE, label: '管理方向' },
+  { value: CertificateDirection.TECH, label: '技术方向' },
 ];
 
 export const CertificateDirectionOptions = [
-  {value: CertificateDirection.MANAGE, label: '管理方向'},
-  {value: CertificateDirection.TECH, label: '技术方向'},
-  {value: CertificateDirection.PRODUCT, label: '产品方向'}
+  { value: CertificateDirection.MANAGE, label: '管理方向' },
+  { value: CertificateDirection.TECH, label: '技术方向' },
+  { value: CertificateDirection.PRODUCT, label: '产品方向' },
 ];
 
 export const CertificateTemplateOptions = [
-  {value: CertificateTemplateType.TW_AC, label: '敏捷教练'},
-  {value: CertificateTemplateType.DPM, label: '数字产品经理'}
+  { value: CertificateTemplateType.TW_AC, label: '敏捷教练' },
+  { value: CertificateTemplateType.DPM, label: '数字产品经理' },
 ];
 
 export const PartnerOptions = [
-  {value: 'github', label: 'Github'},
-  {value: 'huawei', label: '华为'},
-  {value: 'pku', label: 'PKU'},
-  {value: 'oppo', label: 'OPPO'},
-  {value: 'CMGFintech', label: '招商金科'},
-  {value: 'ABC', label: '中国农业银行'}
+  { value: 'github', label: 'Github' },
+  { value: 'huawei', label: '华为' },
+  { value: 'pku', label: 'PKU' },
+  { value: 'oppo', label: 'OPPO' },
+  { value: 'CMGFintech', label: '招商金科' },
+  { value: 'ABC', label: '中国农业银行' },
 ];
 
 export interface CertificateModel {
@@ -94,10 +94,11 @@ export interface CertificateModel {
   expiredAt: Date;
   fingerprint: string;
   issuer: string;
-  idNumber: string;
   receiverAddress?: string;
   qrCode: string;
   dpmLevel: DpmLevel;
   certificateTemplate?: CertificateTemplateType;
   subordinateCompany?: string;
+  identityNumber?: string;
+  phoneNumber?: string;
 }

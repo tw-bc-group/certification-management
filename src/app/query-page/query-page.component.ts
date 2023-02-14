@@ -73,6 +73,8 @@ export class QueryPageComponent implements OnInit {
       expiredAt: certification.expiredAt,
       name: certification.name,
       pngUrl: certification.png.attributes.url,
+      identityNumber: certification.identityNumber,
+      phoneNumber: certification.phoneNumber,
     }));
   }
 

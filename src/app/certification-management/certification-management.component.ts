@@ -126,7 +126,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   initCertificate(): void {
     // this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.certificate = {
-      idNumber: '',
+      identityNumber: '',
       certificateTemplate: CertificateTemplateType.TW_AC,
       certDirection: CertificateDirection.TECH,
       subordinateCompany: CompanyRadios.THOUGHTWORKS,
