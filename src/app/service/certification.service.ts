@@ -6,10 +6,14 @@ import {
   generateSchema,
   getAdminAddress,
   newBaseTxForDenom,
-  newBaseTxForMint
+  newBaseTxForMint,
 } from '../clients/certificate';
-import {Client, TxResult, TxType} from '@irita/irita-sdk';
-import {CertificateModel, CertificateType, DpmLevel} from '../models/certificate.model';
+import { Client, TxResult, TxType } from '@irita/irita-sdk';
+import {
+  CertificateModel,
+  CertificateType,
+  DpmLevel,
+} from '../models/certificate.model';
 import config from '../config';
 
 class CertificateService {
@@ -24,11 +28,20 @@ class CertificateService {
    * @param denomName string denom name
    * @returns Transaction hash string
    */
-  public async issueDenom(denomName: string): Promise<{ denomId: string; hash: string }> {
+  public async issueDenom(
+    denomName: string
+  ): Promise<{ denomId: string; hash: string }> {
     const denomId = generateDenomId();
     const schema = generateSchema();
     const baseTx = newBaseTxForDenom();
-    const response = await this.certificateClient.nft.issueDenom(denomId, denomName, schema, true, true, baseTx);
+    const response = await this.certificateClient.nft.issueDenom(
+      denomId,
+      denomName,
+      schema,
+      true,
+      true,
+      baseTx
+    );
     return {
       denomId,
       hash: response.hash,
@@ -75,9 +88,11 @@ class CertificateService {
     receiverAddress: string,
     qrCode: string,
     dpmLevel: DpmLevel,
-    idNumber: string,
+    identityNumber: string
   ): Promise<{ denomId: string; certId: string; hash: string }> {
-    const creatorAddress = await this.certificateClient.keys.show(userId.toString());
+    const creatorAddress = await this.certificateClient.keys.show(
+      userId.toString()
+    );
     const baseTx = newBaseTxForDenom();
     const sender = await getAdminAddress();
     const denomId = generateDenomId();
@@ -88,10 +103,10 @@ class CertificateService {
         name: denomName,
         sender,
         /*
-        * mintRestricted
-        * false 任何人都可以发行NFT
-        * true 只有Denom的所有者可以发行此类别的NFT
-        * */
+         * mintRestricted
+         * false 任何人都可以发行NFT
+         * true 只有Denom的所有者可以发行此类别的NFT
+         * */
         mintRestricted: true,
         updateRestricted: true,
       },
@@ -113,7 +128,7 @@ class CertificateService {
       receiverAddress,
       qrCode,
       dpmLevel,
-      idNumber,
+      identityNumber,
     };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,
@@ -125,13 +140,13 @@ class CertificateService {
         data: JSON.stringify(certificate),
         sender,
         recipient: creatorAddress,
-      }
+      },
     };
     const msgs = [issueDenomMsg, mintCertificateMsg];
     /*
-    * issue Denom需要simulation
-    * issue certificate不用simulation（目前写死一个amount用于测试链）
-    * */
+     * issue Denom需要simulation
+     * issue certificate不用simulation（目前写死一个amount用于测试链）
+     * */
     // const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTxForDenom();
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
@@ -142,25 +157,30 @@ class CertificateService {
     };
   }
 
-  public async mintAndTransferCertificate(certificate: CertificateModel): Promise<TxResult> {
+  public async mintAndTransferCertificate(
+    certificate: CertificateModel
+  ): Promise<TxResult> {
     const sender = await getAdminAddress();
     const certId = generateCertificateId(1);
-    const msgs: any[] = [{
-      type: TxType.MsgMintNFT,
-      value: {
-        id: certId, // cert id
-        denom_id: config.irita.denomId,
-        name: certificate.certName, // cert name
-        // uri: certificate.photoUrl,
-        // data: JSON.stringify(certificate),
-        sender,
-        recipient: sender,
+    const msgs: any[] = [
+      {
+        type: TxType.MsgMintNFT,
+        value: {
+          id: certId, // cert id
+          denom_id: config.irita.denomId,
+          name: certificate.certName, // cert name
+          // uri: certificate.photoUrl,
+          // data: JSON.stringify(certificate),
+          sender,
+          recipient: sender,
+        },
       },
-    }];
-    return await this.certificateClient.tx.buildAndSend(msgs, newBaseTxForMint());
+    ];
+    return await this.certificateClient.tx.buildAndSend(
+      msgs,
+      newBaseTxForMint()
+    );
+  }
 }
-}
-
-
 
 export default CertificateService;
