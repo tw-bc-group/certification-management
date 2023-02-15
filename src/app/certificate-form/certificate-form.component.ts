@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   AgileCoachCertificateDirectionOptions,
   CertificateDirection,
@@ -25,29 +24,9 @@ export class CertificateFormComponent implements OnInit, OnChanges {
   @Input()
   isOnChain: boolean;
 
-  certificateForm = this.fb.group({
-    identityNumber: [''],
-    certificateTemplate: [CertificateTemplateType.TW_AC],
-    certDirection: [CertificateDirection.TECH],
-    subordinateCompany: [CompanyRadios.THOUGHTWORKS],
-    certName: [CertificateLevel.ASSOCIATE_AGILE_COACH],
-    photoUrl: [''],
-    logoUrl: [''],
-    firstName: [''],
-    lastName: [''],
-    firstNamePinyin: [''],
-    lastNamePinyin: [''],
-    expiredAt: [addYears(startOfDay(new Date()), 2)],
-    publishedAt: [startOfDay(new Date())],
-    fingerprint: [''],
-    partner: [''],
-    type: [CertificateType.Thoughtworks],
-    issuer: [''],
-    receiverAddress: [''],
-    dpmLevel: [DpmLevel.JUNIOR],
-    qrCode: [DefaultQRCode],
-    phoneNumber: ['']
-  });
+  @Input()
+  certificateForm;
+
   dpmLevelOptions = Object.keys(DpmLevel).map((level) => ({
     value: DpmLevel[level],
     label: DpmLevel[level],
@@ -57,7 +36,7 @@ export class CertificateFormComponent implements OnInit, OnChanges {
   isAddCompanyModalVisible = false;
   otherCompaniesOptions = companies;
 
-  constructor(private fb: FormBuilder) { }
+  constructor() { }
 
   ngOnInit() {
     this.certificateForm.get('certificateTemplate').valueChanges.subscribe(value => {

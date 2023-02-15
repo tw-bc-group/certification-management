@@ -1,22 +1,13 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { from, Observable, Subject, zip } from 'rxjs';
 import {
   CertificateDirection,
   CertificateLevel,
-  CertificateModel,
   CertificateTabs,
   CertificateTemplateType,
   CertificateType,
   CompanyRadios,
   DpmLevel,
-  NonLinkedCertificateLevel,
 } from '../models/certificate.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { addYears, startOfDay } from 'date-fns';
@@ -24,12 +15,13 @@ import QRCode from 'qrcode';
 import { hexify } from '../contracts/web3Provider';
 import { HttpClient } from '@angular/common/http';
 import { flatMap, map } from 'rxjs/operators';
-import { Constants } from '../utils/constants';
+import { Constants, DefaultQRCode } from '../utils/constants';
 import { save } from '../utils/photoStorage';
 import { saveCertificate } from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
 import { generateCertificateId } from '../clients/certificate';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { FormBuilder } from '@angular/forms';
 
 const certService = new CertificateService();
 
@@ -51,7 +43,6 @@ const publishedAt = startOfDay(new Date());
   styleUrls: ['./certification-management.component.scss'],
 })
 export class CertificationManagementComponent implements OnInit, OnDestroy {
-  certificate: CertificateModel;
   certificateTemplate = CertificateTemplateType.TW_AC;
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
@@ -70,16 +61,39 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   tabKey = this.tabs[0].key;
   subTabs = [
     {
-      key: CertificateTabs.LINKED_CERTIFICATE,
+      key: CertificateTabs.ON_CHAIN_CERTIFICATE,
       title: '上链证书',
     },
     {
-      key: CertificateTabs.NON_LINKED_CERTIFICATE,
+      key: CertificateTabs.OFF_CHAIN_CERTIFICATE,
       title: '非上链证书',
     },
   ];
   subTabKey = this.subTabs[0].key;
   isVisible = false;
+  certificateForm = this.fb.group({
+    identityNumber: [''],
+    certificateTemplate: [CertificateTemplateType.TW_AC],
+    certDirection: [CertificateDirection.TECH],
+    subordinateCompany: [CompanyRadios.THOUGHTWORKS],
+    certName: [CertificateLevel.ASSOCIATE_AGILE_COACH],
+    photoUrl: [''],
+    logoUrl: [''],
+    firstName: [''],
+    lastName: [''],
+    firstNamePinyin: [''],
+    lastNamePinyin: [''],
+    expiredAt: [addYears(startOfDay(new Date()), 2)],
+    publishedAt: [startOfDay(new Date())],
+    fingerprint: [''],
+    partner: [''],
+    type: [CertificateType.Thoughtworks],
+    issuer: [''],
+    receiverAddress: [''],
+    dpmLevel: [DpmLevel.JUNIOR],
+    qrCode: [DefaultQRCode],
+    phoneNumber: ['']
+  });
 
   @ViewChild('template')
   template: { svgRef: ElementRef };
@@ -91,17 +105,17 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private http: HttpClient,
     private changeDetector: ChangeDetectorRef,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.initCertificate();
   }
 
   ngOnDestroy(): void {}
 
-  get isLinkedCertificate() {
-    return this.subTabKey === CertificateTabs.LINKED_CERTIFICATE;
+  get isOnChain() {
+    return this.subTabKey === CertificateTabs.ON_CHAIN_CERTIFICATE;
   }
 
   get isCertificatePublish() {
@@ -123,41 +137,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.resetValues();
   }
 
-  initCertificate(): void {
-    // this.certificateTemplate = CertificateTemplateType.TW_AC;
-    this.certificate = {
-      identityNumber: '',
-      certificateTemplate: CertificateTemplateType.TW_AC,
-      certDirection: CertificateDirection.TECH,
-      subordinateCompany: CompanyRadios.THOUGHTWORKS,
-      certName: this.isLinkedCertificate
-        ? this.certificateTemplate === CertificateTemplateType.TW_AC
-          ? CertificateLevel.ASSOCIATE_AGILE_COACH
-          : DpmLevel.JUNIOR
-        : NonLinkedCertificateLevel.AGILE_COACH,
-      photoUrl: '',
-      logoUrl: '',
-      firstName: '',
-      lastName: '',
-      firstNamePinyin: '',
-      lastNamePinyin: '',
-      expiredAt: this.isLinkedCertificate ? addYears(publishedAt, 2) : null,
-      publishedAt,
-      fingerprint: '',
-      partner: '',
-      type: this.isLinkedCertificate ? CertificateType.Thoughtworks : null,
-      issuer: '',
-      receiverAddress: '',
-      dpmLevel: DpmLevel.JUNIOR,
-      qrCode: this.isLinkedCertificate
-        ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49 49" shape-rendering="crispEdges">' +
-          '<path fill="#eaeaea" d="M0 0h49v49H0z"/></svg>'
-        : null,
-    };
-  }
-
   resetValues() {
-    this.initCertificate();
     this.downloadLink = false;
     this.pngUrl = null;
     this.svgUrl = null;
@@ -172,7 +152,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   issue(): void {
-    if (this.isLinkedCertificate) {
+    if (this.isOnChain) {
       this.issueLinkedCertificate();
     } else {
       this.issueNonLinkedCertificate();
@@ -216,21 +196,25 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   checkFormValidation(): boolean {
     const { firstName, lastName, issuer, subordinateCompany } =
-      this.certificate;
-    if (this.isLinkedCertificate) {
-      return !!firstName && !!lastName && !!issuer && !!subordinateCompany
-        ? false
-        : true;
+      this.certificateForm.value;
+    if (this.isOnChain) {
+      return !(!!firstName && !!lastName && !!issuer && !!subordinateCompany);
     } else {
-      return !!firstName && !!lastName && !!subordinateCompany ? false : true;
+      return !(!!firstName && !!lastName && !!subordinateCompany);
     }
   }
 
   private async displayCertIdAndQrCode(certId: string) {
-    this.certificate.qrCode = await QRCode.toString(
-      Constants.CERT_VIEWER_URL + certId
-    );
-    this.certificate.fingerprint = certId;
+    // this.certificate.qrCode = await QRCode.toString(
+    //   Constants.CERT_VIEWER_URL + certId
+    // );
+    // this.certificate.fingerprint = certId;
+    this.certificateForm.patchValue({
+      qrCode: QRCode.toString(
+        Constants.CERT_VIEWER_URL + certId
+      ),
+      fingerprint: certId,
+    });
     return this.waitForViewChildReady();
   }
 
@@ -246,10 +230,10 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private uploadCerts(): void {
-    const { fingerprint, lastName, firstName } = this.certificate;
+    const { fingerprint, lastName, firstName } = this.certificateForm.value;
     const pictureName = `${lastName}${firstName}`;
 
-    if (this.isLinkedCertificate) {
+    if (this.isOnChain) {
       this.uploadCertsWithSimple(fingerprint, pictureName);
     } else {
       this.uploadCertsWithoutSimple(pictureName);
@@ -359,7 +343,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   private uploadCertificate(certId: string, photos: any): Observable<any> {
     // save: table of Photo
     // saveCertificate: table of Certificate
-    saveCertificate({ certId, photos, certificate: this.certificate });
+    saveCertificate({ certId, photos, certificate: this.certificateForm.value });
     return from(save({ certId, photos }));
   }
 
@@ -368,8 +352,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     svg.setAttribute('width', '900px');
     const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
-    const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    return safeUrl;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   private toSvgDataUrl(viewerSvg: SVGSVGElement): string {
@@ -406,7 +389,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   async onChain(): Promise<string> {
     this.loading = true;
     const response = await certService.mintAndTransferCertificate(
-      this.certificate
+      this.certificateForm.value
     );
     return response.hash;
   }
