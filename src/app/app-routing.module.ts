@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CertificationManagementComponent } from './certification-management/certification-management.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'certification-management', component: CertificationManagementComponent },
+  { path: 'certification-management', component: CertificationManagementComponent,  canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
 ];
 

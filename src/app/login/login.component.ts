@@ -34,22 +34,16 @@ export class LoginComponent implements OnInit {
     return invalid;
   }
 
-  validatePassword() {
-    const invalid = this.password.value !== environment.password;
-    if (invalid) {
-      this.password.setErrors({ invalidPassword: true });
-    }
-    return invalid;
-  }
-
   loginSubmit() {
     const usernameInvalid = this.username.value !== environment.username;
     const passwordInvalid = this.password.value !== environment.password;
     let messageId;
     if (usernameInvalid || passwordInvalid) {
+      localStorage.setItem('token', '');
       messageId = this.message.error('用户名或密码错误，请重试').messageId;
       return;
     }
+    sessionStorage.setItem('token', atob(this.password.value));
     this.message.remove(messageId);
     this.router.navigate(['/', 'certification-management']);
   }
