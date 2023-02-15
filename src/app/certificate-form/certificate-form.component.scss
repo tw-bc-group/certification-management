@@ -1,0 +1,50 @@
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 3px;
+  border-left: 3px solid #F2732B;
+  line-height: 20px;
+  margin-bottom: 28px;
+}
+.cert-info{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 66px;
+}
+
+nz-form-item{
+  &.company-area {
+    grid-column-start: 1;
+  }
+  nz-form-label{
+    display: block;
+    text-align: left;
+  }
+
+  nz-select, input {
+    width: 100%;
+  }
+}
+.add-new-company {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    font-size: 14px;
+    color: #F2732B;
+    cursor: pointer;
+  }
+}
+
+::ng-deep .ant-calendar-picker {
+  width: 100%;
+}
+
+.photo-upload {
+  display: flex;
+}
+
+.trainee-upload {
+  margin-right: 20px;
+}

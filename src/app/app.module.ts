@@ -7,6 +7,7 @@ import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@ang
 import zh from '@angular/common/locales/zh';
 import { CertificationManagementModule } from './certification-management/certification-management.module';
 import { LoginModule } from './login/login.module';
+import { CertificateFormComponent } from './certificate-form/certificate-form.component';
 
 registerLocaleData(zh);
 

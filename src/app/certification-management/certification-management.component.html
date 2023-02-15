@@ -33,16 +33,7 @@
   </div>
   <nz-content>
     <div class="left">
-      <app-cert-form
-        *ngIf="isCertificatePublish && isLinkedCertificate"
-        [certificate]="certificate"
-        [(certificateTemplate)]="certificateTemplate">
-      </app-cert-form>
-      <app-non-linked-cert-form
-        *ngIf="isCertificatePublish && subTabKey===certificateTabs.NON_LINKED_CERTIFICATE"
-        [certificate]="certificate"
-        [(certificateTemplate)]="certificateTemplate">
-      </app-non-linked-cert-form>
+      <app-certificate-form [isOnChain]="isLinkedCertificate"></app-certificate-form>
       <div class="issue-btn-wrapper" *ngIf="tabKey!==certificateTabs.QUERY_CERTIFICATE">
         <button class="issue-btn" nz-button nzType="primary" nzGhost [disabled]="checkFormValidation()"
                 (click)="issue()" [nzLoading]="loading">颁发证书

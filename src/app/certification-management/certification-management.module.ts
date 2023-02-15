@@ -33,7 +33,7 @@ import { TemplateTwCorSimpleComponent } from '../template-tw-cor-simple/template
 import { TemplateNonLinkedTwAcComponent } from '../template-non-linked-tw-ac/template-non-linked-tw-ac.component';
 import { NamePipe } from '../pipes/name.pipe';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovableDirective } from '../directives/movable.directive';
 import { ZoomDirective } from '../directives/zoom.directive';
@@ -52,6 +52,7 @@ import { AddCompanyModalComponent } from '../add-company-modal/add-company-modal
 import { CertificateTemplatePipe } from '../pipes/certificate-template.pipe';
 import { CertificateDirectionPipe } from '../pipes/certificate-direction.pipe';
 import { CertificationDetailOverlayComponent } from '../certification-detail-overlay/certification-detail-overlay.component';
+import { CertificateFormComponent } from '../certificate-form/certificate-form.component';
 
 const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 
@@ -86,6 +87,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     CertificationManagementComponent,
     AddCompanyModalComponent,
     CertificationDetailOverlayComponent,
+    CertificateFormComponent,
   ],
   providers: [{ provide: NZ_ICONS, useValue: icons }],
   imports: [
@@ -108,6 +110,7 @@ const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
     NzEmptyModule,
     NzAvatarModule,
     NzRadioModule,
+    ReactiveFormsModule,
   ],
 })
 export class CertificationManagementModule {}
