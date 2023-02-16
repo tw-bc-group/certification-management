@@ -21,7 +21,7 @@ import { saveCertificate } from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
 import { generateCertificateId } from '../clients/certificate';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 const certService = new CertificateService();
 
@@ -75,8 +75,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     certName: [CertificateLevel.ASSOCIATE_AGILE_COACH],
     photoUrl: [''],
     logoUrl: [''],
-    firstName: [''],
-    lastName: [''],
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
     firstNamePinyin: [''],
     lastNamePinyin: [''],
     expiredAt: [addYears(startOfDay(new Date()), 2)],
@@ -84,7 +84,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     fingerprint: [''],
     partner: [''],
     type: [CertificateType.Thoughtworks],
-    issuer: [''],
+    issuer: ['', [Validators.required]],
     receiverAddress: [''],
     dpmLevel: [DpmLevel.JUNIOR],
     qrCode: [DefaultQRCode],
@@ -192,14 +192,9 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private async displayCertIdAndQrCode(certId: string) {
-    // this.certificate.qrCode = await QRCode.toString(
-    //   Constants.CERT_VIEWER_URL + certId
-    // );
-    // this.certificate.fingerprint = certId;
+    const qrCode = await QRCode.toString(Constants.CERT_VIEWER_URL + certId);
     this.certificateForm.patchValue({
-      qrCode: QRCode.toString(
-        Constants.CERT_VIEWER_URL + certId
-      ),
+      qrCode,
       fingerprint: certId,
     });
     return this.waitForViewChildReady();
@@ -271,7 +266,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     loadImage(svgDataUrl)
       .pipe(map((img) => this.toPngDataUrl(img)))
       .subscribe((pngDataUrl) => {
-        // this.uploadCertificate(certId, pictureName);
         this.uploadCertificate(certId, [
           {
             key: 'png',
@@ -290,27 +284,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
         });
       });
   }
-
-  // private uploadCompleteCerts(certId: string, pictureName: string): void {
-  //   const svgDataUrl = this.toSvgDataUrl(this.template.svgRef.nativeElement);
-
-  //   loadImage(svgDataUrl).pipe(
-  //     map(img => this.toPngDataUrl(img)),
-  //     flatMap(pngDataUrl => this.upload(certId, [{
-  //       key: 'png',
-  //       fileName: `${pictureName}.png`,
-  //       dataUrl: pngDataUrl
-  //     }, {
-  //       key: 'svg',
-  //       fileName: `${pictureName}.svg`,
-  //       dataUrl: svgDataUrl
-  //     }]))
-  //   ).subscribe(({pngUrl, svgUrl}) => {
-  //     this.svgUrl = svgUrl;
-  //     this.pngUrl = pngUrl;
-  //     this.downloadLink = true;
-  //   });
-  // }
 
   // Wait 1 second for fingerprint to be ready for show.
   // TODO workaround: https://stackoverflow.com/questions/44948053/angular4-how-to-know-when-a-viewchild-has-been-reset
