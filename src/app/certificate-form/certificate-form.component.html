@@ -70,6 +70,10 @@
                            (visibleChange)="onVisibleChange($event)"
                            (addCompany)="addCompany($event)"
     ></app-add-company-modal>
+    <nz-form-item *ngIf="!isOnChain">
+      <app-logo-photo-upload *ngIf="companyRadio === companyRadios.OTHERS" [logoUrl]="certificateForm.get('logoUrl').value"
+                             (photoChange)="certificateForm.patchValue({logoUrl: $event})"></app-logo-photo-upload>
+    </nz-form-item>
   </div>
 
   <div><p class="section-title">认证对象信息</p></div>

@@ -11,9 +11,6 @@ export class TemplateNonLinkedTwAcComponent implements OnInit {
   @Input()
   certificate: CertificateModel;
 
-  @Input()
-  certificateTemplate: CertificateTemplateType;
-
   @ViewChild('svg')
   svgRef: ElementRef<SVGSVGElement>;
 

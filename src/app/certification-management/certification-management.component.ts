@@ -35,15 +35,12 @@ function loadImage(url: string): Observable<HTMLImageElement> {
   return result.asObservable();
 }
 
-const publishedAt = startOfDay(new Date());
-
 @Component({
   selector: 'app-certification-management',
   templateUrl: './certification-management.component.html',
   styleUrls: ['./certification-management.component.scss'],
 })
 export class CertificationManagementComponent implements OnInit, OnDestroy {
-  certificateTemplate = CertificateTemplateType.TW_AC;
   pngUrl: SafeResourceUrl;
   svgUrl: SafeResourceUrl;
   downloadLink = false;
@@ -70,7 +67,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     },
   ];
   subTabKey = this.subTabs[0].key;
-  isVisible = false;
   certificateForm = this.fb.group({
     identityNumber: [''],
     certificateTemplate: [CertificateTemplateType.TW_AC],
@@ -128,7 +124,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   onTabChange(tabKey): void {
     this.tabKey = tabKey;
-    this.certificateTemplate = CertificateTemplateType.TW_AC;
     this.resetValues();
   }
 
@@ -143,23 +138,15 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
     this.svgUrl = null;
   }
 
-  onVisibleChange(isVisible: boolean): void {
-    this.isVisible = isVisible;
-  }
-
-  showModal(): void {
-    this.isVisible = true;
-  }
-
   issue(): void {
     if (this.isOnChain) {
-      this.issueLinkedCertificate();
+      this.issueOnChainCertificate();
     } else {
-      this.issueNonLinkedCertificate();
+      this.issueOffChainCertificate();
     }
   }
 
-  issueLinkedCertificate(): void {
+  issueOnChainCertificate(): void {
     this.onChain()
       .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
       .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
@@ -177,7 +164,7 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
       });
   }
 
-  issueNonLinkedCertificate(): void {
+  issueOffChainCertificate(): void {
     this.loading = true;
     Promise.all([this.generateDownloadUrl(), this.uploadCerts()])
       .then(() => {

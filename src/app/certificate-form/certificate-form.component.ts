@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   AgileCoachCertificateDirectionOptions,
-  CertificateDirection,
   CertificateLevel,
   CertificateTemplateOptions,
   CertificateTemplateType,
