@@ -4,14 +4,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
-## Init local env variables
+## Steps to start a project for the first time
+### 1. Install node 14
+### 2. `npm install`
+### 3. Init local env variables
 1. create `env.local` file in the root directory.
 2. add env variables for local development.
-3. eg: `LC_APP_ID=LC_APP_ID_PLACEHOLDER` and `LC_APP_KEY=LC_APP_KEY_PLACEHOLDER`
+3. eg: 
+  ```
+   LC_APP_ID=LC_APP_ID_PLACEHOLDER
+   LC_APP_KEY=LC_APP_KEY_PLACEHOLDER
+   IRITA_WALLET_ADDRESS=IRITA_WALLET_ADDRESS_PLACEHOLDER
+   IRITA_WALLET_PRIVATE_KEY=IRITA_WALLET_PRIVATE_KEY_PLACEHOLDER
+   REMOVE_BG_API_KEY=REMOVE_BG_API_KEY_PLACEHOLDER
+   ```
+### 4. `npm start`
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -19,15 +30,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
