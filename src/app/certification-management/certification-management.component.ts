@@ -28,7 +28,7 @@ import { Constants } from '../utils/constants';
 import { save } from '../utils/photoStorage';
 import { saveCertificate } from '../utils/certificatesStorage';
 import CertificateService from '../service/certification.service';
-import { generateCertificateId } from '../clients/certificate';
+import {createNewKey, generateCertificateId} from '../clients/certificate';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 const certService = new CertificateService();
@@ -51,6 +51,7 @@ const publishedAt = startOfDay(new Date());
   styleUrls: ['./certification-management.component.scss'],
 })
 export class CertificationManagementComponent implements OnInit, OnDestroy {
+  name: string;
   certificate: CertificateModel;
   certificateTemplate = CertificateTemplateType.TW_AC;
   pngUrl: SafeResourceUrl;
@@ -180,7 +181,11 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   issueLinkedCertificate(): void {
-    this.onChain()
+     // console.log(',,>>>>>>>>>>>>>> start');
+     // certService.issueDenom('Certificate').then(r => {
+     //   console.log('<<<<<<<<<<<<>>>>>>>>>>>., r:', r);
+     // });
+     this.onChain()
       .then((certId) => this.displayCertIdAndQrCode(hexify(certId)))
       .then(() => Promise.all([this.generateDownloadUrl(), this.uploadCerts()]))
       .then(() => {
@@ -405,8 +410,12 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    const response = await certService.mintAndTransferCertificate(
-      this.certificate
+    // const response = await certService.mintAndTransferCertificate(
+    //   this.certificate
+    // );
+    const response = await certService.createDenomAndCertificate(
+      this.certificate,
+      'Certificate'
     );
     return response.hash;
   }

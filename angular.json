@@ -81,6 +81,14 @@
                   "maximumError": "12mb"
                 }
               ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
@@ -119,6 +127,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+            ],
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.test.ts"
+              }
             ]
           }
         },

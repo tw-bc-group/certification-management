@@ -10,13 +10,22 @@ export const environment = {
   password: '001',
   IRITA_NODE: `${window.location.origin}/wenchangchain`,
   IRITA_CHAIN_ID: 'wenchangchain',
-  JWT_SECRETKEY: '',
+  IRITA_KEY_PASSWORD: '',
+  IRITA_KEY_NAME: '',
+  // tslint:disable-next-line:max-line-length
+  IRITA_MNEMONIC: '',
+  IRITA_API_KEY: '',
+  JWT_SECRETKEY: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
   APP_PORT: '3000',
   APP_ENV: 'dev',
   IRITA_DENOM_ID: 'thoughtworks7cf27df0d4ae45e8bfee4cca68871fa3',
   IRITA_DENOM_NAME: 'Certificate',
   LC_SERVER_URLS: 'https://shared.lc-cn-n1-shared.com',
-  ...secretEnv
+  LC_APP_ID: '123',
+  LC_APP_KEY: '321',
+  IRITA_WALLET_ADDRESS: 'test_address',
+  IRITA_WALLET_PRIVATE_KEY: 'private_key',
+  REMOVE_BG_API_KEY: 'api_key'
 };
 
 /*
