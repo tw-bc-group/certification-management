@@ -18,7 +18,7 @@ import { flatMap, map } from 'rxjs/operators';
 import { Constants, DefaultQRCode } from '../utils/constants';
 import { save } from '../utils/photoStorage';
 import { saveCertificate } from '../utils/certificatesStorage';
-import CertificateService from '../service/certification.service';
+import CertificateService from '../service/certificate.service';
 import { generateCertificateId } from '../clients/certificate';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, Validators } from '@angular/forms';
