@@ -77,7 +77,7 @@ export const createNewKey = async (): Promise<{
 };
 
 export const newBaseTxForDenom = (baseTx?: Partial<BaseTx>): BaseTx => {
-  const amount = '1200000';
+  const amount = '600000';
   return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
