@@ -1,8 +1,7 @@
 import config from '../config/config';
-import {BaseTx, Key, KeyDAO, newClient, PubkeyType, SdkError} from '@irita/irita-sdk';
+import {BaseTx, BroadcastMode, Key, KeyDAO, newClient, PubkeyType, SdkError} from '@irita/irita-sdk';
 import {v4 as uuid} from 'uuid';
 import {fetchWallet, saveWallet} from '../utils/walletStorage';
-import { map } from 'lodash';
 import {environment} from '../../environments/environment';
 
 class IritaKeyDAO implements KeyDAO {
@@ -28,7 +27,7 @@ class IritaKeyDAO implements KeyDAO {
   }
 }
 
-export const generateDenomId = (): string => `Thoughtworks${uuid().replace(/-/g, '')}`;
+export const generateDenomId = (): string => `thoughtworks${uuid().replace(/-/g, '')}`;
 
 export const generateCertificateId = (count: number): string => `cert${uuid().replace(/-/g, '')}${count.toString().padStart(10, '0')}`;
 
@@ -77,7 +76,7 @@ export const createNewKey = async (): Promise<{
 };
 
 export const newBaseTxForDenom = (baseTx?: Partial<BaseTx>): BaseTx => {
-  const amount = '600000';
+  const amount = '400000';
   return {
     from: config.irita.adminKeyName,
     password: config.irita.keystorePassword,
@@ -87,6 +86,7 @@ export const newBaseTxForDenom = (baseTx?: Partial<BaseTx>): BaseTx => {
       amount,
     },
     gas: amount,
+    mode: BroadcastMode.Sync
   };
 };
 
