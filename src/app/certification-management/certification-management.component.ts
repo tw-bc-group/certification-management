@@ -410,12 +410,8 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
 
   async onChain(): Promise<string> {
     this.loading = true;
-    // const response = await certService.mintAndTransferCertificate(
-    //   this.certificate
-    // );
-    const response = await certService.createDenomAndCertificate(
-      this.certificate,
-      'Certificate'
+    const response = await certService.mintAndTransferCertificate(
+      this.certificate
     );
     return response.hash;
   }

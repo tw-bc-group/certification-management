@@ -113,7 +113,6 @@ class CertificateService {
      * issue Denom需要simulation
      * issue certificate不用simulation（目前写死一个amount用于测试链）
      * */
-    // const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTxForDenom();
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
     return {
@@ -135,7 +134,7 @@ class CertificateService {
           id: certId, // cert id
           denom_id: config.irita.denomId,
           name: certificate.certName, // cert name
-          // uri: certificate.photoUrl,
+          uri: certificate.photoUrl,
           // data: JSON.stringify(certificate),
           sender,
           recipient: sender,
