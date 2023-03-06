@@ -9,13 +9,14 @@ export const environment = {
   username: 'cac-admin',
   password: '001',
   IRITA_NODE: `${window.location.origin}/wenchangchain`,
-  IRITA_CHAIN_ID: 'wenchangchain',
+  IRITA_CHAIN_ID: 'testing',
   JWT_SECRETKEY: '',
   APP_PORT: '3000',
   APP_ENV: 'dev',
-  IRITA_DENOM_ID: 'thoughtworks179c38337e74492fb087bc4fc99847f8',
+  IRITA_DENOM_ID: 'thoughtworks2a4ac656d9194f478f48b5cbd494d1d8',
   IRITA_DENOM_NAME: 'Certificate',
   LC_SERVER_URLS: 'https://shared.lc-cn-n1-shared.com',
+  IRITA_GATEWAY: 'http://testnet.bianjie.ai:26657/',
   ...secretEnv
 };
 
