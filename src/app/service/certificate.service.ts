@@ -3,7 +3,6 @@ import {
   client,
   generateCertificateId,
   generateDenomId,
-  generateSchema,
   getAdminAddress,
   newBaseTxForDenom,
   newBaseTxForMint,
@@ -15,6 +14,7 @@ import {
   DpmLevel,
 } from '../models/certificate.model';
 import config from '../config';
+import {environment} from '../../environments/environment';
 
 class CertificateService {
   certificateClient: Client;
@@ -32,7 +32,7 @@ class CertificateService {
     denomName: string
   ): Promise<{ denomId: string; hash: string }> {
     const denomId = generateDenomId();
-    const schema = generateSchema();
+    const schema = '';
     const baseTx = newBaseTxForDenom();
     const response = await this.certificateClient.nft.issueDenom(
       denomId,
@@ -71,27 +71,11 @@ class CertificateService {
    * @returns Transaction hash string
    */
   public async createDenomAndCertificate(
-    userId: number,
-    firstName: string,
-    firstNamePinyin: string,
-    lastName: string,
-    lastNamePinyin: string,
-    denomName: string,
-    certificateName: string,
-    photoUrl: string,
-    certificateType: CertificateType,
-    partner: string,
-    publishedAt: Date,
-    expiredAt: Date,
-    fingerprint: string,
-    issuer: string,
-    receiverAddress: string,
-    qrCode: string,
-    dpmLevel: DpmLevel,
-    identityNumber: string
+    certificate: CertificateModel,
+    denomName: string
   ): Promise<{ denomId: string; certId: string; hash: string }> {
     const creatorAddress = await this.certificateClient.keys.show(
-      userId.toString()
+      environment.IRITA_KEY_NAME
     );
     const baseTx = newBaseTxForDenom();
     const sender = await getAdminAddress();
@@ -112,31 +96,13 @@ class CertificateService {
       },
     };
     const certId = generateCertificateId(1);
-    const certificate: CertificateModel = {
-      certName: certificateName,
-      type: certificateType,
-      partner,
-      photoUrl,
-      firstName,
-      firstNamePinyin,
-      lastName,
-      lastNamePinyin,
-      publishedAt,
-      expiredAt,
-      fingerprint,
-      issuer,
-      receiverAddress,
-      qrCode,
-      dpmLevel,
-      identityNumber,
-    };
     const mintCertificateMsg = {
       type: TxType.MsgMintNFT,
       value: {
         id: certId,
         denom_id: denomId,
-        name: certificateName,
-        url: photoUrl,
+        name: certificate.certName,
+        // url: photoUrl,
         data: JSON.stringify(certificate),
         sender,
         recipient: creatorAddress,
@@ -147,7 +113,6 @@ class CertificateService {
      * issue Denom需要simulation
      * issue certificate不用simulation（目前写死一个amount用于测试链）
      * */
-    // const amount = Math.floor(4000 * 1.2).toString();
     const realTx = newBaseTxForDenom();
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
     return {
@@ -169,7 +134,7 @@ class CertificateService {
           id: certId, // cert id
           denom_id: config.irita.denomId,
           name: certificate.certName, // cert name
-          // uri: certificate.photoUrl,
+          uri: certificate.photoUrl,
           // data: JSON.stringify(certificate),
           sender,
           recipient: sender,

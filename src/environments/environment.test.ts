@@ -7,24 +7,23 @@ export const environment = {
   certViewUrl: 'http://cac.thoughtworks.cn:5000/certification/',
   username: 'cac-admin',
   password: '001',
-  IRITA_NODE: `${window.location.origin}/testnet`,
-  IRITA_CHAIN_ID: 'testing',
-  IRITA_KEY_PASSWORD: '12345678',
-  IRITA_KEY_NAME: 'tw',
-  // tslint:disable-next-line:max-line-length
-  IRITA_MNEMONIC: 'exit effort connect element tiny squeeze worry brown great coffee canoe hole depend great comfort resemble visual patrol smart speak travel cushion damp lake',
+  IRITA_NODE: `${window.location.origin}/wenchangchain`,
+  IRITA_CHAIN_ID: 'wenchangchain',
+  IRITA_KEY_PASSWORD: '',
+  IRITA_KEY_NAME: '',
+  IRITA_MNEMONIC: '',
   IRITA_API_KEY: '',
-  JWT_SECRETKEY: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
+  JWT_SECRETKEY: '',
   APP_PORT: '3000',
   APP_ENV: 'dev',
-  IRITA_DENOM_ID: 'thoughtworks165779e87abe418baeac6aef3a213135',
+  IRITA_DENOM_ID: 'thoughtworks7cf27df0d4ae45e8bfee4cca68871fa3',
   IRITA_DENOM_NAME: 'Certificate',
   LC_SERVER_URLS: 'https://shared.lc-cn-n1-shared.com',
-  LC_APP_ID: '123',
-  LC_APP_KEY: '321',
-  IRITA_WALLET_ADDRESS: '123',
-  IRITA_WALLET_PRIVATE_KEY: '123',
-  REMOVE_BG_API_KEY: '123'
+  LC_APP_ID: '',
+  LC_APP_KEY: '',
+  IRITA_WALLET_ADDRESS: '',
+  IRITA_WALLET_PRIVATE_KEY: '',
+  REMOVE_BG_API_KEY: ''
 };
 
 /*

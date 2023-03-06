@@ -1,9 +1,9 @@
 {
-  "/testnet": {
-    "target": "http://testnet.bianjie.ai:26657/",
+  "/wenchangchain": {
+    "target": "https://opbningxia.bsngate.com:18602/api/97f1ca44dfcb4e49910906b8392da383/rpc",
     "secure": false,
     "pathRewrite": {
-      "^/testnet": ""
+      "^/wenchangchain": ""
     },
     "logLevel": "debug"
   },
