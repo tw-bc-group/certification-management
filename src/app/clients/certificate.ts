@@ -101,6 +101,7 @@ export const newBaseTxForMint = (): BaseTx => {
       amount,
     },
     gas: amount,
+    mode: BroadcastMode.Sync
   };
 };
 
