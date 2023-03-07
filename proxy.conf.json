@@ -1,9 +1,9 @@
 {
-  "/wenchangchain": {
+  "/testnet": {
     "target": "http://testnet.bianjie.ai:26657/",
     "secure": false,
     "pathRewrite": {
-      "^/wenchangchain": ""
+      "^/testnet": ""
     },
     "logLevel": "debug"
   },
