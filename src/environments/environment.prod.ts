@@ -10,7 +10,7 @@ export const environment = {
   JWT_SECRETKEY: '',
   APP_PORT: '3000',
   APP_ENV: 'dev',
-  IRITA_DENOM_ID: 'thoughtworks165779e87abe418baeac6aef3a213135',
+  IRITA_DENOM_ID: 'thoughtworks179c38337e74492fb087bc4fc99847f8',
   IRITA_DENOM_NAME: 'Certificate',
   LC_SERVER_URLS: 'https://shared.lc-cn-n1-shared.com',
   ...secretEnv
