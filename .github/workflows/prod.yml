@@ -44,7 +44,7 @@ jobs:
         run: npm run test:ci
 
       - name: Build
-        run: REMOVE_BG_API_KEY=${{secrets.REMOVE_BG_API_KEY}} LC_APP_ID=${{secrets.LC_APP_ID}} LC_APP_KEY=${{secrets.LC_APP_KEY}} IRITA_WALLET_ADDRESS=${{secrets.IRITA_WALLET_ADDRESS}} IRITA_WALLET_PRIVATE_KEY=${{secrets.IRITA_WALLET_PRIVATE_KEY}} IRITA_KEY_NAME=${{secrets.IRITA_KEY_NAME}} IRITA_KEY_PASSWORD=${{secrets.IRITA_KEY_PASSWORD}} IRITA_MNEMONIC=${{secrets.IRITA_MNEMONIC}} npm run build:prod --if-present
+        run: REMOVE_BG_API_KEY=${{secrets.REMOVE_BG_API_KEY}} LC_APP_ID=${{secrets.LC_APP_ID}} LC_APP_KEY=${{secrets.LC_APP_KEY}} IRITA_WALLET_ADDRESS=${{secrets.IRITA_WALLET_ADDRESS}} IRITA_WALLET_PRIVATE_KEY=${{secrets.IRITA_WALLET_PRIVATE_KEY}} IRITA_KEY_NAME=${{secrets.IRITA_KEY_NAME}} IRITA_KEY_PASSWORD=${{secrets.IRITA_KEY_PASSWORD}} npm run build:prod --if-present
 
       - name: Deploy
         uses: easingthemes/ssh-deploy@v2.1.5
