@@ -50,24 +50,8 @@ class CertificateService {
 
   /**
    * create Certificate
-   * @param userId number userId
-   * @param firstName string
-   * @param firstNamePinyin string
-   * @param lastName string
-   * @param lastNamePinyin string
+   * @param certificate CertificateModel
    * @param denomName string denom name
-   * @param certificateName string certificate name
-   * @param photoUrl string nft image url
-   * @param logoUrl string partner logo url
-   * @param certificateType string
-   * @param partner string
-   * @param publishedAt string
-   * @param expiredAt string
-   * @param fingerprint string
-   * @param issuer string
-   * @param receiverAddress string
-   * @param qrCode string
-   * @param dpmLevel string
    * @returns Transaction hash string
    */
   public async createDenomAndCertificate(
@@ -86,11 +70,6 @@ class CertificateService {
         id: denomId,
         name: denomName,
         sender,
-        /*
-         * mintRestricted
-         * false 任何人都可以发行NFT
-         * true 只有Denom的所有者可以发行此类别的NFT
-         * */
         mintRestricted: true,
         updateRestricted: true,
       },
@@ -109,10 +88,6 @@ class CertificateService {
       },
     };
     const msgs = [issueDenomMsg, mintCertificateMsg];
-    /*
-     * issue Denom需要simulation
-     * issue certificate不用simulation（目前写死一个amount用于测试链）
-     * */
     const realTx = newBaseTxForDenom();
     const response = await this.certificateClient.tx.buildAndSend(msgs, realTx);
     return {
@@ -134,8 +109,6 @@ class CertificateService {
           id: certId, // cert id
           denom_id: config.irita.denomId,
           name: certificate.certName, // cert name
-          uri: certificate.photoUrl,
-          // data: JSON.stringify(certificate),
           sender,
           recipient: sender,
         },
