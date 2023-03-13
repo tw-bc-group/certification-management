@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CertificationManagementComponent } from './certification-management.component';
 import {
@@ -47,110 +47,153 @@ import {DebugElement} from '@angular/core';
 import {CertificateTabs, CompanyRadios} from '../models/certificate.model';
 import {CertificateFormComponent} from '../certificate-form/certificate-form.component';
 import zh from '@angular/common/locales/zh';
-
+import {NZ_ICONS} from 'ng-zorro-antd/icon';
+import {IconDefinition} from '@ant-design/icons-angular';
+import {DeleteOutline, PlusOutline} from '@ant-design/icons-angular/icons';
+const icons: IconDefinition[] = [PlusOutline, DeleteOutline];
 registerLocaleData(zh);
-xdescribe('CertificationManagementComponent', () => {
-    let component: CertificationManagementComponent;
-    let fixture: ComponentFixture<CertificationManagementComponent>;
-    let debugElement: DebugElement;
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          imports: [    CommonModule,
-            NzLayoutModule,
-            NzFormModule,
-            NzInputModule,
-            NzSelectModule,
-            NzPageHeaderModule,
-            NzButtonModule,
-            NzDatePickerModule,
-            NzIconModule,
-            NzModalModule,
-            NzMessageModule,
-            HttpClientModule,
-            FormsModule,
-            ReactiveFormsModule,
-            BrowserAnimationsModule,
-            NzTableModule,
-            NzPaginationModule,
-            NzEmptyModule,
-            NzAvatarModule,
-            NzRadioModule, ],
-            declarations: [CertificationManagementComponent,
-              CertificateFormComponent,
-              QueryPageComponent,
-              TemplateTwComponent,
-              TemplateTwSimpleComponent,
-              TemplateCorporateComponent,
-              TemplateCommunityComponent,
-              TemplateUniversityComponent,
-              TemplateJuniorDPMComponent,
-              TemplateJuniorDPMSimpleComponent,
-              TemplateTwCorComponent,
-              TemplateTwCorSimpleComponent,
-              TemplateNonLinkedTwAcComponent,
-              NamePipe,
-              MovableDirective,
-              ZoomDirective,
-              SafeResourceUrlPipe,
-              PartnerLogoPipe,
-              StringToHTMLPipe,
-              ChineseNamePipe,
-              EnglishNamePipe,
-              DpmLevelNamePipe,
-              CertificateTemplatePipe,
-              CertificateDirectionPipe,
-              TraineePhotoUploadComponent,
-              LogoPhotoUploadComponent,
-              CertificationManagementComponent,
-              AddCompanyModalComponent,
-              CertificationDetailOverlayComponent, ]
-        })
-            .compileComponents();
-    }));
+describe('CertificationManagementComponent', () => {
+  let component: CertificationManagementComponent;
+  let fixture: ComponentFixture<CertificationManagementComponent>;
+  let debugElement: DebugElement;
+  beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [CommonModule,
+          NzLayoutModule,
+          NzFormModule,
+          NzInputModule,
+          NzSelectModule,
+          NzPageHeaderModule,
+          NzButtonModule,
+          NzDatePickerModule,
+          NzIconModule,
+          NzModalModule,
+          NzMessageModule,
+          HttpClientModule,
+          FormsModule,
+          ReactiveFormsModule,
+          BrowserAnimationsModule,
+          NzTableModule,
+          NzPaginationModule,
+          NzEmptyModule,
+          NzAvatarModule,
+          NzRadioModule, ],
+        providers: [{ provide: NZ_ICONS, useValue: icons }],
+        declarations: [CertificationManagementComponent,
+          CertificateFormComponent,
+          QueryPageComponent,
+          TemplateTwComponent,
+          TemplateTwSimpleComponent,
+          TemplateCorporateComponent,
+          TemplateCommunityComponent,
+          TemplateUniversityComponent,
+          TemplateJuniorDPMComponent,
+          TemplateJuniorDPMSimpleComponent,
+          TemplateTwCorComponent,
+          TemplateTwCorSimpleComponent,
+          TemplateNonLinkedTwAcComponent,
+          NamePipe,
+          MovableDirective,
+          ZoomDirective,
+          SafeResourceUrlPipe,
+          PartnerLogoPipe,
+          StringToHTMLPipe,
+          ChineseNamePipe,
+          EnglishNamePipe,
+          DpmLevelNamePipe,
+          CertificateTemplatePipe,
+          CertificateDirectionPipe,
+          TraineePhotoUploadComponent,
+          LogoPhotoUploadComponent,
+          CertificationManagementComponent,
+          AddCompanyModalComponent,
+          CertificationDetailOverlayComponent, ]
+      }).compileComponents();
+  }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(CertificationManagementComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-
-        debugElement = fixture.debugElement;
-    });
-
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-
-    it('should go into linked certificate tab', () => {
-      spyOn(component, 'onTabChange');
-      spyOn(component, 'onSubTabChange');
-
-      const nativeElement: HTMLElement = debugElement.nativeElement;
-      const tabElements: HTMLElement = nativeElement.querySelector('.tabs span');
-      tabElements.click();
-      expect(tabElements.textContent).toEqual(' 证书发布 ');
-      expect(component.onTabChange).toHaveBeenCalled();
-
-      const linkedElement = debugElement.query(By.css('.linked-certificate'));
-      const linkedBtn: HTMLButtonElement = linkedElement.nativeElement;
-      linkedBtn.click();
-      expect(linkedBtn.textContent).toEqual('上链证书 ');
-      expect(component.onSubTabChange).toHaveBeenCalled();
-    });
-
-    xit('should issue certificate', () => {
-      spyOn(component, 'issue');
-      const formBuilder: FormBuilder = new FormBuilder();
-      component.certificateForm = formBuilder.group({
-        issuer: 'xuhemeng',
-        lastName: 'lastname',
-        firstName: 'firstname',
-        subordinateCompany: CompanyRadios.THOUGHTWORKS
-      });
+  beforeEach(() => {
+      fixture = TestBed.createComponent(CertificationManagementComponent);
+      component = fixture.componentInstance;
       fixture.detectChanges();
-      const issueBtn: HTMLButtonElement = debugElement.query(By.css('.issue-btn')).nativeElement;
-      issueBtn.click();
-      fixture.detectChanges();
-      expect(component.issue).toHaveBeenCalled();
-      expect(issueBtn.textContent).toEqual('颁发证书 ');
+
+      debugElement = fixture.debugElement;
+  });
+
+  it('should create', () => {
+      expect(component).toBeTruthy();
+  });
+
+  it('should go into linked certificate tab', () => {
+    spyOn(component, 'onTabChange');
+    spyOn(component, 'onSubTabChange');
+
+    const nativeElement: HTMLElement = debugElement.nativeElement;
+    const tabElements: HTMLElement = nativeElement.querySelector('.tabs span');
+    tabElements.click();
+    expect(tabElements.textContent).toEqual(' 证书发布 ');
+    expect(component.onTabChange).toHaveBeenCalled();
+    const linkedElement: HTMLButtonElement = nativeElement.querySelector('.linked-certificate');
+    linkedElement.click();
+    expect(linkedElement.textContent).toEqual('上链证书 ');
+    expect(component.onSubTabChange).toHaveBeenCalled();
+  });
+
+  it('should issue certificate successfully', () => {
+    spyOn(component, 'issue');
+    const certificateForm = component.certificateForm;
+    certificateForm.patchValue({
+      issuer: 'xuhemeng',
+      lastName: 'lastname',
+      firstName: 'firstname',
+      subordinateCompany: CompanyRadios.THOUGHTWORKS,
+      photoUrl: 'http://example.com/photo.jpg'
+    });
+    fixture.detectChanges();
+    const issueBtn: HTMLButtonElement = debugElement.query(By.css('.issue-btn')).nativeElement;
+    issueBtn.click();
+    fixture.detectChanges();
+    expect(issueBtn.textContent).toEqual('颁发证书 ');
+    expect(component.issue).toHaveBeenCalled();
+    expect(component.certificateForm.value.issuer).toEqual('xuhemeng');
+    expect(component.certificateForm.value.lastName).toEqual('lastname');
+    expect(component.certificateForm.value.subordinateCompany).toEqual(CompanyRadios.THOUGHTWORKS);
+  });
+
+  it('should go into non-linked certificate tab', () => {
+    spyOn(component, 'onTabChange');
+    spyOn(component, 'onSubTabChange');
+
+    const nativeElement: HTMLElement = debugElement.nativeElement;
+    const tabElement: HTMLSpanElement = nativeElement.querySelector('.tabs span:nth-child(1)');
+    tabElement.click();
+    expect(tabElement.textContent).toEqual(' 证书发布 ');
+    expect(component.onTabChange).toHaveBeenCalledWith(CertificateTabs.CERTIFICATE_PUBLISH);
+    const nonLinkedElement: HTMLButtonElement = nativeElement.querySelector('.non-linked-certificate');
+    nonLinkedElement.click();
+    fixture.detectChanges();
+    expect(nonLinkedElement.textContent).toEqual('非上链证书 ');
+    expect(component.onSubTabChange).toHaveBeenCalledWith(CertificateTabs.OFF_CHAIN_CERTIFICATE);
+  });
+
+  it('should issue non-linked certificate successfully', () => {
+    spyOn(component, 'issue');
+    const nonLinkedElement: HTMLButtonElement = debugElement.nativeElement.querySelector('.non-linked-certificate');
+    nonLinkedElement.click();
+    fixture.detectChanges();
+    const certificateForm = component.certificateForm;
+    certificateForm.patchValue({
+      lastName: 'lastname',
+      firstName: 'firstname',
+      subordinateCompany: CompanyRadios.THOUGHTWORKS,
+      photoUrl: 'http://example.com/photo.jpg'
+    });
+    fixture.detectChanges();
+    const issueBtn: HTMLButtonElement = debugElement.query(By.css('.issue-btn')).nativeElement;
+    issueBtn.click();
+    fixture.detectChanges();
+    expect(issueBtn.textContent).toEqual('颁发证书 ');
+    expect(component.issue).toHaveBeenCalled();
+    expect(component.certificateForm.value.lastName).toEqual('lastname');
+    expect(component.certificateForm.value.subordinateCompany).toEqual(CompanyRadios.THOUGHTWORKS);
   });
 });

@@ -301,8 +301,6 @@ export class CertificationManagementComponent implements OnInit, OnDestroy {
   }
 
   private uploadCertificate(certId: string, photos: any): Observable<any> {
-    // save: table of Photo
-    // saveCertificate: table of Certificate
     saveCertificate({ certId, photos, certificate: this.certificateForm.value });
     return from(save({ certId, photos }));
   }
